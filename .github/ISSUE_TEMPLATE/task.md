@@ -6,7 +6,7 @@ labels: task
 assignees: ''
 ---
 
-Branch name: [Exact branch name copy]
+Branch name: [Copy the exact name of the branch]
 Part of: [Story reference]
 Blocked by: [Task reference]
 
