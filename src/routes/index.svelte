@@ -1,3 +1,7 @@
+<script>
+	import Filter from '../lib/components/filter.svelte';
+</script>
+
 <div class="container">
 	<header>
 		<h1>John Doe</h1>
@@ -19,6 +23,7 @@
 			<p>Groep 3-8</p>
 		</article>
 	</section>
+	<Filter />
 </div>
 
 <style>
