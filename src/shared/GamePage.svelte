@@ -1,5 +1,5 @@
 <script>
-	import ButtonLight from '../Button/ButtonLight.svelte';
+	import ButtonLight from '../components/Button/ButtonLight.svelte';
 
 	export let game;
 </script>

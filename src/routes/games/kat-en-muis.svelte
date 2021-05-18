@@ -1,5 +1,5 @@
 <script>
-	import GamePage from '$lib/shared/GamePage.svelte';
+	import GamePage from '../../shared/GamePage.svelte';
 
 	let game = {
 		title: 'Kat en Muis',
