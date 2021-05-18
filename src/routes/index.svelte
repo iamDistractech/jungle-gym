@@ -1,25 +1,23 @@
-<div class="container">
-	<header>
-		<h1>John Doe</h1>
-		<h2>Goedemorgen</h2>
-	</header>
-	<section id="search-container">
-		<input type="text" placeholder="Zoeken" />
-		<button>F</button>
-	</section>
-	<div class="highlight-image" />
-	<section>
-		<h2>Spellen</h2>
-		<article>
-			<h3>Hoepel</h3>
-			<p>Groep 3-6</p>
-		</article>
-		<article>
-			<h3>Verstoppertje</h3>
-			<p>Groep 3-8</p>
-		</article>
-	</section>
-</div>
+<header>
+	<h1>John Doe</h1>
+	<h2>Goedemorgen</h2>
+</header>
+<section id="search-container">
+	<input type="text" placeholder="Zoeken" />
+	<button>F</button>
+</section>
+<div class="highlight-image" />
+<section>
+	<h2>Spellen</h2>
+	<article>
+		<h3>Hoepel</h3>
+		<p>Groep 3-6</p>
+	</article>
+	<article>
+		<h3>Verstoppertje</h3>
+		<p>Groep 3-8</p>
+	</article>
+</section>
 
 <style>
 	header {
@@ -65,15 +63,10 @@
 		transform: scale(0.98);
 		transition: transform 0.2s;
 	}
-
-	.container {
-		padding: 0 1em;
-	}
-
 	.highlight-image {
 		width: 100%;
 		height: 12.5em;
-		background-color: #b9e9ff;
+		background-color: var(--color-turquoise);
 		border-radius: 1em;
 		margin: 2em 0;
 	}
