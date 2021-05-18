@@ -116,3 +116,18 @@ body {
 	font-family: var(--font-body);
 	background-color: var(--color-white);
 }
+
+.submit-btn {
+	padding: 1.4rem 2rem;
+	border-radius: 1rem;
+	border: none;
+	font-size: 1rem;
+	background: var(--color-light-orange);
+}
+
+.cancel-btn {
+	padding: 1.4rem 2rem;
+	border-radius: 1rem;
+	border: none;
+	font-size: 1rem;
+}
