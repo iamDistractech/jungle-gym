@@ -1,5 +1,8 @@
 <script>
+import OverviewListItem from '../components/OverviewListItem.svelte'
+
 let searchInput = '';
+
 </script>
 
 <div class="container">
@@ -15,45 +18,22 @@ let searchInput = '';
 	<div class="highlight-image">
 		<p>Nieuw!</p>
 		<div>
-			<h3>Hoepel</h3>
+			<h3>Kat en Muis</h3>
 			<div class="label-container">
-				<p class="label">Groep 3-6</p>
-				<p class="label">Balspel</p>
-				<p class="label">5</p>
+				<p class="label">Alle groepen</p>
+				<p class="label">Tikspel</p>
+				<p class="label">Min 5</p>
 			</div>
 		</div>
 	</div>
 	<section>
 		<h2>Spellen</h2>
-		<article>
-			<div>
-				<h3>Hoepel</h3>
-				<div class="label-container">
-					<p class="label">Groep 3-6</p>
-					<p class="label">Balspel</p>
-					<p class="label">5</p>
-				</div>
-			</div>
-			<span>></span>
-		</article>
-		<article>
-			<div>
-				<h3>Verstoppertje</h3>
-				<div class="label-container">
-					<p class="label">Groep 3-8</p>
-					<p class="label">Loopspel</p>
-					<p class="label">5</p>
-
-				</div>
-			</div>
-			<span>></span>
-		</article>
+		<OverviewListItem titleGame='Pionnenroof' groups='Alle groepen' game='Tikspel' personAmount='Min 2' />
+		<OverviewListItem titleGame='Fopbal' groups='Alle groepen' game='Balspel' personAmount='Min 3' />
+		<OverviewListItem titleGame='Leeuwenkooi' groups='Alle groepen' game='Tikspel' personAmount='Min 5' />
 	</section>
 </div>
 
-<!-- groep -->
-<!-- Aantal leerlingen -->
-<!-- spelsoort -->
 
 <style>
 	header {
@@ -74,26 +54,7 @@ let searchInput = '';
 		font-size: 1em;
 	}
 
-	article {
-		background-color: #f3f3f3;
-		border-radius: 1em;
-		margin: 1em 0;
-		padding: 1em;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
 
-
-	span {
-		background: var(--color-light-orange);
-		border-radius: 50%;
-		width: 2rem;
-		height: 2rem;
-		display:flex;
-		justify-content: center;
-		align-items: center;
-	}
 
 	button:hover {
 		cursor: pointer;
