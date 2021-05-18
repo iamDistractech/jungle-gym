@@ -1,25 +1,59 @@
+<script>
+let searchInput = '';
+</script>
+
 <div class="container">
 	<header>
 		<h1>John Doe</h1>
-		<h2>Goedemorgen</h2>
+		<h2>Goedemorgen!</h2>
 	</header>
 	<section id="search-container">
-		<input type="text" placeholder="Zoeken" />
+		<input bind:value={searchInput} type="text" placeholder="Zoeken" />
 		<button>F</button>
 	</section>
-	<div class="highlight-image" />
+	<p>{searchInput}</p>
+	<div class="highlight-image">
+		<p>Nieuw!</p>
+		<div>
+			<h3>Hoepel</h3>
+			<div class="label-container">
+				<p class="label">Groep 3-6</p>
+				<p class="label">Balspel</p>
+				<p class="label">5</p>
+			</div>
+		</div>
+	</div>
 	<section>
 		<h2>Spellen</h2>
 		<article>
-			<h3>Hoepel</h3>
-			<p>Groep 3-6</p>
+			<div>
+				<h3>Hoepel</h3>
+				<div class="label-container">
+					<p class="label">Groep 3-6</p>
+					<p class="label">Balspel</p>
+					<p class="label">5</p>
+				</div>
+			</div>
+			<span>></span>
 		</article>
 		<article>
-			<h3>Verstoppertje</h3>
-			<p>Groep 3-8</p>
+			<div>
+				<h3>Verstoppertje</h3>
+				<div class="label-container">
+					<p class="label">Groep 3-8</p>
+					<p class="label">Loopspel</p>
+					<p class="label">5</p>
+
+				</div>
+			</div>
+			<span>></span>
 		</article>
 	</section>
 </div>
+
+<!-- groep -->
+<!-- Aantal leerlingen -->
+<!-- spelsoort -->
 
 <style>
 	header {
@@ -46,15 +80,19 @@
 		margin: 1em 0;
 		padding: 1em;
 		display: flex;
-		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: space-between;
 	}
 
-	article h3 {
-		margin: 0.5em 0;
-	}
 
-	article p {
-		margin: 0;
+	span {
+		background: var(--color-light-orange);
+		border-radius: 50%;
+		width: 2rem;
+		height: 2rem;
+		display:flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	button:hover {
@@ -71,11 +109,30 @@
 	}
 
 	.highlight-image {
-		width: 100%;
-		height: 12.5em;
+		height: 11.5em;
 		background-color: #b9e9ff;
 		border-radius: 1em;
 		margin: 2em 0;
+		padding: 0.1rem 1rem;
+		display: flex;
+    flex-direction: column;
+	}
+
+	.highlight-image div {
+		text-align: center;
+	}
+
+	.label {
+		background-color: var(--color-light-orange);
+		padding: 0.3rem 1rem;
+		border-radius: 1rem;
+		margin-right: 0.5rem;
+		font-size: 0.8rem;
+		margin-bottom: 0;
+	}
+	.label-container {
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	#search-container {
@@ -93,10 +150,12 @@
 	}
 
 	#search-container input[type='text'] {
-		width: 80%;
-		height: 4em;
+		width: 100%;
 		border-radius: 1em;
 		border: none;
 		background-color: #fafafa;
+		padding: 1rem 1.5rem;
+		border: 2px solid var(--color-light-orange);
+		margin-right: 1rem;
 	}
 </style>
