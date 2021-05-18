@@ -1,8 +1,6 @@
 <script>
-import OverviewListItem from '../components/OverviewListItem.svelte'
-
-let searchInput = '';
-
+	import OverviewListItem from '../components/OverviewListItem.svelte';
+	import Filter from '../components/filter.svelte'
 </script>
 
 <div class="container">
@@ -10,11 +8,9 @@ let searchInput = '';
 		<h1>John Doe</h1>
 		<h2>Goedemorgen!</h2>
 	</header>
-	<section id="search-container">
-		<input bind:value={searchInput} type="text" placeholder="Zoeken" />
-		<button>F</button>
-	</section>
-	<p>{searchInput}</p>
+
+	<Filter />
+
 	<div class="highlight-image">
 		<p>Nieuw!</p>
 		<div>
@@ -28,12 +24,26 @@ let searchInput = '';
 	</div>
 	<section>
 		<h2>Spellen</h2>
-		<OverviewListItem titleGame='Pionnenroof' groups='Alle groepen' game='Tikspel' personAmount='Min 2' />
-		<OverviewListItem titleGame='Fopbal' groups='Alle groepen' game='Balspel' personAmount='Min 3' />
-		<OverviewListItem titleGame='Leeuwenkooi' groups='Alle groepen' game='Tikspel' personAmount='Min 5' />
+		<OverviewListItem
+			titleGame="Pionnenroof"
+			groups="Alle groepen"
+			game="Tikspel"
+			personAmount="Min 2"
+		/>
+		<OverviewListItem
+			titleGame="Fopbal"
+			groups="Alle groepen"
+			game="Balspel"
+			personAmount="Min 3"
+		/>
+		<OverviewListItem
+			titleGame="Leeuwenkooi"
+			groups="Alle groepen"
+			game="Tikspel"
+			personAmount="Min 5"
+		/>
 	</section>
 </div>
-
 
 <style>
 	header {
@@ -53,8 +63,6 @@ let searchInput = '';
 		font-weight: 400;
 		font-size: 1em;
 	}
-
-
 
 	button:hover {
 		cursor: pointer;
@@ -76,7 +84,7 @@ let searchInput = '';
 		margin: 2em 0;
 		padding: 0.1rem 1rem;
 		display: flex;
-    flex-direction: column;
+		flex-direction: column;
 	}
 
 	.highlight-image div {
@@ -94,29 +102,5 @@ let searchInput = '';
 	.label-container {
 		display: flex;
 		flex-wrap: wrap;
-	}
-
-	#search-container {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	#search-container button {
-		background-color: var(--color-light-orange);
-		border: none;
-		border-radius: 1em;
-		width: 4em;
-		height: 4em;
-	}
-
-	#search-container input[type='text'] {
-		width: 100%;
-		border-radius: 1em;
-		border: none;
-		background-color: #fafafa;
-		padding: 1rem 1.5rem;
-		border: 2px solid var(--color-light-orange);
-		margin-right: 1rem;
 	}
 </style>
