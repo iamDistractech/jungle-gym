@@ -3,7 +3,7 @@ name: Story
 about: This is used to describe a story within the project
 title: ''
 labels: story
-assignees: iSirThijs
+assignees: 
 
 ---
 
