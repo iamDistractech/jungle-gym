@@ -1,10 +1,40 @@
-# JungleGym
+# JungleGym - Meesterproef
 
 [![CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml)
 
-Meesterproef 2020-2021
+**[Live link](#)**
 
-## Developing
+API can be found **[here](https://github.com/iSirThijs/jungle-gym-api)**
+
+_[Insert description]_
+
+## Table of Contents
+
+<table>
+
+    <tr>
+        <td align="center"><a href="#nerd_face-usage">🤓 Course <a></td>
+        <td align="center"><a href="#eyeglasses-overview"> 👓 Overview <a></td>
+        <td align="center"><a href="#gear-installation">⚙️ Installation<a></td>
+        <td align="center"><a href="#open_file_folder-folder-structure">🗂 Folder Structure<a></td>
+        <td align="center"><a href="#anger-others">💢 Others<a></td>
+    </tr>
+
+</table>
+
+## :nerd_face: Course
+
+The **Meesterproef** is the final client-project of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.
+
+## :eyeglasses: Overview
+
+### Screenshot
+
+### Tech stack
+
+## :gear: Installation
+
+### Developing
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
 
@@ -17,7 +47,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+### Building
 
 Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
 
@@ -26,3 +56,7 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+## :open_file_folder: Folder Structure
+
+## :anger: Others
