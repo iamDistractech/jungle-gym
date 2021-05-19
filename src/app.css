@@ -32,3 +32,7 @@ p,
 li {
 	color: var(--color-grey);
 }
+
+.hide-underline {
+	text-decoration: none;
+}

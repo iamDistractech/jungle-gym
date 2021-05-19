@@ -1,5 +1,7 @@
 # JungleGym
 
+[![CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml)
+
 Meesterproef 2020-2021
 
 ## Developing

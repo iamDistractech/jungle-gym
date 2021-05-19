@@ -1,8 +1,9 @@
-<script>
-	export let titleGame;
-	export let groups;
-	export let game;
-	export let personAmount;
+<script lang="ts">
+	export let titleGame: string;
+	export let groups: string;
+	export let gameName: string;
+	export let personAmount: string;
+	export let gameSlug: string;
 </script>
 
 <article>
@@ -10,11 +11,13 @@
 		<h3>{titleGame}</h3>
 		<div class="label-container">
 			<p class="label">{groups}</p>
-			<p class="label">{game}</p>
+			<p class="label">{gameName}</p>
 			<p class="label">{personAmount}</p>
 		</div>
 	</div>
-	<span>></span>
+	<button>
+		<a class="hide-underline" href="/games/{gameSlug}">></a>
+	</button>
 </article>
 
 <style>
@@ -28,7 +31,7 @@
 		justify-content: space-between;
 	}
 
-	span {
+	button {
 		background: var(--color-light-orange);
 		border-radius: 50%;
 		width: 2rem;
@@ -36,6 +39,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		border: none;
 	}
 
 	.label {
