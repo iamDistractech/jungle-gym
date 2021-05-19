@@ -1,24 +1,24 @@
 <script>
-  export let titleGame;
-  export let groups;
-  export let game;
-  export let personAmount;
+	export let titleGame;
+	export let groups;
+	export let game;
+	export let personAmount;
 </script>
 
 <article>
-  <div>
-    <h3>{titleGame}</h3>
-    <div class="label-container">
-      <p class="label">{groups}</p>
-      <p class="label">{game}</p>
-      <p class="label">{personAmount}</p>
-    </div>
-  </div>
-  <span>></span>
+	<div>
+		<h3>{titleGame}</h3>
+		<div class="label-container">
+			<p class="label">{groups}</p>
+			<p class="label">{game}</p>
+			<p class="label">{personAmount}</p>
+		</div>
+	</div>
+	<span>></span>
 </article>
 
 <style>
-  	article {
+	article {
 		background-color: #f3f3f3;
 		border-radius: 1em;
 		margin: 1em 0;
@@ -28,18 +28,17 @@
 		justify-content: space-between;
 	}
 
-
 	span {
 		background: var(--color-light-orange);
 		border-radius: 50%;
 		width: 2rem;
 		height: 2rem;
-		display:flex;
+		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
-  .label {
+	.label {
 		background-color: var(--color-light-orange);
 		padding: 0.3rem 1rem;
 		border-radius: 1rem;
