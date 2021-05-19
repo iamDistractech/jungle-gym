@@ -78,14 +78,10 @@
 		transform: scale(0.98);
 		transition: transform 0.2s;
 	}
-
-	.container {
-		padding: 0 1em;
-	}
-
 	.highlight-image {
-		height: 11.5em;
-		background-color: #b9e9ff;
+		width: 100%;
+		height: 12.5em;
+		background-color: var(--color-turquoise);
 		border-radius: 1em;
 		margin: 2em 0;
 		padding: 0.1rem 1rem;
