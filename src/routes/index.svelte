@@ -1,8 +1,7 @@
 <script>
-import OverviewListItem from '../components/OverviewListItem.svelte'
+	import OverviewListItem from '../components/OverviewListItem.svelte';
 
-let searchInput = '';
-
+	let searchInput = '';
 </script>
 
 <div class="container">
@@ -28,12 +27,26 @@ let searchInput = '';
 	</div>
 	<section>
 		<h2>Spellen</h2>
-		<OverviewListItem titleGame='Pionnenroof' groups='Alle groepen' game='Tikspel' personAmount='Min 2' />
-		<OverviewListItem titleGame='Fopbal' groups='Alle groepen' game='Balspel' personAmount='Min 3' />
-		<OverviewListItem titleGame='Leeuwenkooi' groups='Alle groepen' game='Tikspel' personAmount='Min 5' />
+		<OverviewListItem
+			titleGame="Pionnenroof"
+			groups="Alle groepen"
+			game="Tikspel"
+			personAmount="Min 2"
+		/>
+		<OverviewListItem
+			titleGame="Fopbal"
+			groups="Alle groepen"
+			game="Balspel"
+			personAmount="Min 3"
+		/>
+		<OverviewListItem
+			titleGame="Leeuwenkooi"
+			groups="Alle groepen"
+			game="Tikspel"
+			personAmount="Min 5"
+		/>
 	</section>
 </div>
-
 
 <style>
 	header {
@@ -53,8 +66,6 @@ let searchInput = '';
 		font-weight: 400;
 		font-size: 1em;
 	}
-
-
 
 	button:hover {
 		cursor: pointer;
@@ -76,7 +87,7 @@ let searchInput = '';
 		margin: 2em 0;
 		padding: 0.1rem 1rem;
 		display: flex;
-    flex-direction: column;
+		flex-direction: column;
 	}
 
 	.highlight-image div {
