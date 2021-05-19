@@ -11,7 +11,6 @@ _[Insert description]_
 ## Table of Contents
 
 <table>
-
     <tr>
         <td align="center"><a href="#nerd_face-usage">🤓 Course <a></td>
         <td align="center"><a href="#eyeglasses-overview"> 👓 Overview <a></td>
@@ -19,7 +18,6 @@ _[Insert description]_
         <td align="center"><a href="#open_file_folder-folder-structure">🗂 Folder Structure<a></td>
         <td align="center"><a href="#anger-others">💢 Others<a></td>
     </tr>
-
 </table>
 
 ## :nerd_face: Course
