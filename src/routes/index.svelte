@@ -1,5 +1,6 @@
 <script>
 	import OverviewListItem from '../components/OverviewListItem.svelte';
+	import FilterPopUp from '../components/FilterPopUp.svelte';
 
 	let searchInput = '';
 </script>
@@ -14,17 +15,19 @@
 		<button>F</button>
 	</section>
 	<p>{searchInput}</p>
-	<div class="highlight-image">
-		<p>Nieuw!</p>
-		<div>
-			<h3>Kat en Muis</h3>
-			<div class="label-container">
-				<p class="label">Alle groepen</p>
-				<p class="label">Tikspel</p>
-				<p class="label">Min 5</p>
+	<a href="/spel/kat-en-muis" class="hide-underline">
+		<div class="highlight-image">
+			<p>Nieuw!</p>
+			<div>
+				<h3>Kat en Muis</h3>
+				<div class="label-container">
+					<p class="label">Alle groepen</p>
+					<p class="label">Tikspel</p>
+					<p class="label">Min 5</p>
+				</div>
 			</div>
 		</div>
-	</div>
+	</a>
 	<section>
 		<h2>Spellen</h2>
 		<OverviewListItem
@@ -49,6 +52,8 @@
 			gameSlug="leeuwenkooi"
 		/>
 	</section>
+
+	<!-- <FilterPopUp /> -->
 </div>
 
 <style>
@@ -79,7 +84,6 @@
 		transition: transform 0.2s;
 	}
 	.highlight-image {
-		width: 100%;
 		height: 12.5em;
 		background-color: var(--color-turquoise);
 		border-radius: 1em;
@@ -91,6 +95,10 @@
 
 	.highlight-image div {
 		text-align: center;
+	}
+
+	.highlight-image:focus {
+		cursor: pointer;
 	}
 
 	.label {
