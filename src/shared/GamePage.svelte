@@ -6,7 +6,9 @@
 
 <header>
 	<h1>{game.title}</h1>
-	<button>&larr;</button>
+	<button>
+		<a class="hide-underline" href="/">&larr</a>
+	</button>
 </header>
 
 <div class="image-card" />
