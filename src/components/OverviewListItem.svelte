@@ -1,9 +1,9 @@
 <script lang="ts">
-	export let titleGame: String;
-	export let groups: String;
-	export let gameName: String;
-	export let personAmount: String;
-	export let gameSlug: String;
+	export let titleGame: string;
+	export let groups: string;
+	export let gameName: string;
+	export let personAmount: string;
+	export let gameSlug: string;
 </script>
 
 <article>

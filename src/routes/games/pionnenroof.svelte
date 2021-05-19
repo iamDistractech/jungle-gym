@@ -1,7 +1,7 @@
 <script lang="ts">
 	import GamePage from '../../shared/GamePage.svelte';
 
-	let game: Object = {
+	let game = {
 		title: 'Pionnenroof',
 		description:
 			'Er worden twee teams gemaakt. De spelers uit 1 team zijn de rovers, de spelers uit het andere team zijn de tikkers. Beide teams beginnen aan hun eigen kant van het veld. De tikkers hebben voor hen een rij met pionnen. Voor de rovers is het doel om zoveel mogelijk pionnen te roven. Zodra een rover een pion heeft gepakt mag deze getikt worden door een tikker. De rover moet proberen zonder getikt te worden de pion over de eigen achterlijn te krijgen. Ben je wel getikt? Dan moet de pion weer teruggelegd worden. Hoeveel pionnen kunnen de rovers pakken binnen 2 minuten?',
