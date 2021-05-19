@@ -3,19 +3,15 @@
 	export let groups: string;
 	export let gameName: string;
 	export let personAmount: string;
-	export let gameSlug: string;
 </script>
 
 <article>
-	<a class="hide-underline" href="/spel/{gameSlug}">
-		<h1>{titleGame}</h1>
-		<div class="label-container">
-			<p class="label">{groups}</p>
-			<p class="label">{gameName}</p>
-			<p class="label">{personAmount}</p>
-		</div>
-	</a>
-	<span>></span>
+	<h1>{titleGame}</h1>
+	<ul class="label-container">
+		<li class="label">{groups}</li>
+		<li class="label">{gameName}</li>
+		<li class="label">{personAmount}</li>
+	</ul>
 </article>
 
 <style>
@@ -24,24 +20,27 @@
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
-		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
 
-	article span {
-		background: var(--color-light-orange);
-		border-radius: 50%;
-		width: 2em;
-		height: 2em;
+	ul {
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: none;
+		flex-wrap: no-wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 5px
 	}
 
 	article h1 {
 		color: var(--color-dark-blue);
+		display: flex;
+		justify-content: space-between;
+	}
+
+	article h1::after {
+		content: '>';
 	}
 
 	.label {

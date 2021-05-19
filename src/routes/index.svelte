@@ -8,44 +8,55 @@
 	<h1>John Doe</h1>
 	<h2>Goedemorgen!</h2>
 </header>
-
-<GameListFilter />
-
-<a href="/spel/kat-en-muis" class="hide-underline highlight-image">
-	<p>Nieuw!</p>
-	<div>
-		<h1>Kat en Muis</h1>
-		<div class="label-container">
-			<p class="label">Alle groepen</p>
-			<p class="label">Tikspel</p>
-			<p class="label">Min 5</p>
-		</div>
-	</div>
-</a>
-
+<GameListFilter/>
+<section>
+	<h1>Nieuw Spel</h1>
+	<a href="/spel/kat-en-muis">
+		<GameListCard
+			titleGame="Kat en Muis"
+			groups="Alle groepen"
+			gameName="Tikspel"
+			personAmount="Min 5"
+		/>
+	</a>
+</section>
 <section>
 	<h1>Spellen</h1>
-	<GameListCard
-		titleGame="Pionnenroof"
-		groups="Alle groepen"
-		gameName="Tikspel"
-		personAmount="Min 2"
-		gameSlug="pionnenroof"
-	/>
-	<GameListCard
-		titleGame="Fopbal"
-		groups="Alle groepen"
-		gameName="Balspel"
-		personAmount="Min 3"
-		gameSlug="fopbal"
-	/>
-	<GameListCard
-		titleGame="Leeuwenkooi"
-		groups="Alle groepen"
-		gameName="Tikspel"
-		personAmount="Min 5"
-		gameSlug="leeuwenkooi"
-	/>
+	<ul>
+		<li>
+			<a>
+				<GameListCard
+					titleGame="Pionnenroof"
+					groups="Alle groepen"
+					gameName="Tikspel"
+					personAmount="Min 2"
+					gameSlug="pionnenroof"
+				/>
+			</a>
+		</li>
+		<li>
+			<a>
+				<GameListCard
+					titleGame="Fopbal"
+					groups="Alle groepen"
+					gameName="Balspel"
+					personAmount="Min 3"
+					gameSlug="fopbal"
+				/>
+			</a>
+		</li>
+		<li>
+			<a>
+				<GameListCard
+				titleGame="Leeuwenkooi"
+				groups="Alle groepen"
+				gameName="Tikspel"
+				personAmount="Min 5"
+				gameSlug="leeuwenkooi"
+				/>
+			</a>
+		</li>
+	</ul>
 </section>
 
 <!-- <GameListPopup /> -->
@@ -61,11 +72,21 @@
 		margin: 0.5em 0;
 	}
 
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0
+	}
+
 	header h2 {
 		margin: 0;
 		color: var(--color-grey);
 		font-weight: 400;
 		font-size: 1em;
+	}
+
+	section a {
+		text-decoration: none;
 	}
 
 	.highlight-image {
