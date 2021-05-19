@@ -70,3 +70,7 @@ li {
 .hide-underline {
 	text-decoration: none;
 }
+
+.no-transform-button:active {
+	transform: none;
+}

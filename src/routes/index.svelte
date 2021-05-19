@@ -1,8 +1,7 @@
 <script>
 	import OverviewListItem from '../components/OverviewListItem.svelte';
+	import Filter from '../components/filter.svelte';
 	import FilterPopUp from '../components/FilterPopUp.svelte';
-
-	let searchInput = '';
 </script>
 
 <div class="container">
@@ -10,11 +9,9 @@
 		<h1>John Doe</h1>
 		<h2>Goedemorgen!</h2>
 	</header>
-	<section id="search-container">
-		<input bind:value={searchInput} type="text" placeholder="Zoeken" />
-		<button>F</button>
-	</section>
-	<p>{searchInput}</p>
+
+	<Filter />
+
 	<a href="/spel/kat-en-muis" class="hide-underline">
 		<div class="highlight-image">
 			<p>Nieuw!</p>
@@ -83,6 +80,7 @@
 		transform: scale(0.98);
 		transition: transform 0.2s;
 	}
+
 	.highlight-image {
 		height: 12.5em;
 		background-color: var(--color-turquoise);
@@ -112,29 +110,5 @@
 	.label-container {
 		display: flex;
 		flex-wrap: wrap;
-	}
-
-	#search-container {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	#search-container button {
-		background-color: var(--color-light-orange);
-		border: none;
-		border-radius: 1em;
-		width: 4em;
-		height: 4em;
-	}
-
-	#search-container input[type='text'] {
-		width: 100%;
-		border-radius: 1em;
-		border: none;
-		background-color: #fafafa;
-		padding: 1rem 1.5rem;
-		border: 2px solid var(--color-light-orange);
-		margin-right: 1rem;
 	}
 </style>
