@@ -1,5 +1,5 @@
 <section class="filter-popup">
-	<h1>Groepen</h1>
+	<h1>Filter op groepen</h1>
 	<form>
 		<fieldset>
 			<legend>Groepen</legend>
@@ -28,10 +28,10 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 80%;
 		background-color: white;
 		z-index: 1;
 		padding: 1rem;
+		overflow-y: auto;
 	}
 
 	.filter-popup h1 {
@@ -67,6 +67,10 @@
 	input:checked + label {
 		border: 1px solid var(--color-light-orange);
 		color: var(--color-light-orange);
+	}
+
+	legend {
+		padding-bottom: 1rem;
 	}
 
 	.black-overlay {

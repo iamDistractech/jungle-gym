@@ -48,7 +48,7 @@
 		/>
 	</section>
 
-	<FilterPopUp />
+	<!-- <FilterPopUp /> -->
 </div>
 
 <style>
