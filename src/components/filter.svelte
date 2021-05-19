@@ -46,15 +46,15 @@
 
 	#filter-container button img:nth-of-type(1) {
 		padding: 0em 0.5em;
-		width: 32x;
-		height: 32px;
+		width: 2em;
+		height: 2em;
 	}
 
 	.dropdown-close {
 		padding: 0em 0.5em;
 		margin-left: auto;
-		width: 20px;
-		height: 20px;
+		width: 1.25em;
+		height: 1.25em;
 		transform: rotate(0deg);
 		transition: transform 200ms linear;
 	}
@@ -62,8 +62,8 @@
 	.dropdown-open {
 		padding: 0em 0.5em;
 		margin-left: auto;
-		width: 20px;
-		height: 20px;
+		width: 1.25em;
+		height: 1.25em;
 		transform: rotate(90deg);
 		transition: transform 200ms linear;
 	}
@@ -75,7 +75,7 @@
 	}
 
 	.filter-options-open {
-		max-height: 500px;
+		max-height: 31.25em;
 		padding: 1.5em 0em;
 		overflow: hidden;
 		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
