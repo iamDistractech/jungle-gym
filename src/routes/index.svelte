@@ -1,6 +1,9 @@
 <script>
 	import OverviewListItem from '../components/OverviewListItem.svelte';
 	import Filter from '../components/filter.svelte';
+	import FilterPopUp from '../components/FilterPopUp.svelte';
+
+	let searchInput = '';
 </script>
 
 <div class="container">
@@ -11,17 +14,24 @@
 
 	<Filter />
 
-	<div class="highlight-image">
-		<p>Nieuw!</p>
-		<div>
-			<h3>Kat en Muis</h3>
-			<div class="label-container">
-				<p class="label">Alle groepen</p>
-				<p class="label">Tikspel</p>
-				<p class="label">Min 5</p>
+	<section id="search-container">
+		<input bind:value={searchInput} type="text" placeholder="Zoeken" />
+		<button>F</button>
+	</section>
+	<p>{searchInput}</p>
+	<a href="/spel/kat-en-muis" class="hide-underline">
+		<div class="highlight-image">
+			<p>Nieuw!</p>
+			<div>
+				<h3>Kat en Muis</h3>
+				<div class="label-container">
+					<p class="label">Alle groepen</p>
+					<p class="label">Tikspel</p>
+					<p class="label">Min 5</p>
+				</div>
 			</div>
 		</div>
-	</div>
+	</a>
 	<section>
 		<h2>Spellen</h2>
 		<OverviewListItem
@@ -46,6 +56,8 @@
 			gameSlug="leeuwenkooi"
 		/>
 	</section>
+
+	<!-- <FilterPopUp /> -->
 </div>
 
 <style>
@@ -88,6 +100,10 @@
 
 	.highlight-image div {
 		text-align: center;
+	}
+
+	.highlight-image:focus {
+		cursor: pointer;
 	}
 
 	.label {
