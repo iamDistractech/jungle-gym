@@ -1,5 +1,6 @@
 <script>
 	import OverviewListItem from '../components/OverviewListItem.svelte';
+	import FilterPopUp from '../components/FilterPopUp.svelte';
 
 	let searchInput = '';
 </script>
@@ -49,6 +50,8 @@
 			gameSlug="leeuwenkooi"
 		/>
 	</section>
+
+	<!-- <FilterPopUp /> -->
 </div>
 
 <style>
