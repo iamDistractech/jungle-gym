@@ -1,8 +1,7 @@
 <script>
-import OverviewListItem from '../components/OverviewListItem.svelte'
+	import OverviewListItem from '../components/OverviewListItem.svelte';
 
-let searchInput = '';
-
+	let searchInput = '';
 </script>
 
 <div class="container">
@@ -28,12 +27,26 @@ let searchInput = '';
 	</div>
 	<section>
 		<h2>Spellen</h2>
-		<OverviewListItem titleGame='Pionnenroof' groups='Alle groepen' game='Tikspel' personAmount='Min 2' />
-		<OverviewListItem titleGame='Fopbal' groups='Alle groepen' game='Balspel' personAmount='Min 3' />
-		<OverviewListItem titleGame='Leeuwenkooi' groups='Alle groepen' game='Tikspel' personAmount='Min 5' />
+		<OverviewListItem
+			titleGame="Pionnenroof"
+			groups="Alle groepen"
+			game="Tikspel"
+			personAmount="Min 2"
+		/>
+		<OverviewListItem
+			titleGame="Fopbal"
+			groups="Alle groepen"
+			game="Balspel"
+			personAmount="Min 3"
+		/>
+		<OverviewListItem
+			titleGame="Leeuwenkooi"
+			groups="Alle groepen"
+			game="Tikspel"
+			personAmount="Min 5"
+		/>
 	</section>
 </div>
-
 
 <style>
 	header {
@@ -54,8 +67,6 @@ let searchInput = '';
 		font-size: 1em;
 	}
 
-
-
 	button:hover {
 		cursor: pointer;
 	}
@@ -64,19 +75,15 @@ let searchInput = '';
 		transform: scale(0.98);
 		transition: transform 0.2s;
 	}
-
-	.container {
-		padding: 0 1em;
-	}
-
 	.highlight-image {
-		height: 11.5em;
-		background-color: #b9e9ff;
+		width: 100%;
+		height: 12.5em;
+		background-color: var(--color-turquoise);
 		border-radius: 1em;
 		margin: 2em 0;
 		padding: 0.1rem 1rem;
 		display: flex;
-    flex-direction: column;
+		flex-direction: column;
 	}
 
 	.highlight-image div {
