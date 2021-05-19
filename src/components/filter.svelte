@@ -86,7 +86,6 @@
 		padding: 0em;
 		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
 		overflow: hidden;
-		background: #d5d5d5;
 	}
 
 	#filter-options button {

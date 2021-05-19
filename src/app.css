@@ -73,5 +73,4 @@ li {
 
 .no-transform-button:active {
 	transform: none;
-	transition: none;
 }

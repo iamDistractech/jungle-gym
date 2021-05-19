@@ -2,8 +2,6 @@
 	import OverviewListItem from '../components/OverviewListItem.svelte';
 	import Filter from '../components/filter.svelte';
 	import FilterPopUp from '../components/FilterPopUp.svelte';
-
-	let searchInput = '';
 </script>
 
 <div class="container">
@@ -14,11 +12,6 @@
 
 	<Filter />
 
-	<section id="search-container">
-		<input bind:value={searchInput} type="text" placeholder="Zoeken" />
-		<button>F</button>
-	</section>
-	<p>{searchInput}</p>
 	<a href="/spel/kat-en-muis" class="hide-underline">
 		<div class="highlight-image">
 			<p>Nieuw!</p>
