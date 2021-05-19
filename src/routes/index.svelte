@@ -30,20 +30,23 @@
 		<OverviewListItem
 			titleGame="Pionnenroof"
 			groups="Alle groepen"
-			game="Tikspel"
+			gameName="Tikspel"
 			personAmount="Min 2"
+			gameSlug="pionnenroof"
 		/>
 		<OverviewListItem
 			titleGame="Fopbal"
 			groups="Alle groepen"
-			game="Balspel"
+			gameName="Balspel"
 			personAmount="Min 3"
+			gameSlug="fopbal"
 		/>
 		<OverviewListItem
 			titleGame="Leeuwenkooi"
 			groups="Alle groepen"
-			game="Tikspel"
+			gameName="Tikspel"
 			personAmount="Min 5"
+			gameSlug="leeuwenkooi"
 		/>
 	</section>
 </div>

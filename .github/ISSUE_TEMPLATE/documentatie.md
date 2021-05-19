@@ -4,7 +4,6 @@ about: Een task voor documentatie maken
 title: Documenteren van ....
 labels: documentation, task
 assignees: ''
-
 ---
 
 Part of: [Story reference]
