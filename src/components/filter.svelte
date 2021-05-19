@@ -7,17 +7,17 @@
 </script>
 
 <section id="filter-container">
-	<button id="filterDropdownButton" on:click={showDropdown}
-		>Filter
+	<button id="filter-dropdown-button" class="no-transform-button" on:click={showDropdown}>
+		Filter
 		<img src="../icons/filter.svg" alt="Filter icon" />
 		<img
-			class:dropdownClose={open}
-			class:dropdownOpen={!open}
+			class:dropdown-close={open}
+			class:dropdown-open={!open}
 			src="../icons/dropdown.svg"
 			alt="Dropdown icon"
 		/>
 	</button>
-	<article id="filter-options" class:filterOptionsClose={!open} class:filterOptionsOpen={open}>
+	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
 		<button>Spelsoort</button>
 		<button>Groepen</button>
 		<button>Leerlingenaantal</button>
@@ -50,7 +50,7 @@
 		height: 32px;
 	}
 
-	.dropdownClose {
+	.dropdown-close {
 		padding: 0em 0.5em;
 		margin-left: auto;
 		width: 20px;
@@ -59,7 +59,7 @@
 		transition: transform 200ms linear;
 	}
 
-	.dropdownOpen {
+	.dropdown-open {
 		padding: 0em 0.5em;
 		margin-left: auto;
 		width: 20px;
@@ -74,14 +74,14 @@
 		border-radius: 0em 0em 2em 2em;
 	}
 
-	.filterOptionsOpen {
+	.filter-options-open {
 		max-height: 500px;
 		padding: 1.5em 0em;
 		overflow: hidden;
 		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
 	}
 
-	.filterOptionsClose {
+	.filter-options-close {
 		max-height: 0;
 		padding: 0em;
 		transition: max-height 0.15s ease-out, padding 0.15s ease-out;

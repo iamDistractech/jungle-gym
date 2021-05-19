@@ -75,8 +75,8 @@
 		transform: scale(0.98);
 		transition: transform 0.2s;
 	}
+
 	.highlight-image {
-		width: 100%;
 		height: 12.5em;
 		background-color: var(--color-turquoise);
 		border-radius: 1em;
