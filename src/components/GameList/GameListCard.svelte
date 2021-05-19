@@ -7,22 +7,20 @@
 </script>
 
 <article>
-	<div>
-		<h3>{titleGame}</h3>
+	<a class="hide-underline" href="/spel/{gameSlug}">
+		<h1>{titleGame}</h1>
 		<div class="label-container">
 			<p class="label">{groups}</p>
 			<p class="label">{gameName}</p>
 			<p class="label">{personAmount}</p>
 		</div>
-	</div>
-	<button>
-		<a class="hide-underline" href="/spel/{gameSlug}">></a>
-	</button>
+	</a>
+	<span>></span>
 </article>
 
 <style>
 	article {
-		background-color: #f3f3f3;
+		background-color: var(--color-light-grey);
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
@@ -31,25 +29,30 @@
 		justify-content: space-between;
 	}
 
-	button {
+	article span {
 		background: var(--color-light-orange);
 		border-radius: 50%;
-		width: 2rem;
-		height: 2rem;
+		width: 2em;
+		height: 2em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border: none;
 	}
 
+	article h1 {
+		color: var(--color-dark-blue);
+	}
+
 	.label {
 		background-color: var(--color-light-orange);
-		padding: 0.3rem 1rem;
-		border-radius: 1rem;
-		margin-right: 0.5rem;
-		font-size: 0.8rem;
+		padding: 0.3em 1em;
+		border-radius: 1em;
+		margin-right: 0.5em;
+		font-size: 0.8em;
 		margin-bottom: 0;
 	}
+
 	.label-container {
 		display: flex;
 		flex-wrap: wrap;

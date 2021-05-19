@@ -20,6 +20,7 @@
 		<button class="cancel-btn">Annuleren</button>
 	</form>
 </section>
+
 <div class="black-overlay" />
 
 <style>

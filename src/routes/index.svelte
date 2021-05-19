@@ -1,58 +1,54 @@
 <script>
-	import OverviewListItem from '../components/OverviewListItem.svelte';
-	import Filter from '../components/filter.svelte';
-	import FilterPopUp from '../components/FilterPopUp.svelte';
+	import GameListCard from '../components/GameList/GameListCard.svelte';
+	import GameListFilter from '../components/GameList/GameListFilter.svelte';
+	import GameListPopup from '../components/GameList/GameListPopup.svelte';
 </script>
 
-<div class="container">
-	<header>
-		<h1>John Doe</h1>
-		<h2>Goedemorgen!</h2>
-	</header>
+<header>
+	<h1>John Doe</h1>
+	<h2>Goedemorgen!</h2>
+</header>
 
-	<Filter />
+<GameListFilter />
 
-	<a href="/spel/kat-en-muis" class="hide-underline">
-		<div class="highlight-image">
-			<p>Nieuw!</p>
-			<div>
-				<h3>Kat en Muis</h3>
-				<div class="label-container">
-					<p class="label">Alle groepen</p>
-					<p class="label">Tikspel</p>
-					<p class="label">Min 5</p>
-				</div>
-			</div>
+<a href="/spel/kat-en-muis" class="hide-underline highlight-image">
+	<p>Nieuw!</p>
+	<div>
+		<h1>Kat en Muis</h1>
+		<div class="label-container">
+			<p class="label">Alle groepen</p>
+			<p class="label">Tikspel</p>
+			<p class="label">Min 5</p>
 		</div>
-	</a>
-	<section>
-		<h2>Spellen</h2>
-		<OverviewListItem
-			titleGame="Pionnenroof"
-			groups="Alle groepen"
-			gameName="Tikspel"
-			personAmount="Min 2"
-			gameSlug="pionnenroof"
-		/>
-		<OverviewListItem
-			titleGame="Fopbal"
-			groups="Alle groepen"
-			gameName="Balspel"
-			personAmount="Min 3"
-			gameSlug="fopbal"
-		/>
-		<OverviewListItem
-			titleGame="Leeuwenkooi"
-			groups="Alle groepen"
-			gameName="Tikspel"
-			personAmount="Min 5"
-			gameSlug="leeuwenkooi"
-		/>
-	</section>
+	</div>
+</a>
 
-	<!-- <FilterPopUp /> -->
-</div>
+<section>
+	<h1>Spellen</h1>
+	<GameListCard
+		titleGame="Pionnenroof"
+		groups="Alle groepen"
+		gameName="Tikspel"
+		personAmount="Min 2"
+		gameSlug="pionnenroof"
+	/>
+	<GameListCard
+		titleGame="Fopbal"
+		groups="Alle groepen"
+		gameName="Balspel"
+		personAmount="Min 3"
+		gameSlug="fopbal"
+	/>
+	<GameListCard
+		titleGame="Leeuwenkooi"
+		groups="Alle groepen"
+		gameName="Tikspel"
+		personAmount="Min 5"
+		gameSlug="leeuwenkooi"
+	/>
+</section>
 
+<!-- <GameListPopup /> -->
 <style>
 	header {
 		font-family: var(--font-heading);
@@ -72,15 +68,6 @@
 		font-size: 1em;
 	}
 
-	button:hover {
-		cursor: pointer;
-	}
-
-	button:active {
-		transform: scale(0.98);
-		transition: transform 0.2s;
-	}
-
 	.highlight-image {
 		height: 12.5em;
 		background-color: var(--color-turquoise);
@@ -93,6 +80,11 @@
 
 	.highlight-image div {
 		text-align: center;
+	}
+
+	.highlight-image div h1 {
+		font-size: 1.5em;
+		color: var(--color-dark-blue);
 	}
 
 	.highlight-image:focus {
