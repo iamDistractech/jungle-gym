@@ -1,9 +1,18 @@
 <script>
+	import { toggleHandler } from '../routes/index.svelte';
+	import FilterPopUp from '../components/FilterPopUp.svelte';
+
 	let open = false;
 
 	function showDropdown() {
 		open = !open;
 	}
+
+	let toggleFilter = false;
+
+	const handleClick = () => {
+		toggleFilter = !toggleFilter;
+	};
 </script>
 
 <section id="filter-container">
@@ -18,17 +27,27 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<button>Spelsoort</button>
+		<button
+			on:click={() => {
+				handleClick();
+			}}>Spelsoort</button
+		>
 		<button>Groepen</button>
 		<button>Leerlingenaantal</button>
 		<button>Materialen</button>
 	</article>
 </section>
 
+{#if toggleFilter}
+	<FilterPopUp state="show" />
+{:else}
+	<FilterPopUp state="hide" />
+{/if}
+
 <style>
 	button {
 		font-family: var(--font-heading);
-		font-size: 1.2rem;
+		font-size: 1rem;
 		border-radius: 1em;
 		cursor: pointer;
 		border: none;
@@ -46,25 +65,25 @@
 
 	#filter-container button img:nth-of-type(1) {
 		padding: 0em 0.5em;
-		width: 2em;
-		height: 2em;
+		width: 1.1em;
+		height: 1.1em;
 	}
 
 	.dropdown-close {
 		padding: 0em 0.5em;
 		margin-left: auto;
-		width: 1.25em;
-		height: 1.25em;
-		transform: rotate(0deg);
+		width: 0.75em;
+		height: 0.75em;
+		transform: rotate(180deg);
 		transition: transform 200ms linear;
 	}
 
 	.dropdown-open {
 		padding: 0em 0.5em;
 		margin-left: auto;
-		width: 1.25em;
-		height: 1.25em;
-		transform: rotate(90deg);
+		width: 0.75em;
+		height: 0.75em;
+		transform: rotate(0deg);
 		transition: transform 200ms linear;
 	}
 

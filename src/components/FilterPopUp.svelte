@@ -1,4 +1,19 @@
-<section class="filter-popup">
+<script>
+	function hide() {
+		document.querySelector('.filter-popup').style.display = 'none';
+	}
+
+	export let state;
+
+	function handleClick() {
+		state = 'hide';
+		console.log('dis', state);
+	}
+
+	console.log(state);
+</script>
+
+<section class="filter-popup" class:show={state == 'show'} class:hide={state == 'hide'}>
 	<h1>Filter op groepen</h1>
 	<form>
 		<fieldset>
@@ -17,10 +32,9 @@
 		</fieldset>
 
 		<button class="submit-btn" type="submit">Toepassen</button>
-		<button class="cancel-btn">Annuleren</button>
 	</form>
+	<button class="cancel-btn" on:click={handleClick}>Annuleren</button>
 </section>
-<div class="black-overlay" />
 
 <style>
 	.filter-popup {
@@ -32,6 +46,10 @@
 		z-index: 1;
 		padding: 1rem;
 		overflow-y: auto;
+	}
+
+	.filter-popup.hide {
+		display: none;
 	}
 
 	.filter-popup h1 {

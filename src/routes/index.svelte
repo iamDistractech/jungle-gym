@@ -1,3 +1,12 @@
+<script context="module">
+	let toggleFilter = false;
+
+	export function toggleHandler() {
+		toggleFilter = !toggleFilter;
+		console.log(toggleFilter);
+	}
+</script>
+
 <script>
 	import OverviewListItem from '../components/OverviewListItem.svelte';
 	import Filter from '../components/filter.svelte';
@@ -11,6 +20,8 @@
 	</header>
 
 	<Filter />
+
+	<h1>Filter op groepen</h1>
 
 	<a href="/spel/kat-en-muis" class="hide-underline">
 		<div class="highlight-image">
@@ -54,6 +65,12 @@
 </div>
 
 <style>
+	.blue {
+		background-color: blue;
+	}
+	.red {
+		background-color: red;
+	}
 	header {
 		font-family: var(--font-heading);
 		display: flex;
