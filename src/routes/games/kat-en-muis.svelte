@@ -1,7 +1,7 @@
 <script lang="ts">
 	import GamePage from '../../shared/GamePage.svelte';
 
-	let game: Object = {
+	let game = {
 		title: 'Kat en Muis',
 		description:
 			'Er wordt een kat gekozen, de rest is een muis. Ben je een muis, dan stop je een lintje in je broek, zodat het lijkt op een staart. Het doel van het spel is dat de katten de muizen vangen. Dit doen ze door een lintje uit de broek te trekken. Als dit is gelukt moet het lintje aan de juf of meester gegeven worden. Is jouw lintje afgepakt? Dan ga je aan de kant zitten. Het spel is afgelopen als alle lintjes gepakt zijn.',
