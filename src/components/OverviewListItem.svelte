@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<button>
-		<a class="hide-underline" href="/games/{gameSlug}">></a>
+		<a class="hide-underline" href="/spel/{gameSlug}">></a>
 	</button>
 </article>
 

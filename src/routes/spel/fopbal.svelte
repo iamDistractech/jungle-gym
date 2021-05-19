@@ -1,5 +1,5 @@
 <script lang="ts">
-	import GamePage from '../../shared/GamePage.svelte';
+	import GamePage from '../../components/pages/GamePage.svelte';
 
 	let game = {
 		title: 'Fopbal',
