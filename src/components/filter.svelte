@@ -28,10 +28,10 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="Spelsoort" on:toggle={handleFilterToggle} />
-		<FilterButton filterTitle="Groepen" on:toggle={handleFilterToggle} />
-		<FilterButton filterTitle="Leerlingenaantal" on:toggle={handleFilterToggle} />
-		<FilterButton filterTitle="Materialen" on:toggle={handleFilterToggle} />
+		<FilterButton filterTitle="Spelsoort" on:open={handleFilterToggle} />
+		<FilterButton filterTitle="Groepen" on:open={handleFilterToggle} />
+		<FilterButton filterTitle="Leerlingenaantal" on:open={handleFilterToggle} />
+		<FilterButton filterTitle="Materialen" on:open={handleFilterToggle} />
 	</article>
 </section>
 

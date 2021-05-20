@@ -5,12 +5,12 @@
 
 	export let filterTitle;
 
-	function sayHello() {
-		dispatch('toggle');
+	function openFilter() {
+		dispatch('open');
 	}
 </script>
 
-<button on:click={sayHello}>{filterTitle}</button>
+<button on:click={openFilter}>{filterTitle}</button>
 
 <style>
 	button {

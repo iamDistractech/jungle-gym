@@ -12,7 +12,7 @@
 	<h1>Filter op groepen</h1>
 	<form>
 		<fieldset>
-			<legend>Groepen</legend>
+			<legend />
 
 			<input type="checkbox" id="group-1-2" name="filter-group" value="12" />
 			<label for="group-1-2">Groep 1 en 2</label>
