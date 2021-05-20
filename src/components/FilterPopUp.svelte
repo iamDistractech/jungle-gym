@@ -1,11 +1,10 @@
 <script>
-	export let state;
-	export let filterStateTest;
-	console.log('1', filterStateTest);
+	import { createEventDispatcher } from 'svelte';
 
-	function handleClick() {
-		filterStateTest = false;
-		console.log('2', filterStateTest);
+	const dispatch = createEventDispatcher();
+
+	function closeFilter() {
+		dispatch('close');
 	}
 </script>
 
@@ -29,7 +28,7 @@
 
 		<button class="submit-btn" type="submit">Toepassen</button>
 	</form>
-	<button class="cancel-btn" on:click={handleClick}>Annuleren</button>
+	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
 </section>
 
 <style>

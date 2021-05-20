@@ -12,7 +12,7 @@
 	let filterState = false;
 
 	function handleFilterToggle() {
-		filterState = true;
+		filterState = !filterState;
 	}
 </script>
 
@@ -29,14 +29,14 @@
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:toggle={handleFilterToggle} />
-		<FilterButton filterTitle="Groepen" />
-		<FilterButton filterTitle="Leerlingenaantal" />
-		<FilterButton filterTitle="Materialen" />
+		<FilterButton filterTitle="Groepen" on:toggle={handleFilterToggle} />
+		<FilterButton filterTitle="Leerlingenaantal" on:toggle={handleFilterToggle} />
+		<FilterButton filterTitle="Materialen" on:toggle={handleFilterToggle} />
 	</article>
 </section>
 
 {#if filterState}
-	<FilterPopUp filterStateTest={filterState} />
+	<FilterPopUp on:close={handleFilterToggle} filterStateTest={filterState} />
 {/if}
 
 <style>
@@ -86,19 +86,18 @@
 		background-color: var(--color-light-orange);
 		margin-top: -1em;
 		border-radius: 0em 0em 2em 2em;
-		padding: 1rem;
 	}
 
 	.filter-options-open {
 		max-height: 31.25em;
-		padding: 1.5em 0em;
+		padding: 1.5em 1em;
 		overflow: hidden;
 		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
 	}
 
 	.filter-options-close {
 		max-height: 0;
-		padding: 0em;
+		padding: 0 1rem;
 		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
 		overflow: hidden;
 	}
