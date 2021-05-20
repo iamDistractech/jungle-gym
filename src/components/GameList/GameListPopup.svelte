@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	export let filterItems;
+	import { goto } from '$app/navigation';
 
 	const dispatch = createEventDispatcher();
 
@@ -22,12 +23,10 @@
 				}
 			});
 		});
+	}
 
-		const submitBtn = document.querySelector('.submit-btn');
-		submitBtn.addEventListener('click', (event) => {
-			event.preventDefault();
-			console.log('prevented?');
-		});
+	function submitForm() {
+		goto('/?test=heloo').then(() => closeFilter);
 	}
 
 	onMount(() => selectValue());
@@ -35,7 +34,7 @@
 
 <section class="filter-popup">
 	<h1>Filter op groepen</h1>
-	<form>
+	<form on:submit|preventDefault={submitForm}>
 		<fieldset>
 			{#if filterItems}
 				{#each filterItems as { name }}
