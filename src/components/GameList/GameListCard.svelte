@@ -3,15 +3,23 @@
 	export let groups: string;
 	export let gameName: string;
 	export let personAmount: string;
+	export let gameSlug: string;
+	export let isHighlighted: boolean;
 </script>
 
-<article>
-	<h1>{titleGame}</h1>
-	<ul class="label-container">
-		<li class="label">{groups}</li>
-		<li class="label">{gameName}</li>
-		<li class="label">{personAmount}</li>
-	</ul>
+<article class:highlighted-card={isHighlighted}>
+	<a href="/spel/{gameSlug}" class="hide-underline">
+		{#if isHighlighted}
+			<p>Nieuw!</p>
+		{/if}
+
+		<h1>{titleGame}</h1>
+		<ul class="label-container">
+			<li class="label">{groups}</li>
+			<li class="label">{gameName}</li>
+			<li class="label">{personAmount}</li>
+		</ul>
+	</a>
 </article>
 
 <style>
@@ -20,8 +28,11 @@
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
-		align-items: center;
 		justify-content: space-between;
+	}
+
+	a {
+		height: 100%;
 	}
 
 	ul {
@@ -30,7 +41,7 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		gap: 5px
+		gap: 5px;
 	}
 
 	article h1 {
@@ -57,4 +68,20 @@
 		flex-wrap: wrap;
 	}
 
+	.highlighted-card {
+		height: 12em;
+		background-color: var(--color-turquoise);
+		border-radius: 1em;
+		margin: 4em 0 2em 0;
+		padding: 0.1em 1em;
+	}
+
+	.highlighted-card div h1 {
+		font-size: 1.5em;
+		color: var(--color-dark-blue);
+	}
+
+	.highlighted-card:focus {
+		cursor: pointer;
+	}
 </style>

@@ -9,17 +9,16 @@
 	<h1>John Doe</h1>
 	<h2>Goedemorgen!</h2>
 </header>
-<GameListFilter/>
+<GameListFilter />
 <section>
-	<h1>Nieuw Spel</h1>
-	<a href="/spel/kat-en-muis">
-		<GameListCard
-			titleGame="Kat en Muis"
-			groups="Alle groepen"
-			gameName="Tikspel"
-			personAmount="Min 5"
-		/>
-	</a>
+	<GameListCard
+		titleGame="Kat en Muis"
+		groups="Alle groepen"
+		gameName="Tikspel"
+		personAmount="Min 5"
+		gameSlug="kat-en-muis"
+		isHighlighted={true}
+	/>
 </section>
 <GameList/>
 
