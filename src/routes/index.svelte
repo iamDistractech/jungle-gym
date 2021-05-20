@@ -8,7 +8,7 @@
 	<h1>John Doe</h1>
 	<h2>Goedemorgen!</h2>
 </header>
-<GameListFilter/>
+<GameListFilter />
 <section>
 	<h1>Nieuw Spel</h1>
 	<a href="/spel/kat-en-muis">
@@ -48,11 +48,11 @@
 		<li>
 			<a>
 				<GameListCard
-				titleGame="Leeuwenkooi"
-				groups="Alle groepen"
-				gameName="Tikspel"
-				personAmount="Min 5"
-				gameSlug="leeuwenkooi"
+					titleGame="Leeuwenkooi"
+					groups="Alle groepen"
+					gameName="Tikspel"
+					personAmount="Min 5"
+					gameSlug="leeuwenkooi"
 				/>
 			</a>
 		</li>
@@ -75,7 +75,7 @@
 	ul {
 		list-style: none;
 		margin: 0;
-		padding: 0
+		padding: 0;
 	}
 
 	header h2 {
