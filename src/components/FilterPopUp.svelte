@@ -1,6 +1,5 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-
 	export let filterItems;
 
 	const dispatch = createEventDispatcher();
@@ -9,33 +8,38 @@
 		dispatch('close');
 	}
 
-	// function selectValue() {
-	// 	const inputs = document.querySelectorAll('fieldset input');
-	// 	inputs.forEach((input) => {
-	// 		console.log(input);
-	// 	});
+	import { onMount } from 'svelte';
+	export let checkedInputs = [];
 
-	// 	const submitBtn = document.querySelector('.submit-btn');
-	// 	console.log('this', submitBtn);
-	// 	submitBtn.addEventListener('click', () => {
-	// 		console.log('CLICK');
-	// 	});
-	// }
+	function selectValue() {
+		const inputs = document.querySelectorAll('fieldset input');
+		inputs.forEach((input) => {
+			input.addEventListener('click', () => {
+				if (input.checked == true) {
+					checkedInputs.push(input.value);
+				} else if (input.checked == false) {
+					checkedInputs.pop(input.value);
+				}
+			});
+		});
 
-	// selectValue();
+		const submitBtn = document.querySelector('.submit-btn');
+		submitBtn.addEventListener('click', (event) => {
+			event.preventDefault();
+			console.log('prevented?');
+		});
+	}
 
-	const submitBtn = document.querySelector('.submit-btn');
-	console.log('this', submitBtn);
+	onMount(() => selectValue());
 </script>
 
 <section class="filter-popup">
 	<h1>Filter op groepen</h1>
 	<form>
 		<fieldset>
-			<legend />
 			{#if filterItems}
 				{#each filterItems as { name }}
-					<input type="checkbox" id={name} name="filter-group" value="12" />
+					<input type="checkbox" id={name} name="filter-group" value={name} />
 					<label for={name}>{name}</label>
 				{/each}
 			{/if}

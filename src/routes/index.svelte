@@ -43,6 +43,15 @@
 	};
 
 	onMount(() => getGameTypes());
+
+	function getQueryPrams() {
+		const params = new URLSearchParams(window.location.search);
+		for (let param of params) {
+			console.log(param);
+		}
+	}
+
+	onMount(() => getQueryPrams());
 </script>
 
 <div class="container">

@@ -2,6 +2,9 @@
 	import FilterPopUp from '../components/FilterPopUp.svelte';
 	import FilterButton from '../components/Button/FilterButton.svelte';
 
+	let checkedInputs;
+	$: console.log('TEST', checkedInputs);
+
 	let gameNames = [
 		{
 			name: 'kat en muis'
@@ -104,7 +107,7 @@
 {/if}
 
 {#if groepen}
-	<FilterPopUp filterItems={groupNames} on:close={() => (groepen = !groepen)} />
+	<FilterPopUp {checkedInputs} filterItems={groupNames} on:close={() => (groepen = !groepen)} />
 {/if}
 
 {#if leerlingenaantal}
