@@ -1,7 +1,18 @@
 <script>
 	import ButtonLight from '../shared/Button/ButtonLight.svelte';
+	import GamePageMaterialModal from '../GamePage/GamePageMaterialModal.svelte';
 
 	export let game;
+
+	let isModalOpen = false;
+
+	let clickedMaterial;
+
+	function toggleModal(element) {
+		isModalOpen = !isModalOpen;
+		console.log(element);
+		clickedMaterial = element;
+	}
 </script>
 
 <header>
@@ -19,12 +30,18 @@
 
 	<p>{game.description}</p>
 
+	{#if isModalOpen}
+		<GamePageMaterialModal material={clickedMaterial} on:close={toggleModal} />
+	{/if}
+
 	<h3>Materialen</h3>
-	<div class="material-list">
+	<ul class="material-list">
 		{#each game.materials as material}
-			<ButtonLight>{material}</ButtonLight>
+			<li>
+				<ButtonLight on:click={toggleModal(material)}>{material.title}</ButtonLight>
+			</li>
 		{/each}
-	</div>
+	</ul>
 
 	<h3>Spelregels</h3>
 	<ol>
@@ -91,6 +108,15 @@
 
 	.material-list {
 		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.material-list > li {
+		margin: 0.3em;
+		margin-left: 0;
 	}
 
 	main header {

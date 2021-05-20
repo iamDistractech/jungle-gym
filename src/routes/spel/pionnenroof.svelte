@@ -8,7 +8,25 @@
 		image: undefined,
 		category: 'Tikspel',
 		difficulty: 'Makkelijk',
-		materials: ['20 pionnen of hoedjes', 'Eventueel lintjes', 'Klok voor tijd', 'Fluitje'],
+		materials: [
+			{
+				title: 'Pion',
+				notes: '20 pionen of hoedjes',
+				amount: 20
+			},
+			{
+				title: 'Lintjes',
+				notes: 'Eventueel'
+			},
+			{
+				title: 'Klok',
+				notes: 'Om tijd bij te houden'
+			},
+			{
+				title: 'Fluitje',
+				amount: 1
+			}
+		],
 		minimumAttendees: 2,
 		audience: 'Alle jaarlagen',
 		rules: [
