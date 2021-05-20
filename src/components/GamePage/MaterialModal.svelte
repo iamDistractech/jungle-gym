@@ -1,6 +1,5 @@
 <script>
 	import ButtonLight from '../shared/Button/ButtonLight.svelte';
-
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
@@ -14,6 +13,7 @@
 
 <section class="material-modal">
 	<h1>{material.title}</h1>
+
 	{#if material.amount}
 		<p><b>Aantal: </b>{material.amount}</p>
 	{/if}
