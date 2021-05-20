@@ -2,17 +2,76 @@
 	import FilterPopUp from '../components/FilterPopUp.svelte';
 	import FilterButton from '../components/Button/FilterButton.svelte';
 
+	let gameNames = [
+		{
+			name: 'kat en muis'
+		},
+		{
+			name: 'pionnenroof'
+		},
+		{
+			name: 'Fopbal'
+		},
+		{
+			name: 'leeuwenkooi'
+		}
+	];
+
+	let groupNames = [
+		{
+			name: 'Groep 1 - 2'
+		},
+		{
+			name: 'Groep 3 - 4'
+		},
+		{
+			name: 'Groep 5 - 6'
+		},
+		{
+			name: 'Groep 7 - 8'
+		}
+	];
+
+	let childrenCount = [
+		{
+			name: '1 - 10 leerlingen'
+		},
+		{
+			name: '11 - 20 leerlingen'
+		},
+		{
+			name: '21 - 30 leerlingen'
+		},
+		{
+			name: '31 - 40 leerlingen'
+		}
+	];
+
+	let materialNames = [
+		{
+			name: 'pionnen'
+		},
+		{
+			name: 'voetbal'
+		},
+		{
+			name: 'lintjes'
+		},
+		{
+			name: 'fluit'
+		}
+	];
+
 	let open = false;
 
 	function showDropdown() {
 		open = !open;
 	}
 
-	let filterState = false;
-
-	function handleFilterToggle() {
-		filterState = !filterState;
-	}
+	let spelsoorten = false;
+	let groepen = false;
+	let leerlingenaantal = false;
+	let materialen = false;
 </script>
 
 <section id="filter-container">
@@ -27,15 +86,33 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="Spelsoort" on:click={handleFilterToggle} />
-		<FilterButton filterTitle="Groepen" on:click={handleFilterToggle} />
-		<FilterButton filterTitle="Leerlingenaantal" on:click={handleFilterToggle} />
-		<FilterButton filterTitle="Materialen" on:click={handleFilterToggle} />
+		<FilterButton filterTitle="Spelsoort" on:click={() => (spelsoorten = !spelsoorten)} />
+		<FilterButton filterTitle="Groepen" on:click={() => (groepen = !groepen)} />
+		<FilterButton
+			filterTitle="Leerlingenaantal"
+			on:click={() => (leerlingenaantal = !leerlingenaantal)}
+		/>
+		<FilterButton filterTitle="Materialen" on:click={() => (materialen = !materialen)} />
 	</article>
 </section>
 
-{#if filterState}
-	<FilterPopUp on:close={handleFilterToggle} />
+{#if spelsoorten}
+	<FilterPopUp filterItems={gameNames} on:close={() => (spelsoorten = !spelsoorten)} />
+{/if}
+
+{#if groepen}
+	<FilterPopUp filterItems={groupNames} on:close={() => (groepen = !groepen)} />
+{/if}
+
+{#if leerlingenaantal}
+	<FilterPopUp
+		filterItems={childrenCount}
+		on:close={() => (leerlingenaantal = !leerlingenaantal)}
+	/>
+{/if}
+
+{#if materialen}
+	<FilterPopUp filterItems={materialNames} on:close={() => (materialen = !materialen)} />
 {/if}
 
 <style>

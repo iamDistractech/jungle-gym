@@ -1,6 +1,8 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 
+	export let filterItems;
+
 	const dispatch = createEventDispatcher();
 
 	function closeFilter() {
@@ -13,17 +15,20 @@
 	<form>
 		<fieldset>
 			<legend />
-
-			<input type="checkbox" id="group-1-2" name="filter-group" value="12" />
-			<label for="group-1-2">Groep 1 en 2</label>
-			<input type="checkbox" id="group-3-4" name="filter-group" value="34" />
+			{#if filterItems}
+				{#each filterItems as { name }}
+					<input type="checkbox" id={name} name="filter-group" value="12" />
+					<label for={name}>{name}</label>
+				{/each}
+			{/if}
+			<!-- <input type="checkbox" id="group-3-4" name="filter-group" value="34" />
 			<label for="group-3-4">Groep 3 en 4</label>
 			<input type="checkbox" id="group-5-6" name="filter-group" value="45" />
 			<label for="group-5-6">Groep 5 en 6</label>
 			<input type="checkbox" id="group-7-8" name="filter-group" value="67" />
 			<label for="group-7-8">Groep 7 en 8</label>
 			<input type="checkbox" id="all-groups" name="filter-group" value="all" />
-			<label for="all-groups">Alle jaarlagen</label>
+			<label for="all-groups">Alle jaarlagen</label> -->
 		</fieldset>
 
 		<button class="submit-btn" type="submit">Toepassen</button>
