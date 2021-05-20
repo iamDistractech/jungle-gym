@@ -25,8 +25,14 @@
 		});
 	}
 
+	let checkedTest = false;
+	let filterButtons = [];
+
 	function submitForm() {
-		goto('/?test=heloo').then(() => closeFilter);
+		console.log(filterButtons);
+		// Hier moet we de values van filterButton omzetten naar een cleane search query
+		// filterButtons kunnen als export zetten
+		goto('/?test=heloo').then(() => closeFilter());
 	}
 
 	onMount(() => selectValue());
@@ -38,7 +44,13 @@
 		<fieldset>
 			{#if filterItems}
 				{#each filterItems as { name }}
-					<input type="checkbox" id={name} name="filter-group" value={name} />
+					<input
+						bind:group={filterButtons}
+						type="checkbox"
+						id={name}
+						name="filter-group"
+						value={name}
+					/>
 					<label for={name}>{name}</label>
 				{/each}
 			{/if}

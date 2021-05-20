@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import { fetcher } from '../utils/fetcher';
 
-	export async function load(): Promise<unknown> {
+	export async function load({ page }): Promise<unknown> {
 		const url = 'https://acc-jungle-gym-api.herokuapp.com/games';
 
 		try {
@@ -53,11 +53,7 @@
 		}
 	];
 
-	let selectedFilter = '';
-
 	let gameTypeFilter = [];
-
-	$: console.log(gameTypeFilter);
 
 	const getGameTypes = () => {
 		for (let gameObj of data) {
@@ -69,31 +65,11 @@
 	};
 
 	onMount(() => getGameTypes());
-
-	function getQueryPrams() {
-		const params = new URLSearchParams(window.location.search);
-		for (let param of params) {
-			console.log(param);
-		}
-	}
-
-	onMount(() => getQueryPrams());
-
 </script>
 
 <GameListFilter />
-<!-- <section>
-	<GameListCard
-		titleGame="Kat en Muis"
-		groups="Alle groepen"
-		gameName="Tikspel"
-		personAmount="Min 5"
-		gameSlug="kat-en-muis"
-		isHighlighted={true}
-	/>
-</section> -->
+
 <GameList {games} />
 
-<!-- <GameListPopup /> -->
 <style>
 </style>

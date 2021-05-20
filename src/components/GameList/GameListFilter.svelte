@@ -3,7 +3,6 @@
 	import FilterButton from '$lib/Button/FilterButton.svelte';
 
 	let checkedInputs;
-	$: console.log('TEST', checkedInputs);
 
 	let gameNames = [
 		{
