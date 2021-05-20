@@ -8,6 +8,24 @@
 	function closeFilter() {
 		dispatch('close');
 	}
+
+	// function selectValue() {
+	// 	const inputs = document.querySelectorAll('fieldset input');
+	// 	inputs.forEach((input) => {
+	// 		console.log(input);
+	// 	});
+
+	// 	const submitBtn = document.querySelector('.submit-btn');
+	// 	console.log('this', submitBtn);
+	// 	submitBtn.addEventListener('click', () => {
+	// 		console.log('CLICK');
+	// 	});
+	// }
+
+	// selectValue();
+
+	const submitBtn = document.querySelector('.submit-btn');
+	console.log('this', submitBtn);
 </script>
 
 <section class="filter-popup">
@@ -21,14 +39,6 @@
 					<label for={name}>{name}</label>
 				{/each}
 			{/if}
-			<!-- <input type="checkbox" id="group-3-4" name="filter-group" value="34" />
-			<label for="group-3-4">Groep 3 en 4</label>
-			<input type="checkbox" id="group-5-6" name="filter-group" value="45" />
-			<label for="group-5-6">Groep 5 en 6</label>
-			<input type="checkbox" id="group-7-8" name="filter-group" value="67" />
-			<label for="group-7-8">Groep 7 en 8</label>
-			<input type="checkbox" id="all-groups" name="filter-group" value="all" />
-			<label for="all-groups">Alle jaarlagen</label> -->
 		</fieldset>
 
 		<button class="submit-btn" type="submit">Toepassen</button>

@@ -72,6 +72,9 @@
 	let groepen = false;
 	let leerlingenaantal = false;
 	let materialen = false;
+
+	export let selectedFilter;
+	export let gameTypeFilter;
 </script>
 
 <section id="filter-container">
@@ -176,11 +179,5 @@
 		padding: 0 1rem;
 		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
 		overflow: hidden;
-	}
-
-	#filter-options button {
-		width: 90%;
-		margin: 0.5em auto;
-		background-color: var(--color-white);
 	}
 </style>

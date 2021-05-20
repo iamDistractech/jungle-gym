@@ -1,6 +1,48 @@
 <script>
+	import { onMount } from 'svelte';
 	import OverviewListItem from '../components/OverviewListItem.svelte';
 	import Filter from '../components/filter.svelte';
+
+	const data = [
+		{
+			titleGame: 'Pionnenroof',
+			groups: 'Alle groepen',
+			gameName: 'Tikspel',
+			personAmount: 'Min 2',
+			gameSlug: 'pionnenroof'
+		},
+		{
+			titleGame: 'Fopbal',
+			groups: 'Alle groepen',
+			gameName: 'Balspel',
+			personAmount: 'Min 3',
+			gameSlug: 'fopbal'
+		},
+		{
+			titleGame: 'Leeuwenkooi',
+			groups: 'Alle groepen',
+			gameName: 'Tikspel',
+			personAmount: 'Min 5',
+			gameSlug: 'leeuwenkooi'
+		}
+	];
+
+	let selectedFilter = '';
+
+	let gameTypeFilter = [];
+
+	$: console.log(gameTypeFilter);
+
+	const getGameTypes = () => {
+		for (let gameObj of data) {
+			if (!gameTypeFilter.includes(gameObj.gameName)) {
+				gameTypeFilter = [...gameTypeFilter, gameObj.gameName];
+			}
+		}
+		gameTypeFilter = gameTypeFilter.sort();
+	};
+
+	onMount(() => getGameTypes());
 </script>
 
 <div class="container">
@@ -9,7 +51,7 @@
 		<h2>Goedemorgen!</h2>
 	</header>
 
-	<Filter />
+	<Filter {gameTypeFilter} bind:selectedFilter />
 
 	<a href="/spel/kat-en-muis" class="hide-underline">
 		<div class="highlight-image">
@@ -26,27 +68,16 @@
 	</a>
 	<section>
 		<h2>Spellen</h2>
-		<OverviewListItem
-			titleGame="Pionnenroof"
-			groups="Alle groepen"
-			gameName="Tikspel"
-			personAmount="Min 2"
-			gameSlug="pionnenroof"
-		/>
-		<OverviewListItem
-			titleGame="Fopbal"
-			groups="Alle groepen"
-			gameName="Balspel"
-			personAmount="Min 3"
-			gameSlug="fopbal"
-		/>
-		<OverviewListItem
-			titleGame="Leeuwenkooi"
-			groups="Alle groepen"
-			gameName="Tikspel"
-			personAmount="Min 5"
-			gameSlug="leeuwenkooi"
-		/>
+
+		{#each data as SingleGame}
+			<OverviewListItem
+				titleGame={SingleGame.titleGame}
+				groups={SingleGame.groups}
+				gameName={SingleGame.gameName}
+				personAmount={SingleGame.personAmount}
+				gameSlug={SingleGame.gameSlug}
+			/>
+		{/each}
 	</section>
 
 	<!-- <FilterPopUp /> -->
