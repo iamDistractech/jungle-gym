@@ -21,8 +21,6 @@
 
 	<Filter />
 
-	<h1>Filter op groepen</h1>
-
 	<a href="/spel/kat-en-muis" class="hide-underline">
 		<div class="highlight-image">
 			<p>Nieuw!</p>
