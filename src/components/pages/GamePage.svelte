@@ -1,23 +1,21 @@
 <script>
-	import ButtonLight from '../Button/ButtonLight.svelte';
+	import ButtonLight from '../shared/Button/ButtonLight.svelte';
 
 	export let game;
 </script>
 
 <header>
 	<h1>{game.title}</h1>
-	<button>
-		<a class="hide-underline" href="/">&larr</a>
-	</button>
+	<a class="hide-underline" href="/">&larr</a>
 </header>
 
 <div class="image-card" />
 
 <main>
-	<div class="main-content-header">
+	<header>
 		<h2>{game.category} | {game.title}</h2>
 		<small>{game.audience} | {game.difficulty}</small>
-	</div>
+	</header>
 
 	<p>{game.description}</p>
 
@@ -73,13 +71,16 @@
 		font-family: var(--font-heading);
 	}
 
-	header button {
+	header a {
 		border-radius: 50%;
 		background-color: var(--color-white);
 		border: 1px solid var(--color-dark-blue);
 		height: 2.5em;
 		width: 2.5em;
 		margin-right: 2.5em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.image-card {
@@ -92,18 +93,18 @@
 		display: flex;
 	}
 
-	.main-content-header {
+	main header {
 		display: flex;
 		flex-direction: column-reverse;
 		margin-top: 1em;
 	}
 
-	.main-content-header small {
+	main header small {
 		font-size: 1em;
 		color: var(--color-grey);
 	}
 
-	.main-content-header h2 {
+	main header h2 {
 		margin-bottom: 0;
 	}
 </style>
