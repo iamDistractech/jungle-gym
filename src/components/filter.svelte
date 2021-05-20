@@ -1,5 +1,4 @@
 <script>
-	import { toggleHandler } from '../routes/index.svelte';
 	import FilterPopUp from '../components/FilterPopUp.svelte';
 	import FilterButton from '../components/FilterButton.svelte';
 
@@ -28,15 +27,15 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="Spelsoort" on:open={handleFilterToggle} />
-		<FilterButton filterTitle="Groepen" on:open={handleFilterToggle} />
-		<FilterButton filterTitle="Leerlingenaantal" on:open={handleFilterToggle} />
-		<FilterButton filterTitle="Materialen" on:open={handleFilterToggle} />
+		<FilterButton filterTitle="Spelsoort" on:click={handleFilterToggle} />
+		<FilterButton filterTitle="Groepen" on:click={handleFilterToggle} />
+		<FilterButton filterTitle="Leerlingenaantal" on:click={handleFilterToggle} />
+		<FilterButton filterTitle="Materialen" on:click={handleFilterToggle} />
 	</article>
 </section>
 
 {#if filterState}
-	<FilterPopUp on:close={handleFilterToggle} filterStateTest={filterState} />
+	<FilterPopUp on:close={handleFilterToggle} />
 {/if}
 
 <style>

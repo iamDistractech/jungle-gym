@@ -1,16 +1,6 @@
-<script context="module">
-	let toggleFilter = false;
-
-	export function toggleHandler() {
-		toggleFilter = !toggleFilter;
-		console.log(toggleFilter);
-	}
-</script>
-
 <script>
 	import OverviewListItem from '../components/OverviewListItem.svelte';
 	import Filter from '../components/filter.svelte';
-	import FilterPopUp from '../components/FilterPopUp.svelte';
 </script>
 
 <div class="container">

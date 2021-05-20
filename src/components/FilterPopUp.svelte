@@ -58,6 +58,8 @@
 		display: flex;
 		flex-direction: column;
 		border: none;
+		height: 18em;
+		overflow: scroll;
 		padding: 0;
 		margin: 0;
 	}

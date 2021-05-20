@@ -1,16 +1,8 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
-
 	export let filterTitle;
-
-	function openFilter() {
-		dispatch('open');
-	}
 </script>
 
-<button on:click={openFilter}>{filterTitle}</button>
+<button on:click>{filterTitle}</button>
 
 <style>
 	button {
