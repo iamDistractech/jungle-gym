@@ -1,6 +1,7 @@
 <script lang="ts">
-	export let game: any
-	console.log(game)
+	import type { Game } from '../games';
+
+	export let game: Game;
 </script>
 
 <article>
@@ -40,7 +41,7 @@
 		content: '>';
 	}
 
-	.label {
+	/* .label {
 		background-color: var(--color-light-orange);
 		padding: 0.3em 1em;
 		border-radius: 1em;
@@ -69,5 +70,5 @@
 
 	.highlighted-card:focus {
 		cursor: pointer;
-	}
+	} */
 </style>

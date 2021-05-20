@@ -11,7 +11,6 @@
 	<slot />
 </main>
 
-
 <style>
 	header {
 		font-family: var(--font-heading);
@@ -25,5 +24,4 @@
 		font-weight: 400;
 		font-size: 1em;
 	}
-
 </style>

@@ -1,13 +1,14 @@
-<script lang='ts'>
-	export let games: any[]
+<script lang="ts">
+	import type { Game } from '../games';
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
+	export let games: Game[];
 </script>
 
 <section>
 	<h1>Spellen</h1>
 	<ul>
 		{#each games as game}
-		<li><a href="spel/"><GameListCard game={game} /> </a></li>
+			<li><a href="spel/"><GameListCard {game} /> </a></li>
 		{/each}
 	</ul>
 </section>
@@ -16,14 +17,14 @@
 	ul {
 		list-style: none;
 		margin: 0;
-		padding: 0
+		padding: 0;
 	}
 
 	ul a {
 		text-decoration: none;
 	}
 
-	.highlight-image {
+	/* .highlight-image {
 		height: 12.5em;
 		background-color: var(--color-turquoise);
 		border-radius: 1em;
@@ -57,7 +58,5 @@
 	.label-container {
 		display: flex;
 		flex-wrap: wrap;
-	}
-
-
+	} */
 </style>
