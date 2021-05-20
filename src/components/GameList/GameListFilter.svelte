@@ -1,6 +1,6 @@
 <script>
-	import FilterPopUp from '../components/FilterPopUp.svelte';
-	import FilterButton from '../components/Button/FilterButton.svelte';
+	import FilterPopUp from '$lib/Gamelist/GameListPopUp.svelte';
+	import FilterButton from '$lib/Button/FilterButton.svelte';
 
 	let checkedInputs;
 	$: console.log('TEST', checkedInputs);
