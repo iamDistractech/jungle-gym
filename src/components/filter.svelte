@@ -1,6 +1,6 @@
 <script>
 	import FilterPopUp from '../components/FilterPopUp.svelte';
-	import FilterButton from '../components/button/FilterButton.svelte';
+	import FilterButton from '../components/Button/FilterButton.svelte';
 
 	let open = false;
 
