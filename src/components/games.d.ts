@@ -26,6 +26,8 @@ export interface GameVariations {
 }
 
 export interface Game {
+	id: string;
+	slug: string;
 	name: string;
 	description: string;
 	category: category;
