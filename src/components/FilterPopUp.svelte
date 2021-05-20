@@ -1,19 +1,15 @@
 <script>
-	function hide() {
-		document.querySelector('.filter-popup').style.display = 'none';
-	}
-
 	export let state;
+	export let filterStateTest;
+	console.log('1', filterStateTest);
 
 	function handleClick() {
-		state = 'hide';
-		console.log('dis', state);
+		filterStateTest = false;
+		console.log('2', filterStateTest);
 	}
-
-	console.log(state);
 </script>
 
-<section class="filter-popup" class:show={state == 'show'} class:hide={state == 'hide'}>
+<section class="filter-popup">
 	<h1>Filter op groepen</h1>
 	<form>
 		<fieldset>

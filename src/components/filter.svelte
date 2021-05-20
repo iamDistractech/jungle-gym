@@ -1,6 +1,7 @@
 <script>
 	import { toggleHandler } from '../routes/index.svelte';
 	import FilterPopUp from '../components/FilterPopUp.svelte';
+	import FilterButton from '../components/FilterButton.svelte';
 
 	let open = false;
 
@@ -8,11 +9,11 @@
 		open = !open;
 	}
 
-	let toggleFilter = false;
+	let filterState = false;
 
-	const handleClick = () => {
-		toggleFilter = !toggleFilter;
-	};
+	function handleFilterToggle() {
+		filterState = true;
+	}
 </script>
 
 <section id="filter-container">
@@ -27,21 +28,15 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<button
-			on:click={() => {
-				handleClick();
-			}}>Spelsoort</button
-		>
-		<button>Groepen</button>
-		<button>Leerlingenaantal</button>
-		<button>Materialen</button>
+		<FilterButton filterTitle="Spelsoort" on:toggle={handleFilterToggle} />
+		<FilterButton filterTitle="Groepen" />
+		<FilterButton filterTitle="Leerlingenaantal" />
+		<FilterButton filterTitle="Materialen" />
 	</article>
 </section>
 
-{#if toggleFilter}
-	<FilterPopUp state="show" />
-{:else}
-	<FilterPopUp state="hide" />
+{#if filterState}
+	<FilterPopUp filterStateTest={filterState} />
 {/if}
 
 <style>
@@ -91,6 +86,7 @@
 		background-color: var(--color-light-orange);
 		margin-top: -1em;
 		border-radius: 0em 0em 2em 2em;
+		padding: 1rem;
 	}
 
 	.filter-options-open {
