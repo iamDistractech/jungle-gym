@@ -1,46 +1,14 @@
-<script>
-		import GameListCard from '$lib/GameList/GameListCard.svelte';
-
-
-
+<script lang='ts'>
+	export let games: any[]
+	import GameListCard from '$lib/GameList/GameListCard.svelte';
 </script>
 
 <section>
 	<h1>Spellen</h1>
 	<ul>
-		<li>
-			<a>
-				<GameListCard
-					titleGame="Pionnenroof"
-					groups="Alle groepen"
-					gameName="Tikspel"
-					personAmount="Min 2"
-					gameSlug="pionnenroof"
-				/>
-			</a>
-		</li>
-		<li>
-			<a>
-				<GameListCard
-					titleGame="Fopbal"
-					groups="Alle groepen"
-					gameName="Balspel"
-					personAmount="Min 3"
-					gameSlug="fopbal"
-				/>
-			</a>
-		</li>
-		<li>
-			<a>
-				<GameListCard
-				titleGame="Leeuwenkooi"
-				groups="Alle groepen"
-				gameName="Tikspel"
-				personAmount="Min 5"
-				gameSlug="leeuwenkooi"
-				/>
-			</a>
-		</li>
+		{#each games as game}
+		<li><a href="spel/"><GameListCard game={game} /> </a></li>
+		{/each}
 	</ul>
 </section>
 
@@ -49,6 +17,10 @@
 		list-style: none;
 		margin: 0;
 		padding: 0
+	}
+
+	ul a {
+		text-decoration: none;
 	}
 
 	.highlight-image {

@@ -1,25 +1,15 @@
 <script lang="ts">
-	export let titleGame: string;
-	export let groups: string;
-	export let gameName: string;
-	export let personAmount: string;
-	export let gameSlug: string;
-	export let isHighlighted: boolean;
+	export let game: any
+	console.log(game)
 </script>
 
-<article class:highlighted-card={isHighlighted}>
-	<a href="/spel/{gameSlug}" class="hide-underline">
-		{#if isHighlighted}
-			<p>Nieuw!</p>
-		{/if}
-
-		<h1>{titleGame}</h1>
-		<ul class="label-container">
-			<li class="label">{groups}</li>
-			<li class="label">{gameName}</li>
-			<li class="label">{personAmount}</li>
-		</ul>
-	</a>
+<article>
+	<h1>{game.name}</h1>
+	<ul class="label-container">
+		<li class="label">{game.targetGroup.join(', ')}</li>
+		<li class="label">{game.category}</li>
+		<li class="label">{game.minimumPlayers}</li>
+	</ul>
 </article>
 
 <style>
@@ -29,10 +19,6 @@
 		margin: 1em 0;
 		padding: 1em;
 		justify-content: space-between;
-	}
-
-	a {
-		height: 100%;
 	}
 
 	ul {

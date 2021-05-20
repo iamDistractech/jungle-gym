@@ -1,16 +1,43 @@
-<script>
+<script context='module'>
+	
+	import {fetcher} from '../utils/fetcher'
+
+	export async function load({fetch}) {
+		const url = 'https://acc-jungle-gym-api.herokuapp.com/games'
+
+		try {
+			const games = await fetcher(fetch, url)
+
+			return { 
+				props: { 
+					games
+				}
+			}
+		} catch(error) {
+			const { message } = await res.json()
+	
+			return {
+				status: 500,
+				error: new Error(message)
+			}
+		}
+	}
+
+</script>
+
+<script lang='ts'>
 	import GameList from '$lib/GameList/GameList.svelte'
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
+
+	export let games;
+
 </script>
 
-<header>
-	<h1>John Doe</h1>
-	<h2>Goedemorgen!</h2>
-</header>
+
 <GameListFilter />
-<section>
+<!-- <section>
 	<GameListCard
 		titleGame="Kat en Muis"
 		groups="Alle groepen"
@@ -19,28 +46,11 @@
 		gameSlug="kat-en-muis"
 		isHighlighted={true}
 	/>
-</section>
-<GameList/>
+</section> -->
+<GameList games={games}/>
 
 <!-- <GameListPopup /> -->
 <style>
-	header {
-		font-family: var(--font-heading);
-		display: flex;
-		flex-direction: column-reverse;
-		margin-top: 5em;
-	}
-
-	header h1 {
-		margin: 0.5em 0;
-	}
-
-	header h2 {
-		margin: 0;
-		color: var(--color-grey);
-		font-weight: 400;
-		font-size: 1em;
-	}
-
+	
 	
 </style>
