@@ -1,23 +1,23 @@
 <script>
-	import FilterPopUp from '$lib/GameList/GameListPopup.svelte';
+	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
 
 	let gameNames = [
 		{
 			name: 'Tikspel',
-			value: 'tik'
+			value: 'tikspel'
 		},
 		{
 			name: 'balspel',
-			value: 'bal'
+			value: 'balspel'
 		},
 		{
 			name: 'loopspel',
-			value: 'loop'
+			value: 'loopspel'
 		},
 		{
 			name: 'reactiespel',
-			value: 'reactie'
+			value: 'reactiespel'
 		}
 	];
 
@@ -100,9 +100,9 @@
 		open = !open;
 	}
 
-	let spelsoorten = false;
-	let groepen = false;
-	let leerlingenaantal = false;
+	let category = false;
+	let targetGroup = false;
+	let minimumPlayers = false;
 	let materialen = false;
 </script>
 
@@ -118,42 +118,42 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="Spelsoorten" on:click={() => (spelsoorten = !spelsoorten)} />
-		<FilterButton filterTitle="Groepen" on:click={() => (groepen = !groepen)} />
+		<FilterButton filterTitle="category" on:click={() => (category = !category)} />
+		<FilterButton filterTitle="targetGroup" on:click={() => (targetGroup = !targetGroup)} />
 		<FilterButton
-			filterTitle="Leerlingenaantal"
-			on:click={() => (leerlingenaantal = !leerlingenaantal)}
+			filterTitle="minimumPlayers"
+			on:click={() => (minimumPlayers = !minimumPlayers)}
 		/>
-		<!-- <FilterButton filterTitle="Materialen" on:click={() => (materialen = !materialen)} /> -->
+		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 	</article>
 </section>
 
-{#if spelsoorten}
-	<FilterPopUp
+{#if category}
+	<GameListPopup
 		filterTitle="category"
 		filterItems={gameNames}
-		on:close={() => (spelsoorten = !spelsoorten)}
+		on:close={() => (category = !category)}
 	/>
 {/if}
 
-{#if groepen}
-	<FilterPopUp
+{#if targetGroup}
+	<GameListPopup
 		filterTitle="targetGroup"
 		filterItems={groupNames}
-		on:close={() => (groepen = !groepen)}
+		on:close={() => (targetGroup = !targetGroup)}
 	/>
 {/if}
 
-{#if leerlingenaantal}
-	<FilterPopUp
+{#if minimumPlayers}
+	<GameListPopup
 		filterTitle="minimumPlayers"
 		filterItems={childrenCount}
-		on:close={() => (leerlingenaantal = !leerlingenaantal)}
+		on:close={() => (minimumPlayers = !minimumPlayers)}
 	/>
 {/if}
 
 {#if materialen}
-	<FilterPopUp
+	<GameListPopup
 		filterTitle="materialen"
 		filterItems={materialNames}
 		on:close={() => (materialen = !materialen)}
