@@ -12,7 +12,7 @@
 
 	let filterButtons = [];
 
-	function submitForm(event) {
+	function submitForm() {
 		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
 		const searchParams = new URLSearchParams(queries);
 		goto(`/?${searchParams.toString()}`).then(() => closeFilter());
