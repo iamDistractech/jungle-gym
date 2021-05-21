@@ -36,6 +36,9 @@
 			"pre-commit": "lint-staged"
 		}
 	},
+	"lint-staged": {
+		"*": "npm run format"
+	},
 	"devDependencies": {
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
