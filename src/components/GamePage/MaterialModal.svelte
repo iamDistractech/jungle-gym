@@ -11,7 +11,7 @@
 	export let material;
 </script>
 
-<section class="material-modal">
+<section>
 	<h1>{material.title}</h1>
 
 	{#if material.amount}
@@ -25,10 +25,10 @@
 	<ButtonLight on:click={closeModal}>Sluiten</ButtonLight>
 </section>
 
-<div class="black-overlay" />
+<div class="black-overlay" on:click={closeModal} />
 
 <style>
-	.material-modal {
+	section {
 		position: fixed;
 		bottom: 0;
 		left: 0;
@@ -44,15 +44,15 @@
 		overflow-y: hidden;
 	}
 
-	.material-modal h1 {
+	section h1 {
 		margin: 0 auto;
 	}
 
-	.material-modal p {
+	section p {
 		margin: 0.4em 0;
 	}
 
-	.material-modal p:last-of-type {
+	section p:last-of-type {
 		margin-bottom: 1.5em;
 	}
 
