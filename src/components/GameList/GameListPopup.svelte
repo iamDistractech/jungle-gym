@@ -9,29 +9,14 @@
 	function closeFilter() {
 		dispatch('close');
 	}
-	import { onMount } from 'svelte';
-	export let checkedInputs = [];
-
-	function selectValue() {
-		const inputs = document.querySelectorAll('fieldset input');
-		inputs.forEach((input) => {
-			input.addEventListener('click', () => {
-				if (input.checked == true) {
-					checkedInputs.push(input.value);
-				} else if (input.checked == false) {
-					checkedInputs.pop(input.value);
-				}
-			});
-		});
-	}
 
 	let filterButtons = [];
 
 	function submitForm(event) {
-		goto(`/?${filterTitle}=${filterButtons}`).then(() => closeFilter());
+		let filteredItems = filterButtons.join('&');
+		filteredItems = filteredItems.toString();
+		goto(`/?${filterTitle}=${filteredItems}`).then(() => closeFilter());
 	}
-
-	onMount(() => selectValue());
 </script>
 
 <section class="filter-popup">
@@ -57,7 +42,7 @@
 	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
 </section>
 
-<div class="black-overlay" />
+<div class="black-overlay" on:click />
 
 <style>
 	.filter-popup {
@@ -84,8 +69,7 @@
 		display: flex;
 		flex-direction: column;
 		border: none;
-		height: 18em;
-		overflow: scroll;
+		overflow: auto;
 		padding: 0;
 		margin: 0;
 	}
