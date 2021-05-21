@@ -10,10 +10,7 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		adapter: netlify(),
-		files: {
-			lib: 'src/components'
-		}
+		adapter: netlify()
 	}
 };
 
