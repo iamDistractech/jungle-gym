@@ -8,7 +8,16 @@
 		image: undefined,
 		category: 'Tikspel',
 		difficulty: 'Makkelijk',
-		materials: ['Lintjes', 'Fluitje'],
+		materials: [
+			{
+				title: 'Lintjes',
+				notes: 'Even veel lintjes als leerlingen'
+			},
+			{
+				title: 'Fluit',
+				amount: 1
+			}
+		],
 		minimumAttendees: 5,
 		audience: 'Alle jaarlagen',
 		rules: ['Lintje moet zichtbaar zijn voor de kat'],
