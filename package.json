@@ -30,11 +30,10 @@
 		"preview": "svelte-kit preview",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write --plugin-search-dir=. .",
-		"precommit": "lint-staged"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run precommit"
+			"pre-commit": "npm run format"
 		}
 	},
 	"devDependencies": {
@@ -56,8 +55,5 @@
 	"bugs": {
 		"url": "https://github.com/iSirThijs/jungle-gym/issues"
 	},
-	"type": "module",
-	"dependencies": {
-		"lint-staged": "^11.0.0"
-	}
+	"type": "module"
 }
