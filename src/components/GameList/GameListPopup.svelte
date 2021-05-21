@@ -24,14 +24,8 @@
 	<form on:submit|preventDefault={submitForm}>
 		<fieldset>
 			{#if filterItems}
-				{#each filterItems as { name }}
-					<input
-						bind:group={filterButtons}
-						type="checkbox"
-						id={name}
-						name="filter-group"
-						value={name}
-					/>
+				{#each filterItems as { name, value }}
+					<input bind:group={filterButtons} type="checkbox" id={name} name="filter-group" {value} />
 					<label for={name}>{name}</label>
 				{/each}
 			{/if}
@@ -72,10 +66,12 @@
 		overflow: auto;
 		padding: 0;
 		margin: 0;
+		max-height: 60vh;
+		overflow-y: auto;
 	}
 
 	label {
-		padding: 1rem 2rem;
+		padding: 0.7rem 2rem;
 		border: 1px solid black;
 		border-radius: 1rem;
 		margin-bottom: 1rem;
@@ -90,10 +86,6 @@
 	input:checked + label {
 		border: 1px solid var(--color-light-orange);
 		color: var(--color-light-orange);
-	}
-
-	legend {
-		padding-bottom: 1rem;
 	}
 
 	.black-overlay {

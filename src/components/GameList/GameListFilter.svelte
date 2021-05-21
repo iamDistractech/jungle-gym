@@ -2,50 +2,80 @@
 	import FilterPopUp from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
 
-	let checkedInputs;
-
 	let gameNames = [
 		{
-			name: 'kat en muis'
+			name: 'Tikspel',
+			value: 'tik'
 		},
 		{
-			name: 'pionnenroof'
+			name: 'balspel',
+			value: 'bal'
 		},
 		{
-			name: 'Fopbal'
+			name: 'loopspel',
+			value: 'loop'
 		},
 		{
-			name: 'leeuwenkooi'
+			name: 'reactiespel',
+			value: 'reactie'
 		}
 	];
 
 	let groupNames = [
 		{
-			name: 'Groep 1 - 2'
+			name: 'Groep 1',
+			value: 1
 		},
 		{
-			name: 'Groep 3 - 4'
+			name: 'Groep 2',
+			value: 2
 		},
 		{
-			name: 'Groep 5 - 6'
+			name: 'Groep 3',
+			value: 3
 		},
 		{
-			name: 'Groep 7 - 8'
+			name: 'Groep 4',
+			value: 4
+		},
+		{
+			name: 'Groep 5',
+			value: 5
+		},
+		{
+			name: 'Groep 6',
+			value: 6
+		},
+		{
+			name: 'Groep 7',
+			value: 7
+		},
+		{
+			name: 'Groep 8',
+			value: 8
+		},
+		{
+			name: 'Alle groep',
+			value: 'all'
 		}
 	];
 
 	let childrenCount = [
 		{
-			name: '1 - 10 leerlingen'
+			name: '1 - 10 leerlingen',
+			value: 1
 		},
 		{
-			name: '11 - 20 leerlingen'
+			name: '11 - 20 leerlingen',
+			value: 11
 		},
 		{
-			name: '21 - 30 leerlingen'
+			name: '21 - 30 leerlingen',
+			value: 21
 		},
 		{
-			name: '31 - 40 leerlingen'
+			name: '31 - 40 leerlingen',
+			value: 31
 		}
 	];
 
@@ -92,20 +122,20 @@
 		/>
 	</button>
 	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="Spelsoort" on:click={() => (spelsoorten = !spelsoorten)} />
+		<FilterButton filterTitle="Spelsoorten" on:click={() => (spelsoorten = !spelsoorten)} />
 		<FilterButton filterTitle="Groepen" on:click={() => (groepen = !groepen)} />
 		<FilterButton
 			filterTitle="Leerlingenaantal"
 			on:click={() => (leerlingenaantal = !leerlingenaantal)}
 		/>
-		<FilterButton filterTitle="Materialen" on:click={() => (materialen = !materialen)} />
+		<!-- <FilterButton filterTitle="Materialen" on:click={() => (materialen = !materialen)} /> -->
 	</article>
 </section>
 
 {#if spelsoorten}
 	<FilterPopUp
 		on:click={testFuntion}
-		filterTitle="spelsoort"
+		filterTitle="category"
 		filterItems={gameNames}
 		on:close={() => (spelsoorten = !spelsoorten)}
 	/>
@@ -113,8 +143,7 @@
 
 {#if groepen}
 	<FilterPopUp
-		filterTitle="groepen"
-		{checkedInputs}
+		filterTitle="targetGroup"
 		filterItems={groupNames}
 		on:close={() => (groepen = !groepen)}
 	/>
@@ -122,7 +151,7 @@
 
 {#if leerlingenaantal}
 	<FilterPopUp
-		filterTitle="leerlingenaantal"
+		filterTitle="minimumPlayers"
 		filterItems={childrenCount}
 		on:close={() => (leerlingenaantal = !leerlingenaantal)}
 	/>
