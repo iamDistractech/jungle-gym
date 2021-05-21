@@ -29,15 +29,13 @@
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"format": "prettier --write --plugin-search-dir=. .",
+		"precommit": "lint-staged"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "npm run precommit"
 		}
-	},
-	"lint-staged": {
-		"*": "npm run format"
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "next",
