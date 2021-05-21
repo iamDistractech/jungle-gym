@@ -14,15 +14,31 @@
 
 	function submitForm() {
 		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
+
 		const searchParams = new URLSearchParams(queries);
 		goto(`/?${searchParams.toString()}`).then(() => closeFilter());
 	}
+
+	function submitMinimalPlayerForm(minimulPlayerCount) {
+		let queries = [filterTitle, minimulPlayerCount];
+
+		const searchParams = new URLSearchParams([queries]);
+		goto(`/?${searchParams.toString()}`).then(() => closeFilter());
+	}
+
+	let minimulPlayerCount = 1;
+	const decreaseCount = () => {
+		minimulPlayerCount = minimulPlayerCount - 1;
+	};
+	const increaseCount = () => {
+		minimulPlayerCount = minimulPlayerCount + 1;
+	};
 </script>
 
 <section class="filter-popup">
 	<h1>Filter op groepen</h1>
-	<form on:submit|preventDefault={submitForm}>
-		{#if filterTitle !== 'minimumPlayers'}
+	{#if filterTitle !== 'minimumPlayers'}
+		<form on:submit|preventDefault={submitForm}>
 			<fieldset>
 				{#if filterItems}
 					{#each filterItems as { name, value }}
@@ -37,22 +53,20 @@
 					{/each}
 				{/if}
 			</fieldset>
-		{:else}
+			<button class="submit-btn" type="submit">Toepassen</button>
+		</form>
+	{:else}
+		<form on:submit|preventDefault={() => submitMinimalPlayerForm(minimulPlayerCount)}>
 			<fieldset class="min-player-fieldset">
-				<!-- <label for="minimumPlayerFilter">Voer minimaal aantal spelers in:</label>
-
-				<input type="number" id="minimumPlayerFilter" name="minimumPlayerFilter" min="0" max="99" /> -->
-
 				<div class="number">
-					<span>-</span>
-					<input type="text" value="1" />
-					<span>+</span>
+					<span on:click={decreaseCount}>-</span>
+					<input type="number" bind:value={minimulPlayerCount} />
+					<span on:click={increaseCount}>+</span>
 				</div>
 			</fieldset>
-		{/if}
-
-		<button class="submit-btn" type="submit">Toepassen</button>
-	</form>
+			<button class="submit-btn" type="submit">Toepassen</button>
+		</form>
+	{/if}
 	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
 </section>
 
@@ -119,11 +133,18 @@
 	.min-player-fieldset {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: center;
+
+		padding: 2rem 0;
 	}
 
 	.min-player-fieldset input {
 		display: block;
+		text-align: center;
+
+		font-size: 1.6em;
+		border: 1px solid #ddd;
+		border-radius: 0.4em;
 	}
 
 	.min-player-fieldset div {
@@ -135,5 +156,8 @@
 		background: #f2f2f2;
 		border-radius: 0.4em;
 		border: 1px solid #ddd;
+		margin: 0rem 0.4rem;
+
+		cursor: pointer;
 	}
 </style>
