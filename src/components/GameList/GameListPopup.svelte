@@ -48,6 +48,7 @@
 		background-color: white;
 		z-index: 1;
 		padding: 1rem;
+		border-radius: 3em 3em 0em 0em;
 	}
 
 	section h1 {
