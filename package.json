@@ -29,12 +29,8 @@
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write --plugin-search-dir=. ."
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run format"
-		}
+		"format": "prettier --write --plugin-search-dir=. .",
+		"prepare": "husky install"
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "next",
@@ -44,6 +40,7 @@
 		"eslint-config-prettier": "^8.1.0",
 		"eslint-plugin-svelte3": "^3.2.0",
 		"husky": "^6.0.0",
+		"lint-staged": "^11.0.0",
 		"prettier": "~2.2.1",
 		"prettier-plugin-svelte": "^2.2.0",
 		"svelte": "^3.34.0",
@@ -55,5 +52,9 @@
 	"bugs": {
 		"url": "https://github.com/iSirThijs/jungle-gym/issues"
 	},
-	"type": "module"
+	"type": "module",
+	"lint-staged": {
+		"*.js": "eslint --cache --fix",
+		"*.{js,css,md,svelte,json}": "prettier --write"
+	}
 }
