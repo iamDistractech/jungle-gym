@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { fetcher } from '../utils/fetcher';
+	import { fetcher } from '$lib/utils/fetcher';
 
 	export async function load(): Promise<unknown> {
 		const url = 'https://acc-jungle-gym-api.herokuapp.com/games';
