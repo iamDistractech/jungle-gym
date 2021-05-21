@@ -163,7 +163,7 @@
 <style>
 	button {
 		font-family: var(--font-heading);
-		font-size: 1rem;
+		font-size: 1em;
 		border-radius: 1em;
 		cursor: pointer;
 		border: none;

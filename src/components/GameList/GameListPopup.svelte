@@ -47,7 +47,6 @@
 		background-color: white;
 		z-index: 1;
 		padding: 1rem;
-		overflow-y: auto;
 	}
 
 	.filter-popup h1 {
@@ -63,7 +62,6 @@
 		display: flex;
 		flex-direction: column;
 		border: none;
-		overflow: auto;
 		padding: 0;
 		margin: 0;
 		max-height: 60vh;
