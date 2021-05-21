@@ -8,7 +8,24 @@
 		image: undefined,
 		category: 'Tikspel',
 		difficulty: 'Makkelijk',
-		materials: ['Twee lintjes', '20 hoedjes', '3 hoepels', 'Fluitje'],
+		materials: [
+			{
+				title: 'Lintje',
+				amount: 2
+			},
+			{
+				title: 'Hoedjes',
+				amount: 20
+			},
+			{
+				title: 'Hoepels',
+				amount: 30
+			},
+			{
+				title: 'Fluitje',
+				amount: 1
+			}
+		],
 		minimumAttendees: 5,
 		audience: 'Alle jaarlagen',
 		rules: [
