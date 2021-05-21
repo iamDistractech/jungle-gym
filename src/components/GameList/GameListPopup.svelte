@@ -40,20 +40,6 @@
 <div transition:fade class="black-overlay" on:click={closeFilter} />
 
 <style>
-	.filter-options-open {
-		max-height: 31.25em;
-		padding: 1.5em 1em;
-		overflow: hidden;
-		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
-	}
-
-	.filter-options-close {
-		max-height: 0;
-		padding: 0 1rem;
-		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
-		overflow: hidden;
-	}
-
 	section {
 		position: fixed;
 		bottom: 0;
