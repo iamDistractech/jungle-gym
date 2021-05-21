@@ -1,5 +1,7 @@
 # JungleGym - Meesterproef
 
+test
+
 [![CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml)
 
 **[Live link](#)**
