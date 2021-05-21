@@ -36,7 +36,7 @@
 	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
 </section>
 
-<div class="black-overlay" on:click />
+<div class="black-overlay" />
 
 <style>
 	.filter-popup {

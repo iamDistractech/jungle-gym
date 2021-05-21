@@ -104,10 +104,6 @@
 	let groepen = false;
 	let leerlingenaantal = false;
 	let materialen = false;
-
-	const testFuntion = () => {
-		console.log('clicked');
-	};
 </script>
 
 <section id="filter-container">
@@ -134,7 +130,6 @@
 
 {#if spelsoorten}
 	<FilterPopUp
-		on:click={testFuntion}
 		filterTitle="category"
 		filterItems={gameNames}
 		on:close={() => (spelsoorten = !spelsoorten)}
