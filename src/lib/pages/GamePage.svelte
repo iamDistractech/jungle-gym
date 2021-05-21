@@ -1,30 +1,45 @@
-<script>
-	import ButtonLight from '../components/Button/ButtonLight.svelte';
+<script lang="ts">
+	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
+
+	let isModalOpen = false;
+	let clickedMaterial;
+
+	function toggleModal(material) {
+		isModalOpen = !isModalOpen;
+		clickedMaterial = material;
+	}
 
 	export let game;
 </script>
 
 <header>
 	<h1>{game.title}</h1>
-	<button>&larr;</button>
+	<a class="hide-underline" href="/">&larr</a>
 </header>
 
 <div class="image-card" />
 
 <main>
-	<div class="main-content-header">
+	<header>
 		<h2>{game.category} | {game.title}</h2>
 		<small>{game.audience} | {game.difficulty}</small>
-	</div>
+	</header>
 
 	<p>{game.description}</p>
 
+	{#if isModalOpen}
+		<MaterialModal material={clickedMaterial} on:close={toggleModal} />
+	{/if}
+
 	<h3>Materialen</h3>
-	<div class="material-list">
+	<ul class="material-list">
 		{#each game.materials as material}
-			<ButtonLight>{material}</ButtonLight>
+			<li>
+				<ButtonLight on:click={toggleModal(material)}>{material.title}</ButtonLight>
+			</li>
 		{/each}
-	</div>
+	</ul>
 
 	<h3>Spelregels</h3>
 	<ol>
@@ -71,13 +86,16 @@
 		font-family: var(--font-heading);
 	}
 
-	header button {
+	header a {
 		border-radius: 50%;
 		background-color: var(--color-white);
 		border: 1px solid var(--color-dark-blue);
 		height: 2.5em;
 		width: 2.5em;
 		margin-right: 2.5em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.image-card {
@@ -88,20 +106,29 @@
 
 	.material-list {
 		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		padding: 0;
+		margin: 0;
 	}
 
-	.main-content-header {
+	.material-list > li {
+		margin: 0.3em;
+		margin-left: 0;
+	}
+
+	main header {
 		display: flex;
 		flex-direction: column-reverse;
 		margin-top: 1em;
 	}
 
-	.main-content-header small {
+	main header small {
 		font-size: 1em;
 		color: var(--color-grey);
 	}
 
-	.main-content-header h2 {
+	main header h2 {
 		margin-bottom: 0;
 	}
 </style>

@@ -1,5 +1,5 @@
-<script>
-	import GamePage from '../../shared/GamePage.svelte';
+<script lang="ts">
+	import GamePage from '$lib/pages/GamePage.svelte';
 
 	let game = {
 		title: 'Kat en Muis',
@@ -8,7 +8,16 @@
 		image: undefined,
 		category: 'Tikspel',
 		difficulty: 'Makkelijk',
-		materials: ['Lintjes', 'Fluitje'],
+		materials: [
+			{
+				title: 'Lintjes',
+				notes: 'Even veel lintjes als leerlingen'
+			},
+			{
+				title: 'Fluit',
+				amount: 1
+			}
+		],
 		minimumAttendees: 5,
 		audience: 'Alle jaarlagen',
 		rules: ['Lintje moet zichtbaar zijn voor de kat'],

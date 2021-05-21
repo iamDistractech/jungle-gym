@@ -1,0 +1,225 @@
+<script>
+	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
+	import FilterButton from '$lib/Button/FilterButton.svelte';
+
+	let gameNames = [
+		{
+			name: 'Tikspel',
+			value: 'tikspel'
+		},
+		{
+			name: 'balspel',
+			value: 'balspel'
+		},
+		{
+			name: 'loopspel',
+			value: 'loopspel'
+		},
+		{
+			name: 'reactiespel',
+			value: 'reactiespel'
+		}
+	];
+
+	let groupNames = [
+		{
+			name: 'Groep 1',
+			value: 1
+		},
+		{
+			name: 'Groep 2',
+			value: 2
+		},
+		{
+			name: 'Groep 3',
+			value: 3
+		},
+		{
+			name: 'Groep 4',
+			value: 4
+		},
+		{
+			name: 'Groep 5',
+			value: 5
+		},
+		{
+			name: 'Groep 6',
+			value: 6
+		},
+		{
+			name: 'Groep 7',
+			value: 7
+		},
+		{
+			name: 'Groep 8',
+			value: 8
+		},
+		{
+			name: 'Alle groep',
+			value: 'all'
+		}
+	];
+
+	let childrenCount = [
+		{
+			name: '1 - 10 leerlingen',
+			value: 1
+		},
+		{
+			name: '11 - 20 leerlingen',
+			value: 11
+		},
+		{
+			name: '21 - 30 leerlingen',
+			value: 21
+		},
+		{
+			name: '31 - 40 leerlingen',
+			value: 31
+		}
+	];
+
+	let materialNames = [
+		{
+			name: 'pionnen'
+		},
+		{
+			name: 'voetbal'
+		},
+		{
+			name: 'lintjes'
+		},
+		{
+			name: 'fluit'
+		}
+	];
+
+	let open = false;
+
+	function showDropdown() {
+		open = !open;
+	}
+
+	let category = false;
+	let targetGroup = false;
+	let minimumPlayers = false;
+	let materialen = false;
+</script>
+
+<section id="filter-container">
+	<button id="filter-dropdown-button" class="no-transform-button" on:click={showDropdown}>
+		Filter
+		<img src="../icons/filter.svg" alt="Filter icon" />
+		<img
+			class:dropdown-close={open}
+			class:dropdown-open={!open}
+			src="../icons/dropdown.svg"
+			alt="Dropdown icon"
+		/>
+	</button>
+	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
+		<FilterButton filterTitle="category" on:click={() => (category = !category)} />
+		<FilterButton filterTitle="targetGroup" on:click={() => (targetGroup = !targetGroup)} />
+		<FilterButton
+			filterTitle="minimumPlayers"
+			on:click={() => (minimumPlayers = !minimumPlayers)}
+		/>
+		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
+	</article>
+</section>
+
+{#if category}
+	<GameListPopup
+		filterTitle="category"
+		filterItems={gameNames}
+		on:close={() => (category = !category)}
+	/>
+{/if}
+
+{#if targetGroup}
+	<GameListPopup
+		filterTitle="targetGroup"
+		filterItems={groupNames}
+		on:close={() => (targetGroup = !targetGroup)}
+	/>
+{/if}
+
+{#if minimumPlayers}
+	<GameListPopup
+		filterTitle="minimumPlayers"
+		filterItems={childrenCount}
+		on:close={() => (minimumPlayers = !minimumPlayers)}
+	/>
+{/if}
+
+{#if materialen}
+	<GameListPopup
+		filterTitle="materialen"
+		filterItems={materialNames}
+		on:close={() => (materialen = !materialen)}
+	/>
+{/if}
+
+<style>
+	button {
+		font-family: var(--font-heading);
+		font-size: 1em;
+		border-radius: 1em;
+		cursor: pointer;
+		border: none;
+	}
+
+	#filter-container button {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--color-light-orange);
+		padding: 0em 1em;
+		width: 100%;
+		height: 3em;
+	}
+
+	#filter-container button img:nth-of-type(1) {
+		padding: 0em 0.5em;
+		width: 1.1em;
+		height: 1.1em;
+	}
+
+	.dropdown-close {
+		padding: 0em 0.5em;
+		margin-left: auto;
+		width: 0.75em;
+		height: 0.75em;
+		transform: rotate(180deg);
+		transition: transform 200ms linear;
+	}
+
+	.dropdown-open {
+		padding: 0em 0.5em;
+		margin-left: auto;
+		width: 0.75em;
+		height: 0.75em;
+		transform: rotate(0deg);
+		transition: transform 200ms linear;
+	}
+
+	#filter-options {
+		background-color: var(--color-light-orange);
+		margin-top: -1em;
+		border-radius: 0em 0em 2em 2em;
+	}
+
+	.filter-options-open {
+		max-height: 31.25em;
+		padding: 1.5em 1em;
+		overflow: hidden;
+		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
+	}
+
+	.filter-options-close {
+		max-height: 0;
+		padding: 0 1rem;
+		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
+		overflow: hidden;
+	}
+</style>
