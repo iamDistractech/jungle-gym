@@ -8,7 +8,7 @@
 		image: undefined,
 		category: 'Balspel',
 		difficulty: 'Makkelijk',
-		materials: ['Een bal', 'Fluitje'],
+		materials: ["Een bal", 'Fluitje'],
 		minimumAttendees: 3,
 		audience: 'Alle jaarlagen',
 		rules: ['Bal onderhands gooien', 'Een slecht aangegooide bal telt niet. Opnieuw proberen'],
