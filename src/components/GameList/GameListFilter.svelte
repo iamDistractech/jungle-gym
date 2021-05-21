@@ -74,9 +74,6 @@
 	let groepen = false;
 	let leerlingenaantal = false;
 	let materialen = false;
-
-	export let selectedFilter;
-	export let gameTypeFilter;
 </script>
 
 <section id="filter-container">
@@ -102,22 +99,36 @@
 </section>
 
 {#if spelsoorten}
-	<FilterPopUp filterItems={gameNames} on:close={() => (spelsoorten = !spelsoorten)} />
+	<FilterPopUp
+		filterTitle="spelsoort"
+		filterItems={gameNames}
+		on:close={() => (spelsoorten = !spelsoorten)}
+	/>
 {/if}
 
 {#if groepen}
-	<FilterPopUp {checkedInputs} filterItems={groupNames} on:close={() => (groepen = !groepen)} />
+	<FilterPopUp
+		filterTitle="groepen"
+		{checkedInputs}
+		filterItems={groupNames}
+		on:close={() => (groepen = !groepen)}
+	/>
 {/if}
 
 {#if leerlingenaantal}
 	<FilterPopUp
+		filterTitle="leerlingenaantal"
 		filterItems={childrenCount}
 		on:close={() => (leerlingenaantal = !leerlingenaantal)}
 	/>
 {/if}
 
 {#if materialen}
-	<FilterPopUp filterItems={materialNames} on:close={() => (materialen = !materialen)} />
+	<FilterPopUp
+		filterTitle="materialen"
+		filterItems={materialNames}
+		on:close={() => (materialen = !materialen)}
+	/>
 {/if}
 
 <style>

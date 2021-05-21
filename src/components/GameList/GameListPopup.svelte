@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	export let filterItems;
+	export let filterTitle;
 	import { goto } from '$app/navigation';
 
 	const dispatch = createEventDispatcher();
@@ -8,7 +9,6 @@
 	function closeFilter() {
 		dispatch('close');
 	}
-
 	import { onMount } from 'svelte';
 	export let checkedInputs = [];
 
@@ -25,14 +25,10 @@
 		});
 	}
 
-	let checkedTest = false;
 	let filterButtons = [];
 
-	function submitForm() {
-		console.log(filterButtons);
-		// Hier moet we de values van filterButton omzetten naar een cleane search query
-		// filterButtons kunnen als export zetten
-		goto('/?test=heloo').then(() => closeFilter());
+	function submitForm(event) {
+		goto(`/?${filterTitle}=${filterButtons}`).then(() => closeFilter());
 	}
 
 	onMount(() => selectValue());
