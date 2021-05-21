@@ -1,5 +1,5 @@
 <script>
-	import FilterPopUp from '$lib/Gamelist/GameListPopUp.svelte';
+	import FilterPopUp from '$lib/GameList/GameListPopUp.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
 
 	let checkedInputs;
