@@ -19,7 +19,8 @@
 	}
 </script>
 
-<section class="filter-popup">
+<section>
+	<hr />
 	<h1>Filter op groepen</h1>
 	<form on:submit|preventDefault={submitForm}>
 		<fieldset>
@@ -27,8 +28,8 @@
 				{#each filterItems as { name }}
 					<input
 						bind:group={filterButtons}
-						type="checkbox"
 						id={name}
+						type="checkbox"
 						name="filter-group"
 						value={name}
 					/>
@@ -42,10 +43,10 @@
 	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
 </section>
 
-<div class="black-overlay" on:click />
+<div class="black-overlay" on:click={closeFilter} />
 
 <style>
-	.filter-popup {
+	section {
 		position: fixed;
 		bottom: 0;
 		left: 0;
@@ -53,11 +54,18 @@
 		background-color: white;
 		z-index: 1;
 		padding: 1rem;
+		border-radius: 3em 3em 0em 0em;
 		overflow-y: auto;
 	}
 
-	.filter-popup h1 {
+	section h1 {
 		text-align: center;
+	}
+
+	section hr {
+		width: 10%;
+		border: 2px solid var(--color-light-orange);
+		border-radius: 2em;
 	}
 
 	form {

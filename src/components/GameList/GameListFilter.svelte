@@ -74,14 +74,10 @@
 	let groepen = false;
 	let leerlingenaantal = false;
 	let materialen = false;
-
-	const testFuntion = () => {
-		console.log('clicked');
-	};
 </script>
 
-<section id="filter-container">
-	<button id="filter-dropdown-button" class="no-transform-button" on:click={showDropdown}>
+<section>
+	<button class="no-transform-button" on:click={showDropdown}>
 		Filter
 		<img src="../icons/filter.svg" alt="Filter icon" />
 		<img
@@ -91,7 +87,7 @@
 			alt="Dropdown icon"
 		/>
 	</button>
-	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
+	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (spelsoorten = !spelsoorten)} />
 		<FilterButton filterTitle="Groepen" on:click={() => (groepen = !groepen)} />
 		<FilterButton
@@ -104,7 +100,6 @@
 
 {#if spelsoorten}
 	<FilterPopUp
-		on:click={testFuntion}
 		filterTitle="spelsoort"
 		filterItems={gameNames}
 		on:close={() => (spelsoorten = !spelsoorten)}
@@ -145,7 +140,7 @@
 		border: none;
 	}
 
-	#filter-container button {
+	section button {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -155,7 +150,7 @@
 		height: 3em;
 	}
 
-	#filter-container button img:nth-of-type(1) {
+	section button img:nth-of-type(1) {
 		padding: 0em 0.5em;
 		width: 1.1em;
 		height: 1.1em;
@@ -179,7 +174,7 @@
 		transition: transform 200ms linear;
 	}
 
-	#filter-options {
+	article {
 		background-color: var(--color-light-orange);
 		margin-top: -1em;
 		border-radius: 0em 0em 2em 2em;
