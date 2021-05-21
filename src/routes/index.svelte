@@ -21,28 +21,54 @@
 	}
 </script>
 
-<script lang="ts">
+<script>
 	import GameList from '$lib/GameList/GameList.svelte';
-	// import GameListCard from '$lib/GameList/GameListCard.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-	// import GameListPopup from '$lib/GameList/GameListPopup.svelte';
+	import { onMount } from 'svelte';
 
 	export let games;
+
+	const data = [
+		{
+			titleGame: 'Pionnenroof',
+			groups: 'Alle groepen',
+			gameName: 'Tikspel',
+			personAmount: 'Min 2',
+			gameSlug: 'pionnenroof'
+		},
+		{
+			titleGame: 'Fopbal',
+			groups: 'Alle groepen',
+			gameName: 'Balspel',
+			personAmount: 'Min 3',
+			gameSlug: 'fopbal'
+		},
+		{
+			titleGame: 'Leeuwenkooi',
+			groups: 'Alle groepen',
+			gameName: 'Tikspel',
+			personAmount: 'Min 5',
+			gameSlug: 'leeuwenkooi'
+		}
+	];
+
+	let gameTypeFilter = [];
+
+	const getGameTypes = () => {
+		for (let gameObj of data) {
+			if (!gameTypeFilter.includes(gameObj.gameName)) {
+				gameTypeFilter = [...gameTypeFilter, gameObj.gameName];
+			}
+		}
+		gameTypeFilter = gameTypeFilter.sort();
+	};
+
+	onMount(() => getGameTypes());
 </script>
 
 <GameListFilter />
-<!-- <section>
-	<GameListCard
-		titleGame="Kat en Muis"
-		groups="Alle groepen"
-		gameName="Tikspel"
-		personAmount="Min 5"
-		gameSlug="kat-en-muis"
-		isHighlighted={true}
-	/>
-</section> -->
+
 <GameList {games} />
 
-<!-- <GameListPopup /> -->
 <style>
 </style>
