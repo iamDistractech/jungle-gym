@@ -56,7 +56,7 @@
 	}
 
 	section hr {
-		width: 10%;
+		width: 2.5em;
 		border: 2px solid var(--color-light-orange);
 		border-radius: 2em;
 	}

@@ -108,7 +108,12 @@
 </script>
 
 <section>
-	<button class="no-transform-button" on:click={showDropdown}>
+	<button
+		class="no-transform-button"
+		on:click={showDropdown}
+		class:border-change-close={!open}
+		class:border-change-open={open}
+	>
 		Filter
 		<img src="../icons/filter.svg" alt="Filter icon" />
 		<img
@@ -207,22 +212,28 @@
 	article {
 		background-color: var(--color-light-orange);
 		border-radius: 0em 0em 2em 2em;
-		margin-top: 10em;
 	}
 
 	.filter-options-open {
 		max-height: 31.25em;
-		margin-top: -1.5em;
 		padding: 1.5em 1em;
 		overflow: hidden;
-		transition: max-height 0.45s ease-in, padding 0.25s ease-in;
+		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
 	}
 
 	.filter-options-close {
 		max-height: 0;
-		margin-top: -1.5em;
-		padding: 1.5em 1em 0em;
-		transition: max-height 0.25s ease-out, padding 0.25s ease-out;
+		padding: 0 1em;
+		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
 		overflow: hidden;
+	}
+
+	.border-change-close {
+		border-radius: 1em;
+		transition: border-radius 0.1s ease-in 0.1s;
+	}
+
+	.border-change-open {
+		border-radius: 1em 1em 0em 0em;
 	}
 </style>

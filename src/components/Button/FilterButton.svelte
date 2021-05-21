@@ -14,6 +14,6 @@
 		border: none;
 		width: 100%;
 		padding: 0.7em 1em;
-		margin: 0.5em 0em;
+		margin-bottom: 0.8em;
 	}
 </style>
