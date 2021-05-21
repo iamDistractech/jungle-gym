@@ -2,6 +2,7 @@
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
 
+
 	let gameNames = [
 		{
 			name: 'Tikspel',

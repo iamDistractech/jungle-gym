@@ -3,6 +3,7 @@
 	export let filterItems;
 	export let filterTitle;
 	import { goto } from '$app/navigation';
+	import { fade, fly } from 'svelte/transition';
 
 	const dispatch = createEventDispatcher();
 
@@ -19,27 +20,48 @@
 	}
 </script>
 
-<section>
-	<hr />
-	<h1>Filter op groepen</h1>
-	<form on:submit|preventDefault={submitForm}>
-		<fieldset>
-			{#if filterItems}
-				{#each filterItems as { name, value }}
-					<input bind:group={filterButtons} type="checkbox" id={name} name="filter-group" {value} />
-					<label for={name}>{name}</label>
-				{/each}
-			{/if}
-		</fieldset>
+{#if filterItems}
+	<section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
+		<hr />
+		<h1>Filter op groepen</h1>
+		<form on:submit|preventDefault={submitForm}>
+			<fieldset>
+				{#if filterItems}
+					{#each filterItems as { name, value }}
+						<input
+							bind:group={filterButtons}
+							type="checkbox"
+							id={name}
+							name="filter-group"
+							{value}
+						/>
+						<label for={name}>{name}</label>
+					{/each}
+				{/if}
+			</fieldset>
 
-		<button class="submit-btn" type="submit">Toepassen</button>
-	</form>
-	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
-</section>
-
-<div class="black-overlay" on:click={closeFilter} />
+			<button class="submit-btn" type="submit">Toepassen</button>
+		</form>
+		<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
+	</section>
+	<div transition:fade class="black-overlay" on:click={closeFilter} />
+{/if}
 
 <style>
+	.filter-options-open {
+		max-height: 31.25em;
+		padding: 1.5em 1em;
+		overflow: hidden;
+		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
+	}
+
+	.filter-options-close {
+		max-height: 0;
+		padding: 0 1rem;
+		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
+		overflow: hidden;
+	}
+
 	section {
 		position: fixed;
 		bottom: 0;
