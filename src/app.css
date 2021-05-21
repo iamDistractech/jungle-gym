@@ -49,7 +49,7 @@ button:active {
 }
 
 .submit-btn {
-	padding: 1.4em 2em;
+	padding: 0.8em 2em;
 	border-radius: 1em;
 	border: none;
 	font-size: 1em;
@@ -60,7 +60,7 @@ button:active {
 }
 
 .cancel-btn {
-	padding: 1.4em 2em;
+	padding: 0.8em 2em;
 	border-radius: 1em;
 	border: none;
 	font-size: 1em;

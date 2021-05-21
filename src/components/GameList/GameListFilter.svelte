@@ -1,51 +1,81 @@
 <script>
-	import FilterPopUp from '$lib/GameList/GameListPopup.svelte';
+	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
-
-	let checkedInputs;
 
 	let gameNames = [
 		{
-			name: 'kat en muis'
+			name: 'Tikspel',
+			value: 'tikspel'
 		},
 		{
-			name: 'pionnenroof'
+			name: 'balspel',
+			value: 'balspel'
 		},
 		{
-			name: 'Fopbal'
+			name: 'loopspel',
+			value: 'loopspel'
 		},
 		{
-			name: 'leeuwenkooi'
+			name: 'reactiespel',
+			value: 'reactiespel'
 		}
 	];
 
 	let groupNames = [
 		{
-			name: 'Groep 1 - 2'
+			name: 'Groep 1',
+			value: 1
 		},
 		{
-			name: 'Groep 3 - 4'
+			name: 'Groep 2',
+			value: 2
 		},
 		{
-			name: 'Groep 5 - 6'
+			name: 'Groep 3',
+			value: 3
 		},
 		{
-			name: 'Groep 7 - 8'
+			name: 'Groep 4',
+			value: 4
+		},
+		{
+			name: 'Groep 5',
+			value: 5
+		},
+		{
+			name: 'Groep 6',
+			value: 6
+		},
+		{
+			name: 'Groep 7',
+			value: 7
+		},
+		{
+			name: 'Groep 8',
+			value: 8
+		},
+		{
+			name: 'Alle groep',
+			value: 'all'
 		}
 	];
 
 	let childrenCount = [
 		{
-			name: '1 - 10 leerlingen'
+			name: '1 - 10 leerlingen',
+			value: 1
 		},
 		{
-			name: '11 - 20 leerlingen'
+			name: '11 - 20 leerlingen',
+			value: 11
 		},
 		{
-			name: '21 - 30 leerlingen'
+			name: '21 - 30 leerlingen',
+			value: 21
 		},
 		{
-			name: '31 - 40 leerlingen'
+			name: '31 - 40 leerlingen',
+			value: 31
 		}
 	];
 
@@ -70,9 +100,9 @@
 		open = !open;
 	}
 
-	let spelsoorten = false;
-	let groepen = false;
-	let leerlingenaantal = false;
+	let category = false;
+	let targetGroup = false;
+	let minimumPlayers = false;
 	let materialen = false;
 </script>
 
@@ -88,43 +118,42 @@
 		/>
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="Spelsoort" on:click={() => (spelsoorten = !spelsoorten)} />
-		<FilterButton filterTitle="Groepen" on:click={() => (groepen = !groepen)} />
+		<FilterButton filterTitle="category" on:click={() => (category = !category)} />
+		<FilterButton filterTitle="targetGroup" on:click={() => (targetGroup = !targetGroup)} />
 		<FilterButton
-			filterTitle="Leerlingenaantal"
-			on:click={() => (leerlingenaantal = !leerlingenaantal)}
+			filterTitle="minimumPlayers"
+			on:click={() => (minimumPlayers = !minimumPlayers)}
 		/>
-		<FilterButton filterTitle="Materialen" on:click={() => (materialen = !materialen)} />
+		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 	</article>
 </section>
 
-{#if spelsoorten}
-	<FilterPopUp
-		filterTitle="spelsoort"
+{#if category}
+	<GameListPopup
+		filterTitle="category"
 		filterItems={gameNames}
-		on:close={() => (spelsoorten = !spelsoorten)}
+		on:close={() => (category = !category)}
 	/>
 {/if}
 
-{#if groepen}
-	<FilterPopUp
-		filterTitle="groepen"
-		{checkedInputs}
+{#if targetGroup}
+	<GameListPopup
+		filterTitle="targetGroup"
 		filterItems={groupNames}
-		on:close={() => (groepen = !groepen)}
+		on:close={() => (targetGroup = !targetGroup)}
 	/>
 {/if}
 
-{#if leerlingenaantal}
-	<FilterPopUp
-		filterTitle="leerlingenaantal"
+{#if minimumPlayers}
+	<GameListPopup
+		filterTitle="minimumPlayers"
 		filterItems={childrenCount}
-		on:close={() => (leerlingenaantal = !leerlingenaantal)}
+		on:close={() => (minimumPlayers = !minimumPlayers)}
 	/>
 {/if}
 
 {#if materialen}
-	<FilterPopUp
+	<GameListPopup
 		filterTitle="materialen"
 		filterItems={materialNames}
 		on:close={() => (materialen = !materialen)}
@@ -134,7 +163,7 @@
 <style>
 	button {
 		font-family: var(--font-heading);
-		font-size: 1rem;
+		font-size: 1em;
 		border-radius: 1em;
 		cursor: pointer;
 		border: none;

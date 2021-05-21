@@ -16,6 +16,7 @@
 		font-family: var(--font-heading);
 		display: flex;
 		flex-direction: column-reverse;
+		padding: 2rem 0 1rem;
 	}
 
 	header h2 {

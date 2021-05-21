@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import { fetcher } from '../utils/fetcher';
 
-	export async function load({ page }): Promise<unknown> {
+	export async function load(): Promise<unknown> {
 		const url = 'https://acc-jungle-gym-api.herokuapp.com/games';
 
 		try {
@@ -23,7 +23,6 @@
 
 <script>
 	import GameList from '$lib/GameList/GameList.svelte';
-	// import GameListCard from '$lib/GameList/GameListCard.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
 	import { onMount } from 'svelte';
 
