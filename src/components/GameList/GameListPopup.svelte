@@ -13,9 +13,9 @@
 	let filterButtons = [];
 
 	function submitForm(event) {
-		let filteredItems = filterButtons.join('&');
-		filteredItems = filteredItems.toString();
-		goto(`/?${filterTitle}=${filteredItems}`).then(() => closeFilter());
+		let queries = filterButtons.map((activeFilter) => [ filterTitle, activeFilter])
+		const searchParams = new URLSearchParams(queries)
+		goto(`/?${searchParams.toString()}`).then(() => closeFilter());
 	}
 </script>
 
