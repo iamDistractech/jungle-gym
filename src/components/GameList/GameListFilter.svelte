@@ -1,6 +1,7 @@
 <script>
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
+	import { fade, fly } from 'svelte/transition';
 
 	let gameNames = [
 		{
@@ -205,21 +206,23 @@
 
 	article {
 		background-color: var(--color-light-orange);
-		margin-top: -1em;
 		border-radius: 0em 0em 2em 2em;
+		margin-top: 10em;
 	}
 
 	.filter-options-open {
 		max-height: 31.25em;
+		margin-top: -1.5em;
 		padding: 1.5em 1em;
 		overflow: hidden;
-		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
+		transition: max-height 0.45s ease-in, padding 0.25s ease-in;
 	}
 
 	.filter-options-close {
 		max-height: 0;
-		padding: 0 1rem;
-		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
+		margin-top: -1.5em;
+		padding: 1.5em 1em 0em;
+		transition: max-height 0.25s ease-out, padding 0.25s ease-out;
 		overflow: hidden;
 	}
 </style>

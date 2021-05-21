@@ -1,8 +1,9 @@
 <script>
+	import { fade, fly } from 'svelte/transition';
 	export let filterTitle;
 </script>
 
-<button on:click>{filterTitle}</button>
+<button transition:fade on:click>{filterTitle}</button>
 
 <style>
 	button {
@@ -13,6 +14,6 @@
 		border: none;
 		width: 100%;
 		padding: 0.7em 1em;
-		margin-bottom: 0.8em;
+		margin: 0.5em 0em;
 	}
 </style>
