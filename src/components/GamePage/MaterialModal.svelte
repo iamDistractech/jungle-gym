@@ -1,6 +1,7 @@
 <script>
 	import ButtonLight from '../shared/Button/ButtonLight.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import { fade, fly } from 'svelte/transition';
 
 	const dispatch = createEventDispatcher();
 
@@ -11,7 +12,7 @@
 	export let material;
 </script>
 
-<section>
+<section in:fly={{ y: 300, duration: 500 }} out:fly={{ y: 300, duration: 500 }}>
 	<h1>{material.title}</h1>
 
 	{#if material.amount}
@@ -25,7 +26,7 @@
 	<ButtonLight on:click={closeModal}>Sluiten</ButtonLight>
 </section>
 
-<div class="black-overlay" on:click={closeModal} />
+<div transition:fade class="black-overlay" on:click={closeModal} />
 
 <style>
 	section {

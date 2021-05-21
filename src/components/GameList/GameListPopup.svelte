@@ -20,32 +20,24 @@
 	}
 </script>
 
-{#if filterItems}
-	<section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
-		<hr />
-		<h1>Filter op groepen</h1>
-		<form on:submit|preventDefault={submitForm}>
-			<fieldset>
-				{#if filterItems}
-					{#each filterItems as { name, value }}
-						<input
-							bind:group={filterButtons}
-							type="checkbox"
-							id={name}
-							name="filter-group"
-							{value}
-						/>
-						<label for={name}>{name}</label>
-					{/each}
-				{/if}
-			</fieldset>
+<section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
+	<hr />
+	<h1>Filter op groepen</h1>
+	<form on:submit|preventDefault={submitForm}>
+		<fieldset>
+			{#if filterItems}
+				{#each filterItems as { name, value }}
+					<input bind:group={filterButtons} type="checkbox" id={name} name="filter-group" {value} />
+					<label for={name}>{name}</label>
+				{/each}
+			{/if}
+		</fieldset>
 
-			<button class="submit-btn" type="submit">Toepassen</button>
-		</form>
-		<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
-	</section>
-	<div transition:fade class="black-overlay" on:click={closeFilter} />
-{/if}
+		<button class="submit-btn" type="submit">Toepassen</button>
+	</form>
+	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
+</section>
+<div transition:fade class="black-overlay" on:click={closeFilter} />
 
 <style>
 	.filter-options-open {
