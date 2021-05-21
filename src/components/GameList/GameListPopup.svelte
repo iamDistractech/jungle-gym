@@ -22,14 +22,34 @@
 <section class="filter-popup">
 	<h1>Filter op groepen</h1>
 	<form on:submit|preventDefault={submitForm}>
-		<fieldset>
-			{#if filterItems}
-				{#each filterItems as { name, value }}
-					<input bind:group={filterButtons} type="checkbox" id={name} name="filter-group" {value} />
-					<label for={name}>{name}</label>
-				{/each}
-			{/if}
-		</fieldset>
+		{#if filterTitle !== 'minimumPlayers'}
+			<fieldset>
+				{#if filterItems}
+					{#each filterItems as { name, value }}
+						<input
+							bind:group={filterButtons}
+							type="checkbox"
+							id={name}
+							name="filter-group"
+							{value}
+						/>
+						<label for={name}>{name}</label>
+					{/each}
+				{/if}
+			</fieldset>
+		{:else}
+			<fieldset class="min-player-fieldset">
+				<!-- <label for="minimumPlayerFilter">Voer minimaal aantal spelers in:</label>
+
+				<input type="number" id="minimumPlayerFilter" name="minimumPlayerFilter" min="0" max="99" /> -->
+
+				<div class="number">
+					<span>-</span>
+					<input type="text" value="1" />
+					<span>+</span>
+				</div>
+			</fieldset>
+		{/if}
 
 		<button class="submit-btn" type="submit">Toepassen</button>
 	</form>
@@ -94,5 +114,26 @@
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.6);
 		z-index: 0;
+	}
+
+	.min-player-fieldset {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.min-player-fieldset input {
+		display: block;
+	}
+
+	.min-player-fieldset div {
+		display: flex;
+	}
+
+	.min-player-fieldset div span {
+		padding: 1rem;
+		background: #f2f2f2;
+		border-radius: 0.4em;
+		border: 1px solid #ddd;
 	}
 </style>
