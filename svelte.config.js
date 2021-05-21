@@ -10,7 +10,7 @@ const config = {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
 		files: {
-			lib: 'src/components'
+			lib: 'src/lib'
 		}
 	}
 };

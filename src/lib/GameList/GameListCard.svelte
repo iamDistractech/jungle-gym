@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Game } from '../games';
+	import type { Game } from '$lib/games';
 
 	export let game: Game;
 </script>

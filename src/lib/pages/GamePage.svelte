@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ButtonLight from '../shared/Button/ButtonLight.svelte';
-	import MaterialModal from '../GamePage/MaterialModal.svelte';
+	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
 
 	let isModalOpen = false;
 	let clickedMaterial;
