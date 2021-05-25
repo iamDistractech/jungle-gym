@@ -1,0 +1,55 @@
+<script context="module">
+	export function load({ error, status }) {
+		console.log(status);
+		return {
+			props: { error, status }
+		};
+	}
+</script>
+
+<script>
+	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	/** @type {number} */
+	export let status;
+
+	/** @type {Error} */
+	export let error;
+
+	function sendMail() {}
+</script>
+
+{#if status === 404}
+	<h1>Pagina bestaat niet</h1>
+	<p>De pagina die jij probeert te bereiken, bestaat niet.</p>
+	<p>
+		Probeer het nogmaals en neem anders contact op met de administrator. Deze gaat het proberen op
+		te lossen.
+	</p>
+
+	<form action="mailto:hi@example.org">
+		<ButtonLight on:click={sendMail}>Contact opnemen</ButtonLight>
+	</form>
+
+	<!-- TODO: You (eventually) want to go back to the previous route. This has to be stored somehow -->
+	<form action="/">
+		<ButtonLight>Terug naar home</ButtonLight>
+	</form>
+{:else}
+	<h1>{status}</h1>
+
+	<p>{error.message}</p>
+
+	{#if error.stack}
+		<pre>{error.stack}</pre>
+	{/if}
+{/if}
+
+<style>
+	h1 {
+		margin-top: 2.5em;
+	}
+	form {
+		text-align: center;
+		margin-top: 1.5em;
+	}
+</style>
