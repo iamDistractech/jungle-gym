@@ -12,8 +12,7 @@ const config = {
 		target: '#svelte',
 		adapter: netlify(),
 		files: {
-			serviceWorker: 'src/service-worker',
-			assets: 'static'
+			serviceWorker: 'src/service-worker'
 		}
 	}
 };

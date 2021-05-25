@@ -8,7 +8,8 @@
 </main>
 
 <style>
-	header {
+	/* IS DIT NODIG?  */
+	/* header {
 		font-family: var(--font-heading);
 		display: flex;
 		flex-direction: column-reverse;
@@ -20,5 +21,5 @@
 		color: var(--color-grey);
 		font-weight: 400;
 		font-size: 1em;
-	}
+	} */
 </style>
