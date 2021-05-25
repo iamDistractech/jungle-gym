@@ -39,11 +39,15 @@
 <script>
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-	import { base } from '$app/paths';
 
 	export let games;
 	export let query;
 </script>
+
+<header>
+	<h1>John Doe</h1>
+	<h2>Goedemorgen!</h2>
+</header>
 
 <GameListFilter {query} />
 
