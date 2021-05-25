@@ -35,14 +35,19 @@
 		color: var(--color-dark-blue);
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: -0.4em;
 	}
 
 	article h1::after {
 		content: '>';
-		border: 0.2em solid var(--color-light-orange);
-		background-color: var(--color-light-orange);
-		padding: 0.1em 0.6em;
-		border-radius: 10em;
+		background: var(--color-light-orange);
+		border-radius: 50%;
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: none;
 	}
 
 	li {
