@@ -108,8 +108,13 @@
 	let materialen = false;
 </script>
 
-<section id="filter-container">
-	<button id="filter-dropdown-button" class="no-transform-button" on:click={showDropdown}>
+<section>
+	<button
+		class="no-transform-button"
+		on:click={showDropdown}
+		class:border-change-close={!open}
+		class:border-change-open={open}
+	>
 		Filter
 		<img src="../icons/filter.svg" alt="Filter icon" />
 		<img
@@ -119,8 +124,9 @@
 			alt="Dropdown icon"
 		/>
 	</button>
-	<article id="filter-options" class:filter-options-close={!open} class:filter-options-open={open}>
+	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />
+		<!-- Disabled filters for now -->
 		<!-- <FilterButton filterTitle="Groepen" on:click={() => (targetGroup = !targetGroup)} /> -->
 		<!-- <FilterButton
 			filterTitle="Minumum spelers"
@@ -172,7 +178,7 @@
 		border: none;
 	}
 
-	#filter-container button {
+	section button {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -182,7 +188,7 @@
 		height: 3em;
 	}
 
-	#filter-container button img:nth-of-type(1) {
+	section button img:nth-of-type(1) {
 		padding: 0em 0.5em;
 		width: 1.1em;
 		height: 1.1em;
@@ -206,9 +212,8 @@
 		transition: transform 200ms linear;
 	}
 
-	#filter-options {
+	article {
 		background-color: var(--color-light-orange);
-		margin-top: -1em;
 		border-radius: 0em 0em 2em 2em;
 	}
 
@@ -221,8 +226,17 @@
 
 	.filter-options-close {
 		max-height: 0;
-		padding: 0 1rem;
+		padding: 0 1em;
 		transition: max-height 0.15s ease-out, padding 0.15s ease-out;
 		overflow: hidden;
+	}
+
+	.border-change-close {
+		border-radius: 1em;
+		transition: border-radius 0.1s ease-in 0.1s;
+	}
+
+	.border-change-open {
+		border-radius: 1em 1em 0em 0em;
 	}
 </style>
