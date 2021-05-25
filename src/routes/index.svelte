@@ -2,7 +2,7 @@
 	import { fetcher } from '$lib/utils/fetcher';
 
 	export async function load(): Promise<unknown> {
-		const url = 'https://acc-jungle-gym-api.herokuapp.com/games';
+		const url = import.meta.env.VITE_API_URL;
 
 		try {
 			const games = await fetcher(url);
