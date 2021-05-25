@@ -42,8 +42,8 @@
 		content: '>';
 		background: var(--color-light-orange);
 		border-radius: 50%;
-		width: 2.5em;
-		height: 2.5em;
+		width: 2em;
+		height: 2em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
