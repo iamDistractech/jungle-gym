@@ -1,6 +1,6 @@
 <script lang="ts">
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
-	import FilterButton from '$lib/Button/FilterButton.svelte';	
+	import FilterButton from '$lib/Button/FilterButton.svelte';
 
 	export let query: URLSearchParams;
 
@@ -134,7 +134,7 @@
 	<GameListPopup
 		filterTitle="Spelsoort"
 		filterItems={gameNames}
-		activeQueries={query.getAll("category")}
+		activeQueries={query.getAll('category')}
 		on:close={() => (category = !category)}
 	/>
 {/if}

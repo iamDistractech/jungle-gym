@@ -4,7 +4,7 @@
 	export let filterTitle;
 	import { goto } from '$app/navigation';
 
-	export let activeQueries
+	export let activeQueries;
 
 	const dispatch = createEventDispatcher();
 

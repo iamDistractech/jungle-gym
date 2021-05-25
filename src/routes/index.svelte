@@ -29,7 +29,6 @@
 
 	export let games;
 	export let query;
-
 </script>
 
 <GameListFilter {query} />
