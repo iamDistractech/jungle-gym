@@ -14,8 +14,6 @@
 
 	/** @type {Error} */
 	export let error;
-
-	function sendMail() {}
 </script>
 
 {#if status === 404}
@@ -27,7 +25,7 @@
 	</p>
 
 	<form action="mailto:hi@example.org">
-		<ButtonLight on:click={sendMail}>Contact opnemen</ButtonLight>
+		<ButtonLight>Contact opnemen</ButtonLight>
 	</form>
 
 	<!-- TODO: You (eventually) want to go back to the previous route. This has to be stored somehow -->
