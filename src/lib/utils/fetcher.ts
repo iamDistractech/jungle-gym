@@ -1,4 +1,4 @@
-export function fetcher(url: RequestInfo, init?: RequestInit): unknown {
+export function fetcher(url: RequestInfo | URL, init?: RequestInit): unknown {
 	const checkStatus = (response: Response): Response => {
 		if (response.ok) return response;
 		else throw new Error('Not ok');
