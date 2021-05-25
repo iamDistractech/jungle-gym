@@ -11,8 +11,8 @@
 	--color-black: hsl(0, 0%, 11%);
 	--color-grey: hsl(240, 5%, 45%);
 	--color-light-grey: hsl(198, 19%, 89%);
-	--color-white: hsl(0, 0%, 100%);
 	--color-lighter-grey: hsl(0, 0%, 95%);
+	--color-white: hsl(0, 0%, 100%);
 }
 
 body {

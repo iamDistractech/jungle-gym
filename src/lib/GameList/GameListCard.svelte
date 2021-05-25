@@ -42,8 +42,8 @@
 		content: '>';
 		background: var(--color-light-orange);
 		border-radius: 50%;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2.5em;
+		height: 2.5em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -58,26 +58,4 @@
 		font-size: 0.8em;
 		margin-bottom: 0;
 	}
-
-	/* .label-container {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	.highlighted-card {
-		height: 12em;
-		background-color: var(--color-turquoise);
-		border-radius: 1em;
-		margin: 4em 0 2em 0;
-		padding: 0.1em 1em;
-	}
-
-	.highlighted-card div h1 {
-		font-size: 1.5em;
-		color: var(--color-dark-blue);
-	}
-
-	.highlighted-card:focus {
-		cursor: pointer;
-	}  */
 </style>
