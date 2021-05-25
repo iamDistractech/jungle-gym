@@ -3,10 +3,6 @@
 	import '../app.css';
 </script>
 
-<header>
-	<h1>John Doe</h1>
-	<h2>Goedemorgen!</h2>
-</header>
 <main>
 	<slot />
 </main>
