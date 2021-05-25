@@ -1,8 +1,11 @@
 # JungleGym - Meesterproef
 
-[![CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/ci.yaml)
+[![Production CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/production.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/production.yaml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a39c7939-ea9a-421b-8709-ef60d8e56621/deploy-status)](https://app.netlify.com/sites/jungle-gym/deploys)
 
-**[Live link](#)**
+[![Development CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/development.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/development.yaml)
+
+**[Live link](https://jungle-gym.netlify.app/)**
 
 API can be found **[here](https://github.com/iSirThijs/jungle-gym-api)**
 
