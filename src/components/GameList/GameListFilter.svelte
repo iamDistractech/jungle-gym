@@ -1,7 +1,6 @@
 <script>
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
-	import { fade, fly } from 'svelte/transition';
 
 	let gameNames = [
 		{
