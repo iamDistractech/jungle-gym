@@ -138,7 +138,7 @@
 
 {#if category}
 	<GameListPopup
-		filterTitle="Spelsoort"
+		filterTitle="category"
 		filterItems={gameNames}
 		activeQueries={query.getAll('category')}
 		on:close={() => (category = !category)}
