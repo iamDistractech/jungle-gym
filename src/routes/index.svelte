@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
 	import { fetcher } from '$lib/utils/fetcher';
 
-	export async function load({ page }): Promise<unknown> {
+	export async function load({ page }: { page: { query: URLSearchParams } }): Promise<unknown> {
 		const url = new URL('https://acc-jungle-gym-api.herokuapp.com/games');
-		url.search = page.query
+		url.search = page.query.toString();
 
 		try {
 			const games = await fetcher(url);
