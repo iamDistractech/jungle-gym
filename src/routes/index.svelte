@@ -2,9 +2,9 @@
 	import { fetcher } from '$lib/utils/fetcher';
 
 	export async function load({ page }: { page: { query: URLSearchParams } }): Promise<unknown> {
-		const baseURL = import.meta.env.VITE_API_URL
+		const baseURL = import.meta.env.VITE_API_URL;
 
-		if(typeof baseURL === 'string') {
+		if (typeof baseURL === 'string') {
 			const url = new URL(baseURL);
 			url.search = page.query.toString();
 
@@ -31,7 +31,7 @@
 				},
 				status: 500,
 				error: new Error('No valid API endpoint URL')
-			}
+			};
 		}
 	}
 </script>
@@ -39,7 +39,7 @@
 <script>
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-import { base } from '$app/paths';
+	import { base } from '$app/paths';
 
 	export let games;
 	export let query;
