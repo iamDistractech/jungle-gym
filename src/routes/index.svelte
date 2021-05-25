@@ -66,6 +66,11 @@
 	onMount(() => getGameTypes());
 </script>
 
+<header>
+	<h1>John Doe</h1>
+	<h2>Goedemorgen!</h2>
+</header>
+
 <GameListFilter />
 
 <GameList {games} />
