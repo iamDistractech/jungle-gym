@@ -3,6 +3,9 @@
 	export let filterItems;
 	export let filterTitle;
 	import { goto } from '$app/navigation';
+	import { fade, fly } from 'svelte/transition';
+
+	export let activeQueries;
 
 	const dispatch = createEventDispatcher();
 
@@ -10,7 +13,7 @@
 		dispatch('close');
 	}
 
-	let filterButtons = [];
+	let filterButtons = activeQueries;
 
 	function submitForm() {
 		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
@@ -19,7 +22,8 @@
 	}
 </script>
 
-<section class="filter-popup">
+<section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
+	<hr />
 	<h1>Filter op groepen</h1>
 	<form on:submit|preventDefault={submitForm}>
 		<fieldset>
@@ -35,11 +39,10 @@
 	</form>
 	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
 </section>
-
-<div class="black-overlay" />
+<div transition:fade class="black-overlay" on:click={closeFilter} />
 
 <style>
-	.filter-popup {
+	section {
 		position: fixed;
 		bottom: 0;
 		left: 0;
@@ -47,10 +50,17 @@
 		background-color: white;
 		z-index: 1;
 		padding: 1rem;
+		border-radius: 3em 3em 0em 0em;
 	}
 
-	.filter-popup h1 {
+	section h1 {
 		text-align: center;
+	}
+
+	section hr {
+		width: 2.5em;
+		border: 2px solid var(--color-light-orange);
+		border-radius: 2em;
 	}
 
 	form {
@@ -64,7 +74,7 @@
 		border: none;
 		padding: 0;
 		margin: 0;
-		max-height: 60vh;
+		max-height: 30vh;
 		overflow-y: auto;
 	}
 
