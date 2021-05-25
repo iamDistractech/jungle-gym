@@ -15,7 +15,7 @@
 
 <style>
 	article {
-		background-color: var(--color-light-grey);
+		background-color: var(--color-lighter-grey);
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
@@ -24,7 +24,7 @@
 
 	ul {
 		display: flex;
-		flex-wrap: no-wrap;
+		flex-wrap: wrap;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -39,9 +39,13 @@
 
 	article h1::after {
 		content: '>';
+		border: 0.2em solid var(--color-light-orange);
+		background-color: var(--color-light-orange);
+		padding: 0.1em 0.6em;
+		border-radius: 10em;
 	}
 
-	/* .label {
+	li {
 		background-color: var(--color-light-orange);
 		padding: 0.3em 1em;
 		border-radius: 1em;
@@ -50,7 +54,7 @@
 		margin-bottom: 0;
 	}
 
-	.label-container {
+	/* .label-container {
 		display: flex;
 		flex-wrap: wrap;
 	}
@@ -70,5 +74,5 @@
 
 	.highlighted-card:focus {
 		cursor: pointer;
-	} */
+	}  */
 </style>
