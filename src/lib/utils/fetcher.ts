@@ -6,5 +6,5 @@ export function fetcher(url: RequestInfo | URL, init?: RequestInit): unknown {
 
 	const parseJson = (response: Response): Promise<unknown> => response.json();
 
-	return fetch(url, init).then(checkStatus).then(parseJson);
+	return fetch(url.toString(), init).then(checkStatus).then(parseJson);
 }

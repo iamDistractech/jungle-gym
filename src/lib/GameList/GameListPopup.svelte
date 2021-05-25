@@ -4,13 +4,15 @@
 	export let filterTitle;
 	import { goto } from '$app/navigation';
 
+	export let activeQueries
+
 	const dispatch = createEventDispatcher();
 
 	function closeFilter() {
 		dispatch('close');
 	}
 
-	let filterButtons = [];
+	let filterButtons = activeQueries;
 
 	function submitForm() {
 		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
