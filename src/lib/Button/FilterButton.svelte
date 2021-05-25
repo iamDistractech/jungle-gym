@@ -8,6 +8,7 @@
 <style>
 	button {
 		font-family: var(--font-heading);
+		background-color: var(--color-white);
 		font-size: 1rem;
 		border-radius: 1em;
 		cursor: pointer;
