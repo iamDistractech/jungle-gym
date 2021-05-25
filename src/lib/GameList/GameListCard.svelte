@@ -15,7 +15,7 @@
 
 <style>
 	article {
-		background-color: var(--color-light-grey);
+		background-color: var(--color-lighter-grey);
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
@@ -24,7 +24,7 @@
 
 	ul {
 		display: flex;
-		flex-wrap: no-wrap;
+		flex-wrap: wrap;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -35,13 +35,22 @@
 		color: var(--color-dark-blue);
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: -0.4em;
 	}
 
 	article h1::after {
 		content: '>';
+		background: var(--color-light-orange);
+		border-radius: 50%;
+		width: 2em;
+		height: 2em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: none;
 	}
 
-	/* .label {
+	li {
 		background-color: var(--color-light-orange);
 		padding: 0.3em 1em;
 		border-radius: 1em;
@@ -49,26 +58,4 @@
 		font-size: 0.8em;
 		margin-bottom: 0;
 	}
-
-	.label-container {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	.highlighted-card {
-		height: 12em;
-		background-color: var(--color-turquoise);
-		border-radius: 1em;
-		margin: 4em 0 2em 0;
-		padding: 0.1em 1em;
-	}
-
-	.highlighted-card div h1 {
-		font-size: 1.5em;
-		color: var(--color-dark-blue);
-	}
-
-	.highlighted-card:focus {
-		cursor: pointer;
-	} */
 </style>
