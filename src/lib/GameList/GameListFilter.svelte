@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
+
+	export let query: URLSearchParams;
 
 	let gameNames = [
 		{
@@ -123,20 +125,22 @@
 		/>
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
-		<FilterButton filterTitle="category" on:click={() => (category = !category)} />
-		<FilterButton filterTitle="targetGroup" on:click={() => (targetGroup = !targetGroup)} />
-		<FilterButton
-			filterTitle="minimumPlayers"
+		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />
+		<!-- Disabled filters for now -->
+		<!-- <FilterButton filterTitle="Groepen" on:click={() => (targetGroup = !targetGroup)} /> -->
+		<!-- <FilterButton
+			filterTitle="Minumum spelers"
 			on:click={() => (minimumPlayers = !minimumPlayers)}
-		/>
+		/> -->
 		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 	</article>
 </section>
 
 {#if category}
 	<GameListPopup
-		filterTitle="category"
+		filterTitle="Spelsoort"
 		filterItems={gameNames}
+		activeQueries={query.getAll('category')}
 		on:close={() => (category = !category)}
 	/>
 {/if}
