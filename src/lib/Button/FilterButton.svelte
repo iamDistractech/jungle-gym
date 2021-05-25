@@ -1,8 +1,9 @@
 <script>
+	import { fade } from 'svelte/transition';
 	export let filterTitle;
 </script>
 
-<button on:click>{filterTitle}</button>
+<button transition:fade on:click>{filterTitle}</button>
 
 <style>
 	button {
