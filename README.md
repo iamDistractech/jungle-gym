@@ -68,6 +68,8 @@ Copy the `.env.example` and rename it to `.env`.
 
 In order to use Husky you have to install it with `npm run prepare`. This will install Husky for your project.
 
+The next time you commit, Husky will automatically format it for you.
+
 ## :open_file_folder: Folder Structure
 
 ## :anger: Others
