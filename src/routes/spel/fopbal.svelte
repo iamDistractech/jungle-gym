@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import GamePage from '$lib/pages/GamePage.svelte';
 
 	let game = {
