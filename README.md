@@ -62,6 +62,12 @@ npm run build
 
 Copy the `.env.example` and rename it to `.env`.
 
+### Husky
+
+[Husky](https://github.com/typicode/husky) is used to format your code (automatically) on commit.
+
+In order to use Husky you have to install it with `npm run prepare`. This will install Husky for your project.
+
 ## :open_file_folder: Folder Structure
 
 ## :anger: Others
