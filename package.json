@@ -33,6 +33,7 @@
 		"prepare": "husky install"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-netlify": "^1.0.0-next.14",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
 		"@typescript-eslint/parser": "^4.19.0",
@@ -55,6 +56,6 @@
 	"type": "module",
 	"lint-staged": {
 		"*.js": "eslint --cache --fix",
-		"*.{js,css,ts,md,svelte,json}": "prettier --write"
+		"*.{js,css,ts,md,svelte,json}": "prettier --plugin-search-dir=. --write"
 	}
 }

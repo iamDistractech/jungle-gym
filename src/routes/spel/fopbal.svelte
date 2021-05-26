@@ -1,5 +1,5 @@
 <script lang="ts">
-	import GamePage from '../../components/pages/GamePage.svelte';
+	import GamePage from '$lib/pages/GamePage.svelte';
 
 	let game = {
 		title: 'Fopbal',
@@ -8,7 +8,17 @@
 		image: undefined,
 		category: 'Balspel',
 		difficulty: 'Makkelijk',
-		materials: ['Een bal', 'Fluitje'],
+		materials: [
+			{
+				title: 'Bal',
+				notes: 'Even veel lintjes als leerlingen',
+				amount: 1
+			},
+			{
+				title: 'Fluit',
+				amount: 1
+			}
+		],
 		minimumAttendees: 3,
 		audience: 'Alle jaarlagen',
 		rules: ['Bal onderhands gooien', 'Een slecht aangegooide bal telt niet. Opnieuw proberen'],

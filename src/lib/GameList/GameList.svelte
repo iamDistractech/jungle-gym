@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Game } from '../games';
+	import type { Game } from '$lib/games';
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
 	export let games: Game[];
 </script>
@@ -8,7 +8,7 @@
 	<h1>Spellen</h1>
 	<ul>
 		{#each games as game}
-			<li><a href="spel/"><GameListCard {game} /> </a></li>
+			<li><a href="spel/{game.slug}"><GameListCard {game} /> </a></li>
 		{/each}
 	</ul>
 </section>

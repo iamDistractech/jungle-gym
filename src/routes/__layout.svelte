@@ -3,10 +3,6 @@
 	import '../app.css';
 </script>
 
-<header>
-	<h1>John Doe</h1>
-	<h2>Goedemorgen!</h2>
-</header>
 <main>
 	<slot />
 </main>
@@ -16,6 +12,7 @@
 		font-family: var(--font-heading);
 		display: flex;
 		flex-direction: column-reverse;
+		padding: 2rem 0 1rem;
 	}
 
 	header h2 {
