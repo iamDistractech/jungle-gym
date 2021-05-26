@@ -1,4 +1,4 @@
-import { build, files, timestamp } from '$service-worker';
+import { build, timestamp } from '$service-worker';
 
 const assets = [...build, '/offline'];
 
