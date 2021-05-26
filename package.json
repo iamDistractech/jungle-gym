@@ -55,7 +55,6 @@
 	},
 	"type": "module",
 	"lint-staged": {
-		"*.js": "eslint --cache --fix",
 		"*.{js,css,ts,md,svelte,json}": "prettier --plugin-search-dir=. --write"
 	}
 }
