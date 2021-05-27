@@ -1,16 +1,22 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
-	import OfflineCard from '$lib/Offline/OfflineCard.svelte';
+	import OfflineCard from '$lib/ErrorCard/ErrorCard.svelte';
+
 	export let games: Game[];
 	export let offline: boolean;
+
+	let ErrorMessage =
+		games.length === 0
+			? 'Er zijn geen offline spellen beschikbaar'
+			: 'De volgende spellen zijn offline beschikbaar';
 </script>
 
 <section>
 	<h1>Spellen</h1>
 	<ul>
 		{#if offline}
-			<OfflineCard ErrorMessage={'Oops, you are now offline!'} />
+			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
 		{/if}
 		{#each games as game}
 			<li><a href="games/{game.slug}"><GameListCard {game} /> </a></li>

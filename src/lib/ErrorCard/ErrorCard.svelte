@@ -1,10 +1,11 @@
 <script>
+	export let ErrorTitle;
 	export let ErrorMessage;
 </script>
 
 <article>
-	<h1>{ErrorMessage}</h1>
-	<p>The following games are offline available:</p>
+	<h1>{ErrorTitle}</h1>
+	<p>{ErrorMessage}</p>
 </article>
 
 <style>
@@ -25,5 +26,6 @@
 	}
 
 	article p {
+		color: var(--color-grey);
 	}
 </style>

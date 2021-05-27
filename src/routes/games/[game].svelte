@@ -18,14 +18,17 @@
 			const { message } = await res.json();
 
 			return {
-				error: new Error(message)
+				error: new Error(message),
+				status: res.status
 			};
 		} catch (error) {
 			console.log('error', error);
 
 			return {
-				error: 'offline?'
+				error: 'offline?',
+				status: '404'
 			};
+
 		}
 	};
 </script>
