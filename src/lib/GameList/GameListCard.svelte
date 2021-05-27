@@ -35,12 +35,12 @@
 		color: var(--color-dark-blue);
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: -0.4em;
+		margin: 0em;
+		margin-bottom: 1em;
 	}
 
 	article h1::after {
 		content: '>';
-		background: var(--color-light-orange);
 		border-radius: 50%;
 		width: 2em;
 		height: 2em;
