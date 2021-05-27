@@ -2,23 +2,31 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ page, fetch }) => {
-		const res = await fetch(`/games/${page.params.game}.json`);
+		try {
+			const res = await fetch(`/games/${page.params.game}.json`);
 
-		if (res.ok) {
-			const game = await res.json();
+			if (res.ok) {
+				const game = await res.json();
+
+				return {
+					props: {
+						game
+					}
+				};
+			}
+
+			const { message } = await res.json();
 
 			return {
-				props: {
-					game
-				}
+				error: new Error(message)
+			};
+		} catch (error) {
+			console.log('error', error);
+
+			return {
+				error: 'offline?'
 			};
 		}
-
-		const { message } = await res.json();
-
-		return {
-			error: new Error(message)
-		};
 	};
 </script>
 
