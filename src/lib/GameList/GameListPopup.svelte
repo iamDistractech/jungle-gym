@@ -1,11 +1,13 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	export let filterItems;
-	export let filterTitle;
+	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+	import CancelButton from '$lib/shared/Button/CancelButton.svelte';
 	import { goto } from '$app/navigation';
 	import { fade, fly } from 'svelte/transition';
 
 	export let activeQueries;
+	export let filterItems;
+	export let filterTitle;
 
 	const dispatch = createEventDispatcher();
 
@@ -57,7 +59,7 @@
 					{/each}
 				{/if}
 			</fieldset>
-			<button class="submit-btn" type="submit">Toepassen</button>
+			<SubmitButton>Toepassen</SubmitButton>
 		</form>
 	{:else}
 		<form on:submit|preventDefault={() => submitMinimalPlayerForm(minimulPlayerCount)}>
@@ -68,10 +70,10 @@
 					<span on:click={increaseCount}>+</span>
 				</div>
 			</fieldset>
-			<button class="submit-btn" type="submit">Toepassen</button>
+			<SubmitButton>Toepassen</SubmitButton>
 		</form>
 	{/if}
-	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
+	<CancelButton on:click={closeFilter}>Annuleren</CancelButton>
 </section>
 <div transition:fade class="black-overlay" on:click={closeFilter} />
 
