@@ -1,12 +1,17 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
+	import OfflineCard from '$lib/Offline/OfflineCard.svelte';
 	export let games: Game[];
+	export let offline: boolean;
 </script>
 
 <section>
 	<h1>Spellen</h1>
 	<ul>
+		{#if offline}
+			<OfflineCard ErrorMessage={'Oops, you are now offline!'} />
+		{/if}
 		{#each games as game}
 			<li><a href="games/{game.slug}"><GameListCard {game} /> </a></li>
 		{/each}

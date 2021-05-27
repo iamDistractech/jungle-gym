@@ -2,28 +2,35 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ page, fetch }) => {
-		const { query } = page;
-		const res = await fetch(`/games.json?${query.toString()}`);
+		try {
+			const { query } = page;
+			const res = await fetch(`/games.json?${query.toString()}`);
 
-		if (res.ok) {
-			const games = await res.json();
+			if (res.ok) {
+				const games = await res.json();
+
+				return {
+					props: {
+						games,
+						query
+					}
+				};
+			}
 
 			return {
 				props: {
-					games,
 					query
 				}
 			};
-		}
-
-		const { message } = await res.json();
-
-		return {
-			error: new Error(message),
-			props: {
-				query
+		} catch (error) {
+			if (error.message) {
+				return {
+					props: { games: [], offline: true }
+				};
 			}
-		};
+
+			throw error;
+		}
 	};
 </script>
 
@@ -31,6 +38,7 @@
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
 
+	export let offline;
 	export let games;
 	export let query;
 </script>
@@ -40,9 +48,11 @@
 	<h2>Goedemorgen!</h2>
 </header>
 
+{#if !offline}
 <GameListFilter {query} />
+{/if}
 
-<GameList {games} />
+<GameList {games} {offline} />
 
 <style>
 	header {
