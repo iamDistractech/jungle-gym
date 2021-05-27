@@ -2,30 +2,44 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ page, fetch }) => {
-		const res = await fetch(`/games/${page.params.game}.json`);
+		try {
+			const res = await fetch(`/games/${page.params.game}.json`);
 
-		if (res.ok) {
-			const game = await res.json();
+			if (res.ok) {
+				const game = await res.json();
+
+				return {
+					props: {
+						game
+					}
+				};
+			}
+
+			const { message } = await res.json();
 
 			return {
-				props: {
-					game
-				}
+				error: new Error(message)
+			};
+		} catch (error) {
+			console.log('error', error);
+
+			return {
+				error: 'offline?'
 			};
 		}
-
-		const { message } = await res.json();
-
-		return {
-			error: new Error(message)
-		};
 	};
 </script>
 
 <script lang="ts">
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
+	import { page } from '$app/stores';
 	import type { Game } from '$lib/games';
+
+	export let gameSlug: string;
+	export let game: Game;
+
+	page.subscribe((page) => (gameSlug = page.params.game));
 
 	let isModalOpen = false;
 	let clickedMaterial;
@@ -35,7 +49,9 @@
 		clickedMaterial = material;
 	}
 
-	export let game: Game;
+	function saveCache() {
+		return caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`));
+	}
 </script>
 
 <header>
@@ -87,7 +103,8 @@
 	{/each}
 </main>
 
-<!-- <ButtonLight>Spel opslaan</ButtonLight> -->
+<ButtonLight on:click={saveCache}>Spel opslaan</ButtonLight>
+
 <style>
 	header {
 		display: flex;
