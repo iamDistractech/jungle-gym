@@ -3,25 +3,24 @@
 
 	export let game: Game;
 
+	// Target Group Functionality
 	const targetGroupArr = game.targetGroup;
 	targetGroupArr.sort(function (a, b) {
 		return a - b;
 	});
 
-	const arrayLength = targetGroupArr.length;
-
 	const minGroup = targetGroupArr[0];
-	const maxGroup = targetGroupArr[arrayLength - 1];
+	const maxGroup = targetGroupArr.slice(-1)[0];
 
 	const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
 </script>
 
 <article>
 	<h1>{game.name}</h1>
-	<ul class="label-container">
-		<li class="label">{targetGroupString}</li>
-		<li class="label">{game.category}</li>
-		<li class="label">{game.minimumPlayers}</li>
+	<ul>
+		<li>{targetGroupString}</li>
+		<li class="category-label">{game.category}</li>
+		<li>Min. spelers: {game.minimumPlayers}</li>
 	</ul>
 </article>
 
@@ -69,5 +68,9 @@
 		margin-right: 0.5em;
 		font-size: 0.8em;
 		margin-bottom: 0;
+	}
+
+	.category-label {
+		text-transform: capitalize;
 	}
 </style>
