@@ -1,6 +1,5 @@
 <script context="module">
 	export function load({ error, status }) {
-		console.log(status);
 		return {
 			props: { error, status }
 		};
@@ -9,6 +8,8 @@
 
 <script>
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+
 	/** @type {number} */
 	export let status;
 
@@ -24,13 +25,13 @@
 		te lossen.
 	</p>
 
-	<form action="mailto:hi@example.org">
-		<ButtonLight>Contact opnemen</ButtonLight>
-	</form>
-
 	<!-- TODO: You (eventually) want to go back to the previous route. This has to be stored somehow -->
 	<form action="/">
-		<ButtonLight>Terug naar home</ButtonLight>
+		<SubmitButton>Terug naar home</SubmitButton>
+	</form>
+
+	<form action="mailto:hi@example.org">
+		<ButtonLight>Contact opnemen</ButtonLight>
 	</form>
 {:else}
 	<h1>{status}</h1>
