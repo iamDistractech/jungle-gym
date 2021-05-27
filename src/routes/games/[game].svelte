@@ -87,8 +87,7 @@
 	{/each}
 </main>
 
-<ButtonLight>Spel opslaan</ButtonLight>
-
+<!-- <ButtonLight>Spel opslaan</ButtonLight> -->
 <style>
 	header {
 		display: flex;
