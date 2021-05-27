@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Game } from '../games';
+	import type { Game } from '$lib/games';
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
 	export let games: Game[];
 </script>

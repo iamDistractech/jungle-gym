@@ -1,5 +1,5 @@
 <script lang="ts">
-	import GamePage from '../../components/pages/GamePage.svelte';
+	import GamePage from '$lib/pages/GamePage.svelte';
 
 	let game = {
 		title: 'Leeuwenkooi',

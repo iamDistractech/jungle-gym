@@ -1,48 +1,57 @@
 <script context="module" lang="ts">
-	import { fetcher } from '../utils/fetcher';
+	import { fetcher } from '$lib/utils/fetcher';
 
-	export async function load(): Promise<unknown> {
-		const url = 'https://acc-jungle-gym-api.herokuapp.com/games';
+	export async function load({ page }: { page: { query: URLSearchParams } }): Promise<unknown> {
+		const baseURL = import.meta.env.VITE_API_URL;
 
-		try {
-			const games = await fetcher(url);
+		if (typeof baseURL === 'string') {
+			const url = new URL(baseURL);
+			url.search = page.query.toString();
 
+			try {
+				const games = await fetcher(url);
+
+				return {
+					props: {
+						games,
+						query: page.query
+					}
+				};
+			} catch (error) {
+				return {
+					status: 500,
+					error: new Error(error)
+				};
+			}
+		} else {
 			return {
 				props: {
-					games
-				}
-			};
-		} catch (error) {
-			return {
+					games: undefined,
+					query: page.query
+				},
 				status: 500,
-				error: new Error(error)
+				error: new Error('No valid API endpoint URL')
 			};
 		}
 	}
 </script>
 
-<script lang="ts">
+<script>
 	import GameList from '$lib/GameList/GameList.svelte';
-	// import GameListCard from '$lib/GameList/GameListCard.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-	// import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 
 	export let games;
+	export let query;
 </script>
 
-<GameListFilter />
-<!-- <section>
-	<GameListCard
-		titleGame="Kat en Muis"
-		groups="Alle groepen"
-		gameName="Tikspel"
-		personAmount="Min 5"
-		gameSlug="kat-en-muis"
-		isHighlighted={true}
-	/>
-</section> -->
+<header>
+	<h1>John Doe</h1>
+	<h2>Goedemorgen!</h2>
+</header>
+
+<GameListFilter {query} />
+
 <GameList {games} />
 
-<!-- <GameListPopup /> -->
 <style>
 </style>
