@@ -41,7 +41,6 @@
 </script>
 
 <section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
-	<hr />
 	<h1>Filter op groepen</h1>
 	{#if filterTitle !== 'minimumPlayers'}
 		<form on:submit|preventDefault={submitForm}>
@@ -83,7 +82,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: white;
+		background-color: var(--color-white);
 		z-index: 1;
 		padding: 1em;
 		border-radius: 3em 3em 0em 0em;
@@ -91,12 +90,6 @@
 
 	section h1 {
 		text-align: center;
-	}
-
-	section hr {
-		width: 2.5em;
-		border: 2px solid var(--color-light-orange);
-		border-radius: 2em;
 	}
 
 	form {
