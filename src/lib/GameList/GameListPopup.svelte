@@ -1,11 +1,13 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	export let filterItems;
-	export let filterTitle;
+	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+	import CancelButton from '$lib/shared/Button/CancelButton.svelte';
 	import { goto } from '$app/navigation';
 	import { fade, fly } from 'svelte/transition';
 
 	export let activeQueries;
+	export let filterItems;
+	export let filterTitle;
 
 	const dispatch = createEventDispatcher();
 
@@ -57,7 +59,7 @@
 					{/each}
 				{/if}
 			</fieldset>
-			<button class="submit-btn" type="submit">Toepassen</button>
+			<SubmitButton>Toepassen</SubmitButton>
 		</form>
 	{:else}
 		<form on:submit|preventDefault={() => submitMinimalPlayerForm(minimulPlayerCount)}>
@@ -68,10 +70,10 @@
 					<span on:click={increaseCount}>+</span>
 				</div>
 			</fieldset>
-			<button class="submit-btn" type="submit">Toepassen</button>
+			<SubmitButton>Toepassen</SubmitButton>
 		</form>
 	{/if}
-	<button class="cancel-btn" on:click={closeFilter}>Annuleren</button>
+	<CancelButton on:click={closeFilter}>Annuleren</CancelButton>
 </section>
 <div transition:fade class="black-overlay" on:click={closeFilter} />
 
@@ -81,20 +83,14 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: white;
+		background-color: var(--color-white);
 		z-index: 1;
-		padding: 1rem;
+		padding: 1em;
 		border-radius: 3em 3em 0em 0em;
 	}
 
 	section h1 {
 		text-align: center;
-	}
-
-	section hr {
-		width: 2.5em;
-		border: 2px solid var(--color-light-orange);
-		border-radius: 2em;
 	}
 
 	form {
@@ -113,10 +109,10 @@
 	}
 
 	label {
-		padding: 0.7rem 2rem;
+		padding: 0.7em 2em;
 		border: 1px solid black;
-		border-radius: 1rem;
-		margin-bottom: 1rem;
+		border-radius: 1em;
+		margin-bottom: 1em;
 		cursor: pointer;
 		transition: 0.2s;
 	}
@@ -144,8 +140,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-
-		padding: 2rem 0;
+		padding: 2em 0;
 	}
 
 	.min-player-fieldset input {
@@ -162,11 +157,11 @@
 	}
 
 	.min-player-fieldset div span {
-		padding: 1rem;
+		padding: 1em;
 		background: #f2f2f2;
 		border-radius: 0.4em;
 		border: 1px solid #ddd;
-		margin: 0rem 0.4rem;
+		margin: 0em 0.4em;
 
 		cursor: pointer;
 	}
