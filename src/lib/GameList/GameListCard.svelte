@@ -2,20 +2,31 @@
 	import type { Game } from '$lib/games';
 
 	export let game: Game;
+
+	// Target Group Functionality
+	const targetGroupArr = game.targetGroup;
+	targetGroupArr.sort(function (a, b) {
+		return a - b;
+	});
+
+	const minGroup = targetGroupArr[0];
+	const maxGroup = targetGroupArr.slice(-1)[0];
+
+	const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
 </script>
 
 <article>
 	<h1>{game.name}</h1>
-	<ul class="label-container">
-		<li class="label">{game.targetGroup.join(', ')}</li>
-		<li class="label">{game.category}</li>
-		<li class="label">{game.minimumPlayers}</li>
+	<ul>
+		<li>{targetGroupString}</li>
+		<li class="category-label">{game.category}</li>
+		<li>Min. spelers: {game.minimumPlayers}</li>
 	</ul>
 </article>
 
 <style>
 	article {
-		background-color: var(--color-light-grey);
+		background-color: var(--color-lighter-grey);
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
@@ -24,7 +35,7 @@
 
 	ul {
 		display: flex;
-		flex-wrap: no-wrap;
+		flex-wrap: wrap;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -35,40 +46,31 @@
 		color: var(--color-dark-blue);
 		display: flex;
 		justify-content: space-between;
+		margin: 0;
+		margin-bottom: 1em;
 	}
 
 	article h1::after {
 		content: '>';
+		border-radius: 50%;
+		width: 2em;
+		height: 2em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: none;
 	}
 
-	/* .label {
+	li {
 		background-color: var(--color-light-orange);
 		padding: 0.3em 1em;
 		border-radius: 1em;
 		margin-right: 0.5em;
 		font-size: 0.8em;
-		margin-bottom: 0;
+		margin-bottom: 0.5em;
 	}
 
-	.label-container {
-		display: flex;
-		flex-wrap: wrap;
+	.category-label {
+		text-transform: capitalize;
 	}
-
-	.highlighted-card {
-		height: 12em;
-		background-color: var(--color-turquoise);
-		border-radius: 1em;
-		margin: 4em 0 2em 0;
-		padding: 0.1em 1em;
-	}
-
-	.highlighted-card div h1 {
-		font-size: 1.5em;
-		color: var(--color-dark-blue);
-	}
-
-	.highlighted-card:focus {
-		cursor: pointer;
-	} */
 </style>
