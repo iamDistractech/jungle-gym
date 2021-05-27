@@ -35,5 +35,5 @@ export interface Game {
 	minimumPlayers: number;
 	targetGroup: number[];
 	rules?: string[];
-	variation?: string[] | GameVariations[];
+	variation?: GameVariations[];
 }

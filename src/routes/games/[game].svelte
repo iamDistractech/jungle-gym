@@ -1,20 +1,46 @@
+<script context='module' lang="ts">
+import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async ({page, fetch }) => {
+		const res = await fetch(`/games/${page.params.game}.json`);
+
+		if (res.ok) {
+			const game = await res.json();
+
+			return {
+				props: {
+					game
+				}
+			};
+		}
+
+		const { message } = await res.json();
+
+		return {
+			error: new Error(message),
+		};
+	};
+</script>
+
+
 <script lang="ts">
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
+	import type { Game, material } from '$lib/games';
 
 	let isModalOpen = false;
 	let clickedMaterial;
 
-	function toggleModal(material) {
+	function toggleModal(material) :any {
 		isModalOpen = !isModalOpen;
 		clickedMaterial = material;
 	}
 
-	export let game;
+	export let game: Game;
 </script>
 
 <header>
-	<h1>{game.title}</h1>
+	<h1>{game.name}</h1>
 	<a class="hide-underline" href="/">&larr</a>
 </header>
 
@@ -22,8 +48,8 @@
 
 <main>
 	<header>
-		<h2>{game.category} | {game.title}</h2>
-		<small>{game.audience} | {game.difficulty}</small>
+		<h2>{game.category} | {game.name}</h2>
+		<small>{game.minimumPlayers} | {game.name}</small>
 	</header>
 
 	<p>{game.description}</p>
@@ -36,7 +62,7 @@
 	<ul class="material-list">
 		{#each game.materials as material}
 			<li>
-				<ButtonLight on:click={toggleModal(material)}>{material.title}</ButtonLight>
+				<ButtonLight on:click={toggleModal(material)}>{material.name}</ButtonLight>
 			</li>
 		{/each}
 	</ul>
@@ -48,25 +74,18 @@
 		{/each}
 	</ol>
 
-	<h3>Differentiaties</h3>
+	<h3>Variaties</h3>
 
-	<h4>{game.differentiations.easierForOne.title}</h4>
-	<ul>
-		{#each game.differentiations.easierForOne.actions as action}
-			<li>
-				{action}
-			</li>
-		{/each}
-	</ul>
-
-	<h4>{game.differentiations.easierForTwo.title}</h4>
-	<ul>
-		{#each game.differentiations.easierForTwo.actions as action}
-			<li>
-				{action}
-			</li>
-		{/each}
-	</ul>
+	{#each game.variation as variation }
+		<h4>{variation.description}</h4>
+		<ul>
+			{#each variation.actions as action}
+				<li>
+					{action}
+				</li>
+			{/each}
+		</ul>
+	{/each}
 </main>
 
 <ButtonLight>Spel opslaan</ButtonLight>
