@@ -1,7 +1,7 @@
-<script context='module' lang="ts">
-import type { Load } from '@sveltejs/kit';
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({page, fetch }) => {
+	export const load: Load = async ({ page, fetch }) => {
 		const res = await fetch(`/games/${page.params.game}.json`);
 
 		if (res.ok) {
@@ -17,11 +17,10 @@ import type { Load } from '@sveltejs/kit';
 		const { message } = await res.json();
 
 		return {
-			error: new Error(message),
+			error: new Error(message)
 		};
 	};
 </script>
-
 
 <script lang="ts">
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
@@ -31,7 +30,7 @@ import type { Load } from '@sveltejs/kit';
 	let isModalOpen = false;
 	let clickedMaterial;
 
-	function toggleModal(material) :any {
+	function toggleModal(material): any {
 		isModalOpen = !isModalOpen;
 		clickedMaterial = material;
 	}
@@ -76,7 +75,7 @@ import type { Load } from '@sveltejs/kit';
 
 	<h3>Variaties</h3>
 
-	{#each game.variation as variation }
+	{#each game.variation as variation}
 		<h4>{variation.description}</h4>
 		<ul>
 			{#each variation.actions as action}
