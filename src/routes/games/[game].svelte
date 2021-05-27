@@ -103,7 +103,7 @@
 	{/each}
 </main>
 
-<ButtonLight on:click={saveCache()}>Spel opslaan</ButtonLight>
+<ButtonLight on:click={saveCache}>Spel opslaan</ButtonLight>
 
 <style>
 	header {
