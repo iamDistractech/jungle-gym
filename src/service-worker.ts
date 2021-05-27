@@ -1,16 +1,17 @@
-import { build, timestamp } from '$service-worker';
+import { build, timestamp, files } from '$service-worker';
 
 declare const self;
 
 const applicationCache = `applicationCache-v${timestamp}`;
+const staticCache = `staticCache-v${timestamp}`;
 
 // Caches the svelte app (not the data)
 self.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches
-			.open(applicationCache)
-			.then((cache) => cache.addAll(build))
-			.then(self.skipWaiting())
+		Promise.all([
+			caches.open(applicationCache).then((cache) => cache.addAll(build)),
+			caches.open(staticCache).then((cache) => cache.addAll(files))
+		]).then(self.skipWaiting())
 	);
 });
 
