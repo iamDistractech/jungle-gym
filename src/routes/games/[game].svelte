@@ -28,7 +28,6 @@
 				error: 'offline?',
 				status: '404'
 			};
-
 		}
 	};
 </script>

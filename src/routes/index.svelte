@@ -49,7 +49,7 @@
 </header>
 
 {#if !offline}
-<GameListFilter {query} />
+	<GameListFilter {query} />
 {/if}
 
 <GameList {games} {offline} />
