@@ -1,8 +1,9 @@
 <script context="module" lang="ts">
 	import { fetcher } from '$lib/utils/fetcher';
+	import { API_URL } from '$lib/Env';
 
 	export async function load({ page }: { page: { query: URLSearchParams } }): Promise<unknown> {
-		const baseURL = import.meta.env.VITE_API_URL;
+		const baseURL = API_URL;
 
 		if (typeof baseURL === 'string') {
 			const url = new URL(baseURL);
@@ -60,7 +61,6 @@
 		flex-direction: column-reverse;
 		padding: 2rem 0 1rem;
 	}
-
 	header h2 {
 		margin: 0;
 		color: var(--color-grey);

@@ -32,6 +32,7 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@rollup/plugin-dynamic-import-vars": "^1.1.1",
 		"@sveltejs/adapter-netlify": "^1.0.0-next.14",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -41,6 +42,7 @@
 		"eslint-plugin-svelte3": "^3.2.0",
 		"prettier": "~2.2.1",
 		"prettier-plugin-svelte": "^2.2.0",
+		"rollup-plugin-dynamic-import-variables": "^1.1.0",
 		"svelte": "^3.34.0",
 		"svelte-preprocess": "^4.0.0",
 		"tslib": "^2.0.0",
@@ -50,5 +52,8 @@
 	"bugs": {
 		"url": "https://github.com/iSirThijs/jungle-gym/issues"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"remove": "^0.1.5"
+	}
 }
