@@ -8,7 +8,7 @@
 	<h1>Spellen</h1>
 	<ul>
 		{#each games as game}
-			<li><a href="spel/{game.slug}"><GameListCard {game} /> </a></li>
+			<li><a href="games/{game.slug}"><GameListCard {game} /> </a></li>
 		{/each}
 	</ul>
 </section>
