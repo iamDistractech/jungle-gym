@@ -35,7 +35,7 @@
 		color: var(--color-dark-blue);
 		display: flex;
 		justify-content: space-between;
-		margin: 0em;
+		margin: 0;
 		margin-bottom: 1em;
 	}
 
