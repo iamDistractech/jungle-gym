@@ -67,7 +67,7 @@
 		border-radius: 1em;
 		margin-right: 0.5em;
 		font-size: 0.8em;
-		margin-bottom: 0;
+		margin-bottom: 0.5em;
 	}
 
 	.category-label {
