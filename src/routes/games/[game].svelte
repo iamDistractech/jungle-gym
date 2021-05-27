@@ -25,7 +25,7 @@
 <script lang="ts">
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
-	import type { Game, material } from '$lib/games';
+	import type { Game } from '$lib/games';
 
 	let isModalOpen = false;
 	let clickedMaterial;
