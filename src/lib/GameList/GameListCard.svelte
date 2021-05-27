@@ -2,14 +2,25 @@
 	import type { Game } from '$lib/games';
 
 	export let game: Game;
+
+	// Target Group Functionality
+	const targetGroupArr = game.targetGroup;
+	targetGroupArr.sort(function (a, b) {
+		return a - b;
+	});
+
+	const minGroup = targetGroupArr[0];
+	const maxGroup = targetGroupArr.slice(-1)[0];
+
+	const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
 </script>
 
 <article>
 	<h1>{game.name}</h1>
-	<ul class="label-container">
-		<li class="label">{game.targetGroup.join(', ')}</li>
-		<li class="label">{game.category}</li>
-		<li class="label">{game.minimumPlayers}</li>
+	<ul>
+		<li>{targetGroupString}</li>
+		<li class="category-label">{game.category}</li>
+		<li>Min. spelers: {game.minimumPlayers}</li>
 	</ul>
 </article>
 
@@ -56,6 +67,10 @@
 		border-radius: 1em;
 		margin-right: 0.5em;
 		font-size: 0.8em;
-		margin-bottom: 0;
+		margin-bottom: 0.5em;
+	}
+
+	.category-label {
+		text-transform: capitalize;
 	}
 </style>
