@@ -41,7 +41,8 @@
 </script>
 
 <section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
-	<h1>Filter op groepen</h1>
+	<hr />
+	<h1>Filter op {filterTitle}</h1>
 	{#if filterTitle !== 'minimumPlayers'}
 		<form on:submit|preventDefault={submitForm}>
 			<fieldset>
