@@ -85,7 +85,7 @@
 		right: 0;
 		background-color: white;
 		z-index: 1;
-		padding: 1rem;
+		padding: 1em;
 		border-radius: 3em 3em 0em 0em;
 	}
 
@@ -115,10 +115,10 @@
 	}
 
 	label {
-		padding: 0.7rem 2rem;
+		padding: 0.7em 2em;
 		border: 1px solid black;
-		border-radius: 1rem;
-		margin-bottom: 1rem;
+		border-radius: 1em;
+		margin-bottom: 1em;
 		cursor: pointer;
 		transition: 0.2s;
 	}
@@ -146,8 +146,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-
-		padding: 2rem 0;
+		padding: 2em 0;
 	}
 
 	.min-player-fieldset input {
@@ -164,11 +163,11 @@
 	}
 
 	.min-player-fieldset div span {
-		padding: 1rem;
+		padding: 1em;
 		background: #f2f2f2;
 		border-radius: 0.4em;
 		border: 1px solid #ddd;
-		margin: 0rem 0.4rem;
+		margin: 0em 0.4em;
 
 		cursor: pointer;
 	}

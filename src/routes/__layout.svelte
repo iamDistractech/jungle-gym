@@ -12,7 +12,7 @@
 		font-family: var(--font-heading);
 		display: flex;
 		flex-direction: column-reverse;
-		padding: 2rem 0 1rem;
+		padding: 2em 0 1em;
 	}
 
 	header h2 {
