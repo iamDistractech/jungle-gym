@@ -1,69 +1,38 @@
 <script context="module" lang="ts">
-	import { fetcher } from '$lib/utils/fetcher';
+	import type { Load } from '@sveltejs/kit';
 
-	export async function load(): Promise<unknown> {
-		const url = import.meta.env.VITE_API_URL;
+	export const load: Load = async ({ page, fetch }) => {
+		const { query } = page;
+		const res = await fetch(`/games.json?${query.toString()}`);
 
-		try {
-			const games = await fetcher(url);
+		if (res.ok) {
+			const games = await res.json();
 
 			return {
 				props: {
-					games
+					games,
+					query
 				}
 			};
-		} catch (error) {
-			return {
-				status: 500,
-				error: new Error(error)
-			};
 		}
-	}
+
+		const { message } = await res.json();
+
+		return {
+			error: new Error(message),
+			props: {
+				query
+			}
+		};
+	};
 </script>
 
 <script>
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-	import { onMount } from 'svelte';
 
 	export let games;
-
-	const data = [
-		{
-			titleGame: 'Pionnenroof',
-			groups: 'Alle groepen',
-			gameName: 'Tikspel',
-			personAmount: 'Min 2',
-			gameSlug: 'pionnenroof'
-		},
-		{
-			titleGame: 'Fopbal',
-			groups: 'Alle groepen',
-			gameName: 'Balspel',
-			personAmount: 'Min 3',
-			gameSlug: 'fopbal'
-		},
-		{
-			titleGame: 'Leeuwenkooi',
-			groups: 'Alle groepen',
-			gameName: 'Tikspel',
-			personAmount: 'Min 5',
-			gameSlug: 'leeuwenkooi'
-		}
-	];
-
-	let gameTypeFilter = [];
-
-	const getGameTypes = () => {
-		for (let gameObj of data) {
-			if (!gameTypeFilter.includes(gameObj.gameName)) {
-				gameTypeFilter = [...gameTypeFilter, gameObj.gameName];
-			}
-		}
-		gameTypeFilter = gameTypeFilter.sort();
-	};
-
-	onMount(() => getGameTypes());
+	export let query;
 </script>
 
 <header>
@@ -71,9 +40,21 @@
 	<h2>Goedemorgen!</h2>
 </header>
 
-<GameListFilter />
+<GameListFilter {query} />
 
 <GameList {games} />
 
 <style>
+	header {
+		font-family: var(--font-heading);
+		display: flex;
+		flex-direction: column-reverse;
+		padding: 2rem 0 1rem;
+	}
+	header h2 {
+		margin: 0;
+		color: var(--color-grey);
+		font-weight: 400;
+		font-size: 1em;
+	}
 </style>

@@ -11,6 +11,7 @@
 	--color-black: hsl(0, 0%, 11%);
 	--color-grey: hsl(240, 5%, 45%);
 	--color-light-grey: hsl(198, 19%, 89%);
+	--color-lighter-grey: hsl(0, 0%, 95%);
 	--color-white: hsl(0, 0%, 100%);
 }
 
@@ -46,39 +47,6 @@ button:hover {
 button:active {
 	transform: scale(0.98);
 	transition: transform 0.2s;
-}
-
-.submit-btn {
-	padding: 0.8em 2em;
-	border-radius: 1em;
-	border: none;
-	font-size: 1em;
-	background: var(--color-light-orange);
-	margin: 0.5em 0;
-
-	cursor: pointer;
-}
-
-.cancel-btn {
-	padding: 0.8em 2em;
-	border-radius: 1em;
-	border: none;
-	font-size: 1em;
-	margin: 0.5em 0;
-	background: none;
-	border: 1px solid var(--color-black);
-	width: 100%;
-
-	cursor: pointer;
-}
-
-.submit-btn:hover,
-.submit-btn:focus {
-	background: var(--color-light-orange-hover);
-}
-.cancel-btn:hover,
-.cancel-btn:focus {
-	background: var(--color-light-grey);
 }
 
 .hide-underline {
