@@ -32,24 +32,26 @@ self.addEventListener('fetch', (event) => {
 	const requestURL = new URL(request.url);
 
 	if (/(games\.json)/.test(requestURL.pathname)) {
+		console.log('A request to games.json!');
 		event.respondWith(
 			fetch(event.request)
 				.then((response) => {
 					if (response.ok) return response.json();
 					else throw response;
 				})
-				.then((games: Game[]) =>
-					games.map((game: Game) => {
+				.then((games: Game[]) => {
+					return games.map((game: Game) => {
 						return caches
 							.open('gamesCache')
 							.then((cache) => cache.match(`/games/${game.slug}`))
 							.then((response: Response | undefined) => {
+								console.log('got something for', game.slug, response);
 								if (response) game.offline = true;
 								else game.offline = false;
 								return game;
 							});
-					})
-				)
+					});
+				})
 				.then(Promise.all)
 				.then((games: Game[]) => new Response(JSON.stringify(games)))
 				.catch((response) => {
