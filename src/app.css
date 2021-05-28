@@ -9,6 +9,7 @@
 	--color-light-orange: hsl(13, 100%, 84%);
 	--color-light-orange-hover: hsl(13, 100%, 89%);
 	--color-black: hsl(0, 0%, 11%);
+	--color-black-opacity: hsl(0, 0%, 11%, 70%);
 	--color-grey: hsl(240, 5%, 45%);
 	--color-light-grey: hsl(198, 19%, 89%);
 	--color-lighter-grey: hsl(0, 0%, 95%);
