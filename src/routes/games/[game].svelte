@@ -103,6 +103,11 @@
 	{/each}
 </main>
 
+<a href="#" class="edit-element">
+	<img src="/icons/edit.svg" alt="" />
+</a>
+
+<!-- <ButtonLight>Spel opslaan</ButtonLight> -->
 <ButtonLight on:click={saveCache}>Spel opslaan</ButtonLight>
 
 <style>
@@ -164,5 +169,25 @@
 
 	main header h2 {
 		margin-bottom: 0;
+	}
+
+	.edit-element {
+		position: fixed;
+		right: 5%;
+		bottom: 2%;
+		height: 5em;
+		width: 5em;
+		background-color: var(--color-light-orange);
+		border: none;
+		border-radius: 1em;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.edit-element img {
+		height: 3em;
+		width: 3em;
 	}
 </style>
