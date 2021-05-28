@@ -44,14 +44,11 @@ self.addEventListener('fetch', (event) => {
 							return caches
 								.open('gamesCache')
 								.then((cache) => {
-									cache.keys().then(console.log);
 									return cache.match(`/games/${game.slug}.json`);
 								})
 								.then((response: Response | undefined) => {
-									console.log('got something for', game.slug, response);
 									if (response) game.offline = true;
 									else game.offline = false;
-									console.log(game.slug, game.offline);
 									return game;
 								});
 						})
@@ -69,7 +66,13 @@ self.addEventListener('fetch', (event) => {
 								)
 							);
 						})
-						.then((games) => event.respondWith(new Response(JSON.stringify(games))));
+						.then(
+							(games) =>
+								new Response(JSON.stringify(games), {
+									status: response.status || 200,
+									statusText: response.statusText || 'Offline'
+								})
+						);
 				});
 		};
 
