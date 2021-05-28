@@ -33,46 +33,48 @@ self.addEventListener('fetch', (event) => {
 
 	if (/(games\.json)/.test(requestURL.pathname)) {
 		console.log('A request to games.json!');
-		fetch(event.request)
-			.then((response) => {
-				if (response.ok) return response.json();
-				else throw response;
-			})
-			.then((games: Game[]) => {
-				return Promise.all(
-					games.map((game: Game) => {
-						return caches
-							.open('gamesCache')
-							.then((cache) => {
-								cache.keys().then(console.log);
-								return cache.match(`/games/${game.slug}.json`);
-							})
-							.then((response: Response | undefined) => {
-								console.log('got something for', game.slug, response);
-								if (response) game.offline = true;
-								else game.offline = false;
-								console.log(game.slug, game.offline);
-								return game;
-							});
-					})
-				);
-			})
-			.then((games) =>
-				event.respondWith(new Response(JSON.stringify(games), { status: 200, statusText: 'ok' }))
-			)
-			.catch((response) => {
-				throw caches
-					.open('gamesCache')
-					.then((cache) => cache.matchAll(`/games`))
-					.then((cachesResponses) => {
-						return Promise.all(
-							cachesResponses.map((response) =>
-								response.json().then((game: Game) => (game.offline = true))
-							)
-						);
-					})
-					.then((games) => event.respondWith(new Response(JSON.stringify(games))));
-			});
+		event.waitUntil(
+			fetch(event.request)
+				.then((response) => {
+					if (response.ok) return response.json();
+					else throw response;
+				})
+				.then((games: Game[]) => {
+					return Promise.all(
+						games.map((game: Game) => {
+							return caches
+								.open('gamesCache')
+								.then((cache) => {
+									cache.keys().then(console.log);
+									return cache.match(`/games/${game.slug}.json`);
+								})
+								.then((response: Response | undefined) => {
+									console.log('got something for', game.slug, response);
+									if (response) game.offline = true;
+									else game.offline = false;
+									console.log(game.slug, game.offline);
+									return game;
+								});
+						})
+					);
+				})
+				.then((games) =>
+					event.respondWith(new Response(JSON.stringify(games), { status: 200, statusText: 'ok' }))
+				)
+				.catch((response) => {
+					throw caches
+						.open('gamesCache')
+						.then((cache) => cache.matchAll(`/games`))
+						.then((cachesResponses) => {
+							return Promise.all(
+								cachesResponses.map((response) =>
+									response.json().then((game: Game) => (game.offline = true))
+								)
+							);
+						})
+						.then((games) => event.respondWith(new Response(JSON.stringify(games))));
+				})
+		);
 	} else
 		event.respondWith(
 			caches.match(event.request).then((cacheRes) => cacheRes || fetch(event.request))
