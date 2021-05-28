@@ -14,24 +14,24 @@
 				return {
 					props: {
 						games,
-						query
+						query,
+						offline: res.statusText === 'offline'
 					}
 				};
 			}
 
 			return {
 				props: {
+					status: res.status,
+					error: await res.json(),
 					query
 				}
 			};
 		} catch (error) {
-			if (error.message) {
-				return {
-					props: { games: [], offline: true }
-				};
-			}
-
-			throw error;
+			return {
+				status: 500,
+				error
+			};
 		}
 	};
 </script>

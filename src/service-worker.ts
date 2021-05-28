@@ -49,7 +49,7 @@ self.addEventListener('fetch', (event) => {
 					)
 					.then((games) => {
 						console.log(games);
-						return new Response(JSON.stringify(games));
+						return new Response(JSON.stringify(games), { statusText: 'offline' });
 					});
 			});
 		};
