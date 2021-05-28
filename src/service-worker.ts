@@ -56,11 +56,11 @@ self.addEventListener('fetch', (event) => {
 					throw caches
 						.open('gamesCache')
 						.then((cache) => cache.matchAll(`/games`))
-						.then((cachesResponses) =>
-							cachesResponses.map((response) =>
+						.then((cachesResponses) => {
+							return cachesResponses.map((response) =>
 								response.json().then((game: Game) => (game.offline = true))
-							)
-						)
+							);
+						})
 						.then(Promise.all)
 						.then((games) => new Response(JSON.stringify(games)));
 				})
