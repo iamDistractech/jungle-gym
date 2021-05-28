@@ -22,10 +22,8 @@
 				status: res.status
 			};
 		} catch (error) {
-			console.log('error', error);
-
 			return {
-				error: 'offline?',
+				error: 'Sorry, we could not find that page..',
 				status: '404'
 			};
 		}
