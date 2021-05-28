@@ -9,6 +9,8 @@
 			if (res.ok) {
 				const games = await res.json();
 
+				console.log(games);
+
 				return {
 					props: {
 						games,

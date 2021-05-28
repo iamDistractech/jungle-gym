@@ -1,3 +1,4 @@
+import type { Game } from '$lib/games';
 import { build, timestamp, files } from '$service-worker';
 
 declare const self;
@@ -26,8 +27,46 @@ self.addEventListener('activate', (event) => {
 	);
 });
 
-self.addEventListener('fetch', (event) =>
-	event.respondWith(
-		caches.match(event.request).then((cacheRes) => cacheRes || fetch(event.request))
-	)
-);
+self.addEventListener('fetch', (event) => {
+	const request: Request = event.request;
+	const requestURL = new URL(request.url);
+
+	if (/(games\.json)/.test(requestURL.pathname)) {
+		event.respondWith(
+			fetch(event.request)
+				.then((response) => {
+					if (response.ok) return response.json();
+					else throw response;
+				})
+				.then((games: Game[]) =>
+					games.map((game: Game) => {
+						return caches
+							.open('gamesCache')
+							.then((cache) => cache.match(`/games/${game.slug}`))
+							.then((response: Response | undefined) => {
+								if (response) game.offline = true;
+								else game.offline = false;
+								return game;
+							});
+					})
+				)
+				.then(Promise.all)
+				.then((games: Game[]) => new Response(JSON.stringify(games)))
+				.catch((response) => {
+					throw caches
+						.open('gamesCache')
+						.then((cache) => cache.matchAll(`/games`))
+						.then((cachesResponses) =>
+							cachesResponses.map((response) =>
+								response.json().then((game: Game) => (game.offline = true))
+							)
+						)
+						.then(Promise.all)
+						.then((games) => new Response(JSON.stringify(games)));
+				})
+		);
+	} else
+		event.respondWith(
+			caches.match(event.request).then((cacheRes) => cacheRes || fetch(event.request))
+		);
+});
