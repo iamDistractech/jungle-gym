@@ -2,17 +2,6 @@
 	import type { Game } from '$lib/games';
 	export let gamesData: Game[];
 	export let carouselTitle;
-
-	export let game: Game;
-
-	// Target Group Functionality
-	const targetGroupArr = game.targetGroup;
-	targetGroupArr.sort(function (a, b) {
-		return a - b;
-	});
-	const minGroup = targetGroupArr[0];
-	const maxGroup = targetGroupArr.slice(-1)[0];
-	const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
 </script>
 
 <section>
