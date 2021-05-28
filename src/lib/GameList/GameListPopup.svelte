@@ -165,7 +165,8 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: var(--color-black-opacity);
+		background-color: var(--color-black);
+		opacity: 0.7;
 		z-index: 0;
 	}
 
