@@ -24,7 +24,7 @@
 		} catch (error) {
 			return {
 				error: 'Sorry, we could not find that page..',
-				status: '404'
+				status: 404
 			};
 		}
 	};
