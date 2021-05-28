@@ -40,7 +40,6 @@ self.addEventListener('fetch', (event) => {
 					.open('gamesCache')
 					.then((cache) => {
 						return cache.keys().then((cacheKeys) => {
-							console.log(cacheKeys);
 							return Promise.all(cacheKeys.map((cacheKey) => cache.match(cacheKey)));
 						});
 					})
@@ -48,7 +47,6 @@ self.addEventListener('fetch', (event) => {
 						Promise.all(cachesResponses.map((response) => response.json()))
 					)
 					.then((games) => {
-						console.log(games);
 						return new Response(JSON.stringify(games), { statusText: 'offline' });
 					});
 			});
