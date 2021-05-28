@@ -18,13 +18,13 @@
 			const { message } = await res.json();
 
 			return {
-				error: new Error(message)
+				error: new Error(message),
+				status: res.status
 			};
 		} catch (error) {
-			console.log('error', error);
-
 			return {
-				error: 'offline?'
+				error: 'Sorry, we could not find that page..',
+				status: 404
 			};
 		}
 	};
