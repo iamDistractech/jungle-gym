@@ -50,7 +50,10 @@
 	}
 
 	function saveCache() {
-		return caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`));
+		return Promise.all([
+			caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.add(`/games/${gameSlug}`))
+		]);
 	}
 </script>
 

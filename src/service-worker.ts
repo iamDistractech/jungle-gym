@@ -10,22 +10,36 @@ const staticCache = `staticCache-v${timestamp}`;
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		Promise.all([
+			caches.open('gameCacheSSR').then((cache) => cache.add('/')),
 			caches.open(applicationCache).then((cache) => cache.addAll(build)),
 			caches.open(staticCache).then((cache) => cache.addAll(files))
-		]).then(self.skipWaiting())
+		])
+			.then(self.skipWaiting())
+			.then(() => console.log('installed'))
 	);
 });
 
 // Removes old caches
 self.addEventListener('activate', (event) => {
+	console.time('activate');
 	event.waitUntil(
-		caches.keys().then((keys) => {
-			return Promise.all(
-				keys
-					.filter((key) => key !== applicationCache && key !== staticCache && key !== 'gameCache')
-					.map((key) => caches.delete(key))
-			);
-		})
+		caches
+			.keys()
+			.then((keys) => {
+				return Promise.all(
+					keys
+						.filter(
+							(key) =>
+								key !== applicationCache &&
+								key !== staticCache &&
+								key !== 'gameCache' &&
+								key !== 'gameCacheSSR'
+						)
+						.map((key) => caches.delete(key))
+				);
+			})
+			.then(self.skipWaiting())
+			.then(() => console.log('activated'))
 	);
 });
 
@@ -43,11 +57,12 @@ self.addEventListener('fetch', (event) => {
 							return Promise.all(cacheKeys.map((cacheKey) => cache.match(cacheKey)));
 						});
 					})
-					.then((cachesResponses) =>
-						Promise.all(cachesResponses.map((response) => response.json()))
-					)
+					.then((cachesResponses) => {
+						return Promise.all(cachesResponses.map((response) => response.json()));
+					})
 					.then((games) => {
-						return new Response(JSON.stringify(games), { statusText: 'offline' });
+						const response = new Response(JSON.stringify(games), { statusText: 'offline' });
+						return response;
 					});
 			});
 		};

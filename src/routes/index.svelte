@@ -45,6 +45,11 @@
 	export let query;
 
 	onMount(() => {
+		if (!navigator.onLine) offline = true;
+		patchGames();
+	});
+
+	function patchGames() {
 		Promise.all(
 			games.map((game: Game) => {
 				return caches
@@ -58,8 +63,12 @@
 						return game;
 					});
 			})
-		).then((patchGames: Game[]) => (games = patchGames));
-	});
+		)
+			.then((patchGames: Game[]) => (games = patchGames))
+			.then(() => {
+				if (offline) games = games.filter((game) => game.offline);
+			});
+	}
 </script>
 
 <header>
