@@ -1,6 +1,6 @@
 {
 	"name": "jungle_gym",
-	"version": "0.1.1",
+	"version": "0.2.0-0",
 	"description": "JungleGym is an app for primary school teachers that will help them with their gymnastics lessons",
 	"scripts": {
 		"dev": "svelte-kit dev",
