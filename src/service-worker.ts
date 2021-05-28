@@ -44,15 +44,23 @@ self.addEventListener('fetch', (event) => {
 						games.map((game: Game) => {
 							return caches
 								.open('gamesCache')
-								.then((cache) => cache.match(`/games/${game.slug}.json`))
+								.then((cache) => {
+									cache.keys().then(console.log);
+									return cache.match(`/games/${game.slug}.json`);
+								})
 								.then((response: Response | undefined) => {
 									console.log('got something for', game.slug, response);
 									if (response) game.offline = true;
 									else game.offline = false;
+									console.log(game.slug, game.offline);
 									return game;
 								});
 						})
 					);
+				})
+				.then((games) => {
+					console.log(games);
+					return;
 				})
 				.then((games) => new Response(JSON.stringify(games)))
 				.catch((response) => {
