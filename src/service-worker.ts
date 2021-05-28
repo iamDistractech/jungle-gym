@@ -32,9 +32,8 @@ self.addEventListener('fetch', (event) => {
 	const requestURL = new URL(request.url);
 
 	if (/(games\.json)/.test(requestURL.pathname)) {
-		console.log('A request to games.json!');
-		event.waitUntil(
-			fetch(event.request)
+		const returnOfflineGames = () => {
+			return fetch(event.request)
 				.then((response) => {
 					if (response.ok) return response.json();
 					else throw response;
@@ -58,9 +57,7 @@ self.addEventListener('fetch', (event) => {
 						})
 					);
 				})
-				.then((games) =>
-					event.respondWith(new Response(JSON.stringify(games), { status: 200, statusText: 'ok' }))
-				)
+				.then((games) => new Response(JSON.stringify(games), { status: 200, statusText: 'ok' }))
 				.catch((response) => {
 					throw caches
 						.open('gamesCache')
@@ -73,8 +70,10 @@ self.addEventListener('fetch', (event) => {
 							);
 						})
 						.then((games) => event.respondWith(new Response(JSON.stringify(games))));
-				})
-		);
+				});
+		};
+
+		event.respondWith(returnOfflineGames);
 	} else
 		event.respondWith(
 			caches.match(event.request).then((cacheRes) => cacheRes || fetch(event.request))
