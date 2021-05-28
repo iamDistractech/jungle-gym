@@ -56,7 +56,7 @@ self.addEventListener('fetch', (event) => {
 				})
 				.then((games) => new Response(JSON.stringify(games), { status: 200, statusText: 'ok' }))
 				.catch((response) => {
-					throw caches
+					return caches
 						.open('gamesCache')
 						.then((cache) => cache.matchAll(`/games`))
 						.then((cachesResponses) => {
