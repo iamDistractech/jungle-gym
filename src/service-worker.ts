@@ -21,8 +21,8 @@ self.addEventListener('install', (event) => {
 
 // Removes old caches
 self.addEventListener('activate', (event) => {
-	console.time('activate');
 	event.waitUntil(
+		clients.claim(),
 		caches
 			.keys()
 			.then((keys) => {
