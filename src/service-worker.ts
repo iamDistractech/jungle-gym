@@ -40,7 +40,7 @@ self.addEventListener('fetch', (event) => {
 					else throw response;
 				})
 				.then((games: Game[]) => {
-					Promise.all(
+					return Promise.all(
 						games.map((game: Game) => {
 							return caches
 								.open('gamesCache')
