@@ -60,6 +60,7 @@ self.addEventListener('fetch', (event) => {
 						.open('gamesCache')
 						.then((cache) => cache.matchAll(`/games`))
 						.then((cachesResponses) => {
+							console.log(cachesResponses);
 							return Promise.all(
 								cachesResponses.map((response) =>
 									response.json().then((game: Game) => (game.offline = true))
