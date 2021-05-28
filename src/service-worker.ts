@@ -40,30 +40,32 @@ self.addEventListener('fetch', (event) => {
 					else throw response;
 				})
 				.then((games: Game[]) => {
-					return games.map((game: Game) => {
-						return caches
-							.open('gamesCache')
-							.then((cache) => cache.match(`/games/${game.slug}`))
-							.then((response: Response | undefined) => {
-								console.log('got something for', game.slug, response);
-								if (response) game.offline = true;
-								else game.offline = false;
-								return game;
-							});
-					});
+					Promise.all(
+						games.map((game: Game) => {
+							return caches
+								.open('gamesCache')
+								.then((cache) => cache.match(`/games/${game.slug}.json`))
+								.then((response: Response | undefined) => {
+									console.log('got something for', game.slug, response);
+									if (response) game.offline = true;
+									else game.offline = false;
+									return game;
+								});
+						})
+					);
 				})
-				.then(Promise.all)
-				.then((games: Game[]) => new Response(JSON.stringify(games)))
+				.then((games) => new Response(JSON.stringify(games)))
 				.catch((response) => {
 					throw caches
 						.open('gamesCache')
 						.then((cache) => cache.matchAll(`/games`))
 						.then((cachesResponses) => {
-							return cachesResponses.map((response) =>
-								response.json().then((game: Game) => (game.offline = true))
+							return Promise.all(
+								cachesResponses.map((response) =>
+									response.json().then((game: Game) => (game.offline = true))
+								)
 							);
 						})
-						.then(Promise.all)
 						.then((games) => new Response(JSON.stringify(games)));
 				})
 		);
