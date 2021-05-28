@@ -73,7 +73,7 @@ self.addEventListener('fetch', (event) => {
 				});
 		};
 
-		event.respondWith(returnOfflineGames);
+		event.respondWith(returnOfflineGames());
 	} else
 		event.respondWith(
 			caches.match(event.request).then((cacheRes) => cacheRes || fetch(event.request))
