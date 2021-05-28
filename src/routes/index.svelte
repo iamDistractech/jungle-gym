@@ -36,13 +36,32 @@
 	};
 </script>
 
-<script>
+<script lang="ts">
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
+	import { onMount } from 'svelte';
+	import type { Game } from '$lib/games';
 
 	export let offline;
-	export let games;
+	export let games: Game[];
 	export let query;
+
+	onMount(() => {
+		Promise.all(
+			games.map((game: Game) => {
+				return caches
+					.open('gamesCache')
+					.then((cache) => {
+						return cache.match(`/games/${game.slug}.json`);
+					})
+					.then((response: Response | undefined) => {
+						if (response) game.offline = true;
+						else game.offline = false;
+						return game;
+					});
+			})
+		).then((patchGames: Game[]) => (games = patchGames));
+	});
 </script>
 
 <header>

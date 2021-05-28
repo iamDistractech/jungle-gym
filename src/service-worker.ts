@@ -21,7 +21,9 @@ self.addEventListener('activate', (event) => {
 	event.waitUntil(
 		caches.keys().then((keys) => {
 			return Promise.all(
-				keys.filter((key) => key !== applicationCache).map((key) => caches.delete(key))
+				keys
+					.filter((key) => key !== applicationCache && key !== staticCache && key !== 'gameCache')
+					.map((key) => caches.delete(key))
 			);
 		})
 	);
@@ -33,53 +35,25 @@ self.addEventListener('fetch', (event) => {
 
 	if (/(games\.json)/.test(requestURL.pathname)) {
 		const returnOfflineGames = () => {
-			return fetch(event.request)
-				.then((response) => {
-					if (response.ok) return response.json();
-					else throw response;
-				})
-				.then((games: Game[]) => {
-					return Promise.all(
-						games.map((game: Game) => {
-							return caches
-								.open('gamesCache')
-								.then((cache) => {
-									return cache.match(`/games/${game.slug}.json`);
-								})
-								.then((response: Response | undefined) => {
-									if (response) game.offline = true;
-									else game.offline = false;
-									return game;
-								});
-						})
-					);
-				})
-				.then((games) => new Response(JSON.stringify(games), { status: 200, statusText: 'ok' }))
-				.catch((response) => {
-					return caches
-						.open('gamesCache')
-						.then((cache) => cache.matchAll(`/games`))
-						.then((cachesResponses) => {
-							console.log(cachesResponses);
-							return Promise.all(
-								cachesResponses.map((response) =>
-									response.json().then((game: Game) => (game.offline = true))
-								)
-							);
-						})
-						.then(
-							(games) =>
-								new Response(JSON.stringify(games), {
-									status: response.status || 200,
-									statusText: response.statusText || 'Offline'
-								})
-						);
-				});
+			return fetch(event.request).catch((error) => {
+				return caches
+					.open('gamesCache')
+					.then((cache) => {
+						return cache.keys().then((cacheKeys) => {
+							console.log(cacheKeys);
+							return Promise.all(cacheKeys.map((cacheKey) => cache.match(cacheKey)));
+						});
+					})
+					.then((cachesResponses) =>
+						Promise.all(cachesResponses.map((response) => response.json()))
+					)
+					.then((games) => {
+						console.log(games);
+						return new Response(JSON.stringify(games));
+					});
+			});
 		};
 
 		event.respondWith(returnOfflineGames());
-	} else
-		event.respondWith(
-			caches.match(event.request).then((cacheRes) => cacheRes || fetch(event.request))
-		);
+	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
 });
