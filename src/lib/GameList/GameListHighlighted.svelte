@@ -1,8 +1,3 @@
-<script lang="ts">
-	import type { Game } from '$lib/games';
-	export let games: Game[];
-</script>
-
 <section>
 	<h2>Uitgelichte spellen</h2>
 	<ul>
