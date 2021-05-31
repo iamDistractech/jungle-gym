@@ -12,35 +12,63 @@
 				return {
 					props: {
 						games,
-						query
+						query,
+						offline: res.statusText === 'offline'
 					}
 				};
 			}
 
 			return {
 				props: {
+					status: res.status,
+					error: await res.json(),
 					query
 				}
 			};
 		} catch (error) {
-			if (error.message) {
-				return {
-					props: { games: [], offline: true }
-				};
-			}
-
-			throw error;
+			return {
+				status: 500,
+				error
+			};
 		}
 	};
 </script>
 
-<script>
+<script lang="ts">
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
+	import { onMount } from 'svelte';
+	import type { Game } from '$lib/games';
 
 	export let offline;
-	export let games;
+	export let games: Game[];
 	export let query;
+
+	onMount(() => {
+		if (!navigator.onLine) offline = true;
+		patchGames();
+	});
+
+	function patchGames() {
+		Promise.all(
+			games.map((game: Game) => {
+				return caches
+					.open('gamesCache')
+					.then((cache) => {
+						return cache.match(`/games/${game.slug}.json`);
+					})
+					.then((response: Response | undefined) => {
+						if (response) game.offline = true;
+						else game.offline = false;
+						return game;
+					});
+			})
+		)
+			.then((patchGames: Game[]) => (games = patchGames))
+			.then(() => {
+				if (offline) games = games.filter((game) => game.offline);
+			});
+	}
 </script>
 
 <header>

@@ -21,6 +21,9 @@
 		<li>{targetGroupString}</li>
 		<li class="category-label">{game.category}</li>
 		<li>Min. spelers: {game.minimumPlayers}</li>
+		{#if game.offline}
+			<li class="offline">Offline Beschikbaar</li>
+		{/if}
 	</ul>
 </article>
 
@@ -31,6 +34,11 @@
 		margin: 1em 0;
 		padding: 1em;
 		justify-content: space-between;
+	}
+
+	li.offline {
+		background-color: var(--color-grey);
+		color: var(--color-white);
 	}
 
 	ul {
