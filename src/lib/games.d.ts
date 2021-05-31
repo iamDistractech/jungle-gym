@@ -36,4 +36,5 @@ export interface Game {
 	targetGroup: number[];
 	rules?: string[];
 	variation?: GameVariations[];
+	offline?: boolean;
 }
