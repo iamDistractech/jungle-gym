@@ -30,14 +30,6 @@
 				status: 500,
 				error
 			};
-		} catch (error) {
-			if (error.message) {
-				return {
-					props: { games: [], offline: true }
-				};
-			}
-
-			throw error;
 		}
 	};
 </script>
