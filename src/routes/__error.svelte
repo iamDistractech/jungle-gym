@@ -26,9 +26,7 @@
 	</p>
 
 	<!-- TODO: You (eventually) want to go back to the previous route. This has to be stored somehow -->
-	<form action="/">
-		<SubmitButton>Terug naar home</SubmitButton>
-	</form>
+	<a href="/"> Terug naar home </a>
 
 	<form action="mailto:hi@example.org">
 		<ButtonLight>Contact opnemen</ButtonLight>

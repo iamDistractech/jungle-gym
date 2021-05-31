@@ -19,7 +19,7 @@
 			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
 		{/if}
 		{#each games as game}
-			<li><a href="games/{game.slug}"><GameListCard {game} /> </a></li>
+			<li><a sveltekit:prefetch href="games/{game.slug}"><GameListCard {game} /> </a></li>
 		{/each}
 	</ul>
 </section>

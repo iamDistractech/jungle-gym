@@ -33,6 +33,7 @@
 <script lang="ts">
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import type { Game } from '$lib/games';
 
@@ -49,8 +50,35 @@
 		clickedMaterial = material;
 	}
 
+	onMount(() => {
+		patchGame();
+	});
+
+	function patchGame() {
+		return caches
+			.open('gamesCache')
+			.then((cache) => {
+				return cache.match(`/games/${game.slug}.json`);
+			})
+			.then((response: Response | undefined) => {
+				if (response) game.offline = true;
+				else game.offline = false;
+				return game;
+			});
+	}
+
 	function saveCache() {
-		return caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`));
+		return Promise.all([
+			caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.add(`/games/${gameSlug}`))
+		]).then(() => (game.offline = true));
+	}
+
+	function deleteCache() {
+		return Promise.all([
+			caches.open('gamesCache').then((cache) => cache.delete(`/games/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/games/${gameSlug}`))
+		]).then(() => (game.offline = false));
 	}
 </script>
 
@@ -107,8 +135,11 @@
 	<img src="/icons/edit.svg" alt="" />
 </a>
 
-<!-- <ButtonLight>Spel opslaan</ButtonLight> -->
-<ButtonLight on:click={saveCache}>Spel opslaan</ButtonLight>
+{#if game.offline}
+	<ButtonLight on:click={deleteCache}>Offline beschikbaar uit</ButtonLight>
+{:else}
+	<ButtonLight on:click={saveCache}>Offline beschikbaar aan</ButtonLight>
+{/if}
 
 <style>
 	header {
