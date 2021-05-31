@@ -9,8 +9,6 @@
 
 API can be found **[here](https://github.com/iSirThijs/jungle-gym-api)**
 
-_[Insert description]_
-
 ## Table of Contents
 
 <table>
