@@ -4,7 +4,10 @@
 	export let game: Game;
 
 	// Target Group Functionality
-	const targetGroupArr = game.targetGroup;
+	const targetGroupRawArr = game.targetGroup;
+
+	const targetGroupArr = targetGroupRawArr.map((a) => parseInt(a.group));
+
 	targetGroupArr.sort(function (a, b) {
 		return a - b;
 	});
@@ -19,7 +22,7 @@
 	<h1>{game.name}</h1>
 	<ul>
 		<li>{targetGroupString}</li>
-		<li class="category-label">{game.category}</li>
+		<li class="category-label">{game.category.title}</li>
 		<li>Min. spelers: {game.minimumPlayers}</li>
 		{#if game.offline}
 			<li class="offline">Offline Beschikbaar</li>
