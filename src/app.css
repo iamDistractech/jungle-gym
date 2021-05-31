@@ -49,39 +49,6 @@ button:active {
 	transition: transform 0.2s;
 }
 
-.submit-btn {
-	padding: 0.8em 2em;
-	border-radius: 1em;
-	border: none;
-	font-size: 1em;
-	background: var(--color-light-orange);
-	margin: 0.5em 0;
-
-	cursor: pointer;
-}
-
-.cancel-btn {
-	padding: 0.8em 2em;
-	border-radius: 1em;
-	border: none;
-	font-size: 1em;
-	margin: 0.5em 0;
-	background: none;
-	border: 1px solid var(--color-black);
-	width: 100%;
-
-	cursor: pointer;
-}
-
-.submit-btn:hover,
-.submit-btn:focus {
-	background: var(--color-light-orange-hover);
-}
-.cancel-btn:hover,
-.cancel-btn:focus {
-	background: var(--color-light-grey);
-}
-
 .hide-underline {
 	text-decoration: none;
 }

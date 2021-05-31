@@ -1,47 +1,74 @@
 <script context="module" lang="ts">
-	import { fetcher } from '$lib/utils/fetcher';
+	import type { Load } from '@sveltejs/kit';
 
-	export async function load({ page }: { page: { query: URLSearchParams } }): Promise<unknown> {
-		const baseURL = import.meta.env.VITE_API_URL;
+	export const load: Load = async ({ page, fetch }) => {
+		try {
+			const { query } = page;
+			const res = await fetch(`/games.json?${query.toString()}`);
 
-		if (typeof baseURL === 'string') {
-			const url = new URL(baseURL);
-			url.search = page.query.toString();
-
-			try {
-				const games = await fetcher(url);
+			if (res.ok) {
+				const games = await res.json();
 
 				return {
 					props: {
 						games,
-						query: page.query
+						query,
+						offline: res.statusText === 'offline'
 					}
 				};
-			} catch (error) {
-				return {
-					status: 500,
-					error: new Error(error)
-				};
 			}
-		} else {
+
 			return {
 				props: {
-					games: undefined,
-					query: page.query
-				},
+					status: res.status,
+					error: await res.json(),
+					query
+				}
+			};
+		} catch (error) {
+			return {
 				status: 500,
-				error: new Error('No valid API endpoint URL')
+				error
 			};
 		}
-	}
+	};
 </script>
 
-<script>
+<script lang="ts">
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
+	import { onMount } from 'svelte';
+	import type { Game } from '$lib/games';
 
-	export let games;
+	export let offline;
+	export let games: Game[];
 	export let query;
+
+	onMount(() => {
+		if (!navigator.onLine) offline = true;
+		patchGames();
+	});
+
+	function patchGames() {
+		Promise.all(
+			games.map((game: Game) => {
+				return caches
+					.open('gamesCache')
+					.then((cache) => {
+						return cache.match(`/games/${game.slug}.json`);
+					})
+					.then((response: Response | undefined) => {
+						if (response) game.offline = true;
+						else game.offline = false;
+						return game;
+					});
+			})
+		)
+			.then((patchGames: Game[]) => (games = patchGames))
+			.then(() => {
+				if (offline) games = games.filter((game) => game.offline);
+			});
+	}
 </script>
 
 <header>
@@ -49,9 +76,23 @@
 	<h2>Goedemorgen!</h2>
 </header>
 
-<GameListFilter {query} />
+{#if !offline}
+	<GameListFilter {query} />
+{/if}
 
-<GameList {games} />
+<GameList {games} {offline} />
 
 <style>
+	header {
+		font-family: var(--font-heading);
+		display: flex;
+		flex-direction: column-reverse;
+		padding: 2rem 0 1rem;
+	}
+	header h2 {
+		margin: 0;
+		color: var(--color-grey);
+		font-weight: 400;
+		font-size: 1em;
+	}
 </style>
