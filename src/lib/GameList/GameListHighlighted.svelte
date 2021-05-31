@@ -1,7 +1,7 @@
 <section>
 	<h2>Uitgelichte spellen</h2>
 	<ul>
-		<a href="games/#">
+		<a href="spellen/#">
 			<div>
 				<h1>Kat en Muis</h1>
 				<p>Groep: 2, 3 | Tikspel</p>

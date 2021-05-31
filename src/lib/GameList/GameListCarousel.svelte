@@ -3,23 +3,23 @@
 	export let gamesData: Game[];
 	export let carouselTitle;
 
-	export let game: Game;
+	// export let game: Game;
 
 	// Target Group Functionality
-	const targetGroupArr = game.targetGroup;
-	targetGroupArr.sort(function (a, b) {
-		return a - b;
-	});
-	const minGroup = targetGroupArr[0];
-	const maxGroup = targetGroupArr.slice(-1)[0];
-	const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
+	// const targetGroupArr = game.targetGroup;
+	// targetGroupArr.sort(function (a, b) {
+	// 	return a - b;
+	// });
+	// const minGroup = targetGroupArr[0];
+	// const maxGroup = targetGroupArr.slice(-1)[0];
+	// const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
 </script>
 
 <section>
 	<h2>{carouselTitle} - {gamesData.length}</h2>
 	<ul>
 		{#each gamesData as game}
-			<a href="games/{game.slug}">
+			<a href="spellen/{game.slug}">
 				<h1>{game.name}</h1>
 				<div>
 					<p class="label">Groep: {game.targetGroup}</p>
