@@ -58,5 +58,6 @@
 	"bugs": {
 		"url": "https://github.com/iSirThijs/jungle-gym/issues"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {}
 }
