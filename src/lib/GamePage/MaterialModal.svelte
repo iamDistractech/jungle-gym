@@ -13,7 +13,7 @@
 </script>
 
 <section in:fly={{ y: 300, duration: 500 }} out:fly={{ y: 300, duration: 500 }}>
-	<h1>{material.name}</h1>
+	<h1>{material.material.name}</h1>
 
 	{#if material.amount}
 		<p><b>Aantal: </b>{material.amount}</p>

@@ -47,7 +47,7 @@
 
 	function toggleModal(material): any {
 		isModalOpen = !isModalOpen;
-		clickedMaterial = material.title;
+		clickedMaterial = material;
 	}
 
 	onMount(() => {
@@ -91,7 +91,7 @@
 
 <main>
 	<header>
-		<h2>{game.category.title} | {game.name}</h2>
+		<h2>{game.category.name} | {game.name}</h2>
 		<small>{game.minimumPlayers} | {game.name}</small>
 	</header>
 
@@ -105,7 +105,7 @@
 	<ul class="material-list">
 		{#each game.materials as material}
 			<li>
-				<ButtonLight on:click={toggleModal(material)}>{material.material.title}</ButtonLight>
+				<ButtonLight on:click={toggleModal(material)}>{material.material.name}</ButtonLight>
 			</li>
 		{/each}
 	</ul>
@@ -122,7 +122,7 @@
 	{#each game.variation as variation}
 		<h4>{variation.description}</h4>
 		<ul>
-			{#each variation.actions as action}
+			{#each variation.action as action}
 				<li>
 					{action.description}
 				</li>

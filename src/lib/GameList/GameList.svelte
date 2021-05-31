@@ -6,10 +6,10 @@
 	export let games: Game[];
 	export let offline: boolean;
 
-	let ErrorMessage =
-		games.length === 0
-			? 'Er zijn geen offline spellen beschikbaar'
-			: 'De volgende spellen zijn offline beschikbaar';
+	let ErrorMessage = 'Test';
+	// games.length === 0
+	// 	? 'Er zijn geen offline spellen beschikbaar'
+	// 	: 'De volgende spellen zijn offline beschikbaar';
 </script>
 
 <section>
