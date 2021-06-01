@@ -4,7 +4,7 @@
 	--font-heading: 'Montserrat Alternates', sans-serif;
 	--font-body: 'Poppins', sans-serif;
 
-	--color-turquoise: hsl(199, 100%, 86%);
+	--color-turquoise: hsl(192, 80%, 80%);
 	--color-dark-blue: hsl(221, 43%, 16%);
 	--color-light-orange: hsl(13, 100%, 84%);
 	--color-light-orange-hover: hsl(13, 100%, 89%);
@@ -13,6 +13,19 @@
 	--color-light-grey: hsl(198, 19%, 89%);
 	--color-lighter-grey: hsl(0, 0%, 95%);
 	--color-white: hsl(0, 0%, 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+}
+
+p {
+	font-family: var(--font-body);
 }
 
 body {

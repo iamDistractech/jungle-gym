@@ -3,7 +3,7 @@
 
 	export const load: Load = async ({ page, fetch }) => {
 		try {
-			const res = await fetch(`/games/${page.params.game}.json`);
+			const res = await fetch(`/spellen/${page.params.game}.json`);
 
 			if (res.ok) {
 				const game = await res.json();
@@ -58,7 +58,7 @@
 		return caches
 			.open('gamesCache')
 			.then((cache) => {
-				return cache.match(`/games/${game.slug}.json`);
+				return cache.match(`/spellen/${game.slug}.json`);
 			})
 			.then((response: Response | undefined) => {
 				if (response) game.offline = true;
@@ -69,15 +69,15 @@
 
 	function saveCache() {
 		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.add(`/games/${gameSlug}`))
+			caches.open('gamesCache').then((cache) => cache.add(`/spellen/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.add(`/spellen/${gameSlug}`))
 		]).then(() => (game.offline = true));
 	}
 
 	function deleteCache() {
 		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.delete(`/games/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/games/${gameSlug}`))
+			caches.open('gamesCache').then((cache) => cache.delete(`/spellen/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/spellen/${gameSlug}`))
 		]).then(() => (game.offline = false));
 	}
 </script>
