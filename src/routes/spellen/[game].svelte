@@ -99,6 +99,7 @@
 			>favorite_border</i
 		>
 		<i class="material-icons bouncy" class:is-liked={liked} class:not-liked={!liked}>favorite</i>
+		<span>{likes}</span>
 	</button>
 	<h1>{game.name}</h1>
 	<a class="hide-underline" href="/">&larr</a>
@@ -189,15 +190,19 @@
 	header button {
 		position: relative;
 		border: none;
-		width: 3em;
+		width: 4.5em;
 		height: 3em;
-		border-radius: 50%;
+		border-radius: 0.5em;
 		background: var(--color-light-grey);
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 		transition: all 0.4s;
 		overflow: hidden;
+	}
+
+	header button span {
+		color: var(--color-white);
 	}
 
 	header button i:nth-child(1) {
