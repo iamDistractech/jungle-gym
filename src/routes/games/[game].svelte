@@ -91,7 +91,7 @@
 
 <main>
 	<header>
-		<h2>{game.category} | {game.name}</h2>
+		<h2>{game.category.name || game.category} | {game.name}</h2>
 		<small>{game.minimumPlayers} | {game.name}</small>
 	</header>
 
@@ -105,7 +105,9 @@
 	<ul class="material-list">
 		{#each game.materials as material}
 			<li>
-				<ButtonLight on:click={toggleModal(material)}>{material.name}</ButtonLight>
+				<ButtonLight on:click={toggleModal(material)}
+					>{material.name || material.material.name}</ButtonLight
+				>
 			</li>
 		{/each}
 	</ul>
@@ -113,7 +115,7 @@
 	<h3>Spelregels</h3>
 	<ol>
 		{#each game.rules as rule}
-			<li>{rule}</li>
+			<li>{rule.description || rule}</li>
 		{/each}
 	</ol>
 
@@ -124,7 +126,7 @@
 		<ul>
 			{#each variation.actions as action}
 				<li>
-					{action}
+					{action.description || action}
 				</li>
 			{/each}
 		</ul>

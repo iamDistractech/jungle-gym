@@ -1,14 +1,11 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-
 	export const load: Load = async ({ page, fetch }) => {
 		try {
 			const { query } = page;
 			const res = await fetch(`/games.json?${query.toString()}`);
-
 			if (res.ok) {
 				const games = await res.json();
-
 				return {
 					props: {
 						games,
@@ -17,7 +14,6 @@
 					}
 				};
 			}
-
 			return {
 				props: {
 					status: res.status,
@@ -39,16 +35,13 @@
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
 	import { onMount } from 'svelte';
 	import type { Game } from '$lib/games';
-
 	export let offline;
 	export let games: Game[];
 	export let query;
-
 	onMount(() => {
 		if (!navigator.onLine) offline = true;
 		patchGames();
 	});
-
 	function patchGames() {
 		Promise.all(
 			games.map((game: Game) => {
