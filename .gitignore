@@ -19,3 +19,4 @@ functions
 .pnpm-debug.log
 
 .env
+.husky
