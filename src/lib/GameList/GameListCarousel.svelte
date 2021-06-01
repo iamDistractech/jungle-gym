@@ -1,32 +1,26 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
+	import GameListCard from '$lib/GameList/GameListCard.svelte';
 	export let gamesData: Game[];
 	export let carouselTitle;
-
-	// export let game: Game;
-
-	// Target Group Functionality
-	// const targetGroupArr = game.targetGroup;
-	// targetGroupArr.sort(function (a, b) {
-	// 	return a - b;
-	// });
-	// const minGroup = targetGroupArr[0];
-	// const maxGroup = targetGroupArr.slice(-1)[0];
-	// const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
 </script>
 
 <section>
-	<h2>{carouselTitle} - {gamesData.length}</h2>
+	<h1>{carouselTitle} - {gamesData.length}</h1>
 	<ul>
 		{#each gamesData as game}
-			<a href="spellen/{game.slug}">
-				<h1>{game.name}</h1>
+			<li>
+				<a href="spellen/{game.slug}">
+					<!-- <h1>{game.name}</h1>
 				<div>
 					<p class="label">Groep: {game.targetGroup}</p>
 					<p class="label">{game.category}</p>
 					<p class="label">Min. {game.minimumPlayers} spelers</p>
-				</div>
-			</a>
+				</div> -->
+
+					<GameListCard {game} />
+				</a>
+			</li>
 		{/each}
 	</ul>
 </section>
@@ -38,6 +32,7 @@
 		padding: 0 1.3rem;
 		overflow-x: auto;
 		display: flex;
+		gap: 10px;
 		padding-bottom: 1rem;
 		margin-left: -1.4rem;
 		margin-right: -1.4rem;
@@ -47,44 +42,12 @@
 		text-decoration: none;
 	}
 
-	ul a {
-		border-radius: 1em;
-		margin: 1em 0.4rem;
-		padding: 1.5rem 2rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		min-height: 11rem;
-		min-width: 11rem;
-		box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+	ul li {
+		height: auto;
+		min-width: 13rem;
 	}
 
-	ul a div {
-		width: 100%;
-	}
-
-	a h1 {
-		font-size: 1.2em;
-		color: var(--color-dark-blue);
-		font-weight: 600;
-		margin: 0;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	a h1::after {
-		content: '>';
-		border-radius: 50%;
-		padding: 0.3rem 0 0.3rem 0.3rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: none;
-		font-size: 1em;
-	}
-
-	h2 {
+	h1 {
 		font-size: 1.2em;
 		font-weight: 600;
 		margin-bottom: 0;
@@ -92,21 +55,5 @@
 
 	ul a:focus {
 		cursor: pointer;
-	}
-
-	p {
-		margin: 0;
-		font-size: 0.8em;
-		font-weight: 400;
-	}
-
-	.label {
-		background-color: var(--color-light-orange);
-		padding: 0.3em 1em;
-		border-radius: 1em;
-		margin-right: 0.5em;
-		font-size: 0.8em;
-		margin-bottom: 0.5em;
-		width: fit-content;
 	}
 </style>

@@ -1,5 +1,5 @@
 <section>
-	<h2>Uitgelichte spellen</h2>
+	<h1>Uitgelichte spellen</h1>
 	<ul>
 		<a href="spellen/#">
 			<div>
@@ -11,7 +11,7 @@
 </section>
 
 <style>
-	h2 {
+	h1 {
 		font-size: 1.2em;
 		font-weight: 600;
 		margin-bottom: 1em;

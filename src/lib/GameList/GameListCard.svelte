@@ -56,6 +56,8 @@
 		justify-content: space-between;
 		margin: 0;
 		margin-bottom: 1em;
+		line-height: 2em;
+		min-height: 4em;
 	}
 
 	article h1::after {
