@@ -11,11 +11,23 @@
 	}
 </script>
 
+<script lang="ts">
+	import { page } from '$app/stores';
+
+	let status: Number;
+	let slug: String;
+	let error: unknown;
+
+	page.subscribe((page) => {
+		slug = page.params.game;
+	});
+</script>
+
 <header>
 	<h1>Spel niet offline beschikbaar</h1>
 </header>
 <main>
-	<p>Dit spel is niet gedownload en dus niet offline beschikbaar.</p>
+	<p>Dit spel is niet gedownload en dus niet offline beschikbaar</p>
 </main>
 
 <style>
