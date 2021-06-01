@@ -43,7 +43,14 @@
 	page.subscribe((page) => (gameSlug = page.params.game));
 
 	let isModalOpen = false;
+	let likes = 0;
+	let liked = false;
 	let clickedMaterial;
+
+	function likedGame() {
+		liked = !liked;
+		liked ? (likes += 1) : (likes -= 1);
+	}
 
 	function toggleModal(material): any {
 		isModalOpen = !isModalOpen;
@@ -83,6 +90,17 @@
 </script>
 
 <header>
+	<button
+		on:click={likedGame}
+		class:is-liked-background={liked}
+		class:not-liked-background={!liked}
+	>
+		<i class="material-icons bouncy" class:is-liked={!liked} class:not-liked={liked}
+			>favorite_border</i
+		>
+		<i class="material-icons bouncy" class:is-liked={liked} class:not-liked={!liked}>favorite</i>
+		<span>{likes}</span>
+	</button>
 	<h1>{game.name}</h1>
 	<a class="hide-underline" href="/">&larr</a>
 </header>
@@ -148,7 +166,7 @@
 		display: flex;
 		flex-direction: row-reverse;
 		align-items: center;
-		justify-content: flex-end;
+		justify-content: space-between;
 		padding: 1.5em 0;
 	}
 
@@ -164,10 +182,77 @@
 		border: 1px solid var(--color-dark-blue);
 		height: 2.5em;
 		width: 2.5em;
-		margin-right: 2.5em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	header button {
+		position: relative;
+		border: none;
+		width: 4.5em;
+		height: 3em;
+		border-radius: 0.5em;
+		background: var(--color-light-grey);
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		transition: all 0.4s;
+		overflow: hidden;
+	}
+
+	header button span {
+		color: var(--color-white);
+	}
+
+	header button i:nth-child(1) {
+		color: var(--color-white);
+	}
+
+	header button i:nth-child(2) {
+		color: var(--color-white);
+	}
+
+	.is-liked {
+		display: block;
+	}
+
+	.not-liked {
+		display: none;
+	}
+
+	.is-liked-background {
+		background-color: var(--color-pink);
+		transition: all 0.2s ease-in;
+	}
+
+	.not-liked-background {
+		transition: all 0.2s ease-in;
+	}
+
+	@keyframes bouncy {
+		from,
+		to {
+			transform: scale(1, 1);
+		}
+		25% {
+			transform: scale(0.9, 1.1);
+		}
+		50% {
+			transform: scale(1.1, 0.9);
+		}
+		75% {
+			transform: scale(0.95, 1.05);
+		}
+	}
+
+	.bouncy {
+		-webkit-animation: bouncy 0.6s;
+		animation: bouncy 0.6s;
+		-webkit-animation-duration: 0.6s;
+		animation-duration: 0.6s;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
 	}
 
 	.image-card {
