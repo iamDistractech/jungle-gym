@@ -80,7 +80,7 @@
 	<GameListFilter {query} />
 {/if}
 
-<GameList {games} {offline} />
+<GameList {games} {offline} {query} />
 
 <style>
 	header {

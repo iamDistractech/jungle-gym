@@ -1,6 +1,7 @@
 <script lang="ts">
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
+	import { goto } from '$app/navigation';
 
 	export let query: URLSearchParams;
 
@@ -106,6 +107,10 @@
 	let targetGroup = false;
 	let minimumPlayers = false;
 	let materialen = false;
+
+	const resetAllFilters = () => {
+		goto('/spellen');
+	};
 </script>
 
 <section>
@@ -133,6 +138,8 @@
 			on:click={() => (minimumPlayers = !minimumPlayers)}
 		/> -->
 		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
+
+		<p on:click={resetAllFilters}>Reset filters</p>
 	</article>
 </section>
 
@@ -217,9 +224,13 @@
 		border-radius: 0em 0em 2em 2em;
 	}
 
+	article p {
+		text-align: end;
+	}
+
 	.filter-options-open {
 		max-height: 31.25em;
-		padding: 1.5em 1em;
+		padding: 1.5em 1em 0;
 		overflow: hidden;
 		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
 	}
