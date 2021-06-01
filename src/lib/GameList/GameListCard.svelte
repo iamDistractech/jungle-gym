@@ -6,18 +6,18 @@
 	let targetGroupArr;
 	const isNestedArray = game.targetGroup[0].group;
 
-	// Strapi API
 	if (isNestedArray) {
-		const targetGroupRawArr = game.targetGroup;
+		// Strapi API
 
+		const targetGroupRawArr = game.targetGroup;
 		targetGroupArr = targetGroupRawArr.map((a) => parseInt(a.group));
 
 		targetGroupArr.sort(function (a, b) {
 			return a - b;
 		});
-
-		// Custom API
 	} else {
+		// Custom API
+
 		targetGroupArr = game.targetGroup;
 		targetGroupArr.sort(function (a, b) {
 			return a - b;
@@ -25,7 +25,6 @@
 	}
 
 	// Target Group Functionality
-
 	const minGroup = targetGroupArr[0];
 	const maxGroup = targetGroupArr.slice(-1)[0];
 
