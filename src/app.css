@@ -16,7 +16,6 @@
 	--color-white: hsl(0, 0%, 100%);
 }
 
-
 body {
 	color: var(--color-grey);
 	font-family: var(--font-body);

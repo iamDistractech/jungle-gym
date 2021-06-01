@@ -15,7 +15,6 @@
 </header>
 <slot />
 
-
 <style>
 	header {
 		margin-top: 1.5rem;
@@ -33,12 +32,11 @@
 		padding: 0;
 		display: flex;
 		justify-content: center;
-		gap: 10px;	
+		gap: 10px;
 	}
 
 	nav a {
 		text-decoration: none;
 		color: var(--color-black);
 	}
-
 </style>

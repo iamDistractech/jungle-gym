@@ -75,7 +75,7 @@
 	{#if !offline}
 		<GameListFilter {query} />
 	{/if}
-	
+
 	<GameList {games} {offline} {query} />
 </main>
 

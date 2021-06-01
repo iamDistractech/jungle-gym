@@ -47,7 +47,6 @@
 		min-width: 13rem;
 	}
 
-
 	ul a:focus {
 		cursor: pointer;
 	}

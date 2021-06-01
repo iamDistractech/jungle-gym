@@ -262,5 +262,4 @@
 	.no-transform-button:active {
 		transform: none;
 	}
-
 </style>
