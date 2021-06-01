@@ -47,7 +47,7 @@ self.addEventListener('fetch', (event) => {
 	const request: Request = event.request;
 	const requestURL = new URL(request.url);
 
-	if (/(games\.json)/.test(requestURL.pathname)) {
+	if (/(spellen\.json)/.test(requestURL.pathname)) {
 		const returnOfflineGames = () => {
 			return fetch(event.request).catch((error) => {
 				return caches
