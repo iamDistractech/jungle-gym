@@ -12,7 +12,7 @@ const returnSSRpage = (path: string) => caches.open('ssrCache').then((cache) => 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		Promise.all([
-			caches.open('ssrCache').then((cache) => cache.addAll(['/', '/games/offline'])),
+			caches.open('ssrCache').then((cache) => cache.addAll(['/', '/spellen/offline'])),
 			caches.open(applicationCache).then((cache) => cache.addAll(build)),
 			caches.open(staticCache).then((cache) => cache.addAll(files))
 		])
@@ -71,14 +71,14 @@ self.addEventListener('fetch', (event) => {
 
 		event.respondWith(returnOfflineGames());
 	} else if (
-		/(\/games\/)(\w+-?)*/.test(requestURL.pathname) &&
+		/(\/spellen\/)(\w+-?)*/.test(requestURL.pathname) &&
 		!/(.css)|(.js)$/.test(requestURL.pathname)
 	) {
 		const findOfflineGame = () =>
 			caches
 				.match(request)
 				.then((response) => (response ? response : fetch(request)))
-				.catch((error) => returnSSRpage('/games/offline'));
+				.catch((error) => returnSSRpage('/spellen/offline'));
 
 		event.respondWith(findOfflineGame());
 	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));

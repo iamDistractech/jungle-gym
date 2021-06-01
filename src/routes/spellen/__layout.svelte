@@ -1,5 +1,5 @@
 <nav>
-	<a href="/">terug naar speloverzicht</a>
+	<a href="/spellen">terug naar speloverzicht</a>
 </nav>
 
 <slot />
