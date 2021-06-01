@@ -2,8 +2,10 @@
 	import type { Game } from '$lib/games';
 	import GameListCard from '$lib/GameList/GameListCard.svelte';
 	import OfflineCard from '$lib/ErrorCard/ErrorCard.svelte';
+	import GameListFilterButtons from '$lib/GameList/GameListFilterButtons.svelte';
 
 	export let games: Game[];
+	export let query: string;
 	export let offline: boolean;
 
 	let ErrorMessage =
@@ -14,12 +16,14 @@
 
 <section>
 	<h1>Spellen</h1>
+
+	<GameListFilterButtons {query} />
 	<ul>
 		{#if offline}
 			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
 		{/if}
 		{#each games as game}
-			<li><a sveltekit:prefetch href="games/{game.slug}"><GameListCard {game} /> </a></li>
+			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameListCard {game} /> </a></li>
 		{/each}
 	</ul>
 </section>

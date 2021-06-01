@@ -3,7 +3,7 @@
 
 	export const load: Load = async ({ page, fetch }) => {
 		try {
-			const res = await fetch(`/games/${page.params.game}.json`);
+			const res = await fetch(`/spellen/${page.params.game}.json`);
 
 			if (res.ok) {
 				const game = await res.json();
@@ -23,8 +23,8 @@
 			};
 		} catch (error) {
 			return {
-				error: 'Sorry, we could not find that page..',
-				status: 404
+				error: 'offline',
+				status: 400
 			};
 		}
 	};
@@ -43,7 +43,14 @@
 	page.subscribe((page) => (gameSlug = page.params.game));
 
 	let isModalOpen = false;
+	let likes = 0;
+	let liked = false;
 	let clickedMaterial;
+
+	function likedGame() {
+		liked = !liked;
+		liked ? (likes += 1) : (likes -= 1);
+	}
 
 	function toggleModal(material): any {
 		isModalOpen = !isModalOpen;
@@ -58,7 +65,7 @@
 		return caches
 			.open('gamesCache')
 			.then((cache) => {
-				return cache.match(`/games/${game.slug}.json`);
+				return cache.match(`/spellen/${game.slug}.json`);
 			})
 			.then((response: Response | undefined) => {
 				if (response) game.offline = true;
@@ -69,29 +76,39 @@
 
 	function saveCache() {
 		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.add(`/games/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.add(`/games/${gameSlug}`))
+			caches.open('gamesCache').then((cache) => cache.add(`/spellen/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.add(`/spellen/${gameSlug}`))
 		]).then(() => (game.offline = true));
 	}
 
 	function deleteCache() {
 		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.delete(`/games/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/games/${gameSlug}`))
+			caches.open('gamesCache').then((cache) => cache.delete(`/spellen/${gameSlug}.json`)),
+			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/spellen/${gameSlug}`))
 		]).then(() => (game.offline = false));
 	}
 </script>
 
 <header>
+	<button
+		on:click={likedGame}
+		class:is-liked-background={liked}
+		class:not-liked-background={!liked}
+	>
+		<i class="material-icons bouncy" class:is-liked={!liked} class:not-liked={liked}
+			>favorite_border</i
+		>
+		<i class="material-icons bouncy" class:is-liked={liked} class:not-liked={!liked}>favorite</i>
+		<span>{likes}</span>
+	</button>
 	<h1>{game.name}</h1>
-	<a class="hide-underline" href="/">&larr</a>
 </header>
 
 <div class="image-card" />
 
 <main>
 	<header>
-		<h2>{game.category} | {game.name}</h2>
+		<h2>{game.category.name || game.category} | {game.name}</h2>
 		<small>{game.minimumPlayers} | {game.name}</small>
 	</header>
 
@@ -105,7 +122,9 @@
 	<ul class="material-list">
 		{#each game.materials as material}
 			<li>
-				<ButtonLight on:click={toggleModal(material)}>{material.name}</ButtonLight>
+				<ButtonLight on:click={toggleModal(material)}
+					>{material.name || material.material.name}</ButtonLight
+				>
 			</li>
 		{/each}
 	</ul>
@@ -113,7 +132,7 @@
 	<h3>Spelregels</h3>
 	<ol>
 		{#each game.rules as rule}
-			<li>{rule}</li>
+			<li>{rule.description || rule}</li>
 		{/each}
 	</ol>
 
@@ -124,7 +143,7 @@
 		<ul>
 			{#each variation.actions as action}
 				<li>
-					{action}
+					{action.description || action}
 				</li>
 			{/each}
 		</ul>
@@ -147,25 +166,82 @@
 		flex-direction: row-reverse;
 		align-items: center;
 		justify-content: flex-end;
-		padding: 1.5em 0;
+		padding: 0 0 1.5em 0;
 	}
 
 	header h1 {
 		font-size: 1.5em;
 		font-weight: 600;
 		font-family: var(--font-heading);
+		margin-top: 0.2em;
 	}
 
-	header a {
-		border-radius: 50%;
-		background-color: var(--color-white);
-		border: 1px solid var(--color-dark-blue);
-		height: 2.5em;
-		width: 2.5em;
-		margin-right: 2.5em;
+	header button {
+		position: relative;
+		border: none;
+		width: 4.5em;
+		height: 3em;
+		border-radius: 0.5em;
+		background: var(--color-light-grey);
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
+		transition: all 0.4s;
+		overflow: hidden;
+	}
+
+	header button span {
+		color: var(--color-white);
+	}
+
+	header button i:nth-child(1) {
+		color: var(--color-white);
+	}
+
+	header button i:nth-child(2) {
+		color: var(--color-white);
+	}
+
+	.is-liked {
+		display: block;
+	}
+
+	.not-liked {
+		display: none;
+	}
+
+	.is-liked-background {
+		background-color: var(--color-pink);
+		transition: all 0.2s ease-in;
+	}
+
+	.not-liked-background {
+		transition: all 0.2s ease-in;
+	}
+
+	@keyframes bouncy {
+		from,
+		to {
+			transform: scale(1, 1);
+		}
+		25% {
+			transform: scale(0.9, 1.1);
+		}
+		50% {
+			transform: scale(1.1, 0.9);
+		}
+		75% {
+			transform: scale(0.95, 1.05);
+		}
+	}
+
+	.bouncy {
+		-webkit-animation: bouncy 0.6s;
+		animation: bouncy 0.6s;
+		-webkit-animation-duration: 0.6s;
+		animation-duration: 0.6s;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
 	}
 
 	.image-card {

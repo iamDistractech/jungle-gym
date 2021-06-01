@@ -6,11 +6,13 @@ declare const self;
 const applicationCache = `applicationCache-v${timestamp}`;
 const staticCache = `staticCache-v${timestamp}`;
 
+const returnSSRpage = (path: string) => caches.open('ssrCache').then((cache) => cache.match(path));
+
 // Caches the svelte app (not the data)
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		Promise.all([
-			caches.open('gameCacheSSR').then((cache) => cache.add('/')),
+			caches.open('ssrCache').then((cache) => cache.addAll(['/', '/spellen/offline'])),
 			caches.open(applicationCache).then((cache) => cache.addAll(build)),
 			caches.open(staticCache).then((cache) => cache.addAll(files))
 		])
@@ -33,7 +35,7 @@ self.addEventListener('activate', (event) => {
 								key !== applicationCache &&
 								key !== staticCache &&
 								key !== 'gameCache' &&
-								key !== 'gameCacheSSR'
+								key !== 'ssrCache'
 						)
 						.map((key) => caches.delete(key))
 				);
@@ -47,7 +49,7 @@ self.addEventListener('fetch', (event) => {
 	const request: Request = event.request;
 	const requestURL = new URL(request.url);
 
-	if (/(games\.json)/.test(requestURL.pathname)) {
+	if (/(spellen\.json)/.test(requestURL.pathname)) {
 		const returnOfflineGames = () => {
 			return fetch(event.request).catch((error) => {
 				return caches
@@ -68,5 +70,16 @@ self.addEventListener('fetch', (event) => {
 		};
 
 		event.respondWith(returnOfflineGames());
+	} else if (
+		/(\/spellen\/)(\w+-?)*/.test(requestURL.pathname) &&
+		!/(.css)|(.js)$/.test(requestURL.pathname)
+	) {
+		const findOfflineGame = () =>
+			caches
+				.match(request)
+				.then((response) => (response ? response : fetch(request)))
+				.catch((error) => returnSSRpage('/spellen/offline'));
+
+		event.respondWith(findOfflineGame());
 	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
 });
