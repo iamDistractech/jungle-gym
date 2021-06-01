@@ -258,4 +258,9 @@
 	.border-change-open {
 		border-radius: 1em 1em 0em 0em;
 	}
+
+	.no-transform-button:active {
+		transform: none;
+	}
+
 </style>

@@ -67,7 +67,7 @@
 	}
 
 	article h1 {
-		color: var(--color-dark-blue);
+		/* color: var(--color-dark-blue); */
 		display: flex;
 		justify-content: space-between;
 		margin: 0;
