@@ -55,7 +55,7 @@
 				return caches
 					.open('gamesCache')
 					.then((cache) => {
-						return cache.match(`/games/${game.slug}.json`);
+						return cache.match(`/spellen/${game.slug}.json`);
 					})
 					.then((response: Response | undefined) => {
 						if (response) game.offline = true;
