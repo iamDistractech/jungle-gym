@@ -6,6 +6,8 @@ declare const self;
 const applicationCache = `applicationCache-v${timestamp}`;
 const staticCache = `staticCache-v${timestamp}`;
 
+const returnSSRpage = (path: string) => caches.open('ssrCache').then((cache) => cache.match(path));
+
 // Caches the svelte app (not the data)
 self.addEventListener('install', (event) => {
 	event.waitUntil(
@@ -68,5 +70,16 @@ self.addEventListener('fetch', (event) => {
 		};
 
 		event.respondWith(returnOfflineGames());
+	} else if (
+		/(\/games\/)(\w+-?)*/.test(requestURL.pathname) &&
+		!/(.css)|(.js)$/.test(requestURL.pathname)
+	) {
+		const findOfflineGame = () =>
+			caches
+				.match(request)
+				.then((response) => (response ? response : fetch(request)))
+				.catch((error) => returnSSRpage('/games/offline'));
+
+		event.respondWith(findOfflineGame());
 	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
 });
