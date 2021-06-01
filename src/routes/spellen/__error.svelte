@@ -15,7 +15,7 @@
 	<h1>Spel niet offline beschikbaar</h1>
 </header>
 <main>
-	<p>Dit spel is niet gedownload en dus niet offline beschikbaar</p>
+	<p>Dit spel is niet gedownload en dus niet offline beschikbaar.</p>
 </main>
 
 <style>
