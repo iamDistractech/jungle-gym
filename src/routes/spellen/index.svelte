@@ -71,16 +71,13 @@
 	}
 </script>
 
-<header>
-	<h1>John Doe</h1>
-	<h2>Goedemorgen!</h2>
-</header>
+<main>
+	{#if !offline}
+		<GameListFilter {query} />
+	{/if}
 
-{#if !offline}
-	<GameListFilter {query} />
-{/if}
-
-<GameList {games} {offline} {query} />
+	<GameList {games} {offline} {query} />
+</main>
 
 <style>
 	header {

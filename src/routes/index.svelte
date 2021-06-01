@@ -35,21 +35,11 @@
 	const newestGames = games.slice(Math.max(games.length - 4, 0));
 </script>
 
-<header>
-	<h1>Jungle Gym</h1>
-</header>
-
-<GameListHighlighted />
-<GameListCarousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
-<GameListCarousel gamesData={games} carouselTitle="Favoriete spellen" />
+<main>
+	<GameListHighlighted />
+	<GameListCarousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
+	<GameListCarousel gamesData={games} carouselTitle="Favoriete spellen" />
+</main>
 
 <style>
-	h1 {
-		text-align: center;
-	}
-
-	header {
-		font-family: var(--font-heading);
-		padding: 2rem 0 1rem;
-	}
 </style>
