@@ -21,7 +21,7 @@
 		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
 
 		const searchParams = new URLSearchParams(queries);
-		goto(`/?${searchParams.toString()}`).then(() => closeFilter());
+		goto(`/spellen/?${searchParams.toString()}`).then(() => closeFilter());
 	}
 
 	function submitMinimalPlayerForm(minimulPlayerCount) {
@@ -103,7 +103,6 @@
 		border: none;
 		padding: 0;
 		margin: 0;
-		max-height: 30vh;
 		overflow-y: auto;
 	}
 
