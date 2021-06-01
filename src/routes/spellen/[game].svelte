@@ -23,8 +23,8 @@
 			};
 		} catch (error) {
 			return {
-				error: 'Sorry, we could not find that page..',
-				status: 404
+				error: 'offline',
+				status: 400
 			};
 		}
 	};
@@ -102,7 +102,6 @@
 		<span>{likes}</span>
 	</button>
 	<h1>{game.name}</h1>
-	<a class="hide-underline" href="/">&larr</a>
 </header>
 
 <div class="image-card" />
@@ -166,25 +165,15 @@
 		display: flex;
 		flex-direction: row-reverse;
 		align-items: center;
-		justify-content: space-between;
-		padding: 1.5em 0;
+		justify-content: flex-end;
+		padding: 0 0 1.5em 0;
 	}
 
 	header h1 {
 		font-size: 1.5em;
 		font-weight: 600;
 		font-family: var(--font-heading);
-	}
-
-	header a {
-		border-radius: 50%;
-		background-color: var(--color-white);
-		border: 1px solid var(--color-dark-blue);
-		height: 2.5em;
-		width: 2.5em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		margin-top: 0.2em;
 	}
 
 	header button {

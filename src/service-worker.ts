@@ -10,7 +10,7 @@ const staticCache = `staticCache-v${timestamp}`;
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		Promise.all([
-			caches.open('gameCacheSSR').then((cache) => cache.add('/')),
+			caches.open('ssrCache').then((cache) => cache.addAll(['/', '/games/offline'])),
 			caches.open(applicationCache).then((cache) => cache.addAll(build)),
 			caches.open(staticCache).then((cache) => cache.addAll(files))
 		])
@@ -33,7 +33,7 @@ self.addEventListener('activate', (event) => {
 								key !== applicationCache &&
 								key !== staticCache &&
 								key !== 'gameCache' &&
-								key !== 'gameCacheSSR'
+								key !== 'ssrCache'
 						)
 						.map((key) => caches.delete(key))
 				);
