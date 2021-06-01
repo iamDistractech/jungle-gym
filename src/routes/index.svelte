@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-
 	export const load: Load = async ({ page, fetch }) => {
 		const { query } = page;
 		const res = await fetch(`/spellen.json?${query.toString()}`);

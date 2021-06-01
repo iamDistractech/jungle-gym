@@ -3,12 +3,28 @@
 
 	export let game: Game;
 
-	// Target Group Functionality
-	const targetGroupArr = game.targetGroup;
-	targetGroupArr.sort(function (a, b) {
-		return a - b;
-	});
+	let targetGroupArr;
+	const isNestedArray = game.targetGroup[0].group;
 
+	if (isNestedArray) {
+		// Strapi API
+
+		const targetGroupRawArr = game.targetGroup;
+		targetGroupArr = targetGroupRawArr.map((a) => parseInt(a.group));
+
+		targetGroupArr.sort(function (a, b) {
+			return a - b;
+		});
+	} else {
+		// Custom API
+
+		targetGroupArr = game.targetGroup;
+		targetGroupArr.sort(function (a, b) {
+			return a - b;
+		});
+	}
+
+	// Target Group Functionality
 	const minGroup = targetGroupArr[0];
 	const maxGroup = targetGroupArr.slice(-1)[0];
 
@@ -19,7 +35,7 @@
 	<h1>{game.name}</h1>
 	<ul>
 		<li>{targetGroupString}</li>
-		<li class="category-label">{game.category}</li>
+		<li class="category-label">{game.category.name || game.category}</li>
 		<li>Min. spelers: {game.minimumPlayers}</li>
 		{#if game.offline}
 			<li class="offline">Offline Beschikbaar</li>
