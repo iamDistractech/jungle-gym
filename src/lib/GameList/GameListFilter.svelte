@@ -108,7 +108,8 @@
 	let minimumPlayers = false;
 	let materialen = false;
 
-	const resetAllFilters = () => {
+	const resetAllFilters = (event) => {
+		event.preventDefault();
 		goto('/spellen');
 	};
 </script>
@@ -139,7 +140,9 @@
 		/> -->
 		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 
-		<p on:click={resetAllFilters}>Reset filters</p>
+		<div>
+			<a href="/spellen" on:click={resetAllFilters}>Reset filters</a>
+		</div>
 	</article>
 </section>
 
@@ -224,8 +227,13 @@
 		border-radius: 0em 0em 2em 2em;
 	}
 
-	article p {
-		text-align: end;
+	article div a {
+		display: flex;
+		justify-content: flex-end;
+		text-decoration: none;
+		color: var(--color-black);
+		padding: 0.5rem;
+		cursor: pointer;
 	}
 
 	.filter-options-open {
