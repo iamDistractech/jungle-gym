@@ -9,7 +9,7 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/spellen">Speloverzicht</a></li>
-			<li><a href="/login">Inloggen</a></li>
+			<li><a href="/">Inloggen</a></li>
 		</ul>
 	</nav>
 </header>
