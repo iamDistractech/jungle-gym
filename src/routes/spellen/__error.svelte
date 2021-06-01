@@ -11,18 +11,6 @@
 	}
 </script>
 
-<script lang="ts">
-	import { page } from '$app/stores';
-
-	let status: Number;
-	let slug: String;
-	let error: unknown;
-
-	page.subscribe((page) => {
-		slug = page.params.game;
-	});
-</script>
-
 <header>
 	<h1>Spel niet offline beschikbaar</h1>
 </header>
