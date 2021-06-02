@@ -5,8 +5,6 @@
 		const { query } = page
 		const redirectPage = query.get('page')
 
-		console.log(session)
-
 		if(session.authenticated) return {
 			status: 302,
 			redirect: '/account'
@@ -40,7 +38,6 @@
 	}
 
 	function handleError(event){
-		console.log(event.detail)
 		error = event.detail.message
 	}
 
