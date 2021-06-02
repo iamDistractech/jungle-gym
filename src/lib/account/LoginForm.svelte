@@ -27,7 +27,6 @@
 				dispatch('failure', await response.json())
 			}
 		} catch(error) {
-			console.log(error)
 			dispatch('error', error)
 		}
 	}
