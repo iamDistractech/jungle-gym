@@ -137,7 +137,9 @@
 		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 
 		<div>
-			<a href="/spellen" on:click={resetAllFilters}>Reset filters</a>
+			<a href="/spellen" on:click={resetAllFilters}
+				>Reset filters<i class="material-icons">cached</i></a
+			>
 		</div>
 	</article>
 </section>
@@ -230,6 +232,10 @@
 		color: var(--color-black);
 		padding: 0.5rem;
 		cursor: pointer;
+	}
+
+	article div a i {
+		padding-left: 0.3em;
 	}
 
 	.filter-options-open {
