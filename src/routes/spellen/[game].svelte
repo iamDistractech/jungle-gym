@@ -150,9 +150,9 @@
 	{/each}
 </main>
 
-<a href="#" class="edit-element">
+<!-- <a href="#" class="edit-element">
 	<img src="/icons/edit.svg" alt="" />
-</a>
+</a> -->
 
 {#if game.offline}
 	<ButtonLight on:click={deleteCache}>Offline beschikbaar uit</ButtonLight>
@@ -278,7 +278,7 @@
 		margin-bottom: 0;
 	}
 
-	.edit-element {
+	/* .edit-element {
 		position: fixed;
 		right: 5%;
 		bottom: 2%;
@@ -296,5 +296,5 @@
 	.edit-element img {
 		height: 3em;
 		width: 3em;
-	}
+	} */
 </style>
