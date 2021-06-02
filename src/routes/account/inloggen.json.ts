@@ -56,6 +56,6 @@ export const post: RequestHandler = async (request: Request) => {
 	return {
 		status: 200,
 		headers,
-		body: { message: 'success'}
+		body: { message: 'success', user}
 	}
 }

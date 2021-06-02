@@ -26,11 +26,15 @@
 	import LoginForm from '$lib/account/LoginForm.svelte'
 	import { session } from "$app/stores";
 
+	// Session is a workaround of a Svelte bug
+	let currentSession = $session;
+
 	export let redirectPage
 	export let error
 
-	function redirectToProfile(){
-
+	function redirectToProfile(event){
+		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
+		session.set({authenticated: true, user: event.detail.user})
 		if(redirectPage) goto(redirectPage)
 		goto('/account')
 	}
@@ -51,3 +55,8 @@
 {#if error} 
 	<p>{error}</p>
 {/if}
+
+{#if redirectPage} 
+	<p>Please login first to view this page</p>
+{/if}
+

@@ -3,8 +3,6 @@ import type { Load } from "@sveltejs/kit";
 	export const load: Load = ({session, page}) => {
 		const {user, authenticated} = session
 
-		console.log(user, authenticated)
-
 		if(!authenticated) {
 			const query = new URLSearchParams()
 			query.append('page', page.path)
