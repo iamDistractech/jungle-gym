@@ -3,4 +3,4 @@ export const user = {
 	password: 'abce',
 	name: 'John Doe',
 	admin: false
-}
+};

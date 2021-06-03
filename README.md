@@ -34,7 +34,9 @@ The **Meesterproef** is the final client-project of the half year minor programm
 ### Tech stack
 
 ## Prerequisites
-* Redis database for session storage
+
+- Redis database for session storage
+
 ## :gear: Installation
 
 ### Developing
