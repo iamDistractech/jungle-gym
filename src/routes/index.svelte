@@ -29,7 +29,6 @@
 <script lang="ts">
 	import GameListHighlighted from '$lib/GameList/GameListHighlighted.svelte';
 	import GameListCarousel from '$lib/GameList/GameListCarousel.svelte';
-	import Snackbar from '$lib/Snackbar/Snackbar.svelte';
 	import type { Game } from '$lib/games';
 
 	export let games: Game[];
@@ -40,7 +39,6 @@
 	<GameListHighlighted />
 	<GameListCarousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
 	<GameListCarousel gamesData={games} carouselTitle="Favoriete spellen" />
-	<Snackbar snackbarMessage="This is an error message" />
 </main>
 
 <style>
