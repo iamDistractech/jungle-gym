@@ -25,7 +25,7 @@
 			<!-- {#if pathName === '/'} -->
 			<!-- <li><a class="active-path" href="/inloggen">Inloggen</a></li> -->
 			<!-- {:else} -->
-			<li><a href="/inloggen">Inloggen</a></li>
+			<li><a href="/">Inloggen</a></li>
 			<!-- {/if} -->
 		</ul>
 	</nav>
