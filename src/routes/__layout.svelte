@@ -1,15 +1,32 @@
 <script>
+	import { page } from '$app/stores';
 	import '../fonts.css';
 	import '../app.css';
+
+	$: pathName = $page.path;
 </script>
 
 <header>
 	<h1>Jungle Gym</h1>
 	<nav>
 		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/spellen">Speloverzicht</a></li>
+			{#if pathName === '/'}
+				<li><a class="active-path" href="/">Home</a></li>
+			{:else}
+				<li><a href="/">Home</a></li>
+			{/if}
+
+			{#if pathName === '/spellen'}
+				<li><a class="active-path" href="/spellen">Speloverzicht</a></li>
+			{:else}
+				<li><a href="/spellen">Speloverzicht</a></li>
+			{/if}
+
+			<!-- {#if pathName === '/'} -->
+			<!-- <li><a class="active-path" href="/inloggen">Inloggen</a></li> -->
+			<!-- {:else} -->
 			<li><a href="/">Inloggen</a></li>
+			<!-- {/if} -->
 		</ul>
 	</nav>
 </header>
@@ -71,5 +88,22 @@
 	a:focus::before {
 		transform-origin: left top;
 		transform: scale(1, 1);
+	}
+
+	.active-path {
+		color: var(--color-black);
+	}
+
+	.active-path::before {
+		content: '';
+		position: absolute;
+		bottom: 10%;
+		left: 0;
+		height: 0.1em;
+		width: 100%;
+		background-color: var(--color-black);
+		transform-origin: right top;
+		transform: scale(1, 1);
+		transition: color 0.1s, transform 0.2s ease-out;
 	}
 </style>
