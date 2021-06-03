@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
+	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 
 	export let game: Game;
 
@@ -42,11 +43,12 @@
 		<h2>Offline beschikbaar</h2>
 	{/if}
 	<ul>
-		<li>{targetGroupString}</li>
-		<li class="category-label">{game.category.name || game.category}</li>
-		<li class="min-players-label">
+		<CardLabel>{targetGroupString}</CardLabel>
+		<CardLabel>{game.category.name || game.category}</CardLabel>
+		<CardLabel>
+			<i class="icon-persons" />
 			{game.minimumPlayers}
-		</li>
+		</CardLabel>
 	</ul>
 </article>
 
@@ -58,10 +60,6 @@
 		padding: 1em;
 		justify-content: space-between;
 		filter: drop-shadow(0 0.2em 0.2em hsl(120, 46%, 89%));
-	}
-	li.offline {
-		background-color: var(--color-grey);
-		color: var(--color-white);
 	}
 
 	ul {
@@ -87,8 +85,9 @@
 		width: 2em;
 		height: 2em;
 	}
-	.min-players-label::before {
+	.icon-persons::before {
 		content: '';
+		display: block;
 		background: url('$lib/assets/icons/GameCard/minPlayers.svg') no-repeat center;
 		width: 2em;
 		height: 2em;
@@ -105,23 +104,7 @@
 		opacity: 0.5;
 	}
 
-	li {
-		display: flex;
-		align-items: center;
-		background-color: var(--color-light-orange);
-		color: var(--color-black);
-		padding: 0.3em 1em;
-		border-radius: 1em;
-		margin-right: 0.5em;
-		font-size: 0.8em;
-		margin-bottom: 0.5em;
-	}
-
 	ul {
 		margin-top: 1em;
-	}
-
-	.category-label {
-		text-transform: capitalize;
 	}
 </style>
