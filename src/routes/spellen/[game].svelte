@@ -166,11 +166,6 @@
 		padding: 0 0 1.5em 0;
 	}
 
-	.main-header-detail {
-		display: flex;
-		justify-content: center;
-	}
-
 	h3 {
 		font-size: 1.7em;
 	}
@@ -267,11 +262,6 @@
 		display: flex;
 		flex-direction: column-reverse;
 		margin-top: 1em;
-	}
-
-	main header small {
-		font-size: 1em;
-		color: var(--color-grey);
 	}
 
 	main header h2 {

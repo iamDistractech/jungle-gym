@@ -1,7 +1,6 @@
 <script>
 	import { slide } from 'svelte/transition';
 	export let variation;
-	console.log(variation);
 	let isOpen = false;
 	const toggle = () => (isOpen = !isOpen);
 </script>
