@@ -22,11 +22,11 @@
 				<li><a href="/spellen">Speloverzicht</a></li>
 			{/if}
 
-			{#if pathName === '/'}
-				<li><a class="active-path" href="/inloggen">Inloggen</a></li>
-			{:else}
-				<li><a href="/inloggen">Inloggen</a></li>
-			{/if}
+			<!-- {#if pathName === '/'} -->
+			<!-- <li><a class="active-path" href="/inloggen">Inloggen</a></li> -->
+			<!-- {:else} -->
+			<li><a href="/inloggen">Inloggen</a></li>
+			<!-- {/if} -->
 		</ul>
 	</nav>
 </header>
