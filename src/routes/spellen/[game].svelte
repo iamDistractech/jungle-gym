@@ -32,6 +32,8 @@
 
 <script lang="ts">
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
+	import Accordion from '$lib/GamePage/Accordion.svelte';
 	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -89,8 +91,17 @@
 	}
 </script>
 
-<header>
+<main>
+	<header>
+		<h2>{game.category.name || game.category} | {game.name}</h2>
+	</header>
+
+	<p>{game.description}</p>
+
+	<div class="image-card" />
+
 	<button
+		class="like-btn"
 		on:click={likedGame}
 		class:is-liked-background={liked}
 		class:not-liked-background={!liked}
@@ -101,64 +112,50 @@
 		<i class="material-icons bouncy" class:is-liked={liked} class:not-liked={!liked}>favorite</i>
 		<span>{likes}</span>
 	</button>
-	<h1>{game.name}</h1>
-</header>
-
-<div class="image-card" />
-
-<main>
-	<header>
-		<h2>{game.category.name || game.category} | {game.name}</h2>
-		<small>{game.minimumPlayers} | {game.name}</small>
-	</header>
-
-	<p>{game.description}</p>
 
 	{#if isModalOpen}
 		<MaterialModal material={clickedMaterial} on:close={toggleModal} />
 	{/if}
 
-	<h3>Materialen</h3>
-	<ul class="material-list">
-		{#each game.materials as material}
-			<li>
-				<ButtonLight on:click={toggleModal(material)}
-					>{material.name || material.material.name}</ButtonLight
-				>
-			</li>
-		{/each}
-	</ul>
-
-	<h3>Spelregels</h3>
-	<ol>
-		{#each game.rules as rule}
-			<li>{rule.description || rule}</li>
-		{/each}
-	</ol>
-
-	<h3>Variaties</h3>
-
-	{#each game.variation as variation}
-		<h4>{variation.description}</h4>
-		<ul>
-			{#each variation.actions as action}
+	<section>
+		<h3>Materialen</h3>
+		<ul class="material-list">
+			{#each game.materials as material}
 				<li>
-					{action.description || action}
+					<MaterialButton on:click={toggleModal(material)}
+						>{material.name || material.material.name}</MaterialButton
+					>
 				</li>
 			{/each}
 		</ul>
-	{/each}
+	</section>
+
+	<section>
+		<h3>Spelregels</h3>
+		<ul>
+			{#each game.rules as rule}
+				<li>{rule.description || rule}</li>
+			{/each}
+		</ul>
+	</section>
+
+	<section>
+		<h3>Variaties</h3>
+		{#each game.variation as variation}
+			<Accordion {variation} />
+		{/each}
+	</section>
 </main>
 
-<!-- <a href="#" class="edit-element">
-	<img src="/icons/edit.svg" alt="" />
-</a> -->
+<section class="download-button-container">
+	{#if game.offline}
+		<ButtonLight on:click={deleteCache}>Spel is gedownload</ButtonLight>
+	{:else}
+		<ButtonLight on:click={saveCache}>Download dit spel</ButtonLight>
+	{/if}
 
-{#if game.offline}
-	<ButtonLight on:click={deleteCache}>Offline beschikbaar uit</ButtonLight>
-{:else}
-	<ButtonLight on:click={saveCache}>Offline beschikbaar aan</ButtonLight>
-{/if}
+	<p><i>Download het spel, zodat jij het kunt bekijken zonder internet.</i></p>
+</section>
 
 <style>
 	header {
@@ -169,14 +166,16 @@
 		padding: 0 0 1.5em 0;
 	}
 
-	header h1 {
-		font-size: 1.5em;
-		font-weight: 600;
-		font-family: var(--font-heading);
-		margin-top: 0.2em;
+	.main-header-detail {
+		display: flex;
+		justify-content: center;
 	}
 
-	header button {
+	h3 {
+		font-size: 1.7em;
+	}
+
+	.like-btn {
 		position: relative;
 		border: none;
 		width: 4.5em;
@@ -190,15 +189,15 @@
 		overflow: hidden;
 	}
 
-	header button span {
+	.like-btn span {
 		color: var(--color-white);
 	}
 
-	header button i:nth-child(1) {
+	.like-btn i:nth-child(1) {
 		color: var(--color-white);
 	}
 
-	header button i:nth-child(2) {
+	.like-btn i:nth-child(2) {
 		color: var(--color-white);
 	}
 
@@ -248,6 +247,7 @@
 		background-color: var(--color-turquoise);
 		height: 15em;
 		border-radius: 1.5em;
+		margin: 2em 0;
 	}
 
 	.material-list {
@@ -276,6 +276,18 @@
 
 	main header h2 {
 		margin-bottom: 0;
+		font-size: 2em;
+	}
+
+	.download-button-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 3rem 2rem;
+	}
+
+	.download-button-container p {
+		text-align: center;
 	}
 
 	/* .edit-element {
