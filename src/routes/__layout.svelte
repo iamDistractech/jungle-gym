@@ -4,43 +4,33 @@
 	import '../app.css';
 
 	$: pathName = $page.path;
+
 </script>
 
 <header>
 	<h1>Jungle Gym</h1>
 	<nav>
 		<ul>
-			{#if pathName === '/'}
-				<li><a class="active-path" href="/">Home</a></li>
-			{:else}
-				<li><a href="/">Home</a></li>
-			{/if}
-
-			{#if pathName === '/spellen'}
-				<li><a class="active-path" href="/spellen">Speloverzicht</a></li>
-			{:else}
-				<li><a href="/spellen">Speloverzicht</a></li>
-			{/if}
-
-			<!-- {#if pathName === '/'} -->
-			<!-- <li><a class="active-path" href="/inloggen">Inloggen</a></li> -->
-			<!-- {:else} -->
-			<li><a href="/">Inloggen</a></li>
-			<!-- {/if} -->
+			<li><a class="{ pathName === '/' ? 'active-path' : ''}" href="/"><i class="material-icons">home</i>Home</a></li>
+			<li><a class="{ /(spellen)/.test(pathName) ? 'active-path' : ''}" href="/spellen"><i class="material-icons">format_list_bulleted</i>Speloverzicht</a></li>
+			<li><a href="#" class="{ pathName === '/inloggen' ? 'active-path' : ''}"><i class="material-icons">person</i>Inloggen</a></li>
 		</ul>
 	</nav>
 </header>
 <slot />
 
 <style>
+	
 	header {
-		margin-top: 1.5rem;
+		padding-top: .5rem;
 		margin-bottom: 2rem;
+		box-shadow: 0 2px 6px 2px rgba(201, 201, 201, 0.2);
 	}
 	h1 {
 		text-align: center;
-		margin: 0.5em;
+		font-size: var(--font-heading-base-size) ;
 		padding: 0;
+		margin: 0;
 	}
 
 	header nav ul {
@@ -48,62 +38,36 @@
 		margin: 0;
 		padding: 0;
 		display: flex;
+		justify-content: stretch;
+		
+	}
+
+	header nav li {
+		flex: 1 1 auto
+	}
+
+	header nav a {
+		text-decoration: none;
+		display: flex;
 		justify-content: center;
-		gap: 30px;
+		align-items: center;
+		font-size: .8em;
+		/* font-weight: bolder; */
+		padding: 1em;
+		color: var(--color-accent-1);
 	}
 
-	nav a {
-		text-decoration: none;
-		color: var(--color-light-orange-hover);
-		position: relative;
-		display: block;
-		padding: 0.8em 0;
-		letter-spacing: 1px;
-		transition: color 0.1s, background-color 0.1s, padding 0.2s ease-in;
+	header nav a i{
+		font-size: 1em;
+		margin-right: .2rem;
 	}
 
-	a:hover,
-	a:focus,
-	a:active {
-		color: var(--color-black);
-		text-decoration: none;
+	header nav a:hover,
+	header nav a:focus {
+		color: var(--color-accent-2)
 	}
-
-	a::before {
-		content: '';
-		position: absolute;
-		bottom: 10%;
-		left: 0;
-		height: 0.1em;
-		width: 100%;
-		background-color: var(--color-black);
-		transform-origin: right top;
-		transform: scale(0, 1);
-		transition: color 0.1s, transform 0.2s ease-out;
-	}
-	a:active::before {
-		background-color: var(--color-black);
-	}
-	a:hover::before,
-	a:focus::before {
-		transform-origin: left top;
-		transform: scale(1, 1);
-	}
-
-	.active-path {
-		color: var(--color-black);
-	}
-
-	.active-path::before {
-		content: '';
-		position: absolute;
-		bottom: 10%;
-		left: 0;
-		height: 0.1em;
-		width: 100%;
-		background-color: var(--color-black);
-		transform-origin: right top;
-		transform: scale(1, 1);
-		transition: color 0.1s, transform 0.2s ease-out;
+	header nav a.active-path {
+		font-weight: bolder;
+		color: var(--color-black)
 	}
 </style>
