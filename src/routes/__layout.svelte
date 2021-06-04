@@ -35,6 +35,7 @@
 		padding-top: 0.5rem;
 		margin-bottom: 2rem;
 		box-shadow: 0 2px 6px 2px rgba(201, 201, 201, 0.2);
+		background-color: white;
 	}
 	h1 {
 		text-align: center;
