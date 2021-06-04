@@ -21,8 +21,8 @@
 	<h1>Pagina bestaat niet</h1>
 	<p>De pagina die jij probeert te bereiken, bestaat niet.</p>
 	<p>
-		Probeer het nogmaals en neem anders contact op met de administrator. Deze gaat het proberen op
-		te lossen.
+		Probeer het nogmaals en neem anders contact op met de administrator. Deze gaat het proberen op te
+		lossen.
 	</p>
 
 	<!-- TODO: You (eventually) want to go back to the previous route. This has to be stored somehow -->

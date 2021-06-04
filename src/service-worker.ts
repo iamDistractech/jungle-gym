@@ -32,10 +32,7 @@ self.addEventListener('activate', (event) => {
 					keys
 						.filter(
 							(key) =>
-								key !== applicationCache &&
-								key !== staticCache &&
-								key !== 'gameCache' &&
-								key !== 'ssrCache'
+								key !== applicationCache && key !== staticCache && key !== 'gameCache' && key !== 'ssrCache'
 						)
 						.map((key) => caches.delete(key))
 				);

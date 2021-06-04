@@ -47,13 +47,7 @@
 			<fieldset>
 				{#if filterItems}
 					{#each filterItems as { name, value }}
-						<input
-							bind:group={filterButtons}
-							type="checkbox"
-							id={name}
-							name="filter-group"
-							{value}
-						/>
+						<input bind:group={filterButtons} type="checkbox" id={name} name="filter-group" {value} />
 						<label for={name}> <span />{name}</label>
 					{/each}
 				{/if}

@@ -123,8 +123,7 @@
 	>
 		Filter
 		<i class="material-icons">filter_list</i>
-		<i class:dropdown-close={!open} class:dropdown-open={open} class="material-icons">expand_more</i
-		>
+		<i class:dropdown-close={!open} class:dropdown-open={open} class="material-icons">expand_more</i>
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />

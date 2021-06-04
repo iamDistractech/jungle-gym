@@ -90,11 +90,7 @@
 </script>
 
 <header>
-	<button
-		on:click={likedGame}
-		class:is-liked-background={liked}
-		class:not-liked-background={!liked}
-	>
+	<button on:click={likedGame} class:is-liked-background={liked} class:not-liked-background={!liked}>
 		<i class="material-icons bouncy" class:is-liked={!liked} class:not-liked={liked}
 			>favorite_border</i
 		>
