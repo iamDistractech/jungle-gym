@@ -41,7 +41,7 @@
 </script>
 
 <section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
-	<h1>Filter op {filterTitle}</h1>
+	<h1>Filter op <span>{filterTitle}</span></h1>
 	{#if filterTitle !== 'minimumPlayers'}
 		<form on:submit|preventDefault={submitForm}>
 			<fieldset>
@@ -90,6 +90,10 @@
 
 	section h1 {
 		text-align: center;
+	}
+
+	section h1 span {
+		text-transform: capitalize;
 	}
 
 	form {
