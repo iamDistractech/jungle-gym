@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
+	import { BASE_STRAPI_API_URL } from '$lib/Env';
+	import { strapiPatchSingle } from '$lib/Utils/strapiPatch';
 
 	export const load: Load = async ({ page, fetch }) => {
 		try {
@@ -10,7 +12,7 @@
 
 				return {
 					props: {
-						game
+						game: BASE_STRAPI_API_URL ? strapiPatchSingle(game) : game,
 					}
 				};
 			}
@@ -41,6 +43,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import type { Game } from '$lib/games';
+
 
 	export let gameSlug: string = $page.params.game;
 	export let game: Game;

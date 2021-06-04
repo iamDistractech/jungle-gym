@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 	import { BASE_STRAPI_API_URL } from '$lib/Env';
-	import { strapiPatch } from '$lib/Utils/strapiPatch';
+	import { strapiPatchAll } from '$lib/Utils/strapiPatch';
 
 	export const load: Load = async ({ page, fetch }) => {
 		try {
@@ -13,7 +13,7 @@
 
 				return {
 					props: {
-						games: BASE_STRAPI_API_URL ? strapiPatch(games) : games,
+						games: BASE_STRAPI_API_URL ? strapiPatchAll(games) : games,
 						query,
 						offline: res.statusText === 'offline'
 					}
