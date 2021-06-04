@@ -19,7 +19,7 @@
 
 <style>
 	button {
-		border: 2px solid var(--color-light-orange);
+		border: 2px solid var(--color-base-light);
 		width: 100%;
 		padding: 0.7rem 1rem;
 		border-radius: 0.6rem;
@@ -32,7 +32,7 @@
 	}
 
 	ul {
-		border: 2px solid var(--color-light-orange);
+		border: 2px solid var(--color-base-light);
 		padding: 1.2rem 2rem;
 		border-radius: 0 0 0.6rem 0.6rem;
 		border-top: 0;

@@ -6,7 +6,7 @@
 	li {
 		display: flex;
 		align-items: center;
-		background-color: var(--color-light-orange);
+		background-color: var(--color-base-light);
 		color: var(--color-black);
 		padding: 0.3em 1em;
 		border-radius: 1em;

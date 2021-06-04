@@ -1,27 +1,24 @@
 /* GLOBAL STYLES */
 
-:root {
-	--font-heading: 'Montserrat Alternates', sans-serif;
-	--font-body: 'Poppins', sans-serif;
-
-	--color-turquoise: hsl(192, 80%, 80%);
-	--color-dark-blue: hsl(221, 43%, 16%);
-	--color-light-orange: hsl(92, 30%, 64%);
-	--color-light-orange-hover: hsl(13, 100%, 89%);
-	--color-pink: hsl(337, 92%, 64%);
-	--color-black: hsl(0, 0%, 11%);
+:root {	
+	
+	--color-black: #041116;
 	--color-grey: hsl(240, 5%, 45%);
 	--color-light-grey: hsl(198, 19%, 89%);
-	--color-lighter-grey: hsl(0, 0%, 95%);
-	--color-white: hsl(0, 0%, 100%);
+	--color-white: #FAFAFA;
 
-	--color-accent-1: #266525;
-	--color-accent-2: #e04646;
+	--color-base-dark: hsl(120, 37%, 13%);
+	--color-base-normal: hsl(119, 46%, 28%);
+	--color-base-light: hsl(92, 30%, 64%);
+	--color-accent-action: hsl(0, 71%, 58%);
+	--color-accent-normal: hsl(49, 83%, 50%);
+	--color-accent-dark: hsl(221, 43%, 16%);
 
-	--font-heading: 'Montserrat Alternates', sans-serif;
 	--font-body: 'Poppins', sans-serif;
 	--font-body-color: var(--color-black);
-	--font-heading-color: var(--color-dark-blue);
+
+	--font-heading: 'Montserrat Alternates', sans-serif;
+	--font-heading-color: var(--color-accent-dark);
 	--font-heading-base-size: 20px;
 }
 

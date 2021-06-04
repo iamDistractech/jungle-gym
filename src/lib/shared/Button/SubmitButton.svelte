@@ -8,7 +8,7 @@
 		border-radius: 1em;
 		border: none;
 		font-size: 1em;
-		background: var(--color-light-orange);
+		background: var(--color-base-light);
 		color: var(--color-black);
 		margin: 0.5em 0;
 		cursor: pointer;

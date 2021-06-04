@@ -23,7 +23,7 @@
 	}
 
 	ul a {
-		background-color: var(--color-turquoise);
+		background-color: var(--color-base-light);
 		border-radius: 1em;
 		margin-bottom: 2em;
 		padding: 1.5rem 2rem;
@@ -38,7 +38,7 @@
 
 	ul a div h1 {
 		font-size: 1em;
-		color: var(--color-dark-blue);
+		color: var(--color-accent-dark);
 		font-weight: 400;
 		margin: 0;
 		display: flex;

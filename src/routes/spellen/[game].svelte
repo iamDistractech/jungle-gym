@@ -205,7 +205,7 @@
 	}
 
 	.is-liked-background {
-		background-color: var(--color-pink);
+		background-color: var(--color-accent-action);
 		transition: all 0.2s ease-in;
 	}
 
@@ -239,7 +239,7 @@
 	}
 
 	.image-card {
-		background-color: var(--color-turquoise);
+		background-color: var(--color-base-light);
 		height: 15em;
 		border-radius: 1.5em;
 		margin: 2em 0;
@@ -286,7 +286,7 @@
 		bottom: 2%;
 		height: 5em;
 		width: 5em;
-		background-color: var(--color-light-orange);
+		background-color: var(--color-base-light);
 		border: none;
 		border-radius: 1em;
 

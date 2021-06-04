@@ -190,7 +190,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background-color: var(--color-light-orange);
+		background-color: var(--color-base-light);
 		padding: 0em 1em;
 		width: 100%;
 		height: 3em;
@@ -221,7 +221,7 @@
 	}
 
 	article {
-		background-color: var(--color-light-orange);
+		background-color: var(--color-base-light);
 		border-radius: 0em 0em 2em 2em;
 	}
 
