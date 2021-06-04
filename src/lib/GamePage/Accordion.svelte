@@ -19,12 +19,12 @@
 
 <style>
 	button {
-		background: transparent;
 		border: 2px solid var(--color-light-orange);
 		width: 100%;
 		padding: 0.7rem 1rem;
 		border-radius: 0.6rem;
 		margin-top: 1rem;
+		background: transparent;
 	}
 
 	button:first-of-type {
