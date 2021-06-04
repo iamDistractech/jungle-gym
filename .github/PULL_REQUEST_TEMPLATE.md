@@ -2,8 +2,6 @@
 
 Closes #
 
-Branch name:
-
 _[Please include a summary of the change and which issue is fixed]_
 
 ## Type of change
