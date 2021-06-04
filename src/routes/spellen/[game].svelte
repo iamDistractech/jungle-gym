@@ -149,7 +149,7 @@
 
 <section class="download-button-container">
 	{#if game.offline}
-		<ButtonLight on:click={deleteCache}>Spel is gedownload</ButtonLight>
+		<ButtonLight on:click={deleteCache}>Verwijder uit downloads</ButtonLight>
 	{:else}
 		<ButtonLight on:click={saveCache}>Download dit spel</ButtonLight>
 	{/if}
