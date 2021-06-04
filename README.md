@@ -27,8 +27,6 @@ _[Insert description]_
 
 The **Meesterproef** is the final client-project of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.
 
-Test
-
 ## :eyeglasses: Overview
 
 ### Screenshot
