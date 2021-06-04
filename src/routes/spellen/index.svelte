@@ -80,9 +80,5 @@
 	<GameList {games} {offline} {query} />
 </main>
 
-
 <style>
-
-
-
 </style>

@@ -57,7 +57,7 @@
 	}
 
 	header nav a {
-		--active-underline-color: var(--color-white)
+		--active-underline-color: var(--color-white);
 		text-decoration: none;
 		display: flex;
 		justify-content: center;
@@ -75,7 +75,7 @@
 
 	header nav a:hover,
 	header nav a:focus {
-		color: var(--color-accent-2);
+		color: var(--color-accent-action);
 	}
 	header nav a.active-path {
 		--active-underline-color: var(--color-black);

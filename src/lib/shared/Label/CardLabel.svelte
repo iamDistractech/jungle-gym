@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let label: string
-	export let icon: string | undefined
+	export let label: string;
+	export let icon: string | undefined;
 </script>
 
 <p>
@@ -25,6 +25,6 @@
 
 	i {
 		font-size: inherit;
-		margin-right: .2rem;
+		margin-right: 0.2rem;
 	}
 </style>

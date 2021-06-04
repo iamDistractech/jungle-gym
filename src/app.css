@@ -1,7 +1,6 @@
 /* GLOBAL STYLES */
 
-:root {	
-	
+:root {
 	--color-black: hsl(197, 69%, 5%);
 	--color-grey: hsl(240, 5%, 45%);
 	--color-light-grey: hsl(198, 19%, 89%);
@@ -24,7 +23,6 @@
 
 html {
 	max-width: 100%;
-	
 }
 
 body {
@@ -51,11 +49,11 @@ h6 {
 }
 
 main {
-	padding: 0 .5rem;
+	padding: 0 0.5rem;
 }
 
 section {
-	margin: .5rem 0;
+	margin: 0.5rem 0;
 }
 
 a {
@@ -76,7 +74,6 @@ button {
 	font-family: inherit;
 }
 
-
 section {
 	margin: 1.5rem 0;
 }
@@ -90,5 +87,5 @@ section > h1 {
 .leaves-bg {
 	background: url('$lib/assets/images/background/leavesBackground.svg');
 	background-position: top left;
-	background-size: 225%
+	background-size: 225%;
 }

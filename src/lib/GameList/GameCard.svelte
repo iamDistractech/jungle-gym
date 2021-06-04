@@ -25,15 +25,14 @@
 		});
 	}
 
-	game.offline = true
+	game.offline = true;
 
 	// Target Group Functionality
 	const minGroup = targetGroupArr[0];
 	const maxGroup = targetGroupArr.slice(-1)[0];
 
-	const targetGroupString = minGroup === 1 && maxGroup === 8 ? 'Alle groepen' : `Groep ${minGroup} - ${maxGroup}`
-	
-
+	const targetGroupString =
+		minGroup === 1 && maxGroup === 8 ? 'Alle groepen' : `Groep ${minGroup} - ${maxGroup}`;
 </script>
 
 <article>
@@ -44,7 +43,7 @@
 	<ul>
 		<li><CardLabel label={targetGroupString} icon={undefined} /></li>
 		<li><CardLabel label={game.category.name || game.category} icon={undefined} /></li>
-		<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon='group'/></li>
+		<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon="group" /></li>
 	</ul>
 </article>
 
@@ -54,7 +53,7 @@
 		border-radius: 1.5em;
 		padding: 1em;
 		justify-content: space-between;
-		box-shadow: 0px 2px 4px 2px rgba(21, 45, 21, .1)
+		box-shadow: 0px 2px 4px 2px rgba(21, 45, 21, 0.1);
 		/* filter: drop-shadow(0 0.2em 0.2em hsl(92, 30%, 64%)) alternatief shadow */
 	}
 
@@ -83,8 +82,8 @@
 	article h1::after {
 		content: '';
 		background: url('$lib/assets/icons/GameCard/cardArrow.svg') no-repeat top center;
-		background-size: .5em;
-		width: .5em;
+		background-size: 0.5em;
+		width: 0.5em;
 	}
 
 	article h2 {
@@ -101,7 +100,7 @@
 
 	h2 i {
 		font-size: inherit;
-		margin-right: .5em;
+		margin-right: 0.5em;
 	}
 
 	ul {
