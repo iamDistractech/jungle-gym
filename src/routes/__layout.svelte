@@ -57,14 +57,15 @@
 	}
 
 	header nav a {
+		--active-underline-color: white
 		text-decoration: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		font-size: 0.8em;
-		/* font-weight: bolder; */
 		padding: 1em;
 		color: var(--color-accent-1);
+		border-bottom: solid 2px var(--active-underline-color);
 	}
 
 	header nav a i {
@@ -77,6 +78,7 @@
 		color: var(--color-accent-2);
 	}
 	header nav a.active-path {
+		--active-underline-color: var(--color-black);
 		font-weight: bolder;
 		color: var(--color-black);
 	}
