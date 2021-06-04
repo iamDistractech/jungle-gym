@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
-	import GameListCard from '$lib/GameList/GameListCard.svelte';
+	import GameCard from '$lib/GameList/GameCard.svelte';
 	import OfflineCard from '$lib/ErrorCard/ErrorCard.svelte';
 	import GameListFilterButtons from '$lib/GameList/GameListFilterButtons.svelte';
 
@@ -15,15 +15,13 @@
 </script>
 
 <section>
-	<h1>Spellen</h1>
-
 	<GameListFilterButtons {query} />
 	<ul>
 		{#if offline}
 			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
 		{/if}
 		{#each games as game}
-			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameListCard {game} /> </a></li>
+			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameCard {game} /> </a></li>
 		{/each}
 	</ul>
 </section>
@@ -35,6 +33,9 @@
 		padding: 0;
 	}
 
+	ul li {
+		margin: 1em 0;
+	}
 	ul a {
 		text-decoration: none;
 	}

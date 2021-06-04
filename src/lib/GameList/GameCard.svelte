@@ -25,30 +25,26 @@
 		});
 	}
 
+	game.offline = true
+
 	// Target Group Functionality
 	const minGroup = targetGroupArr[0];
 	const maxGroup = targetGroupArr.slice(-1)[0];
 
-	let targetGroupString;
-	if (minGroup === 1 && maxGroup === 8) {
-		targetGroupString = 'Alle groepen';
-	} else {
-		targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
-	}
+	const targetGroupString = minGroup === 1 && maxGroup === 8 ? 'Alle groepen' : `Groep ${minGroup} - ${maxGroup}`
+	
+
 </script>
 
 <article>
 	<h1>{game.name}</h1>
 	{#if game.offline}
-		<h2>Offline beschikbaar</h2>
+		<h2><i class="material-icons">cloud_download</i>Gedownload</h2>
 	{/if}
 	<ul>
-		<CardLabel>{targetGroupString}</CardLabel>
-		<CardLabel>{game.category.name || game.category}</CardLabel>
-		<CardLabel>
-			<i class="icon-persons" />
-			{game.minimumPlayers}
-		</CardLabel>
+		<li><CardLabel label={targetGroupString} icon={undefined} /></li>
+		<li><CardLabel label={game.category.name || game.category} icon={undefined} /></li>
+		<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon='group'/></li>
 	</ul>
 </article>
 
@@ -56,10 +52,10 @@
 	article {
 		background-color: var(--color-white);
 		border-radius: 1.5em;
-		margin: 1em 0;
 		padding: 1em;
 		justify-content: space-between;
-		filter: drop-shadow(0 0.2em 0.2em hsl(120, 46%, 89%));
+		box-shadow: 0px 2px 4px 2px rgba(21, 45, 21, .1)
+		/* filter: drop-shadow(0 0.2em 0.2em hsl(92, 30%, 64%)) alternatief shadow */
 	}
 
 	ul {
@@ -68,40 +64,44 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		gap: 5px;
+		min-height: 3em;
+	}
+
+	ul li {
+		margin: 2px;
 	}
 
 	article h1 {
 		display: flex;
 		justify-content: space-between;
 		margin: 0;
-		line-height: 2em;
-		font-size: 1.25em;
+		line-height: 1em;
+		font-size: 1em;
+		min-height: 2em;
 	}
 
 	article h1::after {
 		content: '';
-		background: url('$lib/assets/icons/GameCard/cardArrow.svg') no-repeat center;
-		width: 2em;
-		height: 2em;
-	}
-	.icon-persons::before {
-		content: '';
-		display: block;
-		background: url('$lib/assets/icons/GameCard/minPlayers.svg') no-repeat center;
-		width: 2em;
-		height: 2em;
+		background: url('$lib/assets/icons/GameCard/cardArrow.svg') no-repeat top center;
+		background-size: .5em;
+		width: .5em;
 	}
 
 	article h2 {
+		display: flex;
+		align-items: center;
 		margin: 0;
-		margin-bottom: 2em;
 		padding: 0;
 		font-family: var(--font-body);
 		font-size: 0.8em;
 		font-weight: normal;
 		font-style: italic;
-		opacity: 0.5;
+		/* opacity: 0.5; **/
+	}
+
+	h2 i {
+		font-size: inherit;
+		margin-right: .5em;
 	}
 
 	ul {

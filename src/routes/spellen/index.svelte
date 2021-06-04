@@ -37,7 +37,6 @@
 <script lang="ts">
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-	import LeavesBackground from '$lib/shared/Background/LeavesBackground.svelte';
 
 	import { onMount } from 'svelte';
 	import type { Game } from '$lib/games';
@@ -73,12 +72,17 @@
 	}
 </script>
 
-<LeavesBackground />
-
-<main>
+<main class="leaves-bg">
 	{#if !offline}
 		<GameListFilter {query} />
 	{/if}
 
 	<GameList {games} {offline} {query} />
 </main>
+
+
+<style>
+
+
+
+</style>

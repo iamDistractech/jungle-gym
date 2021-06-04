@@ -2,13 +2,13 @@
 
 :root {	
 	
-	--color-black: #041116;
+	--color-black: hsl(197, 69%, 5%);
 	--color-grey: hsl(240, 5%, 45%);
 	--color-light-grey: hsl(198, 19%, 89%);
-	--color-white: #FAFAFA;
+	--color-white: hsl(0, 0%, 98%);
 
-	--color-base-dark: hsl(120, 37%, 13%);
-	--color-base-normal: hsl(119, 46%, 28%);
+	--color-base-dark: hsl(120, 36%, 13%);
+	--color-base-normal: hsl(119, 45%, 28%);
 	--color-base-light: hsl(92, 30%, 64%);
 	--color-accent-action: hsl(0, 71%, 58%);
 	--color-accent-normal: hsl(49, 83%, 50%);
@@ -22,12 +22,14 @@
 	--font-heading-base-size: 20px;
 }
 
-#svelte {
-	position: relative;
-	overflow-x: hidden;
+html {
+	max-width: 100%;
+	
 }
 
 body {
+	width: 100%;
+	overflow-x: hidden;
 	color: var(--font-body-color);
 	font-family: var(--font-body);
 	background-color: var(--color-white);
@@ -44,10 +46,16 @@ h5,
 h6 {
 	font-family: var(--font-heading);
 	color: var(--font-heading-color);
+	font-size: var(--font-heading-base-size);
+	margin: 0;
 }
 
 main {
-	padding: 0 1em;
+	padding: 0 .5rem;
+}
+
+section {
+	margin: .5rem 0;
 }
 
 a {
@@ -68,8 +76,19 @@ button {
 	font-family: inherit;
 }
 
+
+section {
+	margin: 1.5rem 0;
+}
+
 section > h1 {
 	font-size: 1.2em;
+	margin-left: 1rem;
 	font-weight: 600;
-	margin-bottom: 0;
+}
+
+.leaves-bg {
+	background: url('$lib/assets/images/background/leavesBackground.svg');
+	background-position: top left;
+	background-size: 225%
 }

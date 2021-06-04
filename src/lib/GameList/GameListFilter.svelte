@@ -128,13 +128,12 @@
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />
-		<!-- Disabled filters for now -->
-		<!-- <FilterButton filterTitle="Groepen" on:click={() => (targetGroup = !targetGroup)} /> -->
-		<!-- <FilterButton
-			filterTitle="Minumum spelers"
+		<!-- <FilterButton filterTitle="Groepen" on:click={() => (targetGroup = !targetGroup)} />
+		<FilterButton
+			filterTitle="Minimum spelers"
 			on:click={() => (minimumPlayers = !minimumPlayers)}
-		/> -->
-		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
+		/>
+		<FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 
 		<div>
 			<a href="/spellen" on:click={resetAllFilters}
@@ -157,6 +156,7 @@
 	<GameListPopup
 		filterTitle="targetGroup"
 		filterItems={groupNames}
+		activeQueries={query.getAll('targetGroup')}
 		on:close={() => (targetGroup = !targetGroup)}
 	/>
 {/if}
@@ -165,6 +165,7 @@
 	<GameListPopup
 		filterTitle="minimumPlayers"
 		filterItems={childrenCount}
+		activeQueries={query.getAll('minimumPlayers')}
 		on:close={() => (minimumPlayers = !minimumPlayers)}
 	/>
 {/if}
@@ -173,6 +174,7 @@
 	<GameListPopup
 		filterTitle="materialen"
 		filterItems={materialNames}
+		activeQueries={query.getAll('material')}
 		on:close={() => (materialen = !materialen)}
 	/>
 {/if}

@@ -35,7 +35,7 @@
 	const newestGames = games.slice(Math.max(games.length - 4, 0));
 </script>
 
-<main>
+<main class="leaves-bg">
 	<GameListHighlighted />
 	<GameListCarousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
 	<GameListCarousel gamesData={games} carouselTitle="Favoriete spellen" />
