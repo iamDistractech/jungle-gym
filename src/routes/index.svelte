@@ -1,57 +1,45 @@
 <script context="module" lang="ts">
-	import { fetcher } from '$lib/utils/fetcher';
+	import type { Load } from '@sveltejs/kit';
+	export const load: Load = async ({ page, fetch }) => {
+		const { query } = page;
+		const res = await fetch(`/spellen.json?${query.toString()}`);
 
-	export async function load({ page }: { page: { query: URLSearchParams } }): Promise<unknown> {
-		const baseURL = import.meta.env.VITE_API_URL;
+		if (res.ok) {
+			const games = await res.json();
 
-		if (typeof baseURL === 'string') {
-			const url = new URL(baseURL);
-			url.search = page.query.toString();
-
-			try {
-				const games = await fetcher(url);
-
-				return {
-					props: {
-						games,
-						query: page.query
-					}
-				};
-			} catch (error) {
-				return {
-					status: 500,
-					error: new Error(error)
-				};
-			}
-		} else {
 			return {
 				props: {
-					games: undefined,
-					query: page.query
-				},
-				status: 500,
-				error: new Error('No valid API endpoint URL')
+					games,
+					query
+				}
 			};
 		}
-	}
+
+		const { message } = await res.json();
+
+		return {
+			error: new Error(message),
+			props: {
+				query
+			}
+		};
+	};
 </script>
 
-<script>
-	import GameList from '$lib/GameList/GameList.svelte';
-	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
+<script lang="ts">
+	import GameListHighlighted from '$lib/GameList/GameListHighlighted.svelte';
+	import GameListCarousel from '$lib/GameList/GameListCarousel.svelte';
+	import type { Game } from '$lib/games';
 
-	export let games;
-	export let query;
+	export let games: Game[];
+	const newestGames = games.slice(Math.max(games.length - 4, 0));
 </script>
 
-<header>
-	<h1>John Doe</h1>
-	<h2>Goedemorgen!</h2>
-</header>
-
-<GameListFilter {query} />
-
-<GameList {games} />
+<main>
+	<GameListHighlighted />
+	<GameListCarousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
+	<GameListCarousel gamesData={games} carouselTitle="Favoriete spellen" />
+</main>
 
 <style>
 </style>

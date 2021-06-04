@@ -1,6 +1,7 @@
 <script lang="ts">
 	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
 	import FilterButton from '$lib/Button/FilterButton.svelte';
+	import { goto } from '$app/navigation';
 
 	export let query: URLSearchParams;
 
@@ -106,6 +107,11 @@
 	let targetGroup = false;
 	let minimumPlayers = false;
 	let materialen = false;
+
+	const resetAllFilters = (event) => {
+		event.preventDefault();
+		goto('/spellen');
+	};
 </script>
 
 <section>
@@ -116,13 +122,9 @@
 		class:border-change-open={open}
 	>
 		Filter
-		<img src="../icons/filter.svg" alt="Filter icon" />
-		<img
-			class:dropdown-close={open}
-			class:dropdown-open={!open}
-			src="../icons/dropdown.svg"
-			alt="Dropdown icon"
-		/>
+		<i class="material-icons">filter_list</i>
+		<i class:dropdown-close={!open} class:dropdown-open={open} class="material-icons">expand_more</i
+		>
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />
@@ -133,12 +135,18 @@
 			on:click={() => (minimumPlayers = !minimumPlayers)}
 		/> -->
 		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
+
+		<div>
+			<a href="/spellen" on:click={resetAllFilters}
+				>Reset filters<i class="material-icons">cached</i></a
+			>
+		</div>
 	</article>
 </section>
 
 {#if category}
 	<GameListPopup
-		filterTitle="category"
+		filterTitle="Categorie"
 		filterItems={gameNames}
 		activeQueries={query.getAll('category')}
 		on:close={() => (category = !category)}
@@ -188,28 +196,28 @@
 		height: 3em;
 	}
 
-	section button img:nth-of-type(1) {
+	section button i:nth-of-type(1) {
 		padding: 0em 0.5em;
 		width: 1.1em;
 		height: 1.1em;
 	}
 
 	.dropdown-close {
-		padding: 0em 0.5em;
+		padding: 0.2em 0.5em;
 		margin-left: auto;
 		width: 0.75em;
 		height: 0.75em;
-		transform: rotate(180deg);
-		transition: transform 200ms linear;
+		transform: rotateX(180deg);
+		transition: transform 200ms ease-in;
 	}
 
 	.dropdown-open {
-		padding: 0em 0.5em;
+		padding: 0 0.5em;
 		margin-left: auto;
 		width: 0.75em;
 		height: 0.75em;
-		transform: rotate(0deg);
-		transition: transform 200ms linear;
+		transform: rotateX(0deg);
+		transition: transform 200ms ease-in;
 	}
 
 	article {
@@ -217,9 +225,22 @@
 		border-radius: 0em 0em 2em 2em;
 	}
 
+	article div a {
+		display: flex;
+		justify-content: flex-end;
+		text-decoration: none;
+		color: var(--color-black);
+		padding: 0.5rem;
+		cursor: pointer;
+	}
+
+	article div a i {
+		padding-left: 0.3em;
+	}
+
 	.filter-options-open {
 		max-height: 31.25em;
-		padding: 1.5em 1em;
+		padding: 1.5em 1em 0;
 		overflow: hidden;
 		transition: max-height 0.25s ease-in, padding 0.25s ease-in;
 	}
@@ -238,5 +259,9 @@
 
 	.border-change-open {
 		border-radius: 1em 1em 0em 0em;
+	}
+
+	.no-transform-button:active {
+		transform: none;
 	}
 </style>

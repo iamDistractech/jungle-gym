@@ -1,7 +1,7 @@
 ---
 name: Bug
 about: Een bug in de applicatie
-labels: bug
+labels: bug task
 assignees: ''
 ---
 

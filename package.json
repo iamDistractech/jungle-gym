@@ -1,29 +1,7 @@
 {
 	"name": "jungle_gym",
-	"version": "0.0.1",
+	"version": "0.3.0",
 	"description": "JungleGym is an app for primary school teachers that will help them with their gymnastics lessons",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/iSirThijs/jungle-gym"
-	},
-	"contributors": [
-		{
-			"name": "Sjoerd Reen",
-			"email": "sjoerd.reen@hva.nl"
-		},
-		{
-			"name": "Roy Kuijper",
-			"email": "roy.kuijper@hva.nl"
-		},
-		{
-			"name": "Thijs Spijker",
-			"email": "thijs.spijker@hva.nl"
-		},
-		{
-			"name": "Jochem Vogel",
-			"email": "jochem.vogel@hva.nl"
-		}
-	],
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -31,6 +9,10 @@
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write --plugin-search-dir=. .",
 		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix",
+		"*.{js,css,ts,md,svelte,json}": "prettier --plugin-search-dir=. --write"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-netlify": "^1.0.0-next.14",
@@ -49,13 +31,33 @@
 		"tslib": "^2.0.0",
 		"typescript": "^4.0.0"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/iSirThijs/jungle-gym.git"
+	},
+	"homepage": "https://github.com/iSirThijs/jungle-gym",
+	"contributors": [
+		{
+			"name": "Sjoerd Reen",
+			"email": "sjoerd.reen@hva.nl"
+		},
+		{
+			"name": "Roy Kuijper",
+			"email": "roy.kuijper@hva.nl"
+		},
+		{
+			"name": "Thijs Spijker",
+			"email": "thijs.spijker@hva.nl"
+		},
+		{
+			"name": "Jochem Vogel",
+			"email": "jochem.vogel@hva.nl"
+		}
+	],
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/iSirThijs/jungle-gym/issues"
 	},
 	"type": "module",
-	"lint-staged": {
-		"*.js": "eslint --cache --fix",
-		"*.{js,css,ts,md,svelte,json}": "prettier --plugin-search-dir=. --write"
-	}
+	"dependencies": {}
 }
