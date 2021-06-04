@@ -14,6 +14,15 @@
 	--color-light-grey: hsl(198, 19%, 89%);
 	--color-lighter-grey: hsl(0, 0%, 95%);
 	--color-white: hsl(0, 0%, 100%);
+
+	--color-accent-1: #266525;
+	--color-accent-2: #e04646;
+
+	--font-heading: 'Montserrat Alternates', sans-serif;
+	--font-body: 'Poppins', sans-serif;
+	--font-body-color: var(--color-black);
+	--font-heading-color: var(--color-dark-blue);
+	--font-heading-base-size: 20px;
 }
 
 #svelte {
@@ -22,7 +31,7 @@
 }
 
 body {
-	color: var(--color-grey);
+	color: var(--font-body-color);
 	font-family: var(--font-body);
 	background-color: var(--color-white);
 	margin: 0;
@@ -37,7 +46,7 @@ h4,
 h5,
 h6 {
 	font-family: var(--font-heading);
-	color: var(--color-dark-blue);
+	color: var(--font-heading-color);
 }
 
 main {
