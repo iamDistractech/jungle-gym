@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
+	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 
 	export let game: Game;
 
@@ -28,33 +29,37 @@
 	const minGroup = targetGroupArr[0];
 	const maxGroup = targetGroupArr.slice(-1)[0];
 
-	const targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
+	let targetGroupString;
+	if (minGroup === 1 && maxGroup === 8) {
+		targetGroupString = 'Alle groepen';
+	} else {
+		targetGroupString = `Groep ${minGroup} t/m ${maxGroup}`;
+	}
 </script>
 
 <article>
 	<h1>{game.name}</h1>
+	{#if game.offline}
+		<h2>Offline beschikbaar</h2>
+	{/if}
 	<ul>
-		<li>{targetGroupString}</li>
-		<li class="category-label">{game.category.name || game.category}</li>
-		<li>Min. spelers: {game.minimumPlayers}</li>
-		{#if game.offline}
-			<li class="offline">Offline Beschikbaar</li>
-		{/if}
+		<CardLabel>{targetGroupString}</CardLabel>
+		<CardLabel>{game.category.name || game.category}</CardLabel>
+		<CardLabel>
+			<i class="icon-persons" />
+			{game.minimumPlayers}
+		</CardLabel>
 	</ul>
 </article>
 
 <style>
 	article {
-		background-color: var(--color-lighter-grey);
-		border-radius: 1em;
+		background-color: var(--color-white);
+		border-radius: 1.5em;
 		margin: 1em 0;
 		padding: 1em;
 		justify-content: space-between;
-	}
-
-	li.offline {
-		background-color: var(--color-grey);
-		color: var(--color-white);
+		filter: drop-shadow(0 0.2em 0.2em hsl(120, 46%, 89%));
 	}
 
 	ul {
@@ -70,32 +75,36 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0;
-		margin-bottom: 1em;
 		line-height: 2em;
-		min-height: 4em;
+		font-size: 1.25em;
 	}
 
 	article h1::after {
-		content: '>';
-		border-radius: 50%;
+		content: '';
+		background: url('$lib/assets/icons/GameCard/cardArrow.svg') no-repeat center;
 		width: 2em;
 		height: 2em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: none;
+	}
+	.icon-persons::before {
+		content: '';
+		display: block;
+		background: url('$lib/assets/icons/GameCard/minPlayers.svg') no-repeat center;
+		width: 2em;
+		height: 2em;
 	}
 
-	li {
-		background-color: var(--color-light-orange);
-		padding: 0.3em 1em;
-		border-radius: 1em;
-		margin-right: 0.5em;
+	article h2 {
+		margin: 0;
+		margin-bottom: 2em;
+		padding: 0;
+		font-family: var(--font-body);
 		font-size: 0.8em;
-		margin-bottom: 0.5em;
+		font-weight: normal;
+		font-style: italic;
+		opacity: 0.5;
 	}
 
-	.category-label {
-		text-transform: capitalize;
+	ul {
+		margin-top: 1em;
 	}
 </style>

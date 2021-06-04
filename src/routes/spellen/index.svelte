@@ -37,6 +37,8 @@
 <script lang="ts">
 	import GameList from '$lib/GameList/GameList.svelte';
 	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
+	import LeavesBackground from '$lib/shared/Background/LeavesBackground.svelte';
+
 	import { onMount } from 'svelte';
 	import type { Game } from '$lib/games';
 
@@ -71,6 +73,8 @@
 	}
 </script>
 
+<LeavesBackground />
+
 <main>
 	{#if !offline}
 		<GameListFilter {query} />
@@ -78,18 +82,3 @@
 
 	<GameList {games} {offline} {query} />
 </main>
-
-<style>
-	header {
-		font-family: var(--font-heading);
-		display: flex;
-		flex-direction: column-reverse;
-		padding: 2rem 0 1rem;
-	}
-	header h2 {
-		margin: 0;
-		color: var(--color-grey);
-		font-weight: 400;
-		font-size: 1em;
-	}
-</style>
