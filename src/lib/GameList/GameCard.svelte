@@ -25,8 +25,6 @@
 		});
 	}
 
-	game.offline = true;
-
 	// Target Group Functionality
 	const minGroup = targetGroupArr[0];
 	const maxGroup = targetGroupArr.slice(-1)[0];

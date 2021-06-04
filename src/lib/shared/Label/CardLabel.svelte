@@ -14,7 +14,7 @@
 	p {
 		display: flex;
 		align-items: center;
-		background-color: var(--color-base-light);
+		background-color: var(--color-accent-alt);
 		color: var(--color-black);
 		padding: 0.3em 1em;
 		border-radius: 1em;

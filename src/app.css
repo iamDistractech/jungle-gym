@@ -12,6 +12,7 @@
 	--color-accent-action: hsl(0, 71%, 58%);
 	--color-accent-normal: hsl(49, 83%, 50%);
 	--color-accent-dark: hsl(221, 43%, 16%);
+	--color-accent-alt: hsl(28, 83%, 77%);
 
 	--font-body: 'Poppins', sans-serif;
 	--font-body-color: var(--color-black);
