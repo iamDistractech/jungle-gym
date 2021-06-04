@@ -1,36 +1,11 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
+	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 
 	export let game: Game;
 
-	let targetGroupArr;
-	const isNestedArray = game.targetGroup[0].group;
-
-	if (isNestedArray) {
-		// Strapi API
-
-		const targetGroupRawArr = game.targetGroup;
-		targetGroupArr = targetGroupRawArr.map((a) => parseInt(a.group));
-
-		targetGroupArr.sort(function (a, b) {
-			return a - b;
-		});
-	} else {
-		// Custom API
-
-		targetGroupArr = game.targetGroup;
-		targetGroupArr.sort(function (a, b) {
-			return a - b;
-		});
-	}
-
-	// Target Group Functionality
-	const minGroup = targetGroupArr[0];
-	const maxGroup = targetGroupArr.slice(-1)[0];
-
-	const targetGroupString =
-		minGroup === 1 && maxGroup === 8 ? 'Alle groepen' : `Groep ${minGroup} - ${maxGroup}`;
+	const targetGroupString = formatTargetGroups(game.targetGroup);
 </script>
 
 <article>
@@ -40,7 +15,7 @@
 	{/if}
 	<ul>
 		<li><CardLabel label={targetGroupString} icon={undefined} /></li>
-		<li><CardLabel label={game.category.name || game.category} icon={undefined} /></li>
+		<li><CardLabel label={game.category} icon={undefined} /></li>
 		<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon="group" /></li>
 	</ul>
 </article>
