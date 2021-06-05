@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
+	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 
 	export let game: Game;
@@ -11,7 +12,7 @@
 <article>
 	<h1>{game.name}</h1>
 	{#if game.offline}
-		<p><i class="material-icons">cloud_download</i>Gedownload</p>
+		<OfflineLabel />
 	{/if}
 	<ul>
 		<li><CardLabel label={targetGroupString} icon={undefined} /></li>
@@ -57,23 +58,6 @@
 		background: url('$lib/assets/icons/GameCard/cardArrow.svg') no-repeat top center;
 		background-size: 0.5em;
 		width: 0.5em;
-	}
-
-	article header h1 + p {
-		display: flex;
-		align-items: center;
-		margin: 0;
-		padding: 0;
-		font-family: var(--font-body);
-		font-size: 0.8em;
-		font-weight: normal;
-		font-style: italic;
-		/* opacity: 0.5; **/
-	}
-
-	article header h1 + p {
-		font-size: inherit;
-		margin-right: 0.5em;
 	}
 
 	ul {

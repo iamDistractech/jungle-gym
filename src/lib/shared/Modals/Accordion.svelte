@@ -1,28 +1,54 @@
 <script>
+import { each } from 'svelte/internal';
+
 	import { slide } from 'svelte/transition';
-	export let variation;
+	
+	export let variations;
+	console.log(variations)
 	let isOpen = false;
 	const toggle = () => (isOpen = !isOpen);
 </script>
 
-<button on:click={toggle} aria-expanded={isOpen}> {variation.description} </button>
+<!-- <button on:click={toggle} aria-expanded={isOpen}> {variation.description} </button> -->
 
-{#each variation.actions as action}
-	{#if isOpen}
-		<ul transition:slide={{ duration: 300 }}>
-			{#each variation.actions as action}
-				{action.description || action}
-			{/each}
-		</ul>
-	{/if}
-{/each}
+<ul>
+	{#each variations as variation}
+		<li>
+			<p>{variation.description}</p>
+			<ul>
+				{#each variation.actions as action }
+					<li>{action}</li>
+				{/each}
+			</ul>
+		</li>
+	{/each}
+</ul>
 
 <style>
-	button {
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul li p {
+		font-weight: bolder;
 		border: 2px solid var(--color-base-light);
-		width: 100%;
 		padding: 0.7rem 1rem;
 		border-radius: 0.6rem;
+	}
+
+	ul li ul {
+		list-style: initial;
+		padding-left: 1.5em;
+	}
+
+
+	/* button {
+	
+		width: 100%;
+	
 		margin-top: 1rem;
 		background: transparent;
 	}
@@ -37,5 +63,5 @@
 		border-radius: 0 0 0.6rem 0.6rem;
 		border-top: 0;
 		margin-top: -0.3rem;
-	}
+	} */
 </style>

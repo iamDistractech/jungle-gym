@@ -42,6 +42,7 @@
 	import Accordion from '$lib/shared/Modals/Accordion.svelte';
 	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
+	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	
 	/* Utils */ 
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
@@ -52,7 +53,7 @@
 
 	export let game: Game;
 	let gameSlug: string = $page.params.game;
-	let pwa: boolean = true
+	let pwa: boolean = false
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
@@ -74,10 +75,10 @@
 
 <main>
 	<header>
-		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
 		<h2>{game.name}</h2>
+		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
 		{#if game.offline}
-			<p><i class="material-icons">cloud_download</i>Gedownload</p>
+		<OfflineLabel />
 		{/if}
 		<ul>
 			<li><CardLabel label={targetGroupString} icon={undefined} /></li>
@@ -85,21 +86,18 @@
 			<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon="group" /></li>
 		</ul>
 	</header>
-	<section>
+	<section class="description">
 		<h1>Beschrijving</h1>
 		<p>{game.description}</p>
 	</section>
 
-	<!-- <div class="image-card" /> -->
-	<!-- 
-
 	{#if isModalOpen}
 		<MaterialModal material={clickedMaterial} on:close={toggleModal} />
-	{/if} -->
+	{/if}
 
-	<!-- <section>
-		<h3>Materialen</h3>
-		<ul class="material-list">
+	<section class="materials">
+		<h1>Materialen</h1>
+		<ul>
 			{#each game.materials as material}
 				<li>
 					<MaterialButton on:click={toggleModal(material)}>{material.name || material.material.name}</MaterialButton>
@@ -108,23 +106,21 @@
 		</ul>
 	</section>
 
-	<section>
-		<h3>Spelregels</h3>
+	<section class="rules">
+		<h1>Spelregels</h1>
 		<ul>
 			{#each game.rules as rule}
-				<li>{rule.description || rule}</li>
+				<li>{rule}</li>
 			{/each}
 		</ul>
 	</section>
 
-	<section>
-		<h3>Variaties</h3>
-		{#each game.variation as variation}
-			<Accordion {variation} />
-		{/each}
+	<section class="=variations">
+		<h1>Variaties</h1>
+		<Accordion variations={game.variation} />
 	</section>
 
-
+<!-- 
 <section class="download-button-container">
 	{#if game.offline}
 		<ButtonLight on:click={deleteCache}>Spel is gedownload</ButtonLight>
@@ -137,10 +133,14 @@
 </main>
 
 <style>
+
+	/* Content Heading */
 	header {
 		padding: 0 0.5rem;
+		display: flex;
+		flex-flow: column;
 	}
-	header h1 {
+	header h2 {
 		font-size: 1.5em;
 		margin-bottom: 0.5rem;
 	}
@@ -165,7 +165,8 @@
 		margin-left: 0;
 	}
 
-	a {
+	header a {
+		order: -1;
 		display: flex;
 		align-items: center;
 		color: var(--color-accent-dark);
@@ -174,7 +175,7 @@
 		margin-bottom: 1.5em;
 	}
 
-	a i {
+	header a i {
 		font-size: inherit;
 		border: solid 2px var(--color-accent-dark);
 		border-radius: 100%;
@@ -182,20 +183,13 @@
 		margin-right: 0.5em;
 	}
 
-	a:hover,
-	a:focus {
+	header a:hover,
+	header a:focus {
 		--color-accent-dark: var(--color-accent-action);
 	}
 
-	/* 
-	.image-card {
-		background-color: var(--color-base-light);
-		height: 15em;
-		border-radius: 1.5em;
-		margin: 2em 0;
-	}
-
-	.material-list {
+	/* Content sections */
+	section.materials ul {
 		display: flex;
 		flex-wrap: wrap;
 		list-style: none;
@@ -203,21 +197,10 @@
 		margin: 0;
 	}
 
-	.material-list > li {
+	section.materials ul li {
 		margin: 0.3em;
 		margin-left: 0;
-	} */
-
-	/* main header {
-		display: flex;
-		flex-direction: column-reverse;
-		margin-top: 1em;
 	}
-
-	main header h2 {
-		margin-bottom: 0;
-		font-size: 2em;
-	} */
 
 	/* .download-button-container {
 		display: flex;
