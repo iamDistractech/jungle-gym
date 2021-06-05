@@ -8,6 +8,11 @@
 	export let query: string;
 	export let offline: boolean;
 
+	// Sort the array with the last updated games as first
+	games.sort(function (a, b) {
+		return new Date(b.updatedAt) - new Date(a.updatedAt);
+	});
+
 	let ErrorMessage =
 		games.length === 0
 			? 'Er zijn geen offline spellen beschikbaar'
