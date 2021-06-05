@@ -7,8 +7,8 @@ export async function api(
 	resource: string,
 	data?: Record<string, unknown>
 ): Promise<{ status: number; body: JSONValue }> {
-	const api = BASE_STRAPI_API_URL ? 'Strapi' : 'JungleGym';
-	console.log(`Using ${api} API`);
+	// const api = BASE_STRAPI_API_URL ? 'Strapi' : 'JungleGym';
+	// console.log(`Using ${api} API`);
 
 	const res = await fetch(`${BASE_STRAPI_API_URL || BASE_API_URL}/${resource}`, {
 		method: request.method,

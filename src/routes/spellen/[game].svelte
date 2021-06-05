@@ -33,20 +33,26 @@
 </script>
 
 <script lang="ts">
-	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
-	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
-
+	/* Typings */
+	import type { Game } from '$lib/games';
+	
+	/* Components */
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
-	import Accordion from '$lib/GamePage/Accordion.svelte';
-	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
+	import Accordion from '$lib/shared/Modals/Accordion.svelte';
+	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
+	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
+	
+	/* Utils */ 
+	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
+	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import type { Game } from '$lib/games';
 
 
-	export let gameSlug: string = $page.params.game;
 	export let game: Game;
+	let gameSlug: string = $page.params.game;
+	let pwa: boolean = true
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
@@ -59,43 +65,19 @@
 	}
 
 	onMount(() => {
-		patchGame();
+		if('caches' in window) {
+			pwa = true
+			patchSingleGameOfflineStatus(game).then((patchedGame) => game = patchedGame)
+		}
 	});
-
-	function patchGame() {
-		return caches
-			.open('gamesCache')
-			.then((cache) => {
-				return cache.match(`/spellen/${game.slug}.json`);
-			})
-			.then((response: Response | undefined) => {
-				if (response) game.offline = true;
-				else game.offline = false;
-				return game;
-			});
-	}
-
-	function saveCache() {
-		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.add(`/spellen/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.add(`/spellen/${gameSlug}`))
-		]).then(() => (game.offline = true));
-	}
-
-	function deleteCache() {
-		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.delete(`/spellen/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/spellen/${gameSlug}`))
-		]).then(() => (game.offline = false));
-	}
 </script>
 
 <main>
 	<header>
 		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
-		<h1>{game.name}</h1>
+		<h2>{game.name}</h2>
 		{#if game.offline}
-			<h2><i class="material-icons">cloud_download</i>Gedownload</h2>
+			<p><i class="material-icons">cloud_download</i>Gedownload</p>
 		{/if}
 		<ul>
 			<li><CardLabel label={targetGroupString} icon={undefined} /></li>
@@ -108,10 +90,9 @@
 		<p>{game.description}</p>
 	</section>
 
-	<div class="image-card" />
+	<!-- <div class="image-card" /> -->
 	<!-- 
-	
-<!-- 
+
 	{#if isModalOpen}
 		<MaterialModal material={clickedMaterial} on:close={toggleModal} />
 	{/if} -->

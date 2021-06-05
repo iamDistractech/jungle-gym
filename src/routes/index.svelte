@@ -27,18 +27,22 @@
 </script>
 
 <script lang="ts">
-	import GameListHighlighted from '$lib/GameList/GameListHighlighted.svelte';
-	import GameListCarousel from '$lib/GameList/GameListCarousel.svelte';
+	/* Typings */
 	import type { Game } from '$lib/games';
+
+	/* Components */
+	import GameCardHighlighted from '$lib/Cards/GameCardHighlighted.svelte'
+	import Carousel from '$lib/GameViews/Carousel.svelte';
 
 	export let games: Game[];
 	const newestGames = games.slice(Math.max(games.length - 4, 0));
+
 </script>
 
 <main class="leaves-bg">
-	<GameListHighlighted />
-	<GameListCarousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
-	<GameListCarousel gamesData={games} carouselTitle="Favoriete spellen" />
+	<GameCardHighlighted />
+	<Carousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
+	<Carousel gamesData={games} carouselTitle="Favoriete spellen" />
 </main>
 
 <style>

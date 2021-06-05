@@ -1,8 +1,10 @@
 <script lang="ts">
+	/* Typings */
 	import type { Game } from '$lib/games';
-	import GameCard from '$lib/GameList/GameCard.svelte';
-	import OfflineCard from '$lib/ErrorCard/ErrorCard.svelte';
-	import GameListFilterButtons from '$lib/GameList/GameListFilterButtons.svelte';
+	
+	/* Components */
+	import GameCard from '$lib/Cards/GameCard.svelte';
+	import OfflineCard from '$lib/Cards/ErrorCard.svelte';
 
 	export let games: Game[];
 	export let query: string;
@@ -15,7 +17,6 @@
 </script>
 
 <section>
-	<GameListFilterButtons {query} />
 	<ul>
 		{#if offline}
 			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />

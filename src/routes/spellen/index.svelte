@@ -37,49 +37,39 @@
 </script>
 
 <script lang="ts">
-	import GameList from '$lib/GameList/GameList.svelte';
-	import GameListFilter from '$lib/GameList/GameListFilter.svelte';
-
-	import { onMount } from 'svelte';
+	/* Typings */
 	import type { Game } from '$lib/games';
+	
+	/* Components */
+	import List from '$lib/GameViews/List.svelte';
+	import Filter from '$lib/Filters/Filter.svelte';
+	import FilterButtons from '$lib/Filters/FilterButtons.svelte';
 
-	export let offline;
+	/* Utils */
+	import { onMount } from 'svelte';
+	import { patchAllGamesOfflineStatus } from '$lib/Utils/offline';
+
 	export let games: Game[];
 	export let query;
-
+	
+	let offline: boolean = false;
+	
 	onMount(() => {
 		if (!navigator.onLine) offline = true;
-		patchGames();
+		
+		if('caches' in window) {
+			patchAllGamesOfflineStatus(games, offline).then((patchedGames) => games = patchedGames)
+		}
 	});
-
-	function patchGames() {
-		Promise.all(
-			games.map((game: Game) => {
-				return caches
-					.open('gamesCache')
-					.then((cache) => {
-						return cache.match(`/spellen/${game.slug}.json`);
-					})
-					.then((response: Response | undefined) => {
-						if (response) game.offline = true;
-						else game.offline = false;
-						return game;
-					});
-			})
-		)
-			.then((patchGames: Game[]) => (games = patchGames))
-			.then(() => {
-				if (offline) games = games.filter((game) => game.offline);
-			});
-	}
 </script>
 
 <main class="leaves-bg">
 	{#if !offline}
-		<GameListFilter {query} />
+		<Filter {query} />
+		<FilterButtons {query} />
 	{/if}
 
-	<GameList {games} {offline} {query} />
+	<List {games} {offline} {query} />
 </main>
 
 <style>

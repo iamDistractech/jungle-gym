@@ -1,6 +1,6 @@
 <script lang="ts">
-	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
-	import FilterButton from '$lib/Button/FilterButton.svelte';
+	import FilterPopup from '$lib/Filters/FilterPopup.svelte';
+	import FilterButton from '$lib/shared/Button/FilterButton.svelte';
 	import { goto } from '$app/navigation';
 
 	export let query: URLSearchParams;
@@ -144,7 +144,7 @@
 </section>
 
 {#if category}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="Categorie"
 		filterItems={gameNames}
 		activeQueries={query.getAll('category')}
@@ -153,7 +153,7 @@
 {/if}
 
 {#if targetGroup}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="targetGroup"
 		filterItems={groupNames}
 		activeQueries={query.getAll('targetGroup')}
@@ -162,7 +162,7 @@
 {/if}
 
 {#if minimumPlayers}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="minimumPlayers"
 		filterItems={childrenCount}
 		activeQueries={query.getAll('minimumPlayers')}
@@ -171,7 +171,7 @@
 {/if}
 
 {#if materialen}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="materialen"
 		filterItems={materialNames}
 		activeQueries={query.getAll('material')}

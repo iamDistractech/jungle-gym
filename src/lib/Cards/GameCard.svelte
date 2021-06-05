@@ -11,7 +11,7 @@
 <article>
 	<h1>{game.name}</h1>
 	{#if game.offline}
-		<h2><i class="material-icons">cloud_download</i>Gedownload</h2>
+		<p><i class="material-icons">cloud_download</i>Gedownload</p>
 	{/if}
 	<ul>
 		<li><CardLabel label={targetGroupString} icon={undefined} /></li>
@@ -59,7 +59,7 @@
 		width: 0.5em;
 	}
 
-	article h2 {
+	article header h1 + p {
 		display: flex;
 		align-items: center;
 		margin: 0;
@@ -71,7 +71,7 @@
 		/* opacity: 0.5; **/
 	}
 
-	h2 i {
+	article header h1 + p {
 		font-size: inherit;
 		margin-right: 0.5em;
 	}
