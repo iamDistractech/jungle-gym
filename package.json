@@ -65,6 +65,7 @@
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"cookie": "^0.4.1",
+		"redis": "^3.1.2",
 		"tedis": "^0.1.12",
 		"uuid": "^8.3.2"
 	}

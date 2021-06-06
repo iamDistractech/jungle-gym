@@ -22,6 +22,7 @@ import type { Load } from "@sveltejs/kit";
 </script>
 
 <script>
+
 	export let user
 
 </script>
