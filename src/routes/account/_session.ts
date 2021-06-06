@@ -1,5 +1,5 @@
 import { Tedis } from 'tedis';
-import type { GetSession, Handle } from '@sveltejs/kit';
+
 import {
 	SESSION_DB_PORT,
 	SESSION_DB_URL,
@@ -22,7 +22,7 @@ if (typeof port === 'number' && !isNaN(port) && typeof host === 'string') {
 		password: string;
 		username: string;
 		tls: Record<string, unknown>;
-	} = { host, port, password: undefined, username: undefined };
+	} = { host, port, password: undefined, username: undefined, tls: {} };
 
 	if (password && typeof password === 'string') options.password = password;
 	if (username && typeof username === 'string') options.username = username;
