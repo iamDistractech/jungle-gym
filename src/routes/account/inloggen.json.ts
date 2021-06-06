@@ -22,7 +22,7 @@ export const post: RequestHandler = async (request: Request) => {
 
 	const cookieId = uuidv4();
 
-	await sessionDB.set(cookieId, JSON.stringify(user));
+	await sessionDB.set(cookieId, JSON.stringify(user))
 
 	const headers = {
 		'Set-Cookie': cookie.serialize('session_id', cookieId, {
@@ -33,9 +33,9 @@ export const post: RequestHandler = async (request: Request) => {
 		})
 	};
 
-	return {
+	return JSON.stringify({
 		status: 200,
 		headers,
 		body: { message: 'success', user }
-	};
+	})
 };
