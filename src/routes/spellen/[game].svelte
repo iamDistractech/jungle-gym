@@ -1,7 +1,5 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { BASE_STRAPI_API_URL } from '$lib/Env';
-	import { strapiPatchSingle } from '$lib/Utils/strapiPatch';
 
 	export const load: Load = async ({ page, fetch }) => {
 		try {
@@ -9,10 +7,11 @@
 
 			if (res.ok) {
 				const game = await res.json();
+				console.log(game)
 
 				return {
 					props: {
-						game: BASE_STRAPI_API_URL ? strapiPatchSingle(game) : game,
+						game
 					}
 				};
 			}
