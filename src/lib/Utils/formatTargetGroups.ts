@@ -1,5 +1,10 @@
 import type { Game } from '$lib/games';
 
+/**
+ * Formats the targetgroup into a dutch human readable format
+ * @param targetGroup an array with all the target groups
+ * @returns A readable text in Dutch
+ */
 export function formatTargetGroups(targetGroup: Game['targetGroup']): string {
 	const sortedTargetGroup = sortTargetGroups(targetGroup);
 
