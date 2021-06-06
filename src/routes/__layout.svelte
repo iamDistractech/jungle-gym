@@ -22,7 +22,7 @@
 				>
 			</li>
 			<li>
-				<a href="/" class={pathName === '/inloggen' ? 'active-path' : ''}
+				<a href="/account/inloggen" class={pathName === '/account/inloggen' ? 'active-path' : ''}
 					><i class="material-icons">person</i>Inloggen</a
 				>
 			</li>
