@@ -17,6 +17,9 @@
 	"devDependencies": {
 		"@sveltejs/adapter-netlify": "^1.0.0-next.14",
 		"@sveltejs/kit": "next",
+		"@types/bcrypt": "^5.0.0",
+		"@types/cookie": "^0.4.0",
+		"@types/uuid": "^8.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
 		"@typescript-eslint/parser": "^4.19.0",
 		"eslint": "^7.22.0",
@@ -59,5 +62,10 @@
 		"url": "https://github.com/iSirThijs/jungle-gym/issues"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"cookie": "^0.4.1",
+		"tedis": "^0.1.12",
+		"uuid": "^8.3.2"
+	}
 }
