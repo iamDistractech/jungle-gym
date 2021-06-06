@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-import { bind } from 'svelte/internal';
 
 	const dispatch = createEventDispatcher();
 
@@ -21,7 +20,7 @@ import { bind } from 'svelte/internal';
 
 			if (response.ok) {
 				const body = await response.json();
-				console.log(body)
+				console.log(body);
 				dispatch('success', body);
 			} else {
 				dispatch('failure', await response.text());

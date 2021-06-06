@@ -1,6 +1,6 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
 import { user } from './_mockAccounts';
-import { hash } from 'bcrypt';
+// import { hash } from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import * as cookie from 'cookie';
 import sessionDB from './_session';
@@ -22,8 +22,7 @@ export const post: RequestHandler = async (request: Request) => {
 
 	const cookieId = uuidv4();
 
-
-	await sessionDB.set(cookieId, JSON.stringify(user))
+	await sessionDB.set(cookieId, JSON.stringify(user));
 
 	const headers = {
 		'Set-Cookie': cookie.serialize('session_id', cookieId, {
@@ -32,14 +31,16 @@ export const post: RequestHandler = async (request: Request) => {
 			sameSite: true,
 			path: '/'
 		}),
-		'Content-Type' : 'application/json'
+		'Content-Type': 'application/json'
 	};
 
-	console.log(JSON.stringify({
-		status: 200,
-		headers,
-		body: { message: 'success', user }
-	}))
+	console.log(
+		JSON.stringify({
+			status: 200,
+			headers,
+			body: { message: 'success', user }
+		})
+	);
 
 	return {
 		status: 200,

@@ -24,9 +24,6 @@
 	import LoginForm from '$lib/account/LoginForm.svelte';
 	import { session } from '$app/stores';
 
-	// Session is a workaround of a Svelte bug
-	let currentSession = $session;
-
 	export let redirectPage;
 	export let error;
 

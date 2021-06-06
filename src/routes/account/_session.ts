@@ -13,7 +13,6 @@ const password: string | boolean = SESSION_DB_PASSWORD;
 const username: string | boolean = SESSION_DB_USERNAME;
 
 let sessionDB: Tedis | undefined;
-let db_error;
 
 if (typeof port === 'number' && !isNaN(port) && typeof host === 'string') {
 	const options: {
