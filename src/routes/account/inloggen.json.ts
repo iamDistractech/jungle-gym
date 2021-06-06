@@ -22,6 +22,7 @@ export const post: RequestHandler = async (request: Request) => {
 
 	const cookieId = uuidv4();
 
+
 	await sessionDB.set(cookieId, JSON.stringify(user))
 
 	const headers = {
@@ -30,8 +31,15 @@ export const post: RequestHandler = async (request: Request) => {
 			maxAge: 60 * 60 * 24,
 			sameSite: true,
 			path: '/'
-		})
+		}),
+		'Content-Type' : 'application/json'
 	};
+
+	console.log(JSON.stringify({
+		status: 200,
+		headers,
+		body: { message: 'success', user }
+	}))
 
 	return {
 		status: 200,

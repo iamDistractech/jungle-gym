@@ -27,7 +27,6 @@ import { bind } from 'svelte/internal';
 				dispatch('failure', await response.text());
 			}
 		} catch (error) {
-			console.log(error)
 			dispatch('error', error);
 		}
 	}
