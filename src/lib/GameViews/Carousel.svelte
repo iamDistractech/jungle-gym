@@ -1,7 +1,7 @@
 <script lang="ts">
 	/* Typings */
 	import type { Game } from '$lib/games';
-	
+
 	/* Components */
 	import GameCard from '$lib/Cards/GameCard.svelte';
 

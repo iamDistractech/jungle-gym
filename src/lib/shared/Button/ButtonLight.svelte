@@ -11,7 +11,6 @@
 		color: var(--color-accent-dark);
 		border: 0.15em solid var(--color-base-light);
 		border-radius: 0.75em;
-		margin: 0 1em;
 		background-color: transparent;
 	}
 </style>

@@ -18,6 +18,3 @@
 		margin-right: 0.5em;
 	}
 </style>
-	
-	
-	

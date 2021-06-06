@@ -31,12 +31,11 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import GameCardHighlighted from '$lib/Cards/GameCardHighlighted.svelte'
+	import GameCardHighlighted from '$lib/Cards/GameCardHighlighted.svelte';
 	import Carousel from '$lib/GameViews/Carousel.svelte';
 
 	export let games: Game[];
 	const newestGames = games.slice(Math.max(games.length - 4, 0));
-
 </script>
 
 <main class="leaves-bg">

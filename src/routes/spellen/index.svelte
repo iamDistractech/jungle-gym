@@ -37,7 +37,7 @@
 <script lang="ts">
 	/* Typings */
 	import type { Game } from '$lib/games';
-	
+
 	/* Components */
 	import List from '$lib/GameViews/List.svelte';
 	import Filter from '$lib/Filters/Filter.svelte';
@@ -49,14 +49,14 @@
 
 	export let games: Game[];
 	export let query;
-	
-	let offline: boolean = false;
-	
+
+	let offline = false;
+
 	onMount(() => {
 		if (!navigator.onLine) offline = true;
-		
-		if('caches' in window) {
-			patchAllGamesOfflineStatus(games, offline).then((patchedGames) => games = patchedGames)
+
+		if ('caches' in window) {
+			patchAllGamesOfflineStatus(games, offline).then((patchedGames) => (games = patchedGames));
 		}
 	});
 </script>

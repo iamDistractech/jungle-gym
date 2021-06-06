@@ -1,13 +1,8 @@
 <script context="module" lang="ts">
-	export function load({ error, status }) {
-		if (error.message !== 'offline') {
-			return {
-				error,
-				status
-			};
-		} else {
-			return {};
-		}
+	export function load(): { props: { error?: Record<symbol, symbol>; status?: number } } {
+		return {
+			props: {}
+		};
 	}
 </script>
 

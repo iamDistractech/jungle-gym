@@ -1,19 +1,15 @@
 <script lang="ts">
-import type { Game } from '$lib/games';
-
-import { each } from 'svelte/internal';
-
+	import type { Game } from '$lib/games';
 	import { slide } from 'svelte/transition';
-	
+
 	export let variations: Game['variation'];
 
 	const open = variations.reduce((isOpen, variation) => {
-		isOpen[variation.description] = false
-		return isOpen
-	}, {})
+		isOpen[variation.description] = false;
+		return isOpen;
+	}, {});
 
 	const toggle = (description) => (open[description] = !open[description]);
-
 </script>
 
 <ul>
@@ -21,18 +17,17 @@ import { each } from 'svelte/internal';
 		<li>
 			<p on:click={() => toggle(variation.description)}>{variation.description}</p>
 			{#if open[variation.description]}
-			<ul transition:slide={{ duration: 300 }}>
-				{#each variation.actions as action }
-					<li>{action}</li>
-				{/each}
-			</ul>
+				<ul transition:slide={{ duration: 300 }}>
+					{#each variation.actions as action}
+						<li>{action}</li>
+					{/each}
+				</ul>
 			{/if}
 		</li>
 	{/each}
 </ul>
 
 <style>
-
 	ul {
 		list-style: none;
 		margin: 0;
@@ -54,5 +49,4 @@ import { each } from 'svelte/internal';
 		border-top: 0;
 		margin-top: -0.3rem;
 	}
-
 </style>

@@ -1,6 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
-	export let snackbarMessage;
+	export let message;
 
 	let showSnackbar = true;
 </script>
@@ -8,7 +8,7 @@
 <main>
 	{#if showSnackbar}
 		<article in:fly={{ x: -400, duration: 500 }} out:fly={{ x: -400, duration: 500 }}>
-			<h1>{snackbarMessage}</h1>
+			<h1>{message}</h1>
 			<button on:click={() => (showSnackbar = !showSnackbar)}>Close</button>
 		</article>
 	{/if}

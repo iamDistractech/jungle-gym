@@ -1,13 +1,12 @@
 <script lang="ts">
 	/* Typings */
 	import type { Game } from '$lib/games';
-	
+
 	/* Components */
 	import GameCard from '$lib/Cards/GameCard.svelte';
 	import OfflineCard from '$lib/Cards/ErrorCard.svelte';
 
 	export let games: Game[];
-	export let query: string;
 	export let offline: boolean;
 
 	let ErrorMessage =

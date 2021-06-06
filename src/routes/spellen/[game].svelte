@@ -32,41 +32,60 @@
 
 <script lang="ts">
 	/* Typings */
-	import type { Game } from '$lib/games';
-	
+	import type { Game, Material } from '$lib/games';
+
 	/* Components */
-	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
 	import Accordion from '$lib/shared/Modals/Accordion.svelte';
 	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
-	
-	/* Utils */ 
+	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
+	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
+
+	/* Utils */
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-
+	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
 
 	export let game: Game;
 	let gameSlug: string = $page.params.game;
-	let pwa: boolean = false
+	let pwa = false;
+
+	let message: string | undefined;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
 	let isModalOpen = false;
 	let clickedMaterial;
 
-	function toggleModal(material): any {
+	function toggleModal(material: Material['name']) {
 		isModalOpen = !isModalOpen;
 		clickedMaterial = material;
 	}
 
+	function savedHandler(event) {
+		const { success } = event.detail;
+		if (success) {
+			message = 'Dit spel is nu gedownload';
+			game.offline = true;
+		} else message = 'Er ging iets mis met opslaan';
+	}
+
+	function deletedHandler(event) {
+		const { success } = event.detail;
+		if (success) {
+			message = 'De download van dit spel is verwijdererd';
+			game.offline = false;
+		} else message = 'Er ging iets mis met verwijderen';
+	}
+
 	onMount(() => {
-		if('caches' in window) {
-			pwa = true
-			patchSingleGameOfflineStatus(game).then((patchedGame) => game = patchedGame)
+		if ('caches' in window) {
+			pwa = true;
+			patchSingleGameOfflineStatus(game).then((patchedGame) => (game = patchedGame));
 		}
 	});
 </script>
@@ -76,7 +95,7 @@
 		<h2>{game.name}</h2>
 		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
 		{#if game.offline}
-		<OfflineLabel />
+			<OfflineLabel />
 		{/if}
 		<ul>
 			<li><CardLabel label={targetGroupString} icon={undefined} /></li>
@@ -98,7 +117,7 @@
 		<ul>
 			{#each game.materials as material}
 				<li>
-					<MaterialButton on:click={toggleModal(material)}>{material.name || material.material.name}</MaterialButton>
+					<MaterialButton on:click={toggleModal(material)}>{material.name}</MaterialButton>
 				</li>
 			{/each}
 		</ul>
@@ -118,20 +137,24 @@
 		<Accordion variations={game.variation} />
 	</section>
 
-<!-- 
-<section class="download-button-container">
-	{#if game.offline}
-		<ButtonLight on:click={deleteCache}>Spel is gedownload</ButtonLight>
-	{:else}
-		<ButtonLight on:click={saveCache}>Download dit spel</ButtonLight>
-	{/if}
-
-	<p><i>Download het spel, zodat jij het kunt bekijken zonder internet.</i></p> 
-</section> -->
+	<section class="utility-bar">
+		{#if pwa}
+			<DownloadButton
+				on:saved={savedHandler}
+				on:deleted={deletedHandler}
+				offline={game.offline}
+				slug={gameSlug}
+			/>
+		{/if}
+		<LikeButton />
+	</section>
 </main>
 
-<style>
+{#if message}
+	<Snackbar {message} />
+{/if}
 
+<style>
 	/* Content Heading */
 	header {
 		padding: 0 0.5rem;
@@ -200,34 +223,9 @@
 		margin-left: 0;
 	}
 
-	/* .download-button-container {
+	section.utility-bar {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin: 3rem 2rem;
+		justify-content: space-between;
+		align-items: stretch;
 	}
-
-	.download-button-container p {
-		text-align: center;
-	} */
-
-	/* .edit-element {
-		position: fixed;
-		right: 5%;
-		bottom: 2%;
-		height: 5em;
-		width: 5em;
-		background-color: var(--color-base-light);
-		border: none;
-		border-radius: 1em;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.edit-element img {
-		height: 3em;
-		width: 3em;
-	} */
 </style>

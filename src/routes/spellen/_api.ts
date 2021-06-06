@@ -7,7 +7,6 @@ export async function api(
 	resource: string,
 	data?: Record<string, unknown>
 ): Promise<{ status: number; body: JSONValue }> {
-
 	const res = await fetch(`${BASE_API_URL}/${resource}`, {
 		method: request.method,
 		headers: {

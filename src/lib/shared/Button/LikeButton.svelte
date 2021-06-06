@@ -25,7 +25,6 @@
 		position: relative;
 		border: none;
 		width: 4.5em;
-		height: 3em;
 		border-radius: 0.5em;
 		background: var(--color-light-grey);
 		display: flex;
