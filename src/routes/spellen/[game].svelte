@@ -7,7 +7,6 @@
 
 			if (res.ok) {
 				const game = await res.json();
-				console.log(game)
 
 				return {
 					props: {

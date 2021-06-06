@@ -16,7 +16,6 @@
 	}
 
 	let filterButtons = activeQueries;
-	console.log(filterButtons);
 
 	function submitForm() {
 		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
