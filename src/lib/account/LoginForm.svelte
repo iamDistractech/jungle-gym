@@ -18,8 +18,11 @@
 
 			const response = await fetch('/account/inloggen.json', init);
 
+			console.log(response)
+
 			if (response.ok) {
 				const body = await response.json();
+				console.log(response)
 				dispatch('success', body);
 			} else {
 				dispatch('failure', await response.json());
