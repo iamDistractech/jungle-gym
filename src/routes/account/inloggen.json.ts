@@ -33,9 +33,9 @@ export const post: RequestHandler = async (request: Request) => {
 		})
 	};
 
-	return JSON.stringify({
+	return {
 		status: 200,
 		headers,
 		body: { message: 'success', user }
-	})
+	};
 };

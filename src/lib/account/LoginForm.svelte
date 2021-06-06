@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+import { bind } from 'svelte/internal';
 
 	const dispatch = createEventDispatcher();
 
@@ -18,16 +19,15 @@
 
 			const response = await fetch('/account/inloggen.json', init);
 
-			console.log(response)
-
 			if (response.ok) {
 				const body = await response.json();
-				console.log(response)
+				console.log(body)
 				dispatch('success', body);
 			} else {
-				dispatch('failure', await response.json());
+				dispatch('failure', await response.text());
 			}
 		} catch (error) {
+			console.log(error)
 			dispatch('error', error);
 		}
 	}
