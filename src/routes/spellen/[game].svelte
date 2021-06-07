@@ -74,18 +74,18 @@
 		const { success } = event.detail;
 		if (success) {
 			message = 'Dit spel is nu gedownload';
-			messageStore.set(message);
 			game.offline = true;
 		} else message = 'Er ging iets mis met opslaan';
+		messageStore.set(message);
 	}
 
 	function deletedHandler(event) {
 		const { success } = event.detail;
 		if (success) {
 			message = 'De download van dit spel is verwijdererd';
-			messageStore.set(message);
 			game.offline = false;
 		} else message = 'Er ging iets mis met verwijderen';
+		messageStore.set(message);
 	}
 
 	onMount(() => {
@@ -156,9 +156,6 @@
 	</section>
 </main>
 
-<!-- {#if message}
-	<Snackbar {message} />
-{/if} -->
 <style>
 	/* Content Heading */
 	header {
