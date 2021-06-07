@@ -16,7 +16,7 @@
 				}
 			};
 
-			const response = await fetch('/account/inloggen.json', init);
+			const response = await fetch('/inloggen.json', init);
 
 			if (response.ok) {
 				const body = await response.json();

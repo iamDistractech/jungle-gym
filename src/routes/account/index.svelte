@@ -3,13 +3,15 @@
 	export const load: Load = ({ session, page }) => {
 		const { user, authenticated } = session;
 
+		console.log(session)
+
 		if (!authenticated) {
 			const query = new URLSearchParams();
 			query.append('page', page.path);
 
 			return {
 				status: 302,
-				redirect: `/account/inloggen?${query.toString()}`
+				redirect: `/inloggen?${query.toString()}`
 			};
 		}
 
@@ -31,7 +33,7 @@ const sessionData = $session
 export let user;
 
 	function logout() {
-		return fetch('/account/uitloggen.json').then(() => goto('/'))
+		return fetch('/account/uitloggen.json').then(() => session.set({authenticated: false})).then(() => goto('/'))
 	}
 
 </script>

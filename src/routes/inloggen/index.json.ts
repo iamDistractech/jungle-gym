@@ -1,14 +1,18 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
-import { user } from './_mockAccounts';
+import { userStore } from '$lib/Stores/mockUser';
 import { v4 as uuidv4 } from 'uuid';
 import * as cookie from 'cookie';
-import sessionDB from './_session';
+import sessionDB from '$lib/Utils/sessionDB';
 
 export const post: RequestHandler = async (request: Request) => {
 	if (!sessionDB) return {
 		status: 500,
 		body: { message: 'SessionDB offline' }
 	};
+	
+	let user
+	const userUnsub = userStore.subscribe((currentUSer) => user = currentUSer)
+	userUnsub()
 	
 	const { body } = request;
 

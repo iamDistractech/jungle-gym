@@ -1,6 +1,6 @@
 import type { GetSession, Handle } from '@sveltejs/kit';
 import * as cookie from 'cookie';
-import sessionDB from './routes/account/_session';
+import sessionDB from '$lib/Utils/sessionDB'
 
 export const handle: Handle = async ({ request, render }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');

@@ -1,6 +1,6 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
 import * as cookie from 'cookie';
-import sessionDB from './_session';
+import sessionDB from '$lib/Utils/sessionDB';
 
 export const get: RequestHandler = async (request: Request) => {
 	const { locals } = request;
