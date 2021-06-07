@@ -27,7 +27,7 @@
 {/if}
 
 <style>
-	article {
+	aside {
 		position: fixed;
 		bottom: 1%;
 		right: 5%;
@@ -47,7 +47,7 @@
 		font-weight: 200;
 	}
 
-	article button {
+	aside button {
 		color: var(--color-white);
 		cursor: pointer;
 		border: none;
