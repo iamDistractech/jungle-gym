@@ -1,11 +1,11 @@
 <script>
-	export let ErrorTitle;
-	export let ErrorMessage;
+	export let Title;
+	export let Message;
 </script>
 
 <article>
-	<h1>{ErrorTitle}</h1>
-	<p>{ErrorMessage}</p>
+	<h1>{Title}</h1>
+	<p>{Message}</p>
 </article>
 
 <style>

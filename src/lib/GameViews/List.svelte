@@ -4,7 +4,7 @@
 
 	/* Components */
 	import GameCard from '$lib/Cards/GameCard.svelte';
-	import OfflineCard from '$lib/Cards/ErrorCard.svelte';
+	import OfflineCard from '$lib/Cards/InfoCard.svelte';
 
 	export let games: Game[];
 	export let offline: boolean;
@@ -18,7 +18,7 @@
 <section>
 	<ul>
 		{#if offline}
-			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
+			<OfflineCard Title={'Oeps, je bent nu offline!'} {ErrorMessage} />
 		{/if}
 		{#each games as game}
 			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameCard {game} /> </a></li>
