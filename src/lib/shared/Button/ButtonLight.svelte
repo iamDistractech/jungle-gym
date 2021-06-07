@@ -8,10 +8,9 @@
 		padding: 0.75em;
 		min-width: 7em;
 		text-align: center;
-		color: var(--color-dark-blue);
-		border: 0.15em solid var(--color-light-orange);
+		color: var(--color-accent-dark);
+		border: 0.15em solid var(--color-base-light);
 		border-radius: 0.75em;
-		margin: 0 1em;
 		background-color: transparent;
 	}
 </style>

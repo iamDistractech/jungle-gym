@@ -1,6 +1,10 @@
 <script lang="ts">
+	/* Typings */
 	import type { Game } from '$lib/games';
-	import GameListCard from '$lib/GameList/GameListCard.svelte';
+
+	/* Components */
+	import GameCard from '$lib/Cards/GameCard.svelte';
+
 	export let gamesData: Game[];
 	export let carouselTitle;
 </script>
@@ -10,7 +14,7 @@
 	<ul>
 		{#each gamesData as game}
 			<li>
-				<a href="spellen/{game.slug}">
+				<a href="/spellen/{game.slug}">
 					<!-- <h1>{game.name}</h1>
 				<div>
 					<p class="label">Groep: {game.targetGroup}</p>
@@ -18,7 +22,7 @@
 					<p class="label">Min. {game.minimumPlayers} spelers</p>
 				</div> -->
 
-					<GameListCard {game} />
+					<GameCard {game} />
 				</a>
 			</li>
 		{/each}

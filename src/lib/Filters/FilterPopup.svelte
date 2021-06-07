@@ -142,7 +142,7 @@
 	}
 
 	input:checked + label > span {
-		border: 1px solid var(--color-light-orange);
+		border: 1px solid var(--color-base-light);
 	}
 
 	input:checked + label > span::before {
@@ -158,8 +158,8 @@
 	}
 
 	input:checked + label {
-		border: 1px solid var(--color-light-orange);
-		color: var(--color-light-orange);
+		border: 1px solid var(--color-base-light);
+		color: var(--color-base-light);
 	}
 
 	.black-overlay {
@@ -205,7 +205,7 @@
 		0% {
 			width: 0;
 			height: 0;
-			border-color: var(--color-light-orange);
+			border-color: var(--color-base-light);
 			transform: translate3d(0, 0, 0) rotate(45deg);
 		}
 		33% {
@@ -216,7 +216,7 @@
 		100% {
 			width: 0.2em;
 			height: 0.5em;
-			border-color: var(--color-light-orange);
+			border-color: var(--color-base-light);
 			transform: translate3d(0, -0.5em, 0) rotate(45deg);
 		}
 	}

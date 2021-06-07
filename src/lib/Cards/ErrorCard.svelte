@@ -10,7 +10,7 @@
 
 <style>
 	article {
-		background-color: var(--color-lighter-grey);
+		background-color: var(--color-light-grey);
 		border-radius: 1em;
 		margin: 1em 0;
 		padding: 1em;
@@ -18,7 +18,6 @@
 	}
 
 	article h1 {
-		color: var(--color-dark-blue);
 		display: flex;
 		justify-content: space-between;
 		margin: 0;

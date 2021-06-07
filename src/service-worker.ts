@@ -1,4 +1,3 @@
-import type { Game } from '$lib/games';
 import { build, timestamp, files } from '$service-worker';
 
 declare const self;
@@ -51,7 +50,7 @@ self.addEventListener('fetch', (event) => {
 
 	if (/(spellen\.json)/.test(requestURL.pathname)) {
 		const returnOfflineGames = () => {
-			return fetch(event.request).catch((error) => {
+			return fetch(event.request).catch(() => {
 				return caches
 					.open('gamesCache')
 					.then((cache) => {
@@ -78,7 +77,7 @@ self.addEventListener('fetch', (event) => {
 			caches
 				.match(request)
 				.then((response) => (response ? response : fetch(request)))
-				.catch((error) => returnSSRpage('/spellen/offline'));
+				.catch(() => returnSSRpage('/spellen/offline'));
 
 		event.respondWith(findOfflineGame());
 	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));

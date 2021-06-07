@@ -1,5 +1,11 @@
-<script context="module">
-	export function load({ error, status }) {
+<script context="module" lang="ts">
+	export function load({
+		error,
+		status
+	}: {
+		error: Record<symbol, symbol>;
+		status: number;
+	}): { props: { error: Record<symbol, symbol>; status: number } } {
 		return {
 			props: { error, status }
 		};
@@ -8,7 +14,6 @@
 
 <script>
 	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
-	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
 
 	/** @type {number} */
 	export let status;
