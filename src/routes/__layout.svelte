@@ -4,11 +4,11 @@
 	import '../fonts.css';
 	import '../app.css';
 
-	import {session as sessionStore} from '$app/stores'
+	import { session as sessionStore } from '$app/stores';
 
 	let authenticated = false;
-	
-	sessionStore.subscribe((session) => authenticated = session.authenticated )
+
+	sessionStore.subscribe((session) => (authenticated = session.authenticated));
 
 	$: pathName = $page.path;
 </script>
@@ -28,17 +28,17 @@
 				>
 			</li>
 			{#if authenticated}
-			<li>
-				<a href="/account" class={pathName === '/account' ? 'active-path' : ''}
-					><i class="material-icons">person</i>Account</a
-				>
-			</li>
+				<li>
+					<a href="/account" class={pathName === '/account' ? 'active-path' : ''}
+						><i class="material-icons">person</i>Account</a
+					>
+				</li>
 			{:else}
-			<li>
-				<a href="/inloggen" class={pathName === '/inloggen' ? 'active-path' : ''}
-				><i class="material-icons">person</i>Inloggen</a
-				>
-			</li>
+				<li>
+					<a href="/inloggen" class={pathName === '/inloggen' ? 'active-path' : ''}
+						><i class="material-icons">person</i>Inloggen</a
+					>
+				</li>
 			{/if}
 		</ul>
 	</nav>
