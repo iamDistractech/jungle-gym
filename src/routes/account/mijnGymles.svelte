@@ -1,5 +1,5 @@
 <!-- <script>
-/* Hier komt request naar API voor de favorieten data */
+/* Hier komt request naar API voor de favorieten data  */
 </script> -->
 <script lang="ts">
 	/* Typings */
