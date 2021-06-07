@@ -5,8 +5,6 @@ import sessionDB from './routes/account/_session';
 export const handle: Handle = async ({ request, render }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 
-	
-
 	if (!cookies.session_id || cookies.session_id === 'deleted') request.locals.authenticated = false;
 	else {
 		request.locals.authenticated = true;

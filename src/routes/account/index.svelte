@@ -31,7 +31,7 @@ const sessionData = $session
 export let user;
 
 	function logout() {
-		return fetch('/account/uitloggen.json').then(() => goto('/?logout=true'))
+		return fetch('/account/uitloggen.json').then(() => goto('/'))
 	}
 
 </script>
