@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<!-- <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 	export const load: Load = ({ session, page }) => {
 		const { user, authenticated } = session;
@@ -21,7 +21,7 @@
 			}
 		};
 	};
-</script>
+</script> -->
 
 
 <script lang='ts'>
@@ -30,7 +30,7 @@ import { session } from '$app/stores';
 
 const sessionData = $session
 
-export let user;
+let user = sessionData.user
 
 	function logout() {
 		return fetch('/account/uitloggen.json').then(() => session.set({authenticated: false})).then(() => goto('/'))

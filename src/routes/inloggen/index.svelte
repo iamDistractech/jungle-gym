@@ -34,7 +34,7 @@
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
 		sessionStore.set({ authenticated: true, user: event.detail.user });
 		if (redirectPage) goto(redirectPage);
-		goto('/account');
+		else goto('/account');
 	}
 
 	function handleError(event) {
