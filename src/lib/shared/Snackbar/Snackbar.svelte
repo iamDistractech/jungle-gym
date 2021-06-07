@@ -18,12 +18,12 @@
 </script>
 
 {#if showSnackbar}
-	<article in:fly={{ x: -400, duration: 500 }} out:fly={{ x: -400, duration: 500 }}>
+	<aside in:fly={{ x: -400, duration: 500 }} out:fly={{ x: -400, duration: 500 }}>
 		<h1>{message}</h1>
 		<button on:click={() => (showSnackbar = !showSnackbar)} on:click={() => clearTimeout(timeOut)}
 			>Close</button
 		>
-	</article>
+	</aside>
 {/if}
 
 <style>

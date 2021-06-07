@@ -57,7 +57,6 @@
 	let pwa = false;
 
 	let message: string | undefined;
-	let showSnackbar: boolean;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
