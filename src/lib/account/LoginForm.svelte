@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import {onMount} from 'svelte'
-	
+	import { onMount } from 'svelte';
+
 	const dispatch = createEventDispatcher();
 
 	let username: string;
 	let password: string;
 
-	let offline = false
+	let offline = false;
 
 	onMount(() => {
-		if(!navigator.onLine) {
-			offline = true
-			dispatch('error', 'Je kan niet inloggen wanneer je offline bent')
+		if (!navigator.onLine) {
+			offline = true;
+			dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
 		}
-	})
+	});
 
 	async function login() {
 		try {
@@ -35,7 +35,7 @@
 				dispatch('failure', await response.json());
 			}
 		} catch (error) {
-			if(offline) dispatch('error', 'Je kan niet inloggen wanneer je offline bent')
+			if (offline) dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
 			dispatch('error', error);
 		}
 	}
@@ -43,9 +43,9 @@
 
 <form on:submit|preventDefault={login} action="/account/inloggen.json" method="POST">
 	<label for="username">Gebruikersnaam</label>
-	<input bind:value={username} name="username" type="text" disabled="{offline}" />
+	<input bind:value={username} name="username" type="text" disabled={offline} />
 	<label for="password">Wachtwoord</label>
-	<input bind:value={password} name="password" type="text" disabled="{offline}" />
+	<input bind:value={password} name="password" type="text" disabled={offline} />
 	<button type="submit">Inloggen</button>
 </form>
 
