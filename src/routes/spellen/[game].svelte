@@ -41,14 +41,16 @@
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
-	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
 
 	/* Utils */
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
+
+	/* Stores */
+	import { page } from '$app/stores';
+	import { messageStore } from '$lib/Stores/message';
 
 	export let game: Game;
 	let gameSlug: string = $page.params.game;
@@ -72,6 +74,7 @@
 			message = 'Dit spel is nu gedownload';
 			game.offline = true;
 		} else message = 'Er ging iets mis met opslaan';
+		messageStore.set(message);
 	}
 
 	function deletedHandler(event) {
@@ -80,6 +83,7 @@
 			message = 'De download van dit spel is verwijdererd';
 			game.offline = false;
 		} else message = 'Er ging iets mis met verwijderen';
+		messageStore.set(message);
 	}
 
 	onMount(() => {
@@ -149,10 +153,6 @@
 		<LikeButton />
 	</section>
 </main>
-
-{#if message}
-	<Snackbar {message} />
-{/if}
 
 <style>
 	/* Content Heading */
