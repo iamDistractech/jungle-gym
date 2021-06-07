@@ -122,13 +122,9 @@
 		class:border-change-open={open}
 	>
 		Filter
-		<img src="../icons/filter.svg" alt="Filter icon" />
-		<img
-			class:dropdown-close={open}
-			class:dropdown-open={!open}
-			src="../icons/dropdown.svg"
-			alt="Dropdown icon"
-		/>
+		<i class="material-icons">filter_list</i>
+		<i class:dropdown-close={!open} class:dropdown-open={open} class="material-icons">expand_more</i
+		>
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />
@@ -141,14 +137,16 @@
 		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 
 		<div>
-			<a href="/spellen" on:click={resetAllFilters}>Reset filters</a>
+			<a href="/spellen" on:click={resetAllFilters}
+				>Reset filters<i class="material-icons">cached</i></a
+			>
 		</div>
 	</article>
 </section>
 
 {#if category}
 	<GameListPopup
-		filterTitle="category"
+		filterTitle="Categorie"
 		filterItems={gameNames}
 		activeQueries={query.getAll('category')}
 		on:close={() => (category = !category)}
@@ -198,28 +196,28 @@
 		height: 3em;
 	}
 
-	section button img:nth-of-type(1) {
+	section button i:nth-of-type(1) {
 		padding: 0em 0.5em;
 		width: 1.1em;
 		height: 1.1em;
 	}
 
 	.dropdown-close {
-		padding: 0em 0.5em;
+		padding: 0.2em 0.5em;
 		margin-left: auto;
 		width: 0.75em;
 		height: 0.75em;
-		transform: rotate(180deg);
-		transition: transform 200ms linear;
+		transform: rotateX(180deg);
+		transition: transform 200ms ease-in;
 	}
 
 	.dropdown-open {
-		padding: 0em 0.5em;
+		padding: 0 0.5em;
 		margin-left: auto;
 		width: 0.75em;
 		height: 0.75em;
-		transform: rotate(0deg);
-		transition: transform 200ms linear;
+		transform: rotateX(0deg);
+		transition: transform 200ms ease-in;
 	}
 
 	article {
@@ -234,6 +232,10 @@
 		color: var(--color-black);
 		padding: 0.5rem;
 		cursor: pointer;
+	}
+
+	article div a i {
+		padding-left: 0.3em;
 	}
 
 	.filter-options-open {
@@ -257,5 +259,9 @@
 
 	.border-change-open {
 		border-radius: 1em 1em 0em 0em;
+	}
+
+	.no-transform-button:active {
+		transform: none;
 	}
 </style>
