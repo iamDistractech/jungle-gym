@@ -35,18 +35,20 @@
 	import type { Game, Material } from '$lib/games';
 
 	/* Components */
+	import GameReview from '$lib/GameViews/GameReview.svelte';
 	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
 	import Accordion from '$lib/shared/Modals/Accordion.svelte';
 	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
+	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
+	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
 
 	/* Utils */
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
-	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
 
 	/* Stores */
 	import { page } from '$app/stores';
@@ -151,6 +153,12 @@
 			/>
 		{/if}
 		<LikeButton />
+	</section>
+
+	<section>
+		<h1>Wat vind jij van het spel?</h1>
+		<!-- <input type="range" min="1" max="3" value="2" /> -->
+		<GameReview />
 	</section>
 </main>
 
