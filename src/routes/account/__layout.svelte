@@ -3,7 +3,7 @@
 	export const load: Load = ({ session, page }) => {
 		const { user, authenticated } = session;
 
-		console.log(session)
+		console.log(session);
 
 		if (!authenticated) {
 			const query = new URLSearchParams();

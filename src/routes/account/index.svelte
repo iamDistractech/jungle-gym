@@ -22,20 +22,19 @@
 		};
 	};
 </script> -->
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { session as sessionStore } from '$app/stores';
 
+	const session = sessionStore;
 
-<script lang='ts'>
-import { goto } from '$app/navigation';
-import { session } from '$app/stores';
-
-const sessionData = $session
-
-let user = sessionData.user
+	let user = $sessionStore.user;
 
 	function logout() {
-		return fetch('/account/uitloggen.json').then(() => session.set({authenticated: false})).then(() => goto('/'))
+		return fetch('/account/uitloggen.json')
+			.then(() => session.set({ authenticated: false }))
+			.then(() => goto('/'));
 	}
-
 </script>
 
 <h1>Hello {user.name}</h1>

@@ -11,7 +11,7 @@ export const get: RequestHandler = async (request: Request) => {
 			body: { message: 'SessionDB offline' }
 		};
 
-	await sessionDB.del(locals.session_id)
+	await sessionDB.del(locals.session_id);
 
 	return {
 		status: 200,
@@ -23,6 +23,6 @@ export const get: RequestHandler = async (request: Request) => {
 				path: '/'
 			})
 		},
-		body: {message: 'success'}
-	}
+		body: { message: 'success' }
+	};
 };
