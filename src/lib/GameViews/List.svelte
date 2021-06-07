@@ -5,6 +5,9 @@
 	/* Components */
 	import GameCard from '$lib/Cards/GameCard.svelte';
 	import OfflineCard from '$lib/Cards/ErrorCard.svelte';
+	import { page } from '$app/stores';
+
+	const query = $page.query;
 
 	export let games: Game[];
 	export let offline: boolean;
