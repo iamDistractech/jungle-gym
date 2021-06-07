@@ -47,14 +47,18 @@
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
+
+	/* Stores */
+	import { page } from '$app/stores';
+	import { messageStore } from '$lib/Stores/message';
 
 	export let game: Game;
 	let gameSlug: string = $page.params.game;
 	let pwa = false;
 
 	let message: string | undefined;
+	let showSnackbar: boolean;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
@@ -70,6 +74,7 @@
 		const { success } = event.detail;
 		if (success) {
 			message = 'Dit spel is nu gedownload';
+			messageStore.set(message);
 			game.offline = true;
 		} else message = 'Er ging iets mis met opslaan';
 	}
@@ -78,6 +83,7 @@
 		const { success } = event.detail;
 		if (success) {
 			message = 'De download van dit spel is verwijdererd';
+			messageStore.set(message);
 			game.offline = false;
 		} else message = 'Er ging iets mis met verwijderen';
 	}
@@ -150,10 +156,9 @@
 	</section>
 </main>
 
-{#if message}
+<!-- {#if message}
 	<Snackbar {message} />
-{/if}
-
+{/if} -->
 <style>
 	/* Content Heading */
 	header {

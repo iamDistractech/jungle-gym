@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
 	import '../fonts.css';
 	import '../app.css';
 
@@ -29,6 +30,8 @@
 	</nav>
 </header>
 <slot />
+
+<Snackbar />
 
 <style>
 	header {
