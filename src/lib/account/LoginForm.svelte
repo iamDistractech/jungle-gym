@@ -20,10 +20,9 @@
 
 			if (response.ok) {
 				const body = await response.json();
-				console.log(body);
 				dispatch('success', body);
 			} else {
-				dispatch('failure', await response.text());
+				dispatch('failure', await response.json());
 			}
 		} catch (error) {
 			dispatch('error', error);

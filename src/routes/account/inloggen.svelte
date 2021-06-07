@@ -4,6 +4,7 @@
 	export const load: Load = ({ session, page }) => {
 		const { query } = page;
 		const redirectPage = query.get('page');
+		const logout = Boolean(query.get('logout'))
 
 		if (session.authenticated)
 			return {
@@ -23,6 +24,8 @@
 	import { goto } from '$app/navigation';
 	import LoginForm from '$lib/account/LoginForm.svelte';
 	import { session } from '$app/stores';
+
+	const sessionInfo = $session
 
 	export let redirectPage;
 	export let error;

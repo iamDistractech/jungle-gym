@@ -1,14 +1,20 @@
+import type { GetSession, Handle } from '@sveltejs/kit';
 import * as cookie from 'cookie';
 import sessionDB from './routes/account/_session';
 
 export const handle: Handle = async ({ request, render }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 
-	if (!cookies.session_id) request.locals.authenticated = false;
+	
+
+	if (!cookies.session_id || cookies.session_id === 'deleted') request.locals.authenticated = false;
 	else {
 		request.locals.authenticated = true;
 		request.locals.session_id = cookies.session_id;
 	}
+
+	console.log(request.locals.authenticated ? `User with ${request.locals.session_id} made a request`: `Request without logged in user`)
+
 	const response = await render(request);
 
 	return response;
@@ -23,8 +29,9 @@ export const getSession: GetSession = async (request) => {
 		};
 
 	if (request.locals.authenticated && request.locals.session_id) {
-		const sessionString = String(await sessionDB.get(request.locals.session_id));
-		const user = JSON.parse(sessionString);
+		const userJSON = await sessionDB.get(request.locals.session_id);
+		const user = typeof userJSON === 'string' ? JSON.parse(userJSON) : null
+		console.log('hook', user, request.locals.authenticated, request.locals.session_id)
 
 		return {
 			user,
