@@ -1,38 +1,49 @@
-<script>
+<script lang="ts">
+	import type { Game } from '$lib/games';
 	import { slide } from 'svelte/transition';
-	export let variation;
-	let isOpen = false;
-	const toggle = () => (isOpen = !isOpen);
+
+	export let variations: Game['variation'];
+
+	const open = variations.reduce((isOpen, variation) => {
+		isOpen[variation.description] = false;
+		return isOpen;
+	}, {});
+
+	const toggle = (description) => (open[description] = !open[description]);
 </script>
 
-<button on:click={toggle} aria-expanded={isOpen}> {variation.description} </button>
-
-{#each variation.actions as action}
-	{#if isOpen}
-		<ul transition:slide={{ duration: 300 }}>
-			{#each variation.actions as action}
-				{action.description || action}
-			{/each}
-		</ul>
-	{/if}
-{/each}
+<ul>
+	{#each variations as variation}
+		<li>
+			<p on:click={() => toggle(variation.description)}>{variation.description}</p>
+			{#if open[variation.description]}
+				<ul transition:slide={{ duration: 300 }}>
+					{#each variation.actions as action}
+						<li>{action}</li>
+					{/each}
+				</ul>
+			{/if}
+		</li>
+	{/each}
+</ul>
 
 <style>
-	button {
-		border: 2px solid var(--color-light-orange);
-		width: 100%;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul li p {
+		font-weight: bolder;
+		border: 2px solid var(--color-base-light);
 		padding: 0.7rem 1rem;
 		border-radius: 0.6rem;
-		margin-top: 1rem;
-		background: transparent;
 	}
 
-	button:first-of-type {
-		margin-top: 0;
-	}
-
-	ul {
-		border: 2px solid var(--color-light-orange);
+	ul li ul {
+		list-style: initial;
+		border: 2px solid var(--color-base-light);
 		padding: 1.2rem 2rem;
 		border-radius: 0 0 0.6rem 0.6rem;
 		border-top: 0;
