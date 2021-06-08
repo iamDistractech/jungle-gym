@@ -87,7 +87,7 @@ section > h1 {
 
 .leaves-bg {
 	background: url('$lib/assets/images/background/leavesBackground.svg');
-	background-position: 30% 10%;
-	background-size: 350%;
-	background-attachment: fixed;
+	background-position: 30% 0;
+	background-size: 300%;
+	background-attachment: repeat-y;
 }
