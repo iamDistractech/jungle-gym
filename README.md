@@ -33,6 +33,13 @@ The **Meesterproef** is the final client-project of the half year minor programm
 
 ### Tech stack
 
+## Prerequisites
+
+- Redis database for session storage
+  <!-- These links will link to a wiki page -->
+  - [What is a session storage?]()
+  - [Local session storage with docker]()
+
 ## :gear: Installation
 
 ### Developing
