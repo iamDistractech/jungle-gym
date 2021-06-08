@@ -68,6 +68,8 @@
 	{/if}
 
 	<List {games} {offline} {query} />
+	<List {games} {offline} {query} />
+	<List {games} {offline} {query} />
 </main>
 
 <style>
