@@ -1,6 +1,6 @@
 <script lang="ts">
-	import GameListPopup from '$lib/GameList/GameListPopup.svelte';
-	import FilterButton from '$lib/Button/FilterButton.svelte';
+	import FilterPopup from '$lib/Filters/FilterPopup.svelte';
+	import FilterButton from '$lib/shared/Button/FilterButton.svelte';
 	import { goto } from '$app/navigation';
 
 	export let query: URLSearchParams;
@@ -128,13 +128,12 @@
 	</button>
 	<article class:filter-options-close={!open} class:filter-options-open={open}>
 		<FilterButton filterTitle="Spelsoort" on:click={() => (category = !category)} />
-		<!-- Disabled filters for now -->
-		<!-- <FilterButton filterTitle="Groepen" on:click={() => (targetGroup = !targetGroup)} /> -->
-		<!-- <FilterButton
-			filterTitle="Minumum spelers"
+		<!-- <FilterButton filterTitle="Groepen" on:click={() => (targetGroup = !targetGroup)} />
+		<FilterButton
+			filterTitle="Minimum spelers"
 			on:click={() => (minimumPlayers = !minimumPlayers)}
-		/> -->
-		<!-- <FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
+		/>
+		<FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} /> -->
 
 		<div>
 			<a href="/spellen" on:click={resetAllFilters}
@@ -145,8 +144,8 @@
 </section>
 
 {#if category}
-	<GameListPopup
-		filterTitle="category"
+	<FilterPopup
+		filterTitle="Categorie"
 		filterItems={gameNames}
 		activeQueries={query.getAll('category')}
 		on:close={() => (category = !category)}
@@ -154,25 +153,28 @@
 {/if}
 
 {#if targetGroup}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="targetGroup"
 		filterItems={groupNames}
+		activeQueries={query.getAll('targetGroup')}
 		on:close={() => (targetGroup = !targetGroup)}
 	/>
 {/if}
 
 {#if minimumPlayers}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="minimumPlayers"
 		filterItems={childrenCount}
+		activeQueries={query.getAll('minimumPlayers')}
 		on:close={() => (minimumPlayers = !minimumPlayers)}
 	/>
 {/if}
 
 {#if materialen}
-	<GameListPopup
+	<FilterPopup
 		filterTitle="materialen"
 		filterItems={materialNames}
+		activeQueries={query.getAll('material')}
 		on:close={() => (materialen = !materialen)}
 	/>
 {/if}
@@ -190,7 +192,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background-color: var(--color-light-orange);
+		background-color: var(--color-base-light);
 		padding: 0em 1em;
 		width: 100%;
 		height: 3em;
@@ -221,7 +223,7 @@
 	}
 
 	article {
-		background-color: var(--color-light-orange);
+		background-color: var(--color-base-light);
 		border-radius: 0em 0em 2em 2em;
 	}
 

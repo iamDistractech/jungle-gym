@@ -41,7 +41,7 @@
 </script>
 
 <section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
-	<h1>Filter op {filterTitle}</h1>
+	<h1>Filter op <span>{filterTitle}</span></h1>
 	{#if filterTitle !== 'minimumPlayers'}
 		<form on:submit|preventDefault={submitForm}>
 			<fieldset>
@@ -92,6 +92,10 @@
 		text-align: center;
 	}
 
+	section h1 span {
+		text-transform: capitalize;
+	}
+
 	form {
 		display: flex;
 		flex-direction: column;
@@ -138,7 +142,7 @@
 	}
 
 	input:checked + label > span {
-		border: 1px solid var(--color-light-orange);
+		border: 1px solid var(--color-base-light);
 	}
 
 	input:checked + label > span::before {
@@ -154,8 +158,8 @@
 	}
 
 	input:checked + label {
-		border: 1px solid var(--color-light-orange);
-		color: var(--color-light-orange);
+		border: 1px solid var(--color-base-light);
+		color: var(--color-base-light);
 	}
 
 	.black-overlay {
@@ -201,7 +205,7 @@
 		0% {
 			width: 0;
 			height: 0;
-			border-color: var(--color-light-orange);
+			border-color: var(--color-base-light);
 			transform: translate3d(0, 0, 0) rotate(45deg);
 		}
 		33% {
@@ -212,7 +216,7 @@
 		100% {
 			width: 0.2em;
 			height: 0.5em;
-			border-color: var(--color-light-orange);
+			border-color: var(--color-base-light);
 			transform: translate3d(0, -0.5em, 0) rotate(45deg);
 		}
 	}
