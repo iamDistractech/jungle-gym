@@ -2,7 +2,7 @@ import type { GetSession, Handle } from '@sveltejs/kit';
 import * as cookie from 'cookie';
 import sessionDB from '$lib/Utils/sessionDB';
 
-export const handle: Handle = async ({ request, render }) => {
+export const handle: Handle = async ({ request, resolve }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 
 	if (!cookies.session_id || cookies.session_id === 'deleted') request.locals.authenticated = false;
@@ -17,7 +17,7 @@ export const handle: Handle = async ({ request, render }) => {
 			: `Request without logged in user`
 	);
 
-	const response = await render(request);
+	const response = await resolve(request);
 
 	return response;
 };
