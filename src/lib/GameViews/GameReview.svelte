@@ -117,15 +117,6 @@
 	<SubmitButton>Versturen</SubmitButton>
 </form>
 
-<!-- <div class="modal">
-	<div class="modal-content">
-		<h1>Wil jij je antwoord toelichten?</h1>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptatum molestias velit,
-			aut doloribus cupiditate. Enim deleniti cum nostrum accusamus!
-		</p>
-	</div>
-</div> -->
 <style>
 	form {
 		text-align: center;
@@ -186,30 +177,5 @@
 
 	.explanation-container {
 		display: none;
-	}
-
-	.modal {
-		position: fixed;
-		left: 0;
-		bottom: 0;
-		width: 100vw;
-		height: 100vh;
-		background-color: rgba(0, 0, 0, 0.8);
-		z-index: 10;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.modal-content {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		position: absolute;
-		background-color: white;
-		height: 75vh;
-		width: 90%;
-		padding: 1em;
-		box-sizing: border-box;
 	}
 </style>
