@@ -31,221 +31,186 @@
 </script>
 
 <script lang="ts">
-	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	/* Typings */
+	import type { Game, Material } from '$lib/games';
+
+	/* Components */
 	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
-	import Accordion from '$lib/GamePage/Accordion.svelte';
-	import MaterialModal from '$lib/GamePage/MaterialModal.svelte';
+	import Accordion from '$lib/shared/Modals/Accordion.svelte';
+	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
+	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
+	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
+	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
+
+	/* Utils */
+	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
+	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
+	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
+
+	/* Stores */
 	import { page } from '$app/stores';
-	import type { Game } from '$lib/games';
+	import { messageStore } from '$lib/Stores/message';
 
-	export let gameSlug: string;
 	export let game: Game;
+	let gameSlug: string = $page.params.game;
+	let pwa = false;
 
-	page.subscribe((page) => (gameSlug = page.params.game));
+	let message: string | undefined;
+
+	const targetGroupString = formatTargetGroups(game.targetGroup);
 
 	let isModalOpen = false;
-	let likes = 0;
-	let liked = false;
 	let clickedMaterial;
 
-	function likedGame() {
-		liked = !liked;
-		liked ? (likes += 1) : (likes -= 1);
-	}
-
-	function toggleModal(material): any {
+	function toggleModal(material: Material['name']) {
 		isModalOpen = !isModalOpen;
 		clickedMaterial = material;
 	}
 
+	function savedHandler(event) {
+		const { success } = event.detail;
+		if (success) {
+			message = 'Dit spel is nu gedownload';
+			game.offline = true;
+		} else message = 'Er ging iets mis met opslaan';
+		messageStore.set(message);
+	}
+
+	function deletedHandler(event) {
+		const { success } = event.detail;
+		if (success) {
+			message = 'De download van dit spel is verwijdererd';
+			game.offline = false;
+		} else message = 'Er ging iets mis met verwijderen';
+		messageStore.set(message);
+	}
+
 	onMount(() => {
-		patchGame();
+		if ('caches' in window) {
+			pwa = true;
+			patchSingleGameOfflineStatus(game).then((patchedGame) => (game = patchedGame));
+		}
 	});
-
-	function patchGame() {
-		return caches
-			.open('gamesCache')
-			.then((cache) => {
-				return cache.match(`/spellen/${game.slug}.json`);
-			})
-			.then((response: Response | undefined) => {
-				if (response) game.offline = true;
-				else game.offline = false;
-				return game;
-			});
-	}
-
-	function saveCache() {
-		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.add(`/spellen/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.add(`/spellen/${gameSlug}`))
-		]).then(() => (game.offline = true));
-	}
-
-	function deleteCache() {
-		return Promise.all([
-			caches.open('gamesCache').then((cache) => cache.delete(`/spellen/${gameSlug}.json`)),
-			caches.open('gamesCacheSSR').then((cache) => cache.delete(`/spellen/${gameSlug}`))
-		]).then(() => (game.offline = false));
-	}
 </script>
 
 <main>
 	<header>
-		<h2>{game.category.name || game.category} | {game.name}</h2>
+		<h2>{game.name}</h2>
+		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
+		{#if game.offline}
+			<OfflineLabel />
+		{/if}
+		<ul>
+			<li><CardLabel label={targetGroupString} icon={undefined} /></li>
+			<li><CardLabel label={game.category} icon={undefined} /></li>
+			<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon="group" /></li>
+		</ul>
 	</header>
-
-	<p>{game.description}</p>
-
-	<div class="image-card" />
-
-	<button
-		class="like-btn"
-		on:click={likedGame}
-		class:is-liked-background={liked}
-		class:not-liked-background={!liked}
-	>
-		<i class="material-icons bouncy" class:is-liked={!liked} class:not-liked={liked}
-			>favorite_border</i
-		>
-		<i class="material-icons bouncy" class:is-liked={liked} class:not-liked={!liked}>favorite</i>
-		<span>{likes}</span>
-	</button>
+	<section class="description">
+		<h1>Beschrijving</h1>
+		<p>{game.description}</p>
+	</section>
 
 	{#if isModalOpen}
 		<MaterialModal material={clickedMaterial} on:close={toggleModal} />
 	{/if}
 
-	<section>
-		<h3>Materialen</h3>
-		<ul class="material-list">
+	<section class="materials">
+		<h1>Materialen</h1>
+		<ul>
 			{#each game.materials as material}
 				<li>
-					<MaterialButton on:click={toggleModal(material)}
-						>{material.name || material.material.name}</MaterialButton
-					>
+					<MaterialButton on:click={toggleModal(material)}>{material.name}</MaterialButton>
 				</li>
 			{/each}
 		</ul>
 	</section>
 
-	<section>
-		<h3>Spelregels</h3>
+	<section class="rules">
+		<h1>Spelregels</h1>
 		<ul>
 			{#each game.rules as rule}
-				<li>{rule.description || rule}</li>
+				<li>{rule}</li>
 			{/each}
 		</ul>
 	</section>
 
-	<section>
-		<h3>Variaties</h3>
-		{#each game.variation as variation}
-			<Accordion {variation} />
-		{/each}
+	<section class="=variations">
+		<h1>Variaties</h1>
+		<Accordion variations={game.variation} />
+	</section>
+
+	<section class="utility-bar">
+		{#if pwa}
+			<DownloadButton
+				on:saved={savedHandler}
+				on:deleted={deletedHandler}
+				offline={game.offline}
+				slug={gameSlug}
+			/>
+		{/if}
+		<LikeButton />
 	</section>
 </main>
 
-<section class="download-button-container">
-	{#if game.offline}
-		<ButtonLight on:click={deleteCache}>Spel is gedownload</ButtonLight>
-	{:else}
-		<ButtonLight on:click={saveCache}>Download dit spel</ButtonLight>
-	{/if}
-
-	<p><i>Download het spel, zodat jij het kunt bekijken zonder internet.</i></p>
-</section>
-
 <style>
+	/* Content Heading */
 	header {
+		padding: 0 0.5rem;
 		display: flex;
-		flex-direction: row-reverse;
-		align-items: center;
-		justify-content: flex-end;
-		padding: 0 0 1.5em 0;
+		flex-flow: column;
+	}
+	header h2 {
+		font-size: 1.5em;
+		margin-bottom: 0.5rem;
 	}
 
-	h3 {
-		font-size: 1.7em;
-	}
-
-	.like-btn {
-		position: relative;
-		border: none;
-		width: 4.5em;
-		height: 3em;
-		border-radius: 0.5em;
-		background: var(--color-light-grey);
+	header ul {
 		display: flex;
-		justify-content: space-around;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		min-height: 3em;
+	}
+
+	header ul li {
+		margin: 2px;
+	}
+
+	section {
+		padding: 0 0.5rem;
+	}
+	section h1 {
+		margin-left: 0;
+	}
+
+	header a {
+		order: -1;
+		display: flex;
 		align-items: center;
-		transition: all 0.4s;
-		overflow: hidden;
+		color: var(--color-accent-dark);
+		font-size: 14px;
+		font-style: italic;
+		margin-bottom: 1.5em;
 	}
 
-	.like-btn span {
-		color: var(--color-white);
+	header a i {
+		font-size: inherit;
+		border: solid 2px var(--color-accent-dark);
+		border-radius: 100%;
+		padding: 0.2rem;
+		margin-right: 0.5em;
 	}
 
-	.like-btn i:nth-child(1) {
-		color: var(--color-white);
+	header a:hover,
+	header a:focus {
+		--color-accent-dark: var(--color-accent-action);
 	}
 
-	.like-btn i:nth-child(2) {
-		color: var(--color-white);
-	}
-
-	.is-liked {
-		display: block;
-	}
-
-	.not-liked {
-		display: none;
-	}
-
-	.is-liked-background {
-		background-color: var(--color-pink);
-		transition: all 0.2s ease-in;
-	}
-
-	.not-liked-background {
-		transition: all 0.2s ease-in;
-	}
-
-	@keyframes bouncy {
-		from,
-		to {
-			transform: scale(1, 1);
-		}
-		25% {
-			transform: scale(0.9, 1.1);
-		}
-		50% {
-			transform: scale(1.1, 0.9);
-		}
-		75% {
-			transform: scale(0.95, 1.05);
-		}
-	}
-
-	.bouncy {
-		-webkit-animation: bouncy 0.6s;
-		animation: bouncy 0.6s;
-		-webkit-animation-duration: 0.6s;
-		animation-duration: 0.6s;
-		-webkit-animation-fill-mode: both;
-		animation-fill-mode: both;
-	}
-
-	.image-card {
-		background-color: var(--color-turquoise);
-		height: 15em;
-		border-radius: 1.5em;
-		margin: 2em 0;
-	}
-
-	.material-list {
+	/* Content sections */
+	section.materials ul {
 		display: flex;
 		flex-wrap: wrap;
 		list-style: none;
@@ -253,50 +218,14 @@
 		margin: 0;
 	}
 
-	.material-list > li {
+	section.materials ul li {
 		margin: 0.3em;
 		margin-left: 0;
 	}
 
-	main header {
+	section.utility-bar {
 		display: flex;
-		flex-direction: column-reverse;
-		margin-top: 1em;
+		justify-content: space-between;
+		align-items: stretch;
 	}
-
-	main header h2 {
-		margin-bottom: 0;
-		font-size: 2em;
-	}
-
-	.download-button-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin: 3rem 2rem;
-	}
-
-	.download-button-container p {
-		text-align: center;
-	}
-
-	/* .edit-element {
-		position: fixed;
-		right: 5%;
-		bottom: 2%;
-		height: 5em;
-		width: 5em;
-		background-color: var(--color-light-orange);
-		border: none;
-		border-radius: 1em;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.edit-element img {
-		height: 3em;
-		width: 3em;
-	} */
 </style>

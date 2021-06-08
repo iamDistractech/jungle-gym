@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
 	import '../fonts.css';
 	import '../app.css';
 
@@ -21,7 +22,7 @@
 				>
 			</li>
 			<li>
-				<a href="#" class={pathName === '/inloggen' ? 'active-path' : ''}
+				<a href="/" class={pathName === '/inloggen' ? 'active-path' : ''}
 					><i class="material-icons">person</i>Inloggen</a
 				>
 			</li>
@@ -30,12 +31,14 @@
 </header>
 <slot />
 
+<Snackbar />
+
 <style>
 	header {
 		padding-top: 0.5rem;
 		margin-bottom: 2rem;
 		box-shadow: 0 2px 6px 2px rgba(201, 201, 201, 0.2);
-		background-color: white;
+		background-color: var(--color-white);
 	}
 	h1 {
 		text-align: center;
@@ -57,14 +60,14 @@
 	}
 
 	header nav a {
-		--active-underline-color: white
+		--active-underline-color: var(--color-white);
 		text-decoration: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		font-size: 0.8em;
 		padding: 1em;
-		color: var(--color-accent-1);
+		color: var(--color-base-normal);
 		border-bottom: solid 2px var(--active-underline-color);
 	}
 
@@ -75,7 +78,7 @@
 
 	header nav a:hover,
 	header nav a:focus {
-		color: var(--color-accent-2);
+		color: var(--color-accent-action);
 	}
 	header nav a.active-path {
 		--active-underline-color: var(--color-black);

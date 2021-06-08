@@ -1,21 +1,23 @@
-export enum category {
+export enum Category {
 	tik = 'tikspel',
 	bal = 'balspel',
 	loop = 'loopspel',
-	reactie = 'reactiespel'
+	reactie = 'reactiespel',
+	unknown = 'onbekend'
 }
 
-export enum materialName {
+export enum MaterialName {
 	lint = 'lintje',
 	fluit = 'fluitje',
 	hoepel = 'hoepel',
 	pion = 'pion',
 	klok = 'stopwatch',
-	bal = 'bal'
+	bal = 'bal',
+	unknown = 'onbekend'
 }
 
-export interface material {
-	name: materialName;
+export interface Material {
+	name: MaterialName | string;
 	amount?: number | string;
 	notes?: string;
 }
@@ -30,8 +32,8 @@ export interface Game {
 	slug: string;
 	name: string;
 	description: string;
-	category: category;
-	materials: material[];
+	category: Category | string;
+	materials: Material[];
 	minimumPlayers: number;
 	targetGroup: number[];
 	rules?: string[];
