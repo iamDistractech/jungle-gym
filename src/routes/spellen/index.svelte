@@ -68,19 +68,17 @@
 
 	function filterGames() {
 		if (query.has('search')) {
-			console.log('if');
 			let cleanedQuery = query.get('search').toLowerCase();
 
 			games = backupGames.filter((game) => game.name.toLowerCase().includes(cleanedQuery));
 		} else {
-			console.log('else');
 			games = backupGames;
 		}
 	}
 </script>
 
 <main class="leaves-bg">
-	<SearchBar on:searchFilter={filterGames} />
+	<SearchBar on:searchFilter={filterGames} {query} />
 
 	{#if !offline}
 		<Filter {query} />
