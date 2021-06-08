@@ -8,12 +8,17 @@
 	/* Components */
 	import List from '$lib/GameViews/List.svelte';
 	import NoFavoriteCard from '$lib/Cards/InfoCard.svelte';
+	import BackButton from '$lib/shared/Button/BackButton.svelte';
 
 	// export let games: Game[];
 	// export let query;
 </script>
 
 <main class="leaves-bg">
+	<header>
+		<BackButton returnLink="account" title="Account" />
+		<h2>Mijn gymlessen</h2>
+	</header>
 	<!-- {#if favoriteGames}
 	<List {games} {query} />
 	{:else} -->
@@ -23,3 +28,10 @@
 	/>
 	<!-- {/if} -->
 </main>
+
+<style>
+	header h2 {
+		font-size: 1.5em;
+		margin-bottom: 0.5rem;
+	}
+</style>

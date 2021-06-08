@@ -42,6 +42,7 @@
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
 	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
+	import BackButton from '$lib/shared/Button/BackButton.svelte';
 
 	/* Utils */
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
@@ -93,7 +94,7 @@
 <main>
 	<header>
 		<h2>{game.name}</h2>
-		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
+		<BackButton returnLink="spellen" title="Speloverzicht" />
 		{#if game.offline}
 			<OfflineLabel />
 		{/if}
@@ -184,29 +185,6 @@
 	}
 	section h1 {
 		margin-left: 0;
-	}
-
-	header a {
-		order: -1;
-		display: flex;
-		align-items: center;
-		color: var(--color-accent-dark);
-		font-size: 14px;
-		font-style: italic;
-		margin-bottom: 1.5em;
-	}
-
-	header a i {
-		font-size: inherit;
-		border: solid 2px var(--color-accent-dark);
-		border-radius: 100%;
-		padding: 0.2rem;
-		margin-right: 0.5em;
-	}
-
-	header a:hover,
-	header a:focus {
-		--color-accent-dark: var(--color-accent-action);
 	}
 
 	/* Content sections */
