@@ -25,8 +25,8 @@ if (typeof port === 'number' && !isNaN(port) && typeof host === 'string') {
 		tls: Record<string, unknown>;
 	} = { host, port, password: undefined, username: undefined };
 
-	if (password && typeof password === 'string') options.password = password;
-	if (username && typeof username === 'string') options.username = username;
+	if (Boolean(password) && typeof password === 'string') options.password = password;
+	if (Boolean(username) && typeof username === 'string') options.username = username;
 	if (tls) options.tls = {};
 
 	sessionDB = new Tedis(options);
