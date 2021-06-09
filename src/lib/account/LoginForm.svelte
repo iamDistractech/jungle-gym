@@ -55,7 +55,7 @@
 	form {
 		display: flex;
 		flex-flow: column nowrap;
-		margin: 0em auto;
+		margin: 0 auto;
 		height: 50vh;
 	}
 
