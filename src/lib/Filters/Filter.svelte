@@ -141,7 +141,7 @@
 			filterTitle="Minimum spelers"
 			on:click={() => (minimumPlayers = !minimumPlayers)}
 		/>
-		<FilterButton filterTitle="materialen" on:click={() => (materialen = !materialen)} />
+		<FilterButton filterTitle="Materialen" on:click={() => (materialen = !materialen)} />
 
 		<div>
 			<a href="/spellen" on:click={resetAllFilters}

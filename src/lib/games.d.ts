@@ -13,7 +13,7 @@ export enum MaterialName {
 	pion = 'Pion',
 	klok = 'Stopwatch',
 	bal = 'Bal',
-	unknown = 'onbekend'
+	unknown = 'Onbekend'
 }
 
 export interface Material {

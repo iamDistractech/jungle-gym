@@ -1,15 +1,28 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+
+	/* Components */
 	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
 	import CancelButton from '$lib/shared/Button/CancelButton.svelte';
+
+	/* Stores */
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { playerCount } from '$lib/Stores/playerCount';
+
+	/* Animations */
 	import { fade, fly } from 'svelte/transition';
 
 	export let activeQueries;
 	export let filterItems;
 	export let filterTitle;
 	export let filterQuery;
+
+	let minimalPlayerCount;
+
+	playerCount.subscribe((value) => {
+		minimalPlayerCount = value;
+	});
 
 	const { query } = $page;
 
@@ -48,12 +61,11 @@
 		goto(`/spellen/?${searchParams.toString()}`).then(() => closeFilter());
 	}
 
-	let minimalPlayerCount = 1;
 	const decreaseCount = () => {
-		minimalPlayerCount = minimalPlayerCount - 1;
+		playerCount.update((n) => n - 1);
 	};
 	const increaseCount = () => {
-		minimalPlayerCount = minimalPlayerCount + 1;
+		playerCount.update((n) => n + 1);
 	};
 
 	function checkTargetGroupAll() {
@@ -154,6 +166,12 @@
 		margin: 0.3em 0;
 		align-items: center;
 		color: var(--color-black);
+	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 
 	input {

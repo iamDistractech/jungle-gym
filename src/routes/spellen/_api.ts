@@ -15,8 +15,6 @@ export async function api(
 		body: data && JSON.stringify(data)
 	});
 
-	console.log(resource);
-
 	return {
 		status: res.status,
 		body: await res.json()
