@@ -40,7 +40,7 @@
 	}
 </script>
 
-<main class="leaves-bg">
+<main>
 	<section>
 		<h2>Inloggen bij Jungle Gym</h2>
 		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleError} />
