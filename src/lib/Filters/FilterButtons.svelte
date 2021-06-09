@@ -3,18 +3,33 @@
 
 	export let query;
 	let categoryFiltered;
-	$: categoryFiltered = query.getAll('category');
-	const removeCategoryFilter = () => {
-		query.delete('category');
+	let targetGroupFiltered;
+	let minimumPlayersFiltered;
+	let materialFiltered;
 
+	$: categoryFiltered = query.getAll('category');
+	$: targetGroupFiltered = query.getAll('targetGroup');
+	$: minimumPlayersFiltered = query.getAll('minimumPlayers');
+	$: materialFiltered = query.getAll('material');
+
+	const removeFilter = (filterOption) => {
+		query.delete(filterOption);
 		goto(`/spellen/?${query}`);
-		categoryFiltered.length = 0;
 	};
 </script>
 
 <div>
 	{#if categoryFiltered.length > 0}
-		<button on:click={removeCategoryFilter}>Categorie <span>-</span></button>
+		<button on:click={() => removeFilter('category')}>Spelsoort <span>-</span></button>
+	{/if}
+	{#if targetGroupFiltered.length > 0}
+		<button on:click={() => removeFilter('targetGroup')}>Groepen <span>-</span></button>
+	{/if}
+	{#if minimumPlayersFiltered.length > 0}
+		<button on:click={() => removeFilter('minimumPlayers')}>Minimum spelers <span>-</span></button>
+	{/if}
+	{#if materialFiltered.length > 0}
+		<button on:click={() => removeFilter('material')}>Materialen <span>-</span></button>
 	{/if}
 </div>
 
