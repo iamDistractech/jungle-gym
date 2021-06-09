@@ -22,8 +22,6 @@
 	let filterButtons =
 		filterQuery === 'targetGroup' ? activeQueries.map((query) => Number(query)) : activeQueries;
 
-	console.log('filterbuttons', filterButtons);
-
 	let targetGroupAll = filterButtons.length === 8;
 
 	function submitForm() {
@@ -40,8 +38,13 @@
 
 	function submitMinimalPlayerForm(minimalPlayerCount) {
 		let queries = [filterQuery, minimalPlayerCount];
-
 		const searchParams = new URLSearchParams([queries]);
+		for (const [key, value] of query.entries()) {
+			if (key !== filterQuery) {
+				searchParams.append(key, value);
+			}
+		}
+
 		goto(`/spellen/?${searchParams.toString()}`).then(() => closeFilter());
 	}
 
@@ -60,7 +63,7 @@
 
 <section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
 	<h1>Filter op <span>{filterTitle}</span></h1>
-	{#if filterTitle !== 'minimumSpelers'}
+	{#if filterQuery !== 'minimumPlayers'}
 		<form on:submit|preventDefault={submitForm}>
 			<fieldset>
 				{#if filterItems}

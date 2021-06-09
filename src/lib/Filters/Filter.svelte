@@ -5,8 +5,6 @@
 
 	export let query: URLSearchParams;
 
-	console.log(query.getAll('spelsoort'));
-
 	let gameNames = [
 		{
 			name: 'Tikspel',
@@ -175,7 +173,7 @@
 
 {#if minimumPlayers}
 	<FilterPopup
-		filterTitle="minimumSpelers"
+		filterTitle="Minimum Spelers"
 		filterItems={childrenCount}
 		filterQuery="minimumPlayers"
 		activeQueries={query.getAll('minimumPlayers')}

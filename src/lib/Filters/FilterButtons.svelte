@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	export let query;
+
 	let categoryFiltered;
 	let targetGroupFiltered;
 	let minimumPlayersFiltered;
@@ -12,24 +13,43 @@
 	$: minimumPlayersFiltered = query.getAll('minimumPlayers');
 	$: materialFiltered = query.getAll('material');
 
-	const removeFilter = (filterOption) => {
-		query.delete(filterOption);
+	const removeCategoryFilter = () => {
+		query.delete('category');
 		goto(`/spellen/?${query}`);
+		categoryFiltered.length = 0;
+	};
+
+	const removeTargetGroupFilter = () => {
+		query.delete('targetGroup');
+		goto(`/spellen/?${query}`);
+		targetGroupFiltered.length = 0;
+	};
+
+	const removeMinimumPlayerFilter = () => {
+		query.delete('minimumPlayers');
+		goto(`/spellen/?${query}`);
+		minimumPlayersFiltered.length = 0;
+	};
+
+	const removeMaterialFilter = () => {
+		query.delete('material');
+		goto(`/spellen/?${query}`);
+		materialFiltered.length = 0;
 	};
 </script>
 
 <div>
 	{#if categoryFiltered.length > 0}
-		<button on:click={() => removeFilter('category')}>Spelsoort <span>-</span></button>
+		<button on:click={removeCategoryFilter}>Spelsoort <span>-</span></button>
 	{/if}
 	{#if targetGroupFiltered.length > 0}
-		<button on:click={() => removeFilter('targetGroup')}>Groepen <span>-</span></button>
+		<button on:click={removeTargetGroupFilter}>Groepen <span>-</span></button>
 	{/if}
 	{#if minimumPlayersFiltered.length > 0}
-		<button on:click={() => removeFilter('minimumPlayers')}>Minimum spelers <span>-</span></button>
+		<button on:click={removeMinimumPlayerFilter}>Minimum spelers <span>-</span></button>
 	{/if}
 	{#if materialFiltered.length > 0}
-		<button on:click={() => removeFilter('material')}>Materialen <span>-</span></button>
+		<button on:click={removeMaterialFilter}>Materialen <span>-</span></button>
 	{/if}
 </div>
 
