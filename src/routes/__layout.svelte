@@ -1,7 +1,14 @@
 <script>
 	import { page } from '$app/stores';
+	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
 	import '../fonts.css';
 	import '../app.css';
+
+	import { session as sessionStore } from '$app/stores';
+
+	let authenticated = false;
+
+	sessionStore.subscribe((session) => (authenticated = session.authenticated));
 
 	$: pathName = $page.path;
 </script>
@@ -20,15 +27,25 @@
 					><i class="material-icons">format_list_bulleted</i>Speloverzicht</a
 				>
 			</li>
-			<li>
-				<a href="/" class={pathName === '/inloggen' ? 'active-path' : ''}
-					><i class="material-icons">person</i>Inloggen</a
-				>
-			</li>
+			{#if authenticated}
+				<li>
+					<a href="/account" class={pathName === '/account' ? 'active-path' : ''}
+						><i class="material-icons">person</i>Account</a
+					>
+				</li>
+			{:else}
+				<li>
+					<a href="/inloggen" class={pathName === '/inloggen' ? 'active-path' : ''}
+						><i class="material-icons">person</i>Inloggen</a
+					>
+				</li>
+			{/if}
 		</ul>
 	</nav>
 </header>
 <slot />
+
+<Snackbar />
 
 <style>
 	header {

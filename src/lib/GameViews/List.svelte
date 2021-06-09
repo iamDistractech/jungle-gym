@@ -4,10 +4,18 @@
 
 	/* Components */
 	import GameCard from '$lib/Cards/GameCard.svelte';
-	import OfflineCard from '$lib/Cards/ErrorCard.svelte';
+	import ErrorCard from '$lib/Cards/ErrorCard.svelte';
+	import { page } from '$app/stores';
+
+	const query = $page.query;
 
 	export let games: Game[];
 	export let offline: boolean;
+
+	// Sort the array with the last updated game first
+	games.sort(function (a, b) {
+		return new Date(b.updatedAt) - new Date(a.updatedAt);
+	});
 
 	let ErrorMessage =
 		games.length === 0
@@ -18,11 +26,15 @@
 <section>
 	<ul>
 		{#if offline}
-			<OfflineCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
+			<ErrorCard ErrorTitle={'Oeps, je bent nu offline!'} {ErrorMessage} />
 		{/if}
 		{#each games as game}
 			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameCard {game} /> </a></li>
 		{/each}
+
+		{#if games.length == 0}
+			<ErrorCard ErrorTitle={'Oeps...'} ErrorMessage="er zijn geen spellen gevonden." />
+		{/if}
 	</ul>
 </section>
 

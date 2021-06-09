@@ -1,21 +1,33 @@
 <script>
 	import { fly } from 'svelte/transition';
-	export let message;
+	import { messageStore } from '$lib/Stores/message';
 
-	let showSnackbar = true;
+	let message;
+	let timeOut;
+	let showSnackbar = false;
+
+	messageStore.subscribe((newMessage) => {
+		if (newMessage) {
+			showSnackbar = true;
+			message = newMessage;
+			timeOut = setTimeout(() => {
+				showSnackbar = false;
+			}, 5000);
+		}
+	});
 </script>
 
-<main>
-	{#if showSnackbar}
-		<article in:fly={{ x: -400, duration: 500 }} out:fly={{ x: -400, duration: 500 }}>
-			<h1>{message}</h1>
-			<button on:click={() => (showSnackbar = !showSnackbar)}>Close</button>
-		</article>
-	{/if}
-</main>
+{#if showSnackbar}
+	<aside in:fly={{ x: -400, duration: 500 }} out:fly={{ x: -400, duration: 500 }}>
+		<h1>{message}</h1>
+		<button on:click={() => (showSnackbar = !showSnackbar)} on:click={() => clearTimeout(timeOut)}
+			>Close</button
+		>
+	</aside>
+{/if}
 
 <style>
-	article {
+	aside {
 		position: fixed;
 		bottom: 1%;
 		right: 5%;
@@ -35,7 +47,7 @@
 		font-weight: 200;
 	}
 
-	article button {
+	aside button {
 		color: var(--color-white);
 		cursor: pointer;
 		border: none;
