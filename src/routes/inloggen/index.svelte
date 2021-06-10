@@ -41,6 +41,19 @@
 </script>
 
 <main>
-	<h1>Inloggen bij Jungle Gym</h1>
-	<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleError} />
+	<section>
+		<h2>Inloggen bij Jungle Gym</h2>
+		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleError} />
+	</section>
 </main>
+
+<style>
+	section {
+		margin: 0;
+	}
+
+	section h2 {
+		font-size: 1.2em;
+		margin-bottom: 1rem;
+	}
+</style>
