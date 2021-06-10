@@ -55,9 +55,10 @@
 	import { messageStore } from '$lib/Stores/message';
 
 	export let game: Game;
-	let gameSlug: string = $page.params.game;
-	let pwa = false;
 
+	let gameSlug: string = $page.params.game;
+	let userIsOnline: boolean = true;
+	let pwa: boolean = false;
 	let message: string | undefined;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
@@ -89,6 +90,8 @@
 	}
 
 	onMount(() => {
+		userIsOnline = window.navigator.onLine ? true : false;
+
 		if ('caches' in window) {
 			pwa = true;
 			patchSingleGameOfflineStatus(game).then((patchedGame) => (game = patchedGame));
@@ -155,11 +158,12 @@
 		<LikeButton />
 	</section>
 
-	<section>
-		<h1>Wat vind jij van het spel?</h1>
-		<!-- <input type="range" min="1" max="3" value="2" /> -->
-		<GameReview />
-	</section>
+	{#if userIsOnline}
+		<section>
+			<h1>Wat vind jij van het spel?</h1>
+			<GameReview />
+		</section>
+	{/if}
 </main>
 
 <style>

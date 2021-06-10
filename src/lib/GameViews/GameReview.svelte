@@ -38,6 +38,11 @@
 		<img src="/icons/GameReview/happy.svg" alt="" />
 	</label>
 
+	<!-- Short form if JavaScript is disabled -->
+	<noscript>
+		<button type="submit" class="yes-btn">Verstuur</button>
+	</noscript>
+
 	<div class="confirm-container">
 		<p>Bedankt, wil jij jouw keuze toelichten?</p>
 		<div>
@@ -176,7 +181,7 @@
 		font-size: 1em;
 		background: var(--color-base-light);
 		color: var(--color-black);
-		margin: 0.5em 0;
+		margin: 1em 0;
 		cursor: pointer;
 		min-width: 7em;
 		text-align: center;
