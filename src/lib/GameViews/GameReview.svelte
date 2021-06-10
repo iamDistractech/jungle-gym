@@ -1,44 +1,39 @@
 <script>
-	import { onMount } from 'svelte';
 	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
 
-	onMount(async () => {
-		const firstFormEmojis = document.forms[0].elements['emoji'];
+	function toggleConfirmation() {
 		const confirmBox = document.querySelector('.confirm-container');
-		const yesBtn = document.querySelector('.yes-btn');
-		const secondForm = document.querySelector('.confirm-container');
 
-		firstFormEmojis.forEach((el) => {
-			el.addEventListener('click', () => {
-				confirmBox.style.display = 'block';
-				confirmBox.scrollIntoView({ behavior: 'smooth' });
-			});
-		});
-
-		yesBtn.addEventListener('click', () => {
-			secondForm.scrollIntoView({ behavior: 'smooth' });
-		});
-	});
+		confirmBox.style.display = 'block';
+		confirmBox.scrollIntoView({ behavior: 'smooth' });
+	}
 
 	function toggleExplanation() {
 		const explanationForm = document.querySelector('.explanation-container');
 
 		explanationForm.style.display = 'block';
+		explanationForm.scrollIntoView({ behavior: 'smooth' });
 	}
 </script>
 
 <form name="emoji" class="first-step" action="">
-	<input type="radio" id="sad" name="emoji" value="sad" />
+	<input type="radio" id="sad" name="emoji" value="sad" on:click|once={toggleConfirmation} />
 	<label for="sad">
 		<img src="/icons/GameReview/sad.svg" alt="" />
 	</label>
 
-	<input type="radio" id="neutral" name="emoji" value="neutral" />
+	<input
+		type="radio"
+		id="neutral"
+		name="emoji"
+		value="neutral"
+		on:click|once={toggleConfirmation}
+	/>
 	<label for="neutral">
 		<img src="/icons/GameReview/surprised.svg" alt="" />
 	</label>
 
-	<input type="radio" id="happy" name="emoji" value="happy" />
+	<input type="radio" id="happy" name="emoji" value="happy" on:click|once={toggleConfirmation} />
 	<label for="happy">
 		<img src="/icons/GameReview/happy.svg" alt="" />
 	</label>
