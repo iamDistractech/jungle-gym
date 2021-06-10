@@ -41,17 +41,12 @@
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
-<<<<<<< HEAD
-	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
 	import BackButton from '$lib/shared/Button/BackButton.svelte';
-=======
->>>>>>> development
 
 	/* Utils */
 	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
 	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
-	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
 
 	/* Stores */
 	import { page } from '$app/stores';
@@ -101,17 +96,28 @@
 
 <main>
 	<header>
+		<section class="utility-bar">
+			{#if pwa}
+				<DownloadButton
+					on:saved={savedHandler}
+					on:deleted={deletedHandler}
+					offline={game.offline}
+					slug={gameSlug}
+				/>
+			{/if}
+		</section>
 		<h2>{game.name}</h2>
 		<BackButton returnLink="spellen" title="Speloverzicht" />
-		{#if game.offline}
+		<!-- {#if game.offline}
 			<OfflineLabel />
-		{/if}
+		{/if} -->
 		<ul>
 			<li><CardLabel label={targetGroupString} icon={undefined} /></li>
 			<li><CardLabel label={game.category} icon={undefined} /></li>
 			<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon="group" /></li>
 		</ul>
 	</header>
+
 	<section class="description">
 		<h1>Beschrijving</h1>
 		<p>{game.description}</p>
@@ -145,18 +151,6 @@
 		<h1>Variaties</h1>
 		<Accordion variations={game.variation} />
 	</section>
-
-	<section class="utility-bar">
-		{#if pwa}
-			<DownloadButton
-				on:saved={savedHandler}
-				on:deleted={deletedHandler}
-				offline={game.offline}
-				slug={gameSlug}
-			/>
-		{/if}
-		<LikeButton />
-	</section>
 </main>
 
 <style>
@@ -186,6 +180,7 @@
 
 	section {
 		padding: 0 0.5rem;
+		margin-top: 0;
 	}
 	section h1 {
 		margin-left: 0;

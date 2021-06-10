@@ -18,7 +18,7 @@
 </script>
 
 {#if offline}
-	<ButtonLight on:click={deleteGame}>Verwijder download</ButtonLight>
+	<ButtonLight on:click={deleteGame}>Verwijder uit mijn gymles</ButtonLight>
 {:else}
-	<ButtonLight on:click={downloadGame}>Download dit spel</ButtonLight>
+	<ButtonLight on:click={downloadGame}>Opslaan in mijn gymles</ButtonLight>
 {/if}
