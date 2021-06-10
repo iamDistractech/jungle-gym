@@ -7,8 +7,11 @@ export const handle: Handle = async ({ request, resolve }) => {
 
 	if (!cookies.session_id || cookies.session_id === 'deleted') request.locals.authenticated = false;
 	else {
+		const accessToken = await sessionDB.hget(cookies.session_id, 'accessToken')
+
+		request.locals.accessToken = accessToken
 		request.locals.authenticated = true;
-		request.locals.session_id = cookies.session_id;
+		request.locals.sessionId = cookies.session_id;
 	}
 
 	console.log(
@@ -31,9 +34,8 @@ export const getSession: GetSession = async (request) => {
 		};
 
 	if (request.locals.authenticated && request.locals.session_id) {
-		const userJSON = await sessionDB.get(request.locals.session_id);
-		const user = typeof userJSON === 'string' ? JSON.parse(userJSON) : null;
-		console.log('hook', user, request.locals.authenticated, request.locals.session_id);
+		const {accessToken, ...user} = await sessionDB.hgetall(request.locals.session_id);
+
 
 		return {
 			user,

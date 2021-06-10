@@ -9,8 +9,7 @@
 
 			return {
 				props: {
-					games,
-					query
+					games
 				}
 			};
 		}

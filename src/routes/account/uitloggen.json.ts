@@ -1,6 +1,7 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
 import * as cookie from 'cookie';
 import sessionDB from '$lib/Utils/sessionDB';
+import { api } from '../_api';
 
 export const get: RequestHandler = async (request: Request) => {
 	const { locals } = request;
@@ -11,7 +12,13 @@ export const get: RequestHandler = async (request: Request) => {
 			body: { message: 'SessionDB offline' }
 		};
 
-	await sessionDB.del(locals.session_id);
+	try {
+		const revoke = await api(request, 'auth/revoke')
+	} catch(error) {
+		console.error(error)
+	}
+
+	await sessionDB.del(locals.sessionId);
 
 	return {
 		status: 200,

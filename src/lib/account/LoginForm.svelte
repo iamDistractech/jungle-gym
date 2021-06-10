@@ -32,6 +32,7 @@
 
 			if (response.ok) {
 				const body = await response.json();
+
 				dispatch('success', body);
 			} else {
 				dispatch('failure', await response.json());
