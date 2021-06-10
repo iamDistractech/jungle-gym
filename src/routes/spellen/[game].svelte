@@ -212,6 +212,7 @@
 	/* Content sections */
 	section.materials ul {
 		display: flex;
+		flex-direction: column;
 		flex-wrap: wrap;
 		list-style: none;
 		padding: 0;
@@ -219,7 +220,7 @@
 	}
 
 	section.materials ul li {
-		margin: 0.3em;
+		margin: 0 0.3em;
 		margin-left: 0;
 	}
 

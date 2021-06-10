@@ -33,7 +33,7 @@
 		{/each}
 
 		{#if games.length == 0}
-			<ErrorCard ErrorTitle={'Oeps...'} ErrorMessage="er zijn geen spellen gevonden." />
+			<ErrorCard ErrorTitle={'Oeps...'} ErrorMessage="Er zijn geen spellen gevonden." />
 		{/if}
 	</ul>
 </section>

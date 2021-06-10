@@ -1,5 +1,6 @@
 <button on:click>
 	<slot>Button</slot>
+	<span class="material-icons"> info </span>
 </button>
 
 <style>
@@ -14,11 +15,18 @@
 		border-radius: 0.75em;
 		margin: 0em 1rem 1rem 0;
 		transition: 0.2s;
+
+		display: flex;
+		align-items: center;
 	}
 
 	button:hover,
 	button:focus {
 		border: 0.15em solid var(--color-base-light);
 		background: transparent;
+	}
+
+	span {
+		padding-left: 1rem;
 	}
 </style>
