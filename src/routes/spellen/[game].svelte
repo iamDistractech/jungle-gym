@@ -80,7 +80,7 @@
 	function deletedHandler(event) {
 		const { success } = event.detail;
 		if (success) {
-			message = 'De download van dit spel is verwijdererd';
+			message = 'De download van dit spel is verwijderd';
 			game.offline = false;
 		} else message = 'Er ging iets mis met verwijderen';
 		messageStore.set(message);

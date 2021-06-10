@@ -49,4 +49,8 @@
 		border-top: 0;
 		margin-top: -0.3rem;
 	}
+
+	p {
+		margin-bottom: 0;
+	}
 </style>

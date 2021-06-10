@@ -30,6 +30,7 @@
 	};
 
 	const resetSearchFilter = () => {
+		search = '';
 		goto(`/spellen/`);
 	};
 </script>
@@ -44,7 +45,7 @@
 </form>
 
 {#if searchQuery}
-	<p>Er wordt gefilterd op: {searchQuery}</p>
+	<p>Er wordt gezocht op: {searchQuery}</p>
 {/if}
 
 <style>
