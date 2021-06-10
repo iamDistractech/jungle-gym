@@ -1,4 +1,6 @@
 <script lang="ts">
+	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+
 	import { createEventDispatcher } from 'svelte';
 	import { onMount } from 'svelte';
 
@@ -42,22 +44,35 @@
 </script>
 
 <form on:submit|preventDefault={login} action="/account/inloggen.json" method="POST">
-	<label for="username">Gebruikersnaam</label>
-	<input bind:value={username} name="username" type="text" disabled={offline} />
-	<label for="password">Wachtwoord</label>
-	<input bind:value={password} name="password" type="text" disabled={offline} />
-	<button type="submit">Inloggen</button>
+	<label for="username">Gebruikersnaam:</label>
+	<input bind:value={username} name="username" type="text" disabled={offline} autofocus />
+	<label for="password">Wachtwoord:</label>
+	<input bind:value={password} name="password" type="password" disabled={offline} />
+	<SubmitButton>Inloggen</SubmitButton>
 </form>
 
 <style>
 	form {
 		display: flex;
 		flex-flow: column nowrap;
-		max-width: 80%;
 		margin: 0 auto;
+		height: 50vh;
+	}
+
+	form label {
+		padding-bottom: 0.2em;
 	}
 
 	form input {
 		margin-bottom: 15px;
+		border-radius: 1em;
+		padding: 0.5em 1.3em;
+		widows: 100%;
+		border: 2px solid var(--color-base-light);
+		outline: none;
+	}
+
+	form input:focus {
+		border-color: var(--color-base-normal);
 	}
 </style>
