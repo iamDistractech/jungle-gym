@@ -57,9 +57,9 @@
 	export let game: Game;
 
 	let gameSlug: string = $page.params.game;
-	let userIsOnline: boolean = true;
-	let pwa: boolean = false;
 	let message: string | undefined;
+	let userIsOnline = true;
+	let pwa = false;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
