@@ -13,9 +13,9 @@ export const get: RequestHandler = async (request: Request) => {
 		};
 
 	try {
-		const revoke = await api(request, 'auth/revoke')
-	} catch(error) {
-		console.error(error)
+		const revoke = await api(request, 'auth/revoke');
+	} catch (error) {
+		console.error(error);
 	}
 
 	await sessionDB.del(locals.sessionId);

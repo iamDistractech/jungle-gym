@@ -8,13 +8,13 @@ export async function api(
 	resource: string,
 	data?: Record<string, unknown>
 ): Promise<{ status: number; body: JSONValue }> {
-	const { locals, method } = request
-	const { authenticated, accessToken, sessionId } = locals
+	const { locals, method } = request;
+	const { authenticated, accessToken, sessionId } = locals;
 
-	const headers = new Headers({'Content-Type': 'application/json'})
+	const headers = new Headers({ 'Content-Type': 'application/json' });
 
-	if(authenticated && accessToken && sessionId) {
-		headers.append('Authorization', `Bearer ${accessToken}`)
+	if (authenticated && accessToken && sessionId) {
+		headers.append('Authorization', `Bearer ${accessToken}`);
 	}
 
 	const res = await fetch(`${BASE_API_URL}/${resource}`, {
@@ -30,9 +30,9 @@ export async function api(
 		body: res.body ? await res.json() : undefined
 	};
 
-	if(res.ok) {
-		return result
+	if (res.ok) {
+		return result;
 	} else {
-		throw result
+		throw result;
 	}
 }
