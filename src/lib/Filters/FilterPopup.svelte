@@ -1,13 +1,30 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+
+	/* Components */
 	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
 	import CancelButton from '$lib/shared/Button/CancelButton.svelte';
+
+	/* Stores */
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { playerCount } from '$lib/Stores/playerCount';
+
+	/* Animations */
 	import { fade, fly } from 'svelte/transition';
 
 	export let activeQueries;
 	export let filterItems;
 	export let filterTitle;
+	export let filterQuery;
+
+	let minimalPlayerCount;
+
+	playerCount.subscribe((value) => {
+		minimalPlayerCount = value;
+	});
+
+	const { query } = $page;
 
 	const dispatch = createEventDispatcher();
 
@@ -15,34 +32,50 @@
 		dispatch('close');
 	}
 
-	let filterButtons = activeQueries;
+	let filterButtons =
+		filterQuery === 'targetGroup' ? activeQueries.map((query) => Number(query)) : activeQueries;
+
+	let targetGroupAll = filterButtons.length === 8;
 
 	function submitForm() {
-		let queries = filterButtons.map((activeFilter) => [filterTitle, activeFilter]);
-
+		let queries = filterButtons.map((activeFilter) => [filterQuery, activeFilter]);
 		const searchParams = new URLSearchParams(queries);
+		for (const [key, value] of query.entries()) {
+			if (key !== filterQuery) {
+				searchParams.append(key, value);
+			}
+		}
+
 		goto(`/spellen/?${searchParams.toString()}`).then(() => closeFilter());
 	}
 
-	function submitMinimalPlayerForm(minimulPlayerCount) {
-		let queries = [filterTitle, minimulPlayerCount];
-
+	function submitMinimalPlayerForm(minimalPlayerCount) {
+		let queries = [filterQuery, minimalPlayerCount];
 		const searchParams = new URLSearchParams([queries]);
-		goto(`/?${searchParams.toString()}`).then(() => closeFilter());
+		for (const [key, value] of query.entries()) {
+			if (key !== filterQuery) {
+				searchParams.append(key, value);
+			}
+		}
+
+		goto(`/spellen/?${searchParams.toString()}`).then(() => closeFilter());
 	}
 
-	let minimulPlayerCount = 1;
 	const decreaseCount = () => {
-		minimulPlayerCount = minimulPlayerCount - 1;
+		playerCount.update((n) => n - 1);
 	};
 	const increaseCount = () => {
-		minimulPlayerCount = minimulPlayerCount + 1;
+		playerCount.update((n) => n + 1);
 	};
+
+	function checkTargetGroupAll() {
+		filterButtons = targetGroupAll ? [1, 2, 3, 4, 5, 6, 7, 8] : [];
+	}
 </script>
 
 <section in:fly={{ y: 500, duration: 500 }} out:fly={{ y: 500, duration: 500 }}>
 	<h1>Filter op <span>{filterTitle}</span></h1>
-	{#if filterTitle !== 'minimumPlayers'}
+	{#if filterQuery !== 'minimumPlayers'}
 		<form on:submit|preventDefault={submitForm}>
 			<fieldset>
 				{#if filterItems}
@@ -57,15 +90,25 @@
 						<label for={name}> <span />{name}</label>
 					{/each}
 				{/if}
+				{#if filterQuery === 'targetGroup'}
+					<input
+						bind:checked={targetGroupAll}
+						on:change={checkTargetGroupAll}
+						type="checkbox"
+						id="target-group-all"
+						name="target-group-all"
+					/>
+					<label for="target-group-all"><span />Alle groepen</label>
+				{/if}
 			</fieldset>
 			<SubmitButton>Toepassen</SubmitButton>
 		</form>
 	{:else}
-		<form on:submit|preventDefault={() => submitMinimalPlayerForm(minimulPlayerCount)}>
+		<form on:submit|preventDefault={() => submitMinimalPlayerForm(minimalPlayerCount)}>
 			<fieldset class="min-player-fieldset">
 				<div class="number">
 					<span on:click={decreaseCount}>-</span>
-					<input type="number" bind:value={minimulPlayerCount} />
+					<input type="number" bind:value={minimalPlayerCount} />
 					<span on:click={increaseCount}>+</span>
 				</div>
 			</fieldset>
@@ -85,11 +128,13 @@
 		background-color: var(--color-white);
 		z-index: 1;
 		padding: 1em;
+		margin: 0;
 		border-radius: 3em 3em 0em 0em;
 	}
 
 	section h1 {
 		text-align: center;
+		padding-bottom: 1em;
 	}
 
 	section h1 span {
@@ -107,7 +152,8 @@
 		border: none;
 		padding: 0;
 		margin: 0;
-		overflow-y: auto;
+		overflow: auto;
+		height: 18em;
 	}
 
 	label {
@@ -122,9 +168,20 @@
 		color: var(--color-black);
 	}
 
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
 	input {
-		height: 0;
-		width: 0;
+		height: 0em;
+		width: 0em;
+	}
+
+	.number > input {
+		height: 2em;
+		width: 2em;
 	}
 
 	input + label > span {
@@ -178,6 +235,7 @@
 		flex-direction: row;
 		justify-content: center;
 		padding: 2em 0;
+		height: 5%;
 	}
 
 	.min-player-fieldset input {

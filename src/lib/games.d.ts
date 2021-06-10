@@ -7,13 +7,13 @@ export enum Category {
 }
 
 export enum MaterialName {
-	lint = 'lintje',
-	fluit = 'fluitje',
-	hoepel = 'hoepel',
-	pion = 'pion',
-	klok = 'stopwatch',
-	bal = 'bal',
-	unknown = 'onbekend'
+	lint = 'Lintje',
+	fluit = 'Fluitje',
+	hoepel = 'Hoepel',
+	pion = 'Pion',
+	klok = 'Stopwatch',
+	bal = 'Bal',
+	unknown = 'Onbekend'
 }
 
 export interface Material {
