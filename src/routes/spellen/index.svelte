@@ -42,13 +42,19 @@
 	import List from '$lib/GameViews/List.svelte';
 	import Filter from '$lib/Filters/Filter.svelte';
 	import FilterButtons from '$lib/Filters/FilterButtons.svelte';
+	import SearchBar from '$lib/Filters/SearchBar.svelte';
 
 	/* Utils */
 	import { onMount } from 'svelte';
 	import { patchAllGamesOfflineStatus } from '$lib/Utils/offline';
+	import { page } from '$app/stores';
 
 	export let games: Game[];
 	export let query;
+
+	const backupGames = games;
+
+	page.subscribe((page) => (query = page.query));
 
 	let offline = false;
 
@@ -61,15 +67,27 @@
 			patchAllGamesOfflineStatus(games, offline).then((patchedGames) => (games = patchedGames));
 		}
 	});
+
+	function filterGames() {
+		if (query.has('search')) {
+			let cleanedQuery = query.get('search').toLowerCase();
+
+			games = backupGames.filter((game) => game.name.toLowerCase().includes(cleanedQuery));
+		} else {
+			games = backupGames;
+		}
+	}
 </script>
 
 <main class="leaves-bg">
+	<SearchBar on:searchFilter={filterGames} {query} />
+
 	{#if !offline}
 		<Filter {query} />
 		<FilterButtons {query} />
 	{/if}
 
-	<List {games} {offline} {query} />
+	<List {games} {offline} />
 </main>
 
 <style>

@@ -9,6 +9,11 @@
 	export let games: Game[];
 	export let offline: boolean;
 
+	// Sort the array with the last updated game first
+	games.sort(function (a, b) {
+		return new Date(b.updatedAt) - new Date(a.updatedAt);
+	});
+
 	let ErrorMessage =
 		games.length === 0
 			? 'Er zijn geen offline spellen beschikbaar'
@@ -23,6 +28,10 @@
 		{#each games as game}
 			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameCard {game} /> </a></li>
 		{/each}
+
+		{#if games.length == 0}
+			<ErrorCard ErrorTitle={'Oeps...'} ErrorMessage="er zijn geen spellen gevonden." />
+		{/if}
 	</ul>
 </section>
 
