@@ -3,14 +3,21 @@
 	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
 
 	onMount(async () => {
-		const radios = document.forms[0].elements['emoji'];
+		const firstFormEmojis = document.forms[0].elements['emoji'];
 		const confirmBox = document.querySelector('.confirm-container');
+		const yesBtn = document.querySelector('.yes-btn');
+		const secondForm = document.querySelector('.confirm-container');
 
-		for (let i = 0, max = radios.length; i < max; i++) {
-			radios[i].onclick = function () {
+		firstFormEmojis.forEach((el) => {
+			el.addEventListener('click', () => {
 				confirmBox.style.display = 'block';
-			};
-		}
+				confirmBox.scrollIntoView({ behavior: 'smooth' });
+			});
+		});
+
+		yesBtn.addEventListener('click', () => {
+			secondForm.scrollIntoView({ behavior: 'smooth' });
+		});
 	});
 
 	function toggleExplanation() {
@@ -20,7 +27,7 @@
 	}
 </script>
 
-<form name="emoji" action="">
+<form name="emoji" class="first-step" action="">
 	<input type="radio" id="sad" name="emoji" value="sad" />
 	<label for="sad">
 		<img src="/icons/GameReview/sad.svg" alt="" />
@@ -40,14 +47,14 @@
 		<p>Bedankt, wil jij jouw keuze toelichten?</p>
 		<div>
 			<button class="yes-btn" on:click|preventDefault={() => toggleExplanation()}>Ja</button>
-			<button class="no-btn" type="submit">Nee, ik wil jullie niet helpen.</button>
+			<button class="no-btn" type="submit">Nee, bedankt</button>
 		</div>
 	</div>
 </form>
 
 <form class="explanation-container" action="">
 	<fieldset>
-		<legend>Was de omschrijving van het spel duidelijk?</legend>
+		<legend>Was de omschrijving van het spel duidelijk? [1/3]</legend>
 		<input type="radio" id="sad-description" name="emoji-description" value="sad-description" />
 		<label for="sad-description">
 			<img src="/icons/GameReview/sad.svg" alt="" />
@@ -68,12 +75,13 @@
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
-		<label for="explanation">Licht je antwoord toe</label>
+		<label for="explanation" class="fieldset-title">Licht je antwoord toe</label>
+		<small>(optioneel)</small>
 		<textarea name="explanation" cols="30" rows="10" />
 	</fieldset>
 
 	<fieldset>
-		<legend>Hoe was het spel in de praktijk?</legend>
+		<legend>Hoe was het spel in de praktijk? [2/3]</legend>
 		<input type="radio" id="sad-execution" name="emoji-execution" value="sad-execution" />
 		<label for="sad-execution">
 			<img src="/icons/GameReview/sad.svg" alt="" />
@@ -89,12 +97,13 @@
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
-		<label for="explanation">Licht je antwoord toe</label>
+		<label for="explanation" class="fieldset-title">Licht je antwoord toe</label>
+		<small>(optioneel)</small>
 		<textarea name="explanation" cols="30" rows="10" />
 	</fieldset>
 
 	<fieldset>
-		<legend>Vonden de kinderen het een leuk spel?</legend>
+		<legend>Vonden de kinderen het een leuk spel? [3/3]</legend>
 		<input type="radio" id="sad-kids" name="emoji-kids" value="sad-kids" />
 		<label for="sad-kids">
 			<img src="/icons/GameReview/sad.svg" alt="" />
@@ -110,7 +119,8 @@
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
-		<label for="explanation">Licht je antwoord toe</label>
+		<label for="explanation" class="fieldset-title">Licht je antwoord toe</label>
+		<small>(optioneel)</small>
 		<textarea name="explanation" cols="30" rows="10" />
 	</fieldset>
 
@@ -140,6 +150,10 @@
 		transition: all 0.2s ease-out;
 	}
 
+	.fieldset-title {
+		display: block;
+	}
+
 	form input:not(checked) + label img {
 		transform: scale(0.8);
 		transition: all 0.25s;
@@ -149,6 +163,15 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	form textarea {
+		box-sizing: border-box;
+		font-family: var(--font-body);
+		width: 90%;
+		padding: 0.5em;
+		font-size: 0.9em;
+		max-width: 800px;
 	}
 
 	.yes-btn {
