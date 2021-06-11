@@ -1,5 +1,6 @@
 <script>
 	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+	import { messageStore } from '$lib/Stores/message';
 
 	function toggleConfirmation() {
 		const confirmBox = document.querySelector('.confirm-container');
@@ -26,6 +27,8 @@
 		};
 
 		console.log(overallAnswer);
+
+		clearFormSteps(firstStepForm);
 	}
 
 	function submitLongForm() {
@@ -57,6 +60,28 @@
 		};
 
 		console.log(formResults);
+
+		clearFormSteps(explanationForm);
+	}
+
+	function clearFormSteps(form) {
+		const submitMessage = 'Jouw feedback is verstuurd. Bedankt!';
+		messageStore.set(submitMessage);
+		hideFormAfterSubmit();
+
+		form.reset();
+	}
+
+	function hideFormAfterSubmit() {
+		const firstStepForm = document.querySelector('.first-step');
+		firstStepForm.scrollIntoView({ behavior: 'smooth' });
+		const explanationForm = document.querySelector('.explanation-container');
+		const confirmBox = document.querySelector('.confirm-container');
+
+		setTimeout(() => {
+			confirmBox.style.display = 'none';
+			explanationForm.style.display = 'none';
+		}, 1_000);
 	}
 </script>
 
@@ -167,8 +192,8 @@
 			<img src="/icons/GameReview/surprised.svg" alt="" />
 		</label>
 
-		<input type="radio" id="happy-kids" name="emoji-kids" value="happy-kids" />
-		<label for="happy">
+		<input type="radio" id="happy-kids" name="emoji-kids" value="happy" />
+		<label for="happy-kids">
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
