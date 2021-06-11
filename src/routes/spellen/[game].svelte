@@ -96,6 +96,10 @@
 			pwa = true;
 			patchSingleGameOfflineStatus(game).then((patchedGame) => (game = patchedGame));
 		}
+
+		// Show review section if JavaScript is enabled
+		const reviewContainer = document.querySelector('.review-container');
+		reviewContainer.style.display = 'block';
 	});
 </script>
 
@@ -159,7 +163,7 @@
 	</section>
 
 	{#if userIsOnline}
-		<section>
+		<section class="review-container" hidden>
 			<h1>Wat vind jij van het spel?</h1>
 			<GameReview />
 		</section>
