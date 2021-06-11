@@ -31,7 +31,7 @@
 	function redirectToProfile() {
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
 		session.set({ authenticated: true });
-		goto(redirectPage ? redirectPage : '/account');
+		goto(redirectPage ? redirectPage : '/gymles');
 	}
 
 	function handleError(event) {

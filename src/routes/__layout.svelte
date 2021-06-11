@@ -4,12 +4,6 @@
 	import '../fonts.css';
 	import '../app.css';
 
-	import { session as sessionStore } from '$app/stores';
-
-	let authenticated = false;
-
-	sessionStore.subscribe((session) => (authenticated = session.authenticated));
-
 	$: pathName = $page.path;
 </script>
 
@@ -30,19 +24,12 @@
 					><i class="material-icons">format_list_bulleted</i>Speloverzicht</a
 				>
 			</li>
-			{#if authenticated}
-				<li>
-					<a href="/account" class={pathName === '/account' ? 'active-path' : ''}
-						><i class="material-icons">person</i>Account</a
-					>
-				</li>
-			{:else}
-				<li>
-					<a href="/inloggen" class={pathName === '/inloggen' ? 'active-path' : ''}
-						><i class="material-icons">person</i>Inloggen</a
-					>
-				</li>
-			{/if}
+			
+			<li>
+				<a href="/gymles" class={pathName === '/gymles' ? 'active-path' : ''}
+					><i class="material-icons">person</i>Mijn Gymles</a
+				>
+			</li>
 		</ul>
 	</nav>
 </header>
@@ -94,7 +81,7 @@
 		justify-content: center;
 		align-items: center;
 		font-size: 0.8em;
-		padding: 1em;
+		padding: 1em .5em;
 		color: var(--color-base-normal);
 		border-bottom: solid 2px var(--active-underline-color);
 	}

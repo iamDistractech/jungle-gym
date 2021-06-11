@@ -21,10 +21,11 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0;
-		margin-bottom: 1em;
+		margin-bottom: .5em;
+		font-size: 1em;
 	}
 
 	article p {
-		color: var(--color-grey);
+		margin: 0;
 	}
 </style>

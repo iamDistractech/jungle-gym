@@ -15,13 +15,6 @@
 		{#each gamesData as game}
 			<li>
 				<a href="/spellen/{game.slug}">
-					<!-- <h1>{game.name}</h1>
-				<div>
-					<p class="label">Groep: {game.targetGroup}</p>
-					<p class="label">{game.category}</p>
-					<p class="label">Min. {game.minimumPlayers} spelers</p>
-				</div> -->
-
 					<GameCard {game} />
 				</a>
 			</li>
@@ -36,10 +29,11 @@
 		padding: 0 1.3rem;
 		overflow-x: auto;
 		display: flex;
+		max-width: 100%;
 		gap: 10px;
 		padding-bottom: 1rem;
-		margin-left: -1.4rem;
-		margin-right: -1.4rem;
+		margin-left: -0.5rem;
+		margin-right: -0.5rem;
 	}
 
 	ul a {
