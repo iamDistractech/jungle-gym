@@ -12,8 +12,8 @@
 				redirect: `/inloggen?${query.toString()}`
 			};
 		}
-		
-		return {}
+
+		return {};
 	};
 </script>
 

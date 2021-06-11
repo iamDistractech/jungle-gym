@@ -16,9 +16,9 @@ export const handle: Handle = async ({ request, resolve }) => {
 
 	console.log(
 		request.locals.authenticated
-		? `User with ${request.locals.sessionId} made a request`
-		: `Request without logged in user`
-		);
+			? `User with ${request.locals.sessionId} made a request`
+			: `Request without logged in user`
+	);
 
 	const response = await resolve(request);
 
@@ -34,7 +34,6 @@ export const getSession: GetSession = async (request) => {
 		};
 
 	if (request.locals.authenticated && request.locals.sessionId) {
-
 		return {
 			authenticated: true
 		};

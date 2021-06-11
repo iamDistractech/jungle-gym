@@ -17,7 +17,8 @@ export const post: RequestHandler = async (request: Request) => {
 		const { body: serverSession } = await api(request, 'auth/token', { username, password }); // TODO password hash
 
 		const cookieId = uuidv4();
-		const accessToken = typeof serverSession['access_token'] === 'string' ? serverSession['access_token'] : undefined;
+		const accessToken =
+			typeof serverSession['access_token'] === 'string' ? serverSession['access_token'] : undefined;
 
 		const sessionSuccess = await sessionDB.set(cookieId, accessToken);
 

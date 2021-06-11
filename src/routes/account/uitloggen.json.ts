@@ -13,7 +13,7 @@ export const post: RequestHandler = async (request: Request) => {
 		};
 
 	try {
-		const revoke = await api(request, 'auth/revoke');
+		await api(request, 'auth/revoke');
 	} catch (error) {
 		console.error(error);
 	}
