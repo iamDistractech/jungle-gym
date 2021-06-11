@@ -40,7 +40,7 @@
 	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
-	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
+	import SaveInGymlesButton from '$lib/shared/Button/SaveInGymlesButton.svelte';
 	import BackButton from '$lib/shared/Button/BackButton.svelte';
 
 	/* Utils */
@@ -98,7 +98,7 @@
 	<header>
 		<section class="utility-bar">
 			{#if pwa}
-				<DownloadButton
+				<SaveInGymlesButton
 					on:saved={savedHandler}
 					on:deleted={deletedHandler}
 					offline={game.offline}
@@ -108,9 +108,9 @@
 		</section>
 		<h2>{game.name}</h2>
 		<BackButton returnLink="spellen" title="Speloverzicht" />
-		<!-- {#if game.offline}
+		{#if game.offline}
 			<OfflineLabel />
-		{/if} -->
+		{/if}
 		<ul>
 			<li><CardLabel label={targetGroupString} icon={undefined} /></li>
 			<li><CardLabel label={game.category} icon={undefined} /></li>
@@ -202,8 +202,10 @@
 	}
 
 	section.utility-bar {
+		order: -2;
 		display: flex;
 		justify-content: space-between;
-		align-items: stretch;
+		margin-bottom: 1.5rem;
+		padding: 0;
 	}
 </style>

@@ -13,7 +13,7 @@
 		color: var(--color-accent-dark);
 		font-size: 14px;
 		font-style: italic;
-		margin-bottom: 1.5em;
+		margin-bottom: .5em;
 	}
 
 	a i {
