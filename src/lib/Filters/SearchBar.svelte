@@ -59,6 +59,8 @@
 
 	form {
 		display: flex;
+		padding: 0 0.5rem;
+		margin-bottom: 0.5em;
 	}
 
 	i {

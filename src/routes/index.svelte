@@ -38,10 +38,20 @@
 </script>
 
 <main class="leaves-bg">
-	<GameCardHighlighted />
-	<Carousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
-	<Carousel gamesData={games} carouselTitle="Favoriete spellen" />
+	<section>
+		<h1>Uitgelichte spellen</h1>
+		<GameCardHighlighted />
+	</section>
+	<section>
+		<h1>Nieuwste spellen</h1>
+		<Carousel gamesData={newestGames} />
+	</section>
+	<section>
+		<h1>Mijn Gymles</h1>
+		<Carousel gamesData={games} />
+	</section>
 </main>
 
 <style>
+
 </style>

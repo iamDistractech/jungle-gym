@@ -177,11 +177,6 @@
 	header ul li {
 		margin: 2px;
 	}
-
-	section {
-		padding: 0 0.5rem;
-		margin-top: 0;
-	}
 	section h1 {
 		margin-left: 0;
 	}

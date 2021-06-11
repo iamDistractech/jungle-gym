@@ -6,21 +6,19 @@
 	import GameCard from '$lib/Cards/GameCard.svelte';
 
 	export let gamesData: Game[];
-	export let carouselTitle;
 </script>
 
-<section>
-	<h1>{carouselTitle} - {gamesData.length}</h1>
-	<ul>
-		{#each gamesData as game}
-			<li>
-				<a href="/spellen/{game.slug}">
-					<GameCard {game} />
-				</a>
-			</li>
-		{/each}
-	</ul>
-</section>
+
+<ul>
+	{#each gamesData as game}
+		<li>
+			<a href="/spellen/{game.slug}">
+				<GameCard {game} />
+			</a>
+		</li>
+	{/each}
+</ul>
+
 
 <style>
 	ul {
@@ -31,9 +29,9 @@
 		display: flex;
 		max-width: 100%;
 		gap: 10px;
-		padding-bottom: 1rem;
-		margin-left: -0.5rem;
-		margin-right: -0.5rem;
+		padding-bottom: .3rem;
+		margin-left: -1rem;
+		margin-right: -1rem;
 	}
 
 	ul a {
