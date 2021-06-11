@@ -39,7 +39,7 @@ The **Meesterproef** is the final client-project of the half year minor programm
 
 ![Homepagina](https://i.ibb.co/pn4dK5d/Screenshot-2021-06-11-at-11-34-45.png)
 
-<details>
+</details>
 
 <details>
 
