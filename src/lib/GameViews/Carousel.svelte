@@ -32,6 +32,9 @@
 		padding-bottom: .3rem;
 		margin-left: -1rem;
 		margin-right: -1rem;
+		scroll-snap-type: x mandatory;
+		padding-left: 4em;
+		padding-right: 4em;
 	}
 
 	ul a {
@@ -39,8 +42,9 @@
 	}
 
 	ul li {
+		scroll-snap-align: center;
 		height: auto;
-		min-width: 13rem;
+		min-width: 16rem;
 	}
 
 	ul a:focus {

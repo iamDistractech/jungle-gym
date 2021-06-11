@@ -32,6 +32,7 @@
 	/* Components */
 	import GameCardHighlighted from '$lib/Cards/GameCardHighlighted.svelte';
 	import Carousel from '$lib/GameViews/Carousel.svelte';
+	import MijnGymles from '$lib/GameViews/mijnGymles.svelte';
 
 	export let games: Game[];
 	const newestGames = games.slice(Math.max(games.length - 4, 0));
@@ -47,8 +48,8 @@
 		<Carousel gamesData={newestGames} />
 	</section>
 	<section>
-		<h1>Mijn Gymles</h1>
-		<Carousel gamesData={games} />
+		<h1>Opgeslagen spellen</h1>
+		<MijnGymles gamesData={games}/>
 	</section>
 </main>
 
