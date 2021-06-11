@@ -18,6 +18,7 @@
 
 	function submitSmallForm() {
 		const firstStepForm = document.querySelector('.first-step');
+
 		const gameName = window.location.pathname.split('/')[2];
 
 		const overallAnswer = {
@@ -69,7 +70,11 @@
 		messageStore.set(submitMessage);
 		hideFormAfterSubmit();
 
-		form.reset();
+		const firstStepForm = document.querySelector('.first-step');
+		const explanationForm = document.querySelector('.explanation-container');
+
+		firstStepForm.reset();
+		explanationForm.reset();
 	}
 
 	function hideFormAfterSubmit() {
@@ -81,18 +86,12 @@
 		setTimeout(() => {
 			confirmBox.style.display = 'none';
 			explanationForm.style.display = 'none';
-		}, 1_000);
+		}, 500);
 	}
 </script>
 
 <form name="emoji" class="first-step" action="">
-	<input
-		type="radio"
-		id="sad"
-		name="emoji-overall"
-		value="sad"
-		on:click|once={toggleConfirmation}
-	/>
+	<input type="radio" id="sad" name="emoji-overall" value="sad" on:click={toggleConfirmation} />
 	<label for="sad">
 		<img src="/icons/GameReview/sad.svg" alt="" />
 	</label>
@@ -102,19 +101,13 @@
 		id="neutral"
 		name="emoji-overall"
 		value="neutral"
-		on:click|once={toggleConfirmation}
+		on:click={toggleConfirmation}
 	/>
 	<label for="neutral">
 		<img src="/icons/GameReview/surprised.svg" alt="" />
 	</label>
 
-	<input
-		type="radio"
-		id="happy"
-		name="emoji-overall"
-		value="happy"
-		on:click|once={toggleConfirmation}
-	/>
+	<input type="radio" id="happy" name="emoji-overall" value="happy" on:click={toggleConfirmation} />
 	<label for="happy">
 		<img src="/icons/GameReview/happy.svg" alt="" />
 	</label>
