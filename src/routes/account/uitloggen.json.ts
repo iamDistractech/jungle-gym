@@ -1,9 +1,9 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
 import * as cookie from 'cookie';
 import sessionDB from '$lib/Utils/sessionDB';
-import { api } from '../_api';
+import { api } from '../api/_api';
 
-export const get: RequestHandler = async (request: Request) => {
+export const post: RequestHandler = async (request: Request) => {
 	const { locals } = request;
 
 	if (!sessionDB)

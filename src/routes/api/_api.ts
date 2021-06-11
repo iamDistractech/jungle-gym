@@ -18,10 +18,8 @@ export async function api(
 	}
 
 	const res = await fetch(`${BASE_API_URL}/${resource}`, {
-		method: request.method,
-		headers: {
-			'content-type': 'application/json'
-		},
+		method,
+		headers,
 		body: data && JSON.stringify(data)
 	});
 
