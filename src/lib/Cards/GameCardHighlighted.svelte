@@ -14,7 +14,6 @@
 	h1 {
 		font-size: 1.2em;
 		font-weight: 600;
-		margin-bottom: 1em;
 	}
 	ul {
 		list-style: none;
@@ -39,10 +38,10 @@
 	ul a div h1 {
 		font-size: 1em;
 		color: var(--color-accent-dark);
-		font-weight: 400;
 		margin: 0;
 		display: flex;
 		justify-content: space-between;
+		font-weight: 600;
 	}
 
 	ul a div h1::after {

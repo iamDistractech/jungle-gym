@@ -1,43 +1,24 @@
-<!-- <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	export const load: Load = ({ session, page }) => {
-		const { user, authenticated } = session;
-
-		console.log(session)
-
-		if (!authenticated) {
-			const query = new URLSearchParams();
-			query.append('page', page.path);
-
-			return {
-				status: 302,
-				redirect: `/inloggen?${query.toString()}`
-			};
-		}
-
-		return {
-			props: {
-				user
-			}
-		};
-	};
-</script> -->
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { session as sessionStore } from '$app/stores';
+	import { userStore } from '$lib/Stores/user';
+	import { session as SessionStore } from '$app/stores';
 
-	const session = sessionStore;
+	export let user;
 
-	let user = $sessionStore.user;
+	userStore.subscribe((newUserData) => {
+		if (newUserData) user = newUserData;
+	});
 
 	function logout() {
-		return fetch('/account/uitloggen.json')
-			.then(() => session.set({ authenticated: false }))
+		return fetch('/account/uitloggen.json', { method: 'POST' })
+			.then(() => SessionStore.set({ authenticated: false }))
 			.then(() => goto('/'));
 	}
 </script>
 
-<h1>Hello {user.name}</h1>
+{#if user}
+	<h1>Hello {user.name}</h1>
+{/if}
 
 <section>
 	<button on:click={logout}>Uitloggen</button>

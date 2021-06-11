@@ -5,17 +5,14 @@ import sessionDB from '$lib/Utils/sessionDB';
 export const handle: Handle = async ({ request, resolve }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 
-	if (!cookies.session_id || cookies.session_id === 'deleted') request.locals.authenticated = false;
+	if (!cookies.session_id) request.locals.authenticated = false;
 	else {
-		request.locals.authenticated = true;
-		request.locals.session_id = cookies.session_id;
-	}
+		const accessToken = await sessionDB.get(cookies.session_id);
 
-	console.log(
-		request.locals.authenticated
-			? `User with ${request.locals.session_id} made a request`
-			: `Request without logged in user`
-	);
+		request.locals.accessToken = accessToken;
+		request.locals.authenticated = true;
+		request.locals.sessionId = cookies.session_id;
+	}
 
 	const response = await resolve(request);
 
@@ -30,13 +27,8 @@ export const getSession: GetSession = async (request) => {
 			authenticated: false
 		};
 
-	if (request.locals.authenticated && request.locals.session_id) {
-		const userJSON = await sessionDB.get(request.locals.session_id);
-		const user = typeof userJSON === 'string' ? JSON.parse(userJSON) : null;
-		console.log('hook', user, request.locals.authenticated, request.locals.session_id);
-
+	if (request.locals.authenticated && request.locals.sessionId) {
 		return {
-			user,
 			authenticated: true
 		};
 	} else
