@@ -1,8 +1,8 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
-import { userStore } from '$lib/Stores/mockUser';
 import { v4 as uuidv4 } from 'uuid';
 import * as cookie from 'cookie';
 import sessionDB from '$lib/Utils/sessionDB';
+import { api } from '../api/_api';
 
 export const post: RequestHandler = async (request: Request) => {
 	if (!sessionDB)
@@ -11,24 +11,17 @@ export const post: RequestHandler = async (request: Request) => {
 			body: { message: 'SessionDB offline' }
 		};
 
-	let user;
-	const userUnsub = userStore.subscribe((currentUSer) => (user = currentUSer));
-	userUnsub();
-
-	const { body } = request;
-
-	if (body.username !== user.username || body.password !== user.password)
-		return {
-			status: 401,
-			body: { message: 'Incorrect email or password' }
-		};
-
 	try {
+		const { username, password } = request.body;
+
+		const { body: serverSession } = await api(request, 'auth/token', { username, password }); // TODO password hash
+
 		const cookieId = uuidv4();
+		const accessToken =
+			typeof serverSession['access_token'] === 'string' ? serverSession['access_token'] : undefined;
 
-		const sessionSuccess = await sessionDB.set(cookieId, JSON.stringify(user));
+		const sessionSuccess = await sessionDB.set(cookieId, accessToken);
 
-		console.log(sessionSuccess);
 		if (sessionSuccess !== 'OK')
 			return {
 				status: 500,
@@ -38,7 +31,7 @@ export const post: RequestHandler = async (request: Request) => {
 		const headers = {
 			'Set-Cookie': cookie.serialize('session_id', cookieId, {
 				httpOnly: true,
-				maxAge: 60 * 60 * 24,
+				maxAge: serverSession['expires_in'] / 1000,
 				sameSite: true,
 				path: '/'
 			}),
@@ -48,14 +41,20 @@ export const post: RequestHandler = async (request: Request) => {
 		return {
 			status: 200,
 			headers,
-			body: { message: 'success', user }
+			body: { message: 'success' }
 		};
 	} catch (error) {
 		console.error(error);
 
-		return {
+		const response = {
 			status: 500,
-			body: { message: 'error' }
+			body: { message: 'Er is een onbekende fout opgetreden ' }
 		};
+
+		if (error.body?.type === 'INCORRECT_LOGIN') {
+			(response.status = 401), (response.body.message = 'Verkeerde gebruikersnaam of wachtwoord');
+		}
+
+		return response;
 	}
 };

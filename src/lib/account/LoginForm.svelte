@@ -32,6 +32,7 @@
 
 			if (response.ok) {
 				const body = await response.json();
+
 				dispatch('success', body);
 			} else {
 				dispatch('failure', await response.json());
@@ -45,7 +46,7 @@
 
 <form on:submit|preventDefault={login} action="/account/inloggen.json" method="POST">
 	<label for="username">Gebruikersnaam:</label>
-	<input bind:value={username} name="username" type="text" disabled={offline} autofocus />
+	<input bind:value={username} name="username" type="text" disabled={offline} />
 	<label for="password">Wachtwoord:</label>
 	<input bind:value={password} name="password" type="password" disabled={offline} />
 	<SubmitButton>Inloggen</SubmitButton>
