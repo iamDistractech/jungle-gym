@@ -7,9 +7,11 @@
 
 **[Live link](https://jungle-gym.netlify.app/)**
 
-API can be found **[here](https://github.com/iSirThijs/jungle-gym-api)**
+API repo can be found **[here](https://github.com/iSirThijs/jungle-gym-api)**
 
-_[Insert description]_
+CMS repo can be found **[here](https://github.com/jochemvogel/jungle-gym-cms)**
+
+_[Insert JungleGym project description]_
 
 ## Table of Contents
 
@@ -31,16 +33,22 @@ The **Meesterproef** is the final client-project of the half year minor programm
 
 ### Screenshot
 
-### Tech stack
+#### Homepagina
 
-## Prerequisites
+![Homepagina](https://i.ibb.co/pn4dK5d/Screenshot-2021-06-11-at-11-34-45.png)
+
+#### Overzichtspagina
+
+![Overzichtspagina](https://i.ibb.co/2sMJyKj/Screenshot-2021-06-11-at-11-34-30.png)
+
+## :gear: Installation
+
+### Prerequisites
 
 - Redis database for session storage
   <!-- These links will link to a wiki page -->
   - [What is a session storage?]()
   - [Local session storage with docker]()
-
-## :gear: Installation
 
 ### Developing
 
@@ -79,4 +87,27 @@ The next time you commit, Husky will automatically format it for you.
 
 ## :open_file_folder: Folder Structure
 
+```
+# GitHub files
+|.github
+
+# Broncode van het project
+|-src
+
+	# Library met eigen components
+	|-lib
+
+	# Alle (file-based) routes
+	|-routes
+
+# Alle static files
+|-static
+```
+
+We zijn het er nog niet helemaal over eens of we het zo willen gaan doen. Wellicht dat we dit in de Design Rationale gooien. Heeft niet echt een toegevoegde waarde in de README.
+
 ## :anger: Others
+
+_Design Rationale (will be added later)_
+
+Als we de documentatie een eind af hebben, komen hier ook andere links. Zo leggen wij uit waarom er een CMS is. Wat daar gedaan wordt. Hoe de API werkt etc. Dit hebben wij nog niet af, dus daarom is dat nog niet toegevoegd.
