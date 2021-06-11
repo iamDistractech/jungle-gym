@@ -33,13 +33,21 @@ The **Meesterproef** is the final client-project of the half year minor programm
 
 ### Screenshot
 
-#### Homepagina
+<details>
+
+<summary>Homepagina</summary>
 
 ![Homepagina](https://i.ibb.co/pn4dK5d/Screenshot-2021-06-11-at-11-34-45.png)
 
-#### Overzichtspagina
+<details>
+
+<details>
+
+<summary>Overzichtspagina</summary>
 
 ![Overzichtspagina](https://i.ibb.co/2sMJyKj/Screenshot-2021-06-11-at-11-34-30.png)
+
+</details>
 
 ## :gear: Installation
 
