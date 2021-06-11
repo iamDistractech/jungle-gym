@@ -14,12 +14,6 @@ export const handle: Handle = async ({ request, resolve }) => {
 		request.locals.sessionId = cookies.session_id;
 	}
 
-	console.log(
-		request.locals.authenticated
-			? `User with ${request.locals.sessionId} made a request`
-			: `Request without logged in user`
-	);
-
 	const response = await resolve(request);
 
 	return response;

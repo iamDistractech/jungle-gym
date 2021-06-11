@@ -4,7 +4,6 @@
 	import { session as SessionStore } from '$app/stores';
 
 	export let user;
-	$: console.log(user);
 
 	userStore.subscribe((newUserData) => {
 		if (newUserData) user = newUserData;
