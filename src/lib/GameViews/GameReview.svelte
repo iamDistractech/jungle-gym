@@ -65,7 +65,7 @@
 		clearFormSteps(explanationForm);
 	}
 
-	function clearFormSteps(form) {
+	function clearFormSteps() {
 		const submitMessage = 'Jouw feedback is verstuurd. Bedankt!';
 		messageStore.set(submitMessage);
 		hideFormAfterSubmit();
