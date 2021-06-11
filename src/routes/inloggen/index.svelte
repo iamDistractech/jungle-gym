@@ -48,9 +48,6 @@
 </main>
 
 <style>
-	main {
-		height: 100%;
-	}
 	section {
 		margin: 0;
 	}
