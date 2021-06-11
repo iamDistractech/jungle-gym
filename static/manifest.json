@@ -3,7 +3,7 @@
 	"theme_color": "#ffbfad",
 	"name": "Jungle Gym",
 	"short_name": "Jungle Gym",
-	"display": "minimal-ui",
+	"display": "standalone",
 	"start_url": "/",
 	"icons": [
 		{
