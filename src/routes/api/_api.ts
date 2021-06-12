@@ -1,5 +1,3 @@
-import type { JSONValue } from '@sveltejs/kit/types/endpoint';
-
 import { BASE_API_URL } from '$lib/Env';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 

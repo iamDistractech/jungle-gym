@@ -8,7 +8,6 @@
 	export let gamesData: Game[];
 </script>
 
-
 <ul>
 	{#each gamesData as game}
 		<li>
@@ -19,7 +18,6 @@
 	{/each}
 </ul>
 
-
 <style>
 	ul {
 		list-style: none;
@@ -29,7 +27,7 @@
 		display: flex;
 		max-width: 100%;
 		gap: 10px;
-		padding-bottom: .3rem;
+		padding-bottom: 0.3rem;
 		margin-left: -1rem;
 		margin-right: -1rem;
 		scroll-snap-type: x mandatory;

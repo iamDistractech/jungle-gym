@@ -29,7 +29,7 @@
 			};
 
 			const response = await fetch('/inloggen.json', init);
-			const body = await response.json()
+			const body = await response.json();
 
 			if (response.ok) {
 				dispatch('success');

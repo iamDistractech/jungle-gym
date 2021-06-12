@@ -7,14 +7,14 @@ export const post: RequestHandler = async (request: Request) => {
 	const defaultServerError = {
 		status: 500,
 		body: 'Er ging iets fout op de server tijdens het inloggen'
-	}
+	};
 
 	if (!sessionDB) {
-		console.error('[uitloggen.json]', 'SessionDB offline')
+		console.error('[uitloggen.json]', 'SessionDB offline');
 		return defaultServerError;
 	}
-	
-	const { locals } = request
+
+	const { locals } = request;
 
 	try {
 		await api(request, 'auth/revoke');

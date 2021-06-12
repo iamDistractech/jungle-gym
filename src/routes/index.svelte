@@ -49,10 +49,9 @@
 	</section>
 	<section>
 		<h1>Opgeslagen spellen</h1>
-		<MijnGymles gamesData={games}/>
+		<MijnGymles gamesData={games} />
 	</section>
 </main>
 
 <style>
-
 </style>

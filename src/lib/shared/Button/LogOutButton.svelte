@@ -1,11 +1,11 @@
 <script>
-import { session as SessionStore } from '$app/stores';
-import { userStore } from '$lib/Stores/user';
-import { createEventDispatcher } from 'svelte';
+	import { session as SessionStore } from '$app/stores';
+	import { userStore } from '$lib/Stores/user';
+	import { createEventDispatcher } from 'svelte';
 
-const dispatcher = createEventDispatcher()
+	const dispatcher = createEventDispatcher();
 
-function logout() {
+	function logout() {
 		return fetch('/account/uitloggen.json', { method: 'POST' })
 			.then(() => SessionStore.set({ authenticated: false }))
 			.then(() => userStore.clearUser())
@@ -17,7 +17,7 @@ function logout() {
 
 <style>
 	button {
-		margin: 0 .25em;
+		margin: 0 0.25em;
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -35,6 +35,6 @@ function logout() {
 
 	button i {
 		font-size: inherit;
-		margin-right: .5em;
+		margin-right: 0.5em;
 	}
 </style>

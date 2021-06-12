@@ -1,10 +1,12 @@
 <ul>
-	<li><a href="spellen/#">
-		<article>
-			<h1>Kat en Muis</h1>
-			<p>Groep: 2, 3 | Tikspel</p>
-		</article>
-	</a></li>
+	<li>
+		<a href="spellen/#">
+			<article>
+				<h1>Kat en Muis</h1>
+				<p>Groep: 2, 3 | Tikspel</p>
+			</article>
+		</a>
+	</li>
 </ul>
 
 <style>

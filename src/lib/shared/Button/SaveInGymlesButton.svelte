@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
 	import { saveInCache, deleteInCache } from '$lib/Utils/offline';
 	import { createEventDispatcher } from 'svelte';
 
@@ -18,14 +17,18 @@
 </script>
 
 {#if savedGame}
-	<button class="remove" on:click={deleteGame}><i class="material-icons">bookmark_remove</i>Verwijder uit mijn gymles</button>
+	<button class="remove" on:click={deleteGame}
+		><i class="material-icons">bookmark_remove</i>Verwijder uit mijn gymles</button
+	>
 {:else}
-	<button on:click={downloadGame}><i class="material-icons-outlined">bookmark_add</i>Opslaan in mijn gymles</button>
+	<button on:click={downloadGame}
+		><i class="material-icons-outlined">bookmark_add</i>Opslaan in mijn gymles</button
+	>
 {/if}
 
 <style>
 	button {
-		margin: 0 .25em;
+		margin: 0 0.25em;
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -43,7 +46,7 @@
 
 	button i {
 		font-size: inherit;
-		margin-right: .5em;
+		margin-right: 0.5em;
 	}
 
 	.remove {

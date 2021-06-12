@@ -4,7 +4,7 @@
 	p {
 		display: flex;
 		align-items: center;
-		margin: .25em 0;
+		margin: 0.25em 0;
 		padding: 0;
 		font-family: var(--font-body);
 		font-size: 0.8em;

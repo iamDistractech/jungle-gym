@@ -21,7 +21,7 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0;
-		margin-bottom: .5em;
+		margin-bottom: 0.5em;
 		font-size: 1em;
 	}
 

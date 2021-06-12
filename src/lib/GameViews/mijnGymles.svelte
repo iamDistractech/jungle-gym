@@ -1,22 +1,21 @@
 <script lang="ts">
-import type { Game } from "$lib/games";
-import GameCard from '$lib/cards/GameCard.svelte'
-import { onMount } from "svelte";
+	import type { Game } from '$lib/games';
+	import GameCard from '$lib/cards/GameCard.svelte';
+	import { onMount } from 'svelte';
 
-let savedGames = ['pionnenroof', 'kat-en-muis']
-export let gamesData: Game[] = []
+	let savedGames = ['pionnenroof', 'kat-en-muis'];
+	export let gamesData: Game[] = [];
 
-$: filteredGamesData = gamesData.filter((game) => savedGames.includes(game.slug))
+	$: filteredGamesData = gamesData.filter((game) => savedGames.includes(game.slug));
 
-// get the slugs of saved games from user store
-// filter games based on the slugs
-onMount(() => {
-	if(savedGames.length > 1) document.getElementById('scroll').scrollBy(320, 0)
-})
-
+	// get the slugs of saved games from user store
+	// filter games based on the slugs
+	onMount(() => {
+		if (savedGames.length > 1) document.getElementById('scroll').scrollBy(320, 0);
+	});
 </script>
 
-<ul id='scroll'>
+<ul id="scroll">
 	<li>
 		<a href="/gymles">
 			<article>
@@ -34,7 +33,6 @@ onMount(() => {
 	{/each}
 </ul>
 
-
 <style>
 	ul {
 		list-style: none;
@@ -44,7 +42,7 @@ onMount(() => {
 		display: flex;
 		max-width: 100%;
 		gap: 10px;
-		padding-bottom: .3rem;
+		padding-bottom: 0.3rem;
 		margin-left: -1rem;
 		margin-right: -1rem;
 		scroll-snap-type: x mandatory;
@@ -94,7 +92,7 @@ onMount(() => {
 		background-size: 0.5em;
 		width: 0.5em;
 	}
-	
+
 	article p {
 		margin: 0;
 		/* font-size: 0.8em; */

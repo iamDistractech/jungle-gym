@@ -5,22 +5,26 @@ export const get: RequestHandler = async (request) => {
 	try {
 		const response = await api(request, `games/${request.params.game}`);
 
-		if(response.ok) {
+		if (response.ok) {
 			return {
 				body: await response.json()
-			}
+			};
 		} else {
 			return {
 				status: response.status,
-				body: response.body && ( response.headers.has('Content-Type') && response.headers.get('Content-Type') === 'application/json' ) ? await response.json() : response.body
-			}
+				body:
+					response.body &&
+					response.headers.has('Content-Type') &&
+					response.headers.get('Content-Type') === 'application/json'
+						? await response.json()
+						: response.body
+			};
 		}
-	} catch(error) {
-		console.error('[game.json]:', error)
+	} catch (error) {
+		console.error('[game.json]:', error);
 		return {
-			status: 500, 
+			status: 500,
 			body: 'Internal Server Error'
-		}
+		};
 	}
-	
 };

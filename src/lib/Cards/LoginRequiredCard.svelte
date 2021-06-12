@@ -1,12 +1,12 @@
 <script>
 	export let Message;
-	export let redirectPage
+	export let redirectPage;
 </script>
 
 <article>
 	<h1>Inloggen</h1>
 	<p>{Message}</p>
-	<a  href="/inloggen?{redirectPage}">Inloggen<i class="material-icons">login</i></a>
+	<a href="/inloggen?{redirectPage}">Inloggen<i class="material-icons">login</i></a>
 </article>
 
 <style>
@@ -29,7 +29,7 @@
 	}
 
 	article p {
-		margin: .5em 0;
+		margin: 0.5em 0;
 	}
 
 	article a {
@@ -50,7 +50,6 @@
 
 	article a i {
 		font-size: inherit;
-		margin-left: .5em;
+		margin-left: 0.5em;
 	}
-
 </style>

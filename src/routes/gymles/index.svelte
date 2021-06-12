@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { userStore } from '$lib/Stores/user'
-	
+	import { userStore } from '$lib/Stores/user';
+
 	export const load: Load = async ({ session, fetch }) => {
-		if (session.authenticated){
-			const user = await userStore.getUser(fetch)
+		if (session.authenticated) {
+			const user = await userStore.getUser(fetch);
 
 			return {
 				props: {
@@ -18,21 +18,20 @@
 
 <script lang="ts">
 	/* Typings */
-	import type { Game } from '$lib/games';
+	// import type { Game } from '$lib/games';
 
 	/* Components */
-	import List from '$lib/GameViews/List.svelte';
+	// import List from '$lib/GameViews/List.svelte';
 	import NoFavoriteCard from '$lib/Cards/InfoCard.svelte';
 	import LoginRequiredCard from '$lib/Cards/LoginRequiredCard.svelte';
 	import LogOutButton from '$lib/shared/Button/LogOutButton.svelte';
 
 	/* Stores */
-	import { session as SessionStorage, page } from '$app/stores'
-	export let user = $userStore
+	import { session as SessionStorage, page } from '$app/stores';
+	export let user = $userStore;
 
 	const pathName = $page.path;
-	const redirectPage = new URLSearchParams([['page', pathName]])
-
+	const redirectPage = new URLSearchParams([['page', pathName]]);
 </script>
 
 <main class="leaves-bg">
@@ -42,10 +41,12 @@
 			Hello {user.name}
 		{/if}
 		{#if $SessionStorage.authenticated}
-		<nav>
-			<LogOutButton />
-			<a href="https://jungle-gym-cms.herokuapp.com/admin/" target="_blank"><i class="material-icons">open_in_new</i>Jungle Gym CMS</a>
-		</nav>
+			<nav>
+				<LogOutButton />
+				<a href="https://jungle-gym-cms.herokuapp.com/admin/" target="_blank"
+					><i class="material-icons">open_in_new</i>Jungle Gym CMS</a
+				>
+			</nav>
 		{/if}
 	</header>
 	<!-- {#if favoriteGames}
@@ -56,7 +57,10 @@
 		Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
 	/>
 	{#if !$SessionStorage.authenticated}
-	<LoginRequiredCard redirectPage={redirectPage.toString()} Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"></LoginRequiredCard>
+		<LoginRequiredCard
+			redirectPage={redirectPage.toString()}
+			Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
+		/>
 	{/if}
 </main>
 
@@ -73,7 +77,7 @@
 	}
 
 	header nav a {
-		margin: 0 .25em;
+		margin: 0 0.25em;
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -91,6 +95,6 @@
 
 	header nav i {
 		font-size: inherit;
-		margin-right: .5em;
+		margin-right: 0.5em;
 	}
 </style>

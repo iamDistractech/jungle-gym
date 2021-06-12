@@ -35,8 +35,8 @@
 		try {
 			// await user.fetchUser()
 			goto(redirectPage ? redirectPage : '/gymles');
-		} catch(error) {
-			handleError({detail: 'Something went wrong'})
+		} catch (error) {
+			handleError();
 		}
 	}
 
@@ -45,8 +45,8 @@
 		messageStore.set(error);
 	}
 
-	function handleError(event) {
-		let error = event.detail;
+	function handleError() {
+		// let error = event.detail;
 		messageStore.set('Er ging iets mis met inloggen');
 	}
 </script>
@@ -54,7 +54,7 @@
 <main class="leaves-bg">
 	<section>
 		<h2>Inloggen bij Jungle Gym</h2>
-		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleError} />
+		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleFailure} />
 	</section>
 </main>
 

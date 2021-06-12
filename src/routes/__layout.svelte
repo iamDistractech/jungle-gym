@@ -24,7 +24,7 @@
 					><i class="material-icons">format_list_bulleted</i>Speloverzicht</a
 				>
 			</li>
-			
+
 			<li>
 				<a href="/gymles" class={pathName === '/gymles' ? 'active-path' : ''}
 					><i class="material-icons">person</i>Mijn Gymles</a
@@ -81,7 +81,7 @@
 		justify-content: center;
 		align-items: center;
 		font-size: 0.8em;
-		padding: 1em .5em;
+		padding: 1em 0.5em;
 		color: var(--color-base-normal);
 		border-bottom: solid 2px var(--active-underline-color);
 	}
