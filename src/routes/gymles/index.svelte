@@ -1,3 +1,21 @@
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+	import { userStore } from '$lib/Stores/user'
+	
+	export const load: Load = async ({ session, fetch }) => {
+		if (session.authenticated){
+			const user = await userStore.getUser(fetch)
+
+			return {
+				props: {
+					user
+				}
+			};
+		}
+		return {};
+	};
+</script>
+
 <script lang="ts">
 	/* Typings */
 	import type { Game } from '$lib/games';
@@ -10,23 +28,18 @@
 
 	/* Stores */
 	import { session as SessionStorage, page } from '$app/stores'
-	import { user } from '$lib/Stores/user'
-	import { onDestroy } from 'svelte'
+	export let user = $userStore
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]])
 
-	$: console.log($user)
-
-	// export let games: Game[];
-	// export let query;
 </script>
 
 <main class="leaves-bg">
 	<header>
 		<h2>Mijn Gymles</h2>
-		{#if $user && $user.name}
-			Hello {$user.name}
+		{#if user && user.name}
+			Hello {user.name}
 		{/if}
 		{#if $SessionStorage.authenticated}
 		<nav>

@@ -17,7 +17,7 @@
 	import { goto } from '$app/navigation';
 	import { session as sessionStore, page } from '$app/stores';
 	import { messageStore } from '$lib/Stores/message';
-import { user } from '$lib/Stores/user';
+	// import { userStore } from '$lib/Stores/user';
 
 	const { query } = $page;
 	const session = sessionStore;
@@ -29,11 +29,15 @@ import { user } from '$lib/Stores/user';
 		messageStore.set('Je moet eerst inloggen om deze pagina te zien');
 	}
 
-	function redirectToProfile() {
+	async function redirectToProfile() {
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
 		session.set({ authenticated: true });
-		user.fetchUser()
-		goto(redirectPage ? redirectPage : '/gymles');
+		try {
+			// await user.fetchUser()
+			goto(redirectPage ? redirectPage : '/gymles');
+		} catch(error) {
+			handleError({detail: 'Something went wrong'})
+		}
 	}
 
 	function handleFailure(event) {

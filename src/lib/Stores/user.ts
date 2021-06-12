@@ -9,38 +9,39 @@ interface User {
 	savedGames: Game['slug'][]
 }
 
+let user: User | undefined = undefined;
+
 function createUserStore() {	
 	const { subscribe, set, update } = writable<User>(undefined)
 
+	/**
+	 * Get the users details, fetches the users details if needed and updates the store
+	 * @param inputFetch the `fetch` input parameter from the load method
+	 * @returns the users details
+	 */
+	const getUser = async (inputFetch?) : Promise<User> => {
+		if(!user) user = await getUserFromApi(inputFetch)
+		set(user)
+		return user
+	}
 
-	// User
-	
-	// // Saved Games
-	// const savedGames: string[] = []
-	// const savedGamesStore = writable(savedGames)
-
-	// const addToGymles = (slug: string | string[]) => {
-	// 	if(Array.isArray(slug))	savedGamesStore.update((savedGames) => [...new Set([...savedGames, ...slug])] )
-	// 	else return savedGamesStore.update((savedGames) => [...new Set([...savedGames, slug])])
-	// }
-
-	// const { subscribe } = derived([userStore, savedGamesStore], ([$userStore, $savedGamesStore]) => {
-	// 	const user = $userStore
-
-	// 	// user.savedGames = $savedGamesStore
-	// 	return user
-	// })
-
+	/**
+	 * Clears a user from the store
+	 */
+	const clearUser = () : void => {
+		user = undefined
+		set(undefined)
+	}
 
 	return {
 		subscribe,
-		clearUser: () : void => set(undefined),
-		fetchUser: () : Promise<void> => getUserFromApi().then(set).then(() => undefined)
-	};
+		clearUser,
+		getUser
+	}
 }
 
-async function getUserFromApi() : Promise<User> {
-	const response = await fetch('/api/user.json')
+async function getUserFromApi(inputFetch) : Promise<User> {
+	const response = inputFetch ? await inputFetch('/api/user.json') : await fetch('/api/user.json')
 	const body = await response.json()
 
 	if(!response.ok) {
@@ -51,4 +52,4 @@ async function getUserFromApi() : Promise<User> {
 	return body
 }
 
-export const user = createUserStore();
+export const userStore = createUserStore();

@@ -5,6 +5,7 @@ import sessionDB from '$lib/Utils/sessionDB';
 export const handle: Handle = async ({ request, resolve }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 
+
 	if (!cookies.session_id) request.locals.authenticated = false;
 	else {
 		const accessToken = await sessionDB.get(cookies.session_id);

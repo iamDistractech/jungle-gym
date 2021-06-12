@@ -1,6 +1,6 @@
 <script>
 import { session as SessionStore } from '$app/stores';
-import { user } from '$lib/Stores/user';
+import { userStore } from '$lib/Stores/user';
 import { createEventDispatcher } from 'svelte';
 
 const dispatcher = createEventDispatcher()
@@ -8,7 +8,7 @@ const dispatcher = createEventDispatcher()
 function logout() {
 		return fetch('/account/uitloggen.json', { method: 'POST' })
 			.then(() => SessionStore.set({ authenticated: false }))
-			.then(() => user.clearUser())
+			.then(() => userStore.clearUser())
 			.then(() => dispatcher('logout'));
 	}
 </script>
