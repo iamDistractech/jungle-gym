@@ -17,6 +17,7 @@
 	import { goto } from '$app/navigation';
 	import { session as sessionStore, page } from '$app/stores';
 	import { messageStore } from '$lib/Stores/message';
+import { user } from '$lib/Stores/user';
 
 	const { query } = $page;
 	const session = sessionStore;
@@ -31,6 +32,7 @@
 	function redirectToProfile() {
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
 		session.set({ authenticated: true });
+		user.fetchUser()
 		goto(redirectPage ? redirectPage : '/gymles');
 	}
 

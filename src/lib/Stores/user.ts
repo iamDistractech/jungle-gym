@@ -1,48 +1,54 @@
 import { derived, writable } from 'svelte/store';
 import { session } from '$app/stores';
+import type { Game } from '$lib/games';
 
-function createUserStore() {
+interface User {
+	name: string,
+	admin: boolean, 
+	username: string,
+	savedGames: Game['slug'][]
+}
+
+function createUserStore() {	
+	const { subscribe, set, update } = writable<User>(undefined)
+
+
 	// User
-	const userStore = derived(session, ($session, set) => {
-		console.log($session)
-		if ($session.authenticated) {
-			// auth! get user data!
-			fetch('/api/user.json').then(async (res) => {
-				if (res.ok) {
-					const user = await res.json();
-					set(user);
-				}
-			}).catch(console.error)
-		} else {
-			console.log('in uauth')
-			// not auth any more, so remove user data
-			set({});
-		}
-	});
 	
-	// Saved Games
-	const savedGames: string[] = []
-	const savedGamesStore = writable(savedGames)
+	// // Saved Games
+	// const savedGames: string[] = []
+	// const savedGamesStore = writable(savedGames)
 
-	const addToGymles = (slug: string | string[]) => {
-		if(Array.isArray(slug))	savedGamesStore.update((savedGames) => [...new Set([...savedGames, ...slug])] )
-		else return savedGamesStore.update((savedGames) => [...new Set([...savedGames, slug])])
-	}
+	// const addToGymles = (slug: string | string[]) => {
+	// 	if(Array.isArray(slug))	savedGamesStore.update((savedGames) => [...new Set([...savedGames, ...slug])] )
+	// 	else return savedGamesStore.update((savedGames) => [...new Set([...savedGames, slug])])
+	// }
 
-	const { subscribe } = derived([userStore, savedGamesStore], ([$userStore, $savedGamesStore]) => {
-		const user = $userStore
-		console.log($userStore)
-		// user.savedGames = $savedGamesStore
+	// const { subscribe } = derived([userStore, savedGamesStore], ([$userStore, $savedGamesStore]) => {
+	// 	const user = $userStore
 
-		// console.log(user)
-		return user
-	})
+	// 	// user.savedGames = $savedGamesStore
+	// 	return user
+	// })
 
 
 	return {
-		addToGymles,
-		subscribe
+		subscribe,
+		clearUser: () : void => set(undefined),
+		fetchUser: () : Promise<void> => getUserFromApi().then(set).then(() => undefined)
 	};
+}
+
+async function getUserFromApi() : Promise<User> {
+	const response = await fetch('/api/user.json')
+	const body = await response.json()
+
+	if(!response.ok) {
+		// 401 (access token expired) should end the svelte session as well
+		throw body
+	}
+
+	return body
 }
 
 export const user = createUserStore();

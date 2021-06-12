@@ -16,6 +16,8 @@
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]])
 
+	$: console.log($user)
+
 	// export let games: Game[];
 	// export let query;
 </script>
