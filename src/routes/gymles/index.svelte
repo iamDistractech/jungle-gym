@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { userStore } from '$lib/Stores/user';
+	import { userStore } from '$lib/stores/user';
 
 	export const load: Load = async ({ session, fetch }) => {
 		if (session.authenticated) {
@@ -22,9 +22,9 @@
 
 	/* Components */
 	// import List from '$lib/GameViews/List.svelte';
-	import NoFavoriteCard from '$lib/Cards/InfoCard.svelte';
-	import LoginRequiredCard from '$lib/Cards/LoginRequiredCard.svelte';
-	import LogOutButton from '$lib/shared/Button/LogOutButton.svelte';
+	import NoFavoriteCard from '$lib/cards/InfoCard.svelte';
+	import LoginRequiredCard from '$lib/cards/LoginRequiredCard.svelte';
+	import LogOutButton from '$lib/shared/button/LogOutButton.svelte';
 
 	/* Stores */
 	import { session as SessionStorage, page } from '$app/stores';

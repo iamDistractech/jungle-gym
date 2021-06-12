@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
+	import Snackbar from '$lib/shared/snackbar/Snackbar.svelte';
 	import '../fonts.css';
 	import '../app.css';
 

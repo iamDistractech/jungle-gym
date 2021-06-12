@@ -1,6 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
-	import { messageStore } from '$lib/Stores/message';
+	import { messageStore } from '$lib/stores/message';
 
 	let message;
 	let timeOut;

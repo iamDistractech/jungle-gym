@@ -3,7 +3,7 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import GameCard from '$lib/Cards/GameCard.svelte';
+	import GameCard from '$lib/cards/GameCard.svelte';
 
 	export let gamesData: Game[];
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { saveInCache, deleteInCache } from '$lib/Utils/offline';
+	import { saveInCache, deleteInCache } from '$lib/utils/offline';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatcher = createEventDispatcher();

@@ -1,6 +1,6 @@
 <script>
 	import { session as SessionStore } from '$app/stores';
-	import { userStore } from '$lib/Stores/user';
+	import { userStore } from '$lib/stores/user';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatcher = createEventDispatcher();

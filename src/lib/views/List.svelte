@@ -3,8 +3,8 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import GameCard from '$lib/Cards/GameCard.svelte';
-	import ErrorCard from '$lib/Cards/InfoCard.svelte';
+	import GameCard from '$lib/cards/GameCard.svelte';
+	import ErrorCard from '$lib/cards/InfoCard.svelte';
 
 	export let games: Game[];
 	export let offline: boolean;

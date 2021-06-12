@@ -2,13 +2,13 @@
 	import { createEventDispatcher } from 'svelte';
 
 	/* Components */
-	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
-	import CancelButton from '$lib/shared/Button/CancelButton.svelte';
+	import SubmitButton from '$lib/shared/button/SubmitButton.svelte';
+	import CancelButton from '$lib/shared/button/CancelButton.svelte';
 
 	/* Stores */
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { playerCount } from '$lib/Stores/playerCount';
+	import { playerCount } from '$lib/stores/playerCount';
 
 	/* Animations */
 	import { fade, fly } from 'svelte/transition';

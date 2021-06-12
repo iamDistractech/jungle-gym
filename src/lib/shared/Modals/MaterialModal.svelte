@@ -1,5 +1,5 @@
 <script>
-	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	import ButtonLight from '$lib/shared/button/ButtonLight.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
