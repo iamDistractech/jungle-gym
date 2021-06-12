@@ -4,18 +4,22 @@ import sessionDB from '$lib/Utils/sessionDB';
 import { api } from '../api/_api';
 
 export const post: RequestHandler = async (request: Request) => {
-	const { locals } = request;
+	const defaultServerError = {
+		status: 500,
+		body: 'Er ging iets fout op de server tijdens het inloggen'
+	}
 
-	if (!sessionDB)
-		return {
-			status: 500,
-			body: { message: 'SessionDB offline' }
-		};
+	if (!sessionDB) {
+		console.error('[uitloggen.json]', 'SessionDB offline')
+		return defaultServerError;
+	}
+	
+	const { locals } = request
 
 	try {
 		await api(request, 'auth/revoke');
 	} catch (error) {
-		console.error(error);
+		console.error('[uitloggen.json]', error);
 	}
 
 	await sessionDB.del(locals.sessionId);

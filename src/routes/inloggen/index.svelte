@@ -34,9 +34,14 @@
 		goto(redirectPage ? redirectPage : '/gymles');
 	}
 
-	function handleError(event) {
-		let error = event.detail.message;
+	function handleFailure(event) {
+		let error = event.detail;
 		messageStore.set(error);
+	}
+
+	function handleError(event) {
+		let error = event.detail;
+		messageStore.set('Er ging iets mis met inloggen');
 	}
 </script>
 

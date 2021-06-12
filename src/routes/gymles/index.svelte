@@ -10,10 +10,8 @@
 
 	/* Stores */
 	import { session as SessionStorage, page } from '$app/stores'
-
-	let session;
-	$: console.log(session)
-	SessionStorage.subscribe((newSession) => session = newSession)
+	import { user } from '$lib/Stores/user'
+	import { onDestroy } from 'svelte'
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]])
@@ -25,7 +23,10 @@
 <main class="leaves-bg">
 	<header>
 		<h2>Mijn Gymles</h2>
-		{#if session.authenticated}
+		{#if $user && $user.name}
+			Hello {$user.name}
+		{/if}
+		{#if $SessionStorage.authenticated}
 		<nav>
 			<LogOutButton />
 			<a href="https://jungle-gym-cms.herokuapp.com/admin/" target="_blank"><i class="material-icons">open_in_new</i>Jungle Gym CMS</a>
@@ -39,7 +40,7 @@
 		Title="Je hebt nog geen spellen opgeslagen"
 		Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
 	/>
-	{#if !session.authenticated}
+	{#if !$SessionStorage.authenticated}
 	<LoginRequiredCard redirectPage={redirectPage.toString()} Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"></LoginRequiredCard>
 	{/if}
 </main>

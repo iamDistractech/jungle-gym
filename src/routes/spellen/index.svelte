@@ -57,8 +57,6 @@
 
 	let offline = false;
 
-	console.log('test', games);
-
 	onMount(() => {
 		if (!navigator.onLine) offline = true;
 

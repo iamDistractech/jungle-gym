@@ -29,13 +29,12 @@
 			};
 
 			const response = await fetch('/inloggen.json', init);
+			const body = await response.json()
 
 			if (response.ok) {
-				const body = await response.json();
-
-				dispatch('success', body);
+				dispatch('success');
 			} else {
-				dispatch('failure', await response.json());
+				dispatch('failure', body);
 			}
 		} catch (error) {
 			if (offline) dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
