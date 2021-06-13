@@ -8,7 +8,7 @@
 </script>
 
 <section>
-	<h1>Uitgelichte spel</h1>
+	<h1>Uitgelicht spel</h1>
 	<ul>
 		<a href="spellen/{game.slug}">
 			<div>
