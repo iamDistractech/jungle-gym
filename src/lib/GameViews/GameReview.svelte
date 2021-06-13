@@ -2,6 +2,8 @@
 	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
 	import { messageStore } from '$lib/Stores/message';
 
+	import { VITE_STRAPI_API_URL } from '$lib/Env.js';
+
 	function toggleConfirmation() {
 		const confirmBox = document.querySelector('.confirm-container');
 
@@ -24,12 +26,14 @@
 		const overallAnswer = {
 			type: 'short-form',
 			game: gameName,
-			emoji: firstStepForm['emoji-overall'].value
+			overallEmoji: firstStepForm['emoji-overall'].value
 		};
 
 		console.log(overallAnswer);
 
-		clearFormSteps(firstStepForm);
+		sendResultsToDB(overallAnswer);
+
+		clearFormSteps();
 	}
 
 	function submitLongForm() {
@@ -60,9 +64,46 @@
 			kidsAnswers
 		};
 
-		console.log(formResults);
+		sendResultsToDB(formResults);
 
-		clearFormSteps(explanationForm);
+		clearFormSteps();
+	}
+
+	async function sendResultsToDB(formResults) {
+		// Both forms have fields in common
+		let result = {
+			game: formResults.game,
+			type: formResults.type
+		};
+
+		const isShortForm = formResults.type === 'short-form';
+
+		if (isShortForm) {
+			result = {
+				...result,
+				overallEmoji: formResults.overallEmoji
+			};
+		} else {
+			result = {
+				...result,
+				descriptionEmoji: formResults.descriptionAnswers.emoji,
+				descriptionExplanation: formResults.descriptionAnswers.explanation,
+				executionEmoji: formResults.executionAnswers.emoji,
+				executionExplanation: formResults.executionAnswers.explanation,
+				kidsEmoji: formResults.kidsAnswers.emoji,
+				kidsExplanation: formResults.kidsAnswers.explanation
+			};
+		}
+
+		const response = await fetch(`${VITE_STRAPI_API_URL}/reviews`, {
+			method: 'POST',
+			body: JSON.stringify(result),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		return response.json();
 	}
 
 	function clearFormSteps() {
