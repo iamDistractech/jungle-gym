@@ -13,7 +13,7 @@
 </script>
 
 <script>
-	import ButtonLight from '$lib/shared/Button/ButtonLight.svelte';
+	import ButtonLight from '$lib/shared/button/ButtonLight.svelte';
 
 	/** @type {number} */
 	export let status;

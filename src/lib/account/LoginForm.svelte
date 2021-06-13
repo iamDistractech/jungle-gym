@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+	import SubmitButton from '$lib/shared/button/SubmitButton.svelte';
 
 	import { createEventDispatcher } from 'svelte';
 	import { onMount } from 'svelte';

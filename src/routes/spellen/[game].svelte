@@ -35,22 +35,22 @@
 	import type { Game, Material } from '$lib/games';
 
 	/* Components */
-	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
-	import Accordion from '$lib/shared/Modals/Accordion.svelte';
-	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
-	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
-	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
-	import SaveInGymlesButton from '$lib/shared/Button/SaveInGymlesButton.svelte';
-	import BackButton from '$lib/shared/Button/BackButton.svelte';
+	import MaterialButton from '$lib/shared/button/MaterialButton.svelte';
+	import Accordion from '$lib/shared/modals/Accordion.svelte';
+	import MaterialModal from '$lib/shared/modals/MaterialModal.svelte';
+	import CardLabel from '$lib/shared/label/CardLabel.svelte';
+	import OfflineLabel from '$lib/shared/label/OfflineLabel.svelte';
+	import SaveInGymlesButton from '$lib/shared/button/SaveInGymlesButton.svelte';
+	import BackButton from '$lib/shared/button/BackButton.svelte';
 
 	/* Utils */
-	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
-	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
+	import { formatTargetGroups } from '$lib/utils/formatTargetGroups';
+	import { patchSingleGameOfflineStatus } from '$lib/utils/offline';
 	import { onMount } from 'svelte';
 
 	/* Stores */
 	import { page } from '$app/stores';
-	import { messageStore } from '$lib/Stores/message';
+	import { messageStore } from '$lib/stores/message';
 
 	export let game: Game;
 	let gameSlug: string = $page.params.game;
