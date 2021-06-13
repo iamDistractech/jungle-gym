@@ -141,6 +141,11 @@
 		background-color: transparent;
 	}
 
+	form label img:hover {
+		cursor: pointer;
+		transform: scale(1);
+	}
+
 	form input {
 		display: none;
 	}
