@@ -24,12 +24,10 @@
 		const gameName = window.location.pathname.split('/')[2];
 
 		const overallAnswer = {
-			type: 'short-form',
+			type: 'short',
 			game: gameName,
 			overallEmoji: firstStepForm['emoji-overall'].value
 		};
-
-		console.log(overallAnswer);
 
 		sendResultsToDB(overallAnswer);
 
@@ -57,7 +55,7 @@
 		const gameName = window.location.pathname.split('/')[2];
 
 		const formResults = {
-			type: 'long-form',
+			type: 'long',
 			game: gameName,
 			descriptionAnswers,
 			executionAnswers,
@@ -76,7 +74,7 @@
 			type: formResults.type
 		};
 
-		const isShortForm = formResults.type === 'short-form';
+		const isShortForm = formResults.type === 'short';
 
 		if (isShortForm) {
 			result = {
@@ -132,8 +130,8 @@
 </script>
 
 <form name="emoji" class="first-step" action="">
-	<input type="radio" id="sad" name="emoji-overall" value="sad" on:click={toggleConfirmation} />
-	<label for="sad">
+	<input type="radio" id="bad" name="emoji-overall" value="Slecht" on:click={toggleConfirmation} />
+	<label for="bad">
 		<img src="/icons/GameReview/sad.svg" alt="" />
 	</label>
 
@@ -141,15 +139,15 @@
 		type="radio"
 		id="neutral"
 		name="emoji-overall"
-		value="neutral"
+		value="Neutraal"
 		on:click={toggleConfirmation}
 	/>
 	<label for="neutral">
 		<img src="/icons/GameReview/surprised.svg" alt="" />
 	</label>
 
-	<input type="radio" id="happy" name="emoji-overall" value="happy" on:click={toggleConfirmation} />
-	<label for="happy">
+	<input type="radio" id="goed" name="emoji-overall" value="Goed" on:click={toggleConfirmation} />
+	<label for="goed">
 		<img src="/icons/GameReview/happy.svg" alt="" />
 	</label>
 
@@ -172,18 +170,18 @@
 <form class="explanation-container" action="" on:submit|preventDefault={submitLongForm}>
 	<fieldset>
 		<legend>Was de omschrijving van het spel duidelijk? [1/3]</legend>
-		<input type="radio" id="sad-description" name="emoji-description" value="sad" />
-		<label for="sad-description">
+		<input type="radio" id="bad-description" name="emoji-description" value="Slecht" />
+		<label for="bad-description">
 			<img src="/icons/GameReview/sad.svg" alt="" />
 		</label>
 
-		<input type="radio" id="neutral-description" name="emoji-description" value="neutral" />
+		<input type="radio" id="neutral-description" name="emoji-description" value="Neutraal" />
 		<label for="neutral-description">
 			<img src="/icons/GameReview/surprised.svg" alt="" />
 		</label>
 
-		<input type="radio" id="happy-description" name="emoji-description" value="happy" />
-		<label for="happy-description">
+		<input type="radio" id="goed-description" name="emoji-description" value="Goed" />
+		<label for="goed-description">
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
@@ -194,18 +192,18 @@
 
 	<fieldset>
 		<legend>Hoe was het spel in de praktijk? [2/3]</legend>
-		<input type="radio" id="sad-execution" name="emoji-execution" value="sad" />
-		<label for="sad-execution">
+		<input type="radio" id="bad-execution" name="emoji-execution" value="Slecht" />
+		<label for="bad-execution">
 			<img src="/icons/GameReview/sad.svg" alt="" />
 		</label>
 
-		<input type="radio" id="neutral-execution" name="emoji-execution" value="neutral" />
+		<input type="radio" id="neutral-execution" name="emoji-execution" value="Neutraal" />
 		<label for="neutral-execution">
 			<img src="/icons/GameReview/surprised.svg" alt="" />
 		</label>
 
-		<input type="radio" id="happy-execution" name="emoji-execution" value="happy" />
-		<label for="happy-execution">
+		<input type="radio" id="goed-execution" name="emoji-execution" value="Goed" />
+		<label for="goed-execution">
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
@@ -216,18 +214,18 @@
 
 	<fieldset>
 		<legend>Vonden de kinderen het een leuk spel? [3/3]</legend>
-		<input type="radio" id="sad-kids" name="emoji-kids" value="sad" />
-		<label for="sad-kids">
+		<input type="radio" id="bad-kids" name="emoji-kids" value="Slecht" />
+		<label for="bad-kids">
 			<img src="/icons/GameReview/sad.svg" alt="" />
 		</label>
 
-		<input type="radio" id="neutral-kids" name="emoji-kids" value="neutral" />
+		<input type="radio" id="neutral-kids" name="emoji-kids" value="Neutraal" />
 		<label for="neutral-kids">
 			<img src="/icons/GameReview/surprised.svg" alt="" />
 		</label>
 
-		<input type="radio" id="happy-kids" name="emoji-kids" value="happy" />
-		<label for="happy-kids">
+		<input type="radio" id="goed-kids" name="emoji-kids" value="Goed" />
+		<label for="goed-kids">
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
