@@ -28,9 +28,9 @@
 		messageStore.set('Je moet eerst inloggen om deze pagina te zien');
 	}
 
-	function redirectToProfile(event) {
+	function redirectToProfile() {
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
-		session.set({ authenticated: true, user: event.detail.user });
+		session.set({ authenticated: true });
 		goto(redirectPage ? redirectPage : '/account');
 	}
 
@@ -40,7 +40,7 @@
 	}
 </script>
 
-<main>
+<main class="leaves-bg">
 	<section>
 		<h2>Inloggen bij Jungle Gym</h2>
 		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleError} />

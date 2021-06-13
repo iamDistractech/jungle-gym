@@ -14,8 +14,11 @@
 
 <ul>
 	{#each variations as variation}
-		<li>
-			<p on:click={() => toggle(variation.description)}>{variation.description}</p>
+		<li class="variation-item">
+			<div on:click={() => toggle(variation.description)}>
+				<p>{variation.description}</p>
+				<i class="material-icons"> expand_more </i>
+			</div>
 			{#if open[variation.description]}
 				<ul transition:slide={{ duration: 300 }}>
 					{#each variation.actions as action}
@@ -34,11 +37,13 @@
 		padding: 0;
 	}
 
-	ul li p {
+	ul li div {
 		font-weight: bolder;
 		border: 2px solid var(--color-base-light);
 		padding: 0.7rem 1rem;
 		border-radius: 0.6rem;
+		display: flex;
+		align-items: center;
 	}
 
 	ul li ul {
@@ -51,6 +56,11 @@
 	}
 
 	p {
-		margin-bottom: 0;
+		margin: 0;
+		font-weight: 500;
+	}
+
+	.variation-item {
+		margin-bottom: 1rem;
 	}
 </style>

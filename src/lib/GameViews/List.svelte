@@ -5,9 +5,6 @@
 	/* Components */
 	import GameCard from '$lib/Cards/GameCard.svelte';
 	import ErrorCard from '$lib/Cards/ErrorCard.svelte';
-	import { page } from '$app/stores';
-
-	const query = $page.query;
 
 	export let games: Game[];
 	export let offline: boolean;
@@ -33,7 +30,7 @@
 		{/each}
 
 		{#if games.length == 0}
-			<ErrorCard ErrorTitle={'Oeps...'} ErrorMessage="er zijn geen spellen gevonden." />
+			<ErrorCard ErrorTitle={'Oeps...'} ErrorMessage="Er zijn geen spellen gevonden." />
 		{/if}
 	</ul>
 </section>

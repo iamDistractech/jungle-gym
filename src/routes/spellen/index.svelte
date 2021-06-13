@@ -12,8 +12,7 @@
 				return {
 					props: {
 						games,
-						query,
-						offline: res.statusText === 'offline'
+						query
 					}
 				};
 			}
