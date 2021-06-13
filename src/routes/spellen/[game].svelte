@@ -46,7 +46,7 @@
 	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
 
 	/* Utils */
-	import { formatTargetGroups } from '$lib/Utils/formatTargetGroups';
+	import { formatTargetGroups } from '$lib/Utils/format';
 	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
 	import { onMount } from 'svelte';
 

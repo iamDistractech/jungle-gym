@@ -1,10 +1,19 @@
+<script lang="ts">
+	import type { Game } from '$lib/games';
+
+	import { formatTargetGroups } from '$lib/Utils/format';
+	export let game: Game[];
+
+	const targetGroupString = formatTargetGroups(game.targetGroup);
+</script>
+
 <section>
-	<h1>Uitgelichte spellen</h1>
+	<h1>Uitgelichte spel</h1>
 	<ul>
-		<a href="spellen/#">
+		<a href="spellen/{game.slug}">
 			<div>
-				<h1>Kat en Muis</h1>
-				<p>Groep: 2, 3 | Tikspel</p>
+				<h1>{game.name}</h1>
+				<p>{targetGroupString} | {game.category}</p>
 			</div>
 		</a>
 	</ul>
@@ -45,14 +54,11 @@
 	}
 
 	ul a div h1::after {
-		content: '>';
-		border-radius: 50%;
+		content: '';
+		background: url('$lib/assets/icons/GameCard/cardArrow.svg') no-repeat top center;
+		background-size: 0.5em;
 		width: 2em;
 		height: 2em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: none;
 	}
 
 	ul a:focus {

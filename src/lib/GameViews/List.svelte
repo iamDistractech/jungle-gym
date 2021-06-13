@@ -6,13 +6,13 @@
 	import GameCard from '$lib/Cards/GameCard.svelte';
 	import ErrorCard from '$lib/Cards/ErrorCard.svelte';
 
+	/* Utils */
+	import { sortGameArray } from '$lib/Utils/sort';
+
 	export let games: Game[];
 	export let offline: boolean;
 
-	// Sort the array with the last updated game first
-	games.sort(function (a, b) {
-		return new Date(b.updatedAt) - new Date(a.updatedAt);
-	});
+	sortGameArray(games);
 
 	let ErrorMessage =
 		games.length === 0
