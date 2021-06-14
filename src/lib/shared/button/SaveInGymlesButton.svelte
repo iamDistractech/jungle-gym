@@ -1,7 +1,5 @@
 <script lang="ts">
-import { userStore } from '$lib/stores/user';
-
-	import { saveInCache, deleteInCache } from '$lib/utils/offline';
+	import { userStore } from '$lib/stores/user';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatcher = createEventDispatcher();

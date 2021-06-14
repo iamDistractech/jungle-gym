@@ -49,7 +49,7 @@
 	import { onMount } from 'svelte';
 
 	/* Stores */
-	import { navigating, page } from '$app/stores';
+	import { page } from '$app/stores';
 	import { messageStore } from '$lib/stores/message';
 
 	export let game: Game;
@@ -107,7 +107,7 @@
 			{/if}
 		</section>
 		<h2>{game.name}</h2>
-		<BackButton returnLink='/spellen' title='Speloverzicht' />
+		<BackButton returnLink="/spellen" title="Speloverzicht" />
 		{#if game.offline}
 			<OfflineLabel />
 		{/if}

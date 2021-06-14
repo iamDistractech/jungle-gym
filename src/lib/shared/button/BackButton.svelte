@@ -1,7 +1,6 @@
 <script>
-	export let returnLink = '/spellen'
-	export let title = 'Speloverzicht'
-
+	export let returnLink = '/spellen';
+	export let title = 'Speloverzicht';
 </script>
 
 <a href={returnLink}><i class="material-icons">arrow_back</i>{title}</a>

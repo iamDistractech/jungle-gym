@@ -13,7 +13,7 @@ let user: User | undefined = undefined;
 
 function createUserStore() {
 	const { subscribe, set, update } = writable<User>(undefined);
-	const savedGames = new Set([])
+	const savedGames = new Set([]);
 
 	/**
 	 * Get the users details, fetches the users details if needed and updates the store
@@ -38,35 +38,35 @@ function createUserStore() {
 	 * Saves a slug into the users details
 	 * @param slug the slug of the game to save
 	 */
-	const saveGame = async (slug: string) : Promise<boolean> => {
-		const success = await saveInCache(slug)
-		if(success) {
-			savedGames.add(slug)
+	const saveGame = async (slug: string): Promise<boolean> => {
+		const success = await saveInCache(slug);
+		if (success) {
+			savedGames.add(slug);
 			update((user) => {
-				user.savedGames = [...savedGames]
-				return user
-			})
+				user.savedGames = [...savedGames];
+				return user;
+			});
 		}
 
-		return success
-	}
+		return success;
+	};
 
 	/**
 	 * Deletes a slug into the users details
 	 * @param slug the slug of the game to save
 	 */
-	const removeGame = async (slug : string) : Promise<boolean> => {
-		const success = await deleteInCache(slug)
-		if(success) {
-			savedGames.delete(slug)
+	const removeGame = async (slug: string): Promise<boolean> => {
+		const success = await deleteInCache(slug);
+		if (success) {
+			savedGames.delete(slug);
 			update((user) => {
-				user.savedGames = [...savedGames]
-				return user
-			})
+				user.savedGames = [...savedGames];
+				return user;
+			});
 		}
 
-		return success
-	}
+		return success;
+	};
 
 	return {
 		subscribe,
@@ -86,7 +86,7 @@ async function getUserFromApi(inputFetch): Promise<User> {
 		throw body;
 	}
 
-	body.savedGames = []
+	body.savedGames = [];
 
 	return body;
 }
