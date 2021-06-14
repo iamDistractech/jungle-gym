@@ -32,7 +32,6 @@
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
 		session.set({ authenticated: true });
 		try {
-			// await user.fetchUser()
 			goto(redirectPage ? redirectPage : '/gymles');
 		} catch (error) {
 			handleError();
@@ -45,7 +44,6 @@
 	}
 
 	function handleError() {
-		// let error = event.detail;
 		messageStore.set('Er ging iets mis met inloggen');
 	}
 </script>
