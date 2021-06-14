@@ -9,7 +9,7 @@
 
 <header>
 	<div>
-		<img src="/logo-512.png" alt="Logo Jungle Gym" />
+		<img src="/logo.svg" alt="Logo Jungle Gym" />
 		<h1>Jungle Gym</h1>
 	</div>
 	<nav>
