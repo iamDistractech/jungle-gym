@@ -40,6 +40,8 @@
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]]);
+
+
 </script>
 
 <main class="leaves-bg">
