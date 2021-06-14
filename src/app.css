@@ -85,18 +85,30 @@ button {
 }
 
 section {
-	margin: 1.5rem 0;
+	margin: 0;
+	padding: 0 0.5rem;
+	margin-bottom: 1rem;
 }
 
 section > h1 {
 	font-size: 1.2em;
-	margin-left: 1rem;
 	font-weight: 600;
-	padding-bottom: 0.8rem;
+	padding-bottom: 0.5rem;
 }
 
 .leaves-bg {
 	background: url('$lib/assets/images/background/leavesBackground.svg');
 	background-position: 20% 0;
 	background-size: 250%;
+}
+
+.link-button {
+	font-size: 0.8em;
+	padding: 0.75em;
+	text-align: center;
+	color: var(--color-accent-dark);
+	border: none;
+	border-radius: 0.5em;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	background-color: var(--color-base-light);
 }

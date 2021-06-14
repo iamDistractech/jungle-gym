@@ -35,24 +35,23 @@
 	import type { Game, Material } from '$lib/games';
 
 	/* Components */
-	import GameReview from '$lib/GameViews/GameReview.svelte';
-	import MaterialButton from '$lib/shared/Button/MaterialButton.svelte';
-	import Accordion from '$lib/shared/Modals/Accordion.svelte';
-	import MaterialModal from '$lib/shared/Modals/MaterialModal.svelte';
-	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
-	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
-	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
-	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
-	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
+	import MaterialButton from '$lib/shared/button/MaterialButton.svelte';
+	import Accordion from '$lib/shared/modals/Accordion.svelte';
+	import MaterialModal from '$lib/shared/modals/MaterialModal.svelte';
+	import CardLabel from '$lib/shared/label/CardLabel.svelte';
+	import OfflineLabel from '$lib/shared/label/OfflineLabel.svelte';
+	import SaveInGymlesButton from '$lib/shared/button/SaveInGymlesButton.svelte';
+	import BackButton from '$lib/shared/button/BackButton.svelte';
+	import GameReview from '$lib/views/GameReview.svelte';
 
 	/* Utils */
-	import { formatTargetGroups } from '$lib/Utils/format';
-	import { patchSingleGameOfflineStatus } from '$lib/Utils/offline';
+	import { formatTargetGroups } from '$lib/utils/format';
+	import { patchSingleGameOfflineStatus } from '$lib/utils/offline';
 	import { onMount } from 'svelte';
 
 	/* Stores */
 	import { page } from '$app/stores';
-	import { messageStore } from '$lib/Stores/message';
+	import { messageStore } from '$lib/stores/message';
 
 	export let game: Game;
 
@@ -101,8 +100,18 @@
 
 <main>
 	<header>
+		<section class="utility-bar">
+			{#if pwa}
+				<SaveInGymlesButton
+					on:saved={savedHandler}
+					on:deleted={deletedHandler}
+					savedGame={game.offline}
+					slug={gameSlug}
+				/>
+			{/if}
+		</section>
 		<h2>{game.name}</h2>
-		<a href="/spellen"><i class="material-icons">arrow_back</i>Speloverzicht</a>
+		<BackButton returnLink="/spellen" title="Speloverzicht" />
 		{#if game.offline}
 			<OfflineLabel />
 		{/if}
@@ -112,6 +121,7 @@
 			<li><CardLabel label={`Min. ${game.minimumPlayers} `} icon="group" /></li>
 		</ul>
 	</header>
+
 	<section class="description">
 		<h1>Beschrijving</h1>
 		<p>{game.description}</p>
@@ -146,18 +156,6 @@
 		<Accordion variations={game.variation} />
 	</section>
 
-	<section class="utility-bar">
-		{#if pwa}
-			<DownloadButton
-				on:saved={savedHandler}
-				on:deleted={deletedHandler}
-				offline={game.offline}
-				slug={gameSlug}
-			/>
-		{/if}
-		<LikeButton />
-	</section>
-
 	{#if userIsOnline}
 		<section>
 			<h1>Wat vind jij van het spel?</h1>
@@ -190,35 +188,8 @@
 	header ul li {
 		margin: 2px;
 	}
-
-	section {
-		padding: 0 0.5rem;
-	}
 	section h1 {
 		margin-left: 0;
-	}
-
-	header a {
-		order: -1;
-		display: flex;
-		align-items: center;
-		color: var(--color-accent-dark);
-		font-size: 14px;
-		font-style: italic;
-		margin-bottom: 1.5em;
-	}
-
-	header a i {
-		font-size: inherit;
-		border: solid 2px var(--color-accent-dark);
-		border-radius: 100%;
-		padding: 0.2rem;
-		margin-right: 0.5em;
-	}
-
-	header a:hover,
-	header a:focus {
-		--color-accent-dark: var(--color-accent-action);
 	}
 
 	/* Content sections */
@@ -237,8 +208,10 @@
 	}
 
 	section.utility-bar {
+		order: -2;
 		display: flex;
 		justify-content: space-between;
-		align-items: stretch;
+		margin-bottom: 1.5rem;
+		padding: 0;
 	}
 </style>

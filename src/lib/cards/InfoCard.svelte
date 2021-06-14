@@ -1,11 +1,11 @@
 <script>
-	export let ErrorTitle;
-	export let ErrorMessage;
+	export let Title;
+	export let Message;
 </script>
 
 <article>
-	<h1>{ErrorTitle}</h1>
-	<p>{ErrorMessage}</p>
+	<h1>{Title}</h1>
+	<p>{Message}</p>
 </article>
 
 <style>
@@ -21,10 +21,11 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0;
-		margin-bottom: 1em;
+		margin-bottom: 0.5em;
+		font-size: 1em;
 	}
 
 	article p {
-		color: var(--color-grey);
+		margin: 0;
 	}
 </style>

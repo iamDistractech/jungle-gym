@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Game } from '$lib/games';
-	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
-	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
-	import { formatTargetGroups } from '$lib/Utils/format';
+	import CardLabel from '$lib/shared/label/CardLabel.svelte';
+	import OfflineLabel from '$lib/shared/label/OfflineLabel.svelte';
+	import { formatTargetGroups } from '$lib/utils/format';
 
 	export let game: Game;
 

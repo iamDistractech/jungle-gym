@@ -16,7 +16,7 @@
 	import LoginForm from '$lib/account/LoginForm.svelte';
 	import { goto } from '$app/navigation';
 	import { session as sessionStore, page } from '$app/stores';
-	import { messageStore } from '$lib/Stores/message';
+	import { messageStore } from '$lib/stores/message';
 
 	const { query } = $page;
 	const session = sessionStore;
@@ -28,22 +28,30 @@
 		messageStore.set('Je moet eerst inloggen om deze pagina te zien');
 	}
 
-	function redirectToProfile() {
+	async function redirectToProfile() {
 		// The session needs to be written (only once) due to a Svelte Bug. `goto()` doens't give the cookie on redirects
 		session.set({ authenticated: true });
-		goto(redirectPage ? redirectPage : '/account');
+		try {
+			goto(redirectPage ? redirectPage : '/gymles');
+		} catch (error) {
+			handleError();
+		}
 	}
 
-	function handleError(event) {
-		let error = event.detail.message;
+	function handleFailure(event) {
+		let error = event.detail;
 		messageStore.set(error);
+	}
+
+	function handleError() {
+		messageStore.set('Er ging iets mis met inloggen');
 	}
 </script>
 
 <main class="leaves-bg">
 	<section>
 		<h2>Inloggen bij Jungle Gym</h2>
-		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleError} />
+		<LoginForm on:success={redirectToProfile} on:error={handleError} on:failure={handleFailure} />
 	</section>
 </main>
 

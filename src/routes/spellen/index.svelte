@@ -38,14 +38,14 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import List from '$lib/GameViews/List.svelte';
-	import Filter from '$lib/Filters/Filter.svelte';
-	import FilterButtons from '$lib/Filters/FilterButtons.svelte';
-	import SearchBar from '$lib/Filters/SearchBar.svelte';
+	import List from '$lib/views/List.svelte';
+	import Filter from '$lib/filters/Filter.svelte';
+	import FilterButtons from '$lib/filters/FilterButtons.svelte';
+	import SearchBar from '$lib/filters/SearchBar.svelte';
 
 	/* Utils */
 	import { onMount } from 'svelte';
-	import { patchAllGamesOfflineStatus } from '$lib/Utils/offline';
+	import { patchAllGamesOfflineStatus } from '$lib/utils/offline';
 	import { page } from '$app/stores';
 
 	export let games: Game[];

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { userStore } from '$lib/Stores/user';
+	import { userStore } from '$lib/stores/user';
 	import { session as SessionStore } from '$app/stores';
 
 	export let user;

@@ -1,5 +1,5 @@
 <script>
-	import SubmitButton from '$lib/shared/Button/SubmitButton.svelte';
+	import SubmitButton from '$lib/shared/button/SubmitButton.svelte';
 
 	function toggleConfirmation() {
 		const confirmBox = document.querySelector('.confirm-container');

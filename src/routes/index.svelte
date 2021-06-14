@@ -30,11 +30,12 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import GameCardHighlighted from '$lib/Cards/GameCardHighlighted.svelte';
-	import Carousel from '$lib/GameViews/Carousel.svelte';
+	import GameCardHighlighted from '$lib/cards/GameCardHighlighted.svelte';
+	import Carousel from '$lib/views/Carousel.svelte';
+	import MijnGymles from '$lib/views/mijnGymles.svelte';
 
 	/* Utils */
-	import { sortGameArray } from '$lib/Utils/sort';
+	import { sortGameArray } from '$lib/utils/sort';
 
 	export let games: Game[];
 
@@ -53,10 +54,19 @@
 
 <main class="leaves-bg">
 	{#if highlightedGameAvailable}
-		<GameCardHighlighted game={highlightedGame} />
+		<section>
+			<h1>Uitgelichte spellen</h1>
+			<GameCardHighlighted game={highlightedGame} />
+		</section>
 	{/if}
-	<Carousel gamesData={newestGames} carouselTitle="Nieuwe spellen" />
-	<Carousel gamesData={games} carouselTitle="Favoriete spellen" />
+	<section>
+		<h1>Nieuwste spellen</h1>
+		<Carousel gamesData={newestGames} />
+	</section>
+	<section>
+		<h1>Opgeslagen spellen</h1>
+		<MijnGymles gamesData={games} />
+	</section>
 </main>
 
 <style>

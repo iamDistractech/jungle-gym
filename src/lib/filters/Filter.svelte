@@ -1,6 +1,6 @@
 <script lang="ts">
-	import FilterPopup from '$lib/Filters/FilterPopup.svelte';
-	import FilterButton from '$lib/shared/Button/FilterButton.svelte';
+	import FilterPopup from '$lib/filters/FilterPopup.svelte';
+	import FilterButton from '$lib/shared/button/FilterButton.svelte';
 	import { goto } from '$app/navigation';
 
 	export let query: URLSearchParams;
