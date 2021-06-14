@@ -42,7 +42,6 @@
 	import CardLabel from '$lib/shared/Label/CardLabel.svelte';
 	import OfflineLabel from '$lib/shared/Label/OfflineLabel.svelte';
 	import DownloadButton from '$lib/shared/Button/DownloadButton.svelte';
-	import Snackbar from '$lib/shared/Snackbar/Snackbar.svelte';
 	import LikeButton from '$lib/shared/Button/LikeButton.svelte';
 
 	/* Utils */
