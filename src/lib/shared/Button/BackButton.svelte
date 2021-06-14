@@ -1,9 +1,21 @@
-<script>
-	export let title;
-	export let returnLink;
+<script>	
+	import { navigating } from '$app/stores';
+	import { onMount } from 'svelte';
+
+	let previousPage
+	let returnLink
+	let title = 'terug'
+	
+	navigating.subscribe((navigating) => {
+		console.log(navigating)
+		if(navigating?.from) previousPage = navigating.from
+	})
+
+	$: console.log(previousPage)
+
 </script>
 
-<a href="/{returnLink}"><i class="material-icons">arrow_back</i>{title}</a>
+<a href={returnLink}><i class="material-icons">arrow_back</i>{title}</a>
 
 <style>
 	a {

@@ -101,13 +101,13 @@
 				<SaveInGymlesButton
 					on:saved={savedHandler}
 					on:deleted={deletedHandler}
-					offline={game.offline}
+					savedGame={game.offline}
 					slug={gameSlug}
 				/>
 			{/if}
 		</section>
 		<h2>{game.name}</h2>
-		<BackButton returnLink="spellen" title="Speloverzicht" />
+		<BackButton />
 		{#if game.offline}
 			<OfflineLabel />
 		{/if}

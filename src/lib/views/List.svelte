@@ -7,7 +7,6 @@
 	import ErrorCard from '$lib/Cards/InfoCard.svelte';
 
 	export let games: Game[];
-	export let offline: boolean;
 
 	// Sort the array with the last updated game first
 	games.sort(function (a, b) {
@@ -22,9 +21,6 @@
 
 <section>
 	<ul>
-		{#if offline}
-			<ErrorCard Title={'Oeps, je bent nu offline!'} {ErrorMessage} />
-		{/if}
 		{#each games as game}
 			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameCard {game} /> </a></li>
 		{/each}

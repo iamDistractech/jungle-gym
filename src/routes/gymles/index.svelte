@@ -5,10 +5,13 @@
 	export const load: Load = async ({ session, fetch }) => {
 		if (session.authenticated) {
 			const user = await userStore.getUser(fetch);
+			const response = await fetch('/spellen.json')
+			const games = response.ok ? await response.json() : undefined			
 
 			return {
 				props: {
-					user
+					user,
+					games
 				}
 			};
 		}
@@ -18,10 +21,10 @@
 
 <script lang="ts">
 	/* Typings */
-	// import type { Game } from '$lib/games';
+	import type { Game } from '$lib/games';
 
 	/* Components */
-	// import List from '$lib/GameViews/List.svelte';
+	import List from '$lib/views/List.svelte';
 	import NoFavoriteCard from '$lib/Cards/InfoCard.svelte';
 	import LoginRequiredCard from '$lib/Cards/LoginRequiredCard.svelte';
 	import LogOutButton from '$lib/shared/button/LogOutButton.svelte';
@@ -29,6 +32,11 @@
 	/* Stores */
 	import { session as SessionStorage, page } from '$app/stores';
 	export let user = $userStore;
+	export let games: Game[];
+
+	$: console.log(user)
+
+	$: games = games && Array.isArray(games) ? games.filter((game) => user.savedGames.includes(game.slug)) : []
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]]);
@@ -49,13 +57,14 @@
 			</nav>
 		{/if}
 	</header>
-	<!-- {#if favoriteGames}
-	<List {games} {query} />
-	{:else} -->
+	{#if games.length > 0}
+	<List {games} />
+	{:else}
 	<NoFavoriteCard
 		Title="Je hebt nog geen spellen opgeslagen"
 		Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
 	/>
+	{/if}
 	{#if !$SessionStorage.authenticated}
 		<LoginRequiredCard
 			redirectPage={redirectPage.toString()}

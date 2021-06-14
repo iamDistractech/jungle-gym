@@ -1,4 +1,6 @@
 <script lang="ts">
+import { userStore } from '$lib/stores/user';
+
 	import { saveInCache, deleteInCache } from '$lib/utils/offline';
 	import { createEventDispatcher } from 'svelte';
 
@@ -8,11 +10,11 @@
 	export let slug: string;
 
 	async function downloadGame() {
-		saveInCache(slug).then((success) => dispatcher('saved', { success }));
+		userStore.saveGame(slug).then((success) => dispatcher('saved', { success }));
 	}
 
 	async function deleteGame() {
-		deleteInCache(slug).then((success) => dispatcher('deleted', { success }));
+		userStore.removeGame(slug).then((success) => dispatcher('deleted', { success }));
 	}
 </script>
 
