@@ -3,15 +3,15 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import GameCard from '$lib/Cards/GameCard.svelte';
-	import ErrorCard from '$lib/Cards/InfoCard.svelte';
+	import GameCard from '$lib/cards/GameCard.svelte';
+	import ErrorCard from '$lib/cards/InfoCard.svelte';
+
+	/* Utils */
+	import { sortGameArray } from '$lib/utils/sort';
 
 	export let games: Game[];
 
-	// Sort the array with the last updated game first
-	games.sort(function (a, b) {
-		return new Date(b.updatedAt) - new Date(a.updatedAt);
-	});
+	games = sortGameArray(games);
 </script>
 
 <section>

@@ -17,7 +17,6 @@
 	import { goto } from '$app/navigation';
 	import { session as sessionStore, page } from '$app/stores';
 	import { messageStore } from '$lib/stores/message';
-	// import { userStore } from '$lib/Stores/user';
 
 	const { query } = $page;
 	const session = sessionStore;

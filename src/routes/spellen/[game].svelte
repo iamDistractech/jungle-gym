@@ -42,9 +42,10 @@
 	import OfflineLabel from '$lib/shared/label/OfflineLabel.svelte';
 	import SaveInGymlesButton from '$lib/shared/button/SaveInGymlesButton.svelte';
 	import BackButton from '$lib/shared/button/BackButton.svelte';
+	import GameReview from '$lib/views/GameReview.svelte';
 
 	/* Utils */
-	import { formatTargetGroups } from '$lib/utils/formatTargetGroups';
+	import { formatTargetGroups } from '$lib/utils/format';
 	import { patchSingleGameOfflineStatus } from '$lib/utils/offline';
 	import { onMount } from 'svelte';
 
@@ -53,10 +54,11 @@
 	import { messageStore } from '$lib/stores/message';
 
 	export let game: Game;
-	let gameSlug: string = $page.params.game;
-	let pwa = false;
 
+	let gameSlug: string = $page.params.game;
 	let message: string | undefined;
+	let userIsOnline = true;
+	let pwa = false;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 
@@ -87,6 +89,8 @@
 	}
 
 	onMount(() => {
+		userIsOnline = window.navigator.onLine ? true : false;
+
 		if ('caches' in window) {
 			pwa = true;
 			patchSingleGameOfflineStatus(game).then((patchedGame) => (game = patchedGame));
@@ -151,6 +155,13 @@
 		<h1>Variaties</h1>
 		<Accordion variations={game.variation} />
 	</section>
+
+	{#if userIsOnline}
+		<section>
+			<h1>Wat vind jij van het spel?</h1>
+			<GameReview />
+		</section>
+	{/if}
 </main>
 
 <style>

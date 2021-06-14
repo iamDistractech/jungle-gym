@@ -30,19 +30,35 @@
 	import type { Game } from '$lib/games';
 
 	/* Components */
-	import GameCardHighlighted from '$lib/Cards/GameCardHighlighted.svelte';
+	import GameCardHighlighted from '$lib/cards/GameCardHighlighted.svelte';
 	import Carousel from '$lib/views/Carousel.svelte';
 	import MijnGymles from '$lib/views/mijnGymles.svelte';
 
+	/* Utils */
+	import { sortGameArray } from '$lib/utils/sort';
+
 	export let games: Game[];
+
+	/* Create a new array with the four newest games */
 	const newestGames = games.slice(Math.max(games.length - 4, 0));
+
+	/* Create a new array with the newest games first */
+	const sortedArray = sortGameArray(games);
+
+	/* Select the game that is highlighted. If more. Select the one that is last updated
+	 */
+	const highlightedGame = sortedArray.find((game) => game.highlighted === true);
+
+	const highlightedGameAvailable = highlightedGame !== undefined;
 </script>
 
 <main class="leaves-bg">
-	<section>
-		<h1>Uitgelichte spellen</h1>
-		<GameCardHighlighted />
-	</section>
+	{#if highlightedGameAvailable}
+		<section>
+			<h1>Uitgelichte spellen</h1>
+			<GameCardHighlighted game={highlightedGame} />
+		</section>
+	{/if}
 	<section>
 		<h1>Nieuwste spellen</h1>
 		<Carousel gamesData={newestGames} />

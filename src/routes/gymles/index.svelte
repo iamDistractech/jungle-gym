@@ -25,8 +25,8 @@
 
 	/* Components */
 	import List from '$lib/views/List.svelte';
-	import NoFavoriteCard from '$lib/Cards/InfoCard.svelte';
-	import LoginRequiredCard from '$lib/Cards/LoginRequiredCard.svelte';
+	import NoFavoriteCard from '$lib/cards/InfoCard.svelte';
+	import LoginRequiredCard from '$lib/cards/LoginRequiredCard.svelte';
 	import LogOutButton from '$lib/shared/button/LogOutButton.svelte';
 
 	/* Stores */
