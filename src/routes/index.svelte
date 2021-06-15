@@ -37,12 +37,22 @@
 	/* Utils */
 	import { sortGameArray } from '$lib/utils/sort';
 
-	import { onMount } from 'svelte';
-	import { patchAllGamesOfflineStatus } from '$lib/utils/offline';
-
 	/* Stores */
+	import { userStore } from '$lib/stores/user';
+
+	export let user = $userStore;
 	export let games: Game[];
 
+	let savedGames = [];
+
+	// Update savedGames array if user is defined (logged in)
+	if (user) {
+		savedGames =
+			games && Array.isArray(games)
+				? games.filter((game) => user.savedGames.includes(game.slug))
+				: [];
+		savedGames = savedGames;
+	}
 	// Create a new array with the newest games first
 	const sortedGamesArray = sortGameArray(games);
 
@@ -53,27 +63,6 @@
 	const highlightedGame = sortedGamesArray.find((game) => game.highlighted === true);
 
 	const highlightedGameAvailable = highlightedGame !== undefined;
-
-	let offline = false;
-	let savedGames = [];
-
-	onMount(async () => {
-		if (!navigator.onLine) offline = true;
-
-		// Get all the offline status of every game
-		if ('caches' in window) {
-			await patchAllGamesOfflineStatus(games, offline).then(
-				(patchedGames) => (games = patchedGames)
-			);
-		}
-
-		// Create new array based on the offline status
-		games.forEach((game) => {
-			if (game.offline === true) {
-				savedGames = [...savedGames, game];
-			}
-		});
-	});
 </script>
 
 <main class="leaves-bg">
@@ -87,10 +76,12 @@
 		<h1>Nieuwste spellen</h1>
 		<Carousel gamesData={newestGames} hideDownloadedState={true} />
 	</section>
-	<section>
-		<h1>Opgeslagen spellen</h1>
-		<MijnGymles {savedGames} hideDownloadedState={true} />
-	</section>
+	{#if user}
+		<section>
+			<h1>Opgeslagen spellen</h1>
+			<MijnGymles {savedGames} hideDownloadedState={true} />
+		</section>
+	{/if}
 </main>
 
 <style>
