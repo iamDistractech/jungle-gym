@@ -45,7 +45,7 @@
 	const redirectPage = new URLSearchParams([['page', pathName]]);
 </script>
 
-<main class="leaves-bg">
+<main class="leaves-bg gymles-main">
 	<header>
 		<h2>Mijn Gymles</h2>
 		{#if user && user.name}
