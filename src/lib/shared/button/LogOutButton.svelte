@@ -1,15 +1,11 @@
 <script>
 	import { session as SessionStore } from '$app/stores';
-	import { createEventDispatcher } from 'svelte';
 	import { messageStore } from '$lib/stores/message';
 	import { goto } from '$app/navigation';
-
-	const dispatcher = createEventDispatcher();
 
 	function logout() {
 		return fetch('/account/uitloggen.json', { method: 'POST' })
 			.then(() => SessionStore.set({ authenticated: false }))
-			.then(() => dispatcher('logout'))
 			.then(() => goto('/'))
 			.then(() => messageStore.set('Je bent nu uitgelogd'));
 	}
