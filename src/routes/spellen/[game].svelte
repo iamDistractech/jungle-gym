@@ -50,10 +50,12 @@
 	import { onMount } from 'svelte';
 
 	/* Stores */
-	import { page } from '$app/stores';
+	import { page, session as SessionStorage } from '$app/stores';
 	import { messageStore } from '$lib/stores/message';
 
 	export let game: Game;
+
+	const isAuthenticated = $SessionStorage.authenticated;
 
 	let gameSlug: string = $page.params.game;
 	let message: string | undefined;
@@ -100,19 +102,21 @@
 
 <main>
 	<header>
-		<section class="utility-bar">
-			{#if pwa}
-				<SaveInGymlesButton
-					on:saved={savedHandler}
-					on:deleted={deletedHandler}
-					savedGame={game.offline}
-					slug={gameSlug}
-				/>
-			{/if}
-		</section>
+		{#if isAuthenticated}
+			<section class="utility-bar">
+				{#if pwa}
+					<SaveInGymlesButton
+						on:saved={savedHandler}
+						on:deleted={deletedHandler}
+						savedGame={game.offline}
+						slug={gameSlug}
+					/>
+				{/if}
+			</section>
+		{/if}
 		<h2>{game.name}</h2>
 		<BackButton returnLink="/spellen" title="Speloverzicht" />
-		{#if game.offline}
+		{#if game.offline && isAuthenticated}
 			<OfflineLabel />
 		{/if}
 		<ul>

@@ -76,12 +76,10 @@
 		<h1>Nieuwste spellen</h1>
 		<Carousel gamesData={newestGames} hideDownloadedState={true} />
 	</section>
-	{#if user}
-		<section>
-			<h1>Opgeslagen spellen</h1>
-			<MijnGymles {savedGames} hideDownloadedState={true} />
-		</section>
-	{/if}
+	<section>
+		<h1>Opgeslagen spellen</h1>
+		<MijnGymles {savedGames} hideDownloadedState={true} />
+	</section>
 </main>
 
 <style>

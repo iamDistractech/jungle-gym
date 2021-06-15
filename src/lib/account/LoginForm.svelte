@@ -4,6 +4,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import { onMount } from 'svelte';
 
+	import { messageStore } from '$lib/stores/message';
+
 	const dispatch = createEventDispatcher();
 
 	let username: string;
@@ -32,6 +34,7 @@
 			const body = await response.json();
 
 			if (response.ok) {
+				messageStore.set('Je bent nu ingelogd');
 				dispatch('success');
 			} else {
 				dispatch('failure', body);

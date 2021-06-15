@@ -43,15 +43,11 @@
 	const redirectPage = new URLSearchParams([['page', pathName]]);
 
 	const isAuthenticated = $SessionStorage.authenticated;
-	const userHasName = user && user.name;
 </script>
 
 <main class="leaves-bg gymles-main">
 	<header>
 		<h2>Mijn Gymles</h2>
-		{#if userHasName}
-			Hello {user.name}
-		{/if}
 		{#if isAuthenticated}
 			<nav>
 				<LogOutButton />
