@@ -34,8 +34,6 @@
 	export let user = $userStore;
 	export let games: Game[];
 
-	$: console.log(user);
-
 	$: games =
 		games && Array.isArray(games)
 			? games.filter((game) => user.savedGames.includes(game.slug))
