@@ -32,24 +32,48 @@
 	/* Components */
 	import GameCardHighlighted from '$lib/cards/GameCardHighlighted.svelte';
 	import Carousel from '$lib/views/Carousel.svelte';
-	import MijnGymles from '$lib/views/mijnGymles.svelte';
+	import MijnGymles from '$lib/views/MijnGymles.svelte';
 
 	/* Utils */
 	import { sortGameArray } from '$lib/utils/sort';
 
+	import { onMount } from 'svelte';
+	import { patchAllGamesOfflineStatus } from '$lib/utils/offline';
+
+	/* Stores */
 	export let games: Game[];
 
-	/* Create a new array with the newest games first */
+	// Create a new array with the newest games first
 	const sortedGamesArray = sortGameArray(games);
 
-	/* Create a new array with the four newest games */
+	//Create a new array with the four newest games
 	const newestGames = sortedGamesArray.slice(Math.max(games.length - 4, 0));
 
-	/* Select the game that is highlighted. If more. Select the one that is last updated
-	 */
+	//Select the game that is highlighted. If more. Select the one that is last updated
 	const highlightedGame = sortedGamesArray.find((game) => game.highlighted === true);
 
 	const highlightedGameAvailable = highlightedGame !== undefined;
+
+	let offline = false;
+	let savedGames = [];
+
+	onMount(async () => {
+		if (!navigator.onLine) offline = true;
+
+		// Get all the offline status of every game
+		if ('caches' in window) {
+			await patchAllGamesOfflineStatus(games, offline).then(
+				(patchedGames) => (games = patchedGames)
+			);
+		}
+
+		// Create new array based on the offline status
+		games.forEach((game) => {
+			if (game.offline === true) {
+				savedGames = [...savedGames, game];
+			}
+		});
+	});
 </script>
 
 <main class="leaves-bg">
@@ -61,11 +85,11 @@
 	{/if}
 	<section>
 		<h1>Nieuwste spellen</h1>
-		<Carousel gamesData={newestGames} />
+		<Carousel gamesData={newestGames} hideDownloadedState={true} />
 	</section>
 	<section>
 		<h1>Opgeslagen spellen</h1>
-		<MijnGymles gamesData={games} />
+		<MijnGymles {savedGames} hideDownloadedState={true} />
 	</section>
 </main>
 

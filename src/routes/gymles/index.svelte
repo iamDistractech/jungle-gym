@@ -43,43 +43,45 @@
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]]);
+
+	const isAuthenticated = $SessionStorage.authenticated;
+	const userHasName = user && user.name;
 </script>
 
 <main class="leaves-bg">
 	<header>
 		<h2>Mijn Gymles</h2>
-		{#if user && user.name}
+		{#if userHasName}
 			Hello {user.name}
 		{/if}
-		{#if $SessionStorage.authenticated}
+		{#if isAuthenticated}
 			<nav>
 				<LogOutButton />
 				<a href="https://jungle-gym-cms.herokuapp.com/admin/" target="_blank"
 					><i class="material-icons">open_in_new</i>Jungle Gym CMS</a
 				>
 			</nav>
+			{#if games.length > 0}
+				<List {games} />
+			{:else}
+				<NoFavoriteCard
+					Title="Je hebt nog geen spellen opgeslagen"
+					Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
+				/>
+			{/if}
+		{:else}
+			<LoginRequiredCard
+				redirectPage={redirectPage.toString()}
+				Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
+			/>
 		{/if}
 	</header>
-	{#if games.length > 0}
-		<List {games} />
-	{:else}
-		<NoFavoriteCard
-			Title="Je hebt nog geen spellen opgeslagen"
-			Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
-		/>
-	{/if}
-	{#if !$SessionStorage.authenticated}
-		<LoginRequiredCard
-			redirectPage={redirectPage.toString()}
-			Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
-		/>
-	{/if}
 </main>
 
 <style>
 	header {
 		display: flex;
-		flex-flow: column-reverse;
+		flex-flow: column;
 	}
 
 	header nav {

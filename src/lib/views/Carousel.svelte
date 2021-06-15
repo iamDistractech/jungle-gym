@@ -6,13 +6,14 @@
 	import GameCard from '$lib/cards/GameCard.svelte';
 
 	export let gamesData: Game[];
+	export let hideDownloadedState: boolean;
 </script>
 
 <ul>
 	{#each gamesData as game}
 		<li>
 			<a href="/spellen/{game.slug}">
-				<GameCard {game} />
+				<GameCard {game} {hideDownloadedState} />
 			</a>
 		</li>
 	{/each}

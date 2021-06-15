@@ -51,6 +51,8 @@
 	export let games: Game[];
 	export let query;
 
+	console.log(games);
+
 	const backupGames = games;
 
 	page.subscribe((page) => (query = page.query));
