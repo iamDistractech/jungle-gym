@@ -4,6 +4,10 @@
 	import OfflineLabel from '$lib/shared/label/OfflineLabel.svelte';
 	import { formatTargetGroups } from '$lib/utils/format';
 
+	import { session as SessionStorage } from '$app/stores';
+
+	const isAuthenticated = $SessionStorage.authenticated;
+
 	export let game: Game;
 	export let hideDownloadedState: boolean;
 
@@ -12,7 +16,7 @@
 
 <article>
 	<h1>{game.name}</h1>
-	{#if game.offline && hideDownloadedState !== true}
+	{#if game.offline && hideDownloadedState !== true && isAuthenticated}
 		<OfflineLabel />
 	{/if}
 	<ul>

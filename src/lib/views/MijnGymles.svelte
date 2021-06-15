@@ -3,6 +3,10 @@
 	import GameCard from '$lib/cards/GameCard.svelte';
 	import { onMount } from 'svelte';
 
+	import { session as SessionStorage } from '$app/stores';
+
+	const isAuthenticated = $SessionStorage.authenticated;
+
 	export let savedGames: Game[] = [];
 	export let hideDownloadedState: boolean;
 
@@ -22,13 +26,15 @@
 			</article>
 		</a>
 	</li>
-	{#each savedGames as game}
-		<li>
-			<a href="/spellen/{game.slug}">
-				<GameCard {game} {hideDownloadedState} />
-			</a>
-		</li>
-	{/each}
+	{#if isAuthenticated}
+		{#each savedGames as game}
+			<li>
+				<a href="/spellen/{game.slug}">
+					<GameCard {game} {hideDownloadedState} />
+				</a>
+			</li>
+		{/each}
+	{/if}
 </ul>
 
 <style>

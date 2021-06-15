@@ -49,9 +49,9 @@
 <main class="leaves-bg gymles-main">
 	<header>
 		<h2>Mijn Gymles</h2>
-		{#if userHasName}
+		<!-- {#if userHasName}
 			Hello {user.name}
-		{/if}
+		{/if} -->
 		{#if isAuthenticated}
 			<nav>
 				<LogOutButton />
