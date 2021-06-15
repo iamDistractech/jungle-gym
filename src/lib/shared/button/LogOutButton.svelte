@@ -2,18 +2,19 @@
 	import { session as SessionStore } from '$app/stores';
 	import { userStore } from '$lib/stores/user';
 	import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	const dispatcher = createEventDispatcher();
 
 	function logout() {
 		return fetch('/account/uitloggen.json', { method: 'POST' })
 			.then(() => SessionStore.set({ authenticated: false }))
-			.then(() => userStore.clearUser())
-			.then(() => dispatcher('logout'));
+			.then(() => dispatcher('logout'))
+			.then(() => goto('/'));
 	}
 </script>
 
-<button on:click={logout}><i class="material-icons">logout</i>Uitloggen</button>
+<button on:click|once={logout}><i class="material-icons">logout</i>Uitloggen</button>
 
 <style>
 	button {
