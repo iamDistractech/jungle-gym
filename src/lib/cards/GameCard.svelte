@@ -5,13 +5,14 @@
 	import { formatTargetGroups } from '$lib/utils/format';
 
 	export let game: Game;
+	export let hideDownloadedState: boolean;
 
 	const targetGroupString = formatTargetGroups(game.targetGroup);
 </script>
 
 <article>
 	<h1>{game.name}</h1>
-	{#if game.offline}
+	{#if game.offline && hideDownloadedState !== true}
 		<OfflineLabel />
 	{/if}
 	<ul>

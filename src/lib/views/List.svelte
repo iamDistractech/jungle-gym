@@ -17,7 +17,11 @@
 <section>
 	<ul>
 		{#each games as game}
-			<li><a sveltekit:prefetch href="/spellen/{game.slug}"><GameCard {game} /> </a></li>
+			<li>
+				<a sveltekit:prefetch href="/spellen/{game.slug}"
+					><GameCard {game} hideDownloadedState={false} />
+				</a>
+			</li>
 		{/each}
 
 		{#if games.length == 0}

@@ -3,13 +3,11 @@
 	import GameCard from '$lib/cards/GameCard.svelte';
 	import { onMount } from 'svelte';
 
-	let savedGames = ['pionnenroof', 'kat-en-muis'];
-	export let gamesData: Game[] = [];
+	export let savedGames: Game[] = [];
+	export let hideDownloadedState: boolean;
 
-	$: filteredGamesData = gamesData.filter((game) => savedGames.includes(game.slug));
-
-	// get the slugs of saved games from user store
-	// filter games based on the slugs
+	// Get the slugs of saved games
+	// Gilter games based on the slugs
 	onMount(() => {
 		if (savedGames.length > 1) document.getElementById('scroll').scrollBy(320, 0);
 	});
@@ -24,10 +22,10 @@
 			</article>
 		</a>
 	</li>
-	{#each filteredGamesData as game}
+	{#each savedGames as game}
 		<li>
 			<a href="/spellen/{game.slug}">
-				<GameCard {game} />
+				<GameCard {game} {hideDownloadedState} />
 			</a>
 		</li>
 	{/each}
@@ -74,7 +72,6 @@
 		padding: 1em;
 		justify-content: space-between;
 		box-shadow: 0px 2px 4px 2px rgba(21, 45, 21, 0.1);
-		/* filter: drop-shadow(0 0.2em 0.2em hsl(92, 30%, 64%)) alternatief shadow */
 	}
 
 	article h1 {
@@ -95,6 +92,5 @@
 
 	article p {
 		margin: 0;
-		/* font-size: 0.8em; */
 	}
 </style>
