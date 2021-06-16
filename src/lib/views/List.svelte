@@ -25,7 +25,7 @@
 		{/each}
 
 		{#if games.length == 0}
-			<ErrorCard Title={'Oeps...'} Message="Er zijn geen spellen gevonden." />
+			<ErrorCard title={'Oeps...'} message="Er zijn geen spellen gevonden." />
 		{/if}
 	</ul>
 </section>

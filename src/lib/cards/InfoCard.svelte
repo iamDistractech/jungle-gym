@@ -1,11 +1,11 @@
 <script>
-	export let Title;
-	export let Message;
+	export let title;
+	export let message;
 </script>
 
 <article>
-	<h1>{Title}</h1>
-	<p>{Message}</p>
+	<h1>{title}</h1>
+	<p>{message}</p>
 </article>
 
 <style>
