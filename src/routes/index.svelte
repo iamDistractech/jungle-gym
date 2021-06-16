@@ -39,15 +39,14 @@
 
 	export let games: Game[];
 
-	/* Create a new array with the four newest games */
-	const newestGames = games.slice(Math.max(games.length - 4, 0));
-
 	/* Create a new array with the newest games first */
-	const sortedArray = sortGameArray(games);
+	const sortedGamesArr = sortGameArray(games);
 
 	/* Select the game that is highlighted. If more. Select the one that is last updated
 	 */
-	const highlightedGame = sortedArray.find((game) => game.highlighted === true);
+	const newestGames = sortedGamesArr.slice(0, 4);
+
+	const highlightedGame = sortedGamesArr.find((game) => game.highlighted === true);
 
 	const highlightedGameAvailable = highlightedGame !== undefined;
 </script>
