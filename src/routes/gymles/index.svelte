@@ -64,6 +64,10 @@
 				/>
 			{/if}
 		{:else}
+			<NoFavoriteCard
+				Title="Je hebt nog geen spellen opgeslagen"
+				Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
+			/>
 			<LoginRequiredCard
 				redirectPage={redirectPage.toString()}
 				Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
