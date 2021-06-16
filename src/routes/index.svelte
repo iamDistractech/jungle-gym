@@ -32,22 +32,35 @@
 	/* Components */
 	import GameCardHighlighted from '$lib/cards/GameCardHighlighted.svelte';
 	import Carousel from '$lib/views/Carousel.svelte';
-	import MijnGymles from '$lib/views/mijnGymles.svelte';
+	import MijnGymles from '$lib/views/MijnGymles.svelte';
 
 	/* Utils */
 	import { sortGameArray } from '$lib/utils/sort';
 
+	/* Stores */
+	import { userStore } from '$lib/stores/user';
+
+	export let user = $userStore;
 	export let games: Game[];
 
-	/* Create a new array with the four newest games */
-	const newestGames = games.slice(Math.max(games.length - 4, 0));
+	let savedGames = [];
 
-	/* Create a new array with the newest games first */
-	const sortedArray = sortGameArray(games);
+	// Update savedGames array if user is defined (logged in)
+	if (user) {
+		savedGames =
+			games && Array.isArray(games)
+				? games.filter((game) => user.savedGames.includes(game.slug))
+				: [];
+		savedGames = savedGames;
+	}
+	// Create a new array with the newest games first
+	const sortedGamesArray = sortGameArray(games);
 
-	/* Select the game that is highlighted. If more. Select the one that is last updated
-	 */
-	const highlightedGame = sortedArray.find((game) => game.highlighted === true);
+	//Create a new array with the four newest games
+	const newestGames = sortedGamesArray.slice(Math.max(games.length - 4, 0));
+
+	//Select the game that is highlighted. If more. Select the one that is last updated
+	const highlightedGame = sortedGamesArray.find((game) => game.highlighted === true);
 
 	const highlightedGameAvailable = highlightedGame !== undefined;
 </script>
@@ -61,11 +74,11 @@
 	{/if}
 	<section>
 		<h1>Nieuwste spellen</h1>
-		<Carousel gamesData={newestGames} />
+		<Carousel gamesData={newestGames} hideDownloadedState={true} />
 	</section>
 	<section>
 		<h1>Opgeslagen spellen</h1>
-		<MijnGymles gamesData={games} />
+		<MijnGymles {savedGames} hideDownloadedState={true} />
 	</section>
 </main>
 
