@@ -59,14 +59,14 @@
 				<List {games} />
 			{:else}
 				<NoFavoriteCard
-					Title="Je hebt nog geen spellen opgeslagen"
-					Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
+					title="Je hebt nog geen spellen opgeslagen"
+					message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
 				/>
 			{/if}
 		{:else}
 			<NoFavoriteCard
-				Title="Je hebt nog geen spellen opgeslagen"
-				Message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
+				title="Je hebt nog geen spellen opgeslagen"
+				message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
 			/>
 			<LoginRequiredCard
 				redirectPage={redirectPage.toString()}
