@@ -32,20 +32,19 @@
 	/* Stores */
 	import { session as SessionStorage, page } from '$app/stores';
 	import { onMount } from 'svelte';
-	export let user
+	export let user;
 	export let games: Game[];
 
-	userStore.subscribe((newUser) => user)
+	userStore.subscribe((newUser) => user = newUser);
 
 	$: games =
 		games && Array.isArray(games)
 			? games.filter((game) => user.savedGames.includes(game.slug))
 			: [];
 
-
 	onMount(() => {
-		if('caches' in window) userStore.syncOffline()
-	})
+		if ('caches' in window) userStore.syncOffline();
+	});
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]]);
@@ -66,7 +65,7 @@
 		{/if}
 	</header>
 	{#if games.length > 0}
-	<List {games} />
+		<List {games} />
 	{:else}
 		<NoFavoriteCard
 			title="Je hebt nog geen spellen opgeslagen"
@@ -75,9 +74,9 @@
 	{/if}
 	{#if !isAuthenticated}
 		<LoginRequiredCard
-		redirectPage={redirectPage.toString()}
-		Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
-	/>
+			redirectPage={redirectPage.toString()}
+			Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
+		/>
 	{/if}
 </main>
 

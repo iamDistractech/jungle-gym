@@ -18,16 +18,16 @@ export function patchSingleGameOfflineStatus(game: Game): Promise<Game> {
 		});
 }
 
-export function checkOfflineStatus(slug: Game['slug']) : Promise<boolean> {
+export function checkOfflineStatus(slug: Game['slug']): Promise<boolean> {
 	return caches
 		.open('gamesCache')
 		.then((cache) => {
 			return cache.match(`/spellen/${slug}.json`);
 		})
 		.then((response: Response | undefined) => {
-			if(response) return true
-			else return false
-		})
+			if (response) return true;
+			else return false;
+		});
 }
 
 /**

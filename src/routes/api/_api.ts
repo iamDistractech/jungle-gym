@@ -12,14 +12,13 @@ export async function api(
 
 	const headers = new Headers({ 'Content-Type': 'application/json' });
 
-	
 	if (authenticated && accessToken && sessionId) {
 		headers.append('Authorization', `Bearer ${accessToken}`);
 	}
-	
+
 	return fetch(`${BASE_API_URL}/${resource}`, {
 		method,
 		headers,
-		body: data ? typeof data === 'string' ? data : JSON.stringify(data) : undefined
+		body: data ? (typeof data === 'string' ? data : JSON.stringify(data)) : undefined
 	});
 }

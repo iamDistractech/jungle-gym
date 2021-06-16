@@ -27,15 +27,15 @@ function createUserStore() {
 
 	const syncOffline = async () => {
 		user.savedGames.forEach(async (slug) => {
-			if(!await checkOfflineStatus(slug)) saveInCache(slug)
-		})
-	}
+			if (!(await checkOfflineStatus(slug))) saveInCache(slug);
+		});
+	};
 
 	/**
 	 * Clears a user from the store
 	 */
 	const clearUser = (): void => {
-		user.savedGames.forEach(deleteInCache)
+		user.savedGames.forEach(deleteInCache);
 		user = undefined;
 		set(undefined);
 	};
@@ -46,13 +46,16 @@ function createUserStore() {
 	 */
 	const saveGame = async (slug: string): Promise<boolean> => {
 		const success = await saveInCache(slug);
-		
+
 		if (success) {
-			const sync = await fetch('/api/user/gymles/add.json', {method: 'POST', body: JSON.stringify([slug])})
-			const body = await sync.json()
-			
-			if(sync.ok && Array.isArray(body) && body.includes(slug)) {
-				console.log('Game synced with DB', body, slug)
+			const sync = await fetch('/api/user/gymles/add.json', {
+				method: 'POST',
+				body: JSON.stringify([slug])
+			});
+			const body = await sync.json();
+
+			if (sync.ok && Array.isArray(body) && body.includes(slug)) {
+				console.log('Game synced with DB', body, slug);
 				update((user) => {
 					user.savedGames = [...body];
 					return user;
@@ -70,11 +73,14 @@ function createUserStore() {
 	const removeGame = async (slug: string): Promise<boolean> => {
 		const success = await deleteInCache(slug);
 		if (success) {
-			const sync = await fetch('/api/user/gymles/remove.json', {method: 'POST', body: JSON.stringify([slug])})
-			const body = await sync.json()
-			
-			if(sync.ok && Array.isArray(body) && body.includes(slug)) {
-				console.log('Game synced with DB', body, slug)
+			const sync = await fetch('/api/user/gymles/remove.json', {
+				method: 'POST',
+				body: JSON.stringify([slug])
+			});
+			const body = await sync.json();
+
+			if (sync.ok && Array.isArray(body) && body.includes(slug)) {
+				console.log('Game synced with DB', body, slug);
 				update((user) => {
 					user.savedGames = [...body];
 					return user;

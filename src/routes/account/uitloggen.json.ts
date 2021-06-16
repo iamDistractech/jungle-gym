@@ -23,7 +23,6 @@ export const post: RequestHandler = async (request: Request) => {
 		console.error('[uitloggen.json]', error);
 	}
 
-
 	return {
 		status: 200,
 		headers: {
