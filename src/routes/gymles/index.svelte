@@ -35,7 +35,7 @@
 	export let user;
 	export let games: Game[];
 
-	userStore.subscribe((newUser) => user = newUser);
+	userStore.subscribe((newUser) => (user = newUser));
 
 	$: games =
 		games && Array.isArray(games)
