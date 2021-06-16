@@ -146,6 +146,13 @@
 		</ul>
 	</section>
 
+	{#if game.image.url !== ''}
+		<h1>Speelveld</h1>
+		<section class="image">
+			<img src={game.image.url} alt="" />
+		</section>
+	{/if}
+
 	<section class="rules">
 		<h1>Spelregels</h1>
 		<ul>
@@ -155,7 +162,7 @@
 		</ul>
 	</section>
 
-	<section class="=variations">
+	<section class="variations">
 		<h1>Variaties</h1>
 		<Accordion variations={game.variation} />
 	</section>
@@ -217,5 +224,15 @@
 		justify-content: space-between;
 		margin-bottom: 1.5rem;
 		padding: 0;
+	}
+
+	section.image {
+		text-align: center;
+	}
+	section.image img {
+		margin-top: 1.5em;
+		width: 90vw;
+		max-width: 600px;
+		max-height: 50vh;
 	}
 </style>
