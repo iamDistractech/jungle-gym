@@ -55,31 +55,28 @@
 					><i class="material-icons">open_in_new</i>Jungle Gym CMS</a
 				>
 			</nav>
-			{#if games.length > 0}
-				<List {games} />
-			{:else}
-				<NoFavoriteCard
-					title="Je hebt nog geen spellen opgeslagen"
-					message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
-				/>
-			{/if}
-		{:else}
-			<NoFavoriteCard
-				title="Je hebt nog geen spellen opgeslagen"
-				message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
-			/>
-			<LoginRequiredCard
-				redirectPage={redirectPage.toString()}
-				Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
-			/>
 		{/if}
 	</header>
+	{#if games.length > 0}
+	<List {games} />
+	{:else}
+		<NoFavoriteCard
+			title="Je hebt nog geen spellen opgeslagen"
+			message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
+		/>
+	{/if}
+	{#if !isAuthenticated}
+		<LoginRequiredCard
+		redirectPage={redirectPage.toString()}
+		Message="Om 'Mijn Gymles' te gebruiken moet je eerst inloggen"
+	/>
+	{/if}
 </main>
 
 <style>
 	header {
 		display: flex;
-		flex-flow: column;
+		flex-flow: column-reverse;
 	}
 
 	header nav {
