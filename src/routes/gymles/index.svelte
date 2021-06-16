@@ -31,13 +31,21 @@
 
 	/* Stores */
 	import { session as SessionStorage, page } from '$app/stores';
-	export let user = $userStore;
+	import { onMount } from 'svelte';
+	export let user
 	export let games: Game[];
+
+	userStore.subscribe((newUser) => user)
 
 	$: games =
 		games && Array.isArray(games)
 			? games.filter((game) => user.savedGames.includes(game.slug))
 			: [];
+
+
+	onMount(() => {
+		if('caches' in window) userStore.syncOffline()
+	})
 
 	const pathName = $page.path;
 	const redirectPage = new URLSearchParams([['page', pathName]]);

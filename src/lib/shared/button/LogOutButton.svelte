@@ -1,14 +1,17 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { session as SessionStore } from '$app/stores';
 	import { messageStore } from '$lib/stores/message';
-	import { goto } from '$app/navigation';
+	import { userStore } from '$lib/stores/user';
 
-	function logout() {
-		return fetch('/account/uitloggen.json', { method: 'POST' })
-			.then(() => SessionStore.set({ authenticated: false }))
+ 	function logout() {
+ 		return fetch('/account/uitloggen.json', { method: 'POST' })
+ 			.then(() => SessionStore.set({ authenticated: false }))
+ 			.then(() => userStore.clearUser())
 			.then(() => goto('/'))
-			.then(() => messageStore.set('Je bent nu uitgelogd'));
-	}
+ 			.then(() => messageStore.set('Je bent nu uitgelogd'));
+ 			
+ 	}
 </script>
 
 <button on:click|once={logout}><i class="material-icons">logout</i>Uitloggen</button>

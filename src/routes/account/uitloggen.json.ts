@@ -18,11 +18,11 @@ export const post: RequestHandler = async (request: Request) => {
 
 	try {
 		await api(request, 'auth/revoke');
+		await sessionDB.del(locals.sessionId);
 	} catch (error) {
 		console.error('[uitloggen.json]', error);
 	}
 
-	await sessionDB.del(locals.sessionId);
 
 	return {
 		status: 200,
