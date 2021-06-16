@@ -79,8 +79,8 @@ function createUserStore() {
 			});
 			const body = await sync.json();
 
-			if (sync.ok && Array.isArray(body) && body.includes(slug)) {
-				console.log('Game synced with DB', body, slug);
+			if (sync.ok && Array.isArray(body)) {
+				console.log('Game synced with DB, removed', slug);
 				update((user) => {
 					user.savedGames = [...body];
 					return user;
