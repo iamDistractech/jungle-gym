@@ -57,7 +57,7 @@
 	const sortedGamesArray = sortGameArray(games);
 
 	//Create a new array with the four newest games
-	const newestGames = sortedGamesArray.slice(Math.max(games.length - 4, 0));
+	const newestGames = sortedGamesArray.slice(0, 4);
 
 	//Select the game that is highlighted. If more. Select the one that is last updated
 	const highlightedGame = sortedGamesArray.find((game) => game.highlighted === true);

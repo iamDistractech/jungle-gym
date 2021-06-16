@@ -30,9 +30,9 @@
 			emoji: explanationForm['emoji-description'].value,
 			explanation: explanationForm['explanation-description'].value
 		};
-		const executionAnswers = {
-			emoji: explanationForm['emoji-execution'].value,
-			explanation: explanationForm['explanation-execution'].value
+		const rulesAnswers = {
+			emoji: explanationForm['emoji-rules'].value,
+			explanation: explanationForm['explanation-rules'].value
 		};
 		const kidsAnswers = {
 			emoji: explanationForm['emoji-kids'].value,
@@ -43,9 +43,10 @@
 			type: 'long',
 			game: gameName,
 			descriptionAnswers,
-			executionAnswers,
+			rulesAnswers,
 			kidsAnswers
 		};
+
 		sendResultsToDB(formResults);
 		clearFormSteps();
 	}
@@ -66,8 +67,8 @@
 				...result,
 				descriptionEmoji: formResults.descriptionAnswers.emoji,
 				descriptionExplanation: formResults.descriptionAnswers.explanation,
-				executionEmoji: formResults.executionAnswers.emoji,
-				executionExplanation: formResults.executionAnswers.explanation,
+				rulesEmoji: formResults.rulesAnswers.emoji,
+				rulesExplanation: formResults.rulesAnswers.explanation,
 				kidsEmoji: formResults.kidsAnswers.emoji,
 				kidsExplanation: formResults.kidsAnswers.explanation
 			};
@@ -164,25 +165,25 @@
 	</fieldset>
 
 	<fieldset>
-		<legend>Hoe was het spel in de praktijk? [2/3]</legend>
-		<input type="radio" id="bad-execution" name="emoji-execution" value="Slecht" />
-		<label for="bad-execution">
+		<legend>Waren de regels duidelijk? [2/3]</legend>
+		<input type="radio" id="bad-rules" name="emoji-rules" value="Slecht" />
+		<label for="bad-rules">
 			<img src="/icons/GameReview/sad.svg" alt="" />
 		</label>
 
-		<input type="radio" id="neutral-execution" name="emoji-execution" value="Neutraal" />
-		<label for="neutral-execution">
+		<input type="radio" id="neutral-rules" name="emoji-rules" value="Neutraal" />
+		<label for="neutral-rules">
 			<img src="/icons/GameReview/surprised.svg" alt="" />
 		</label>
 
-		<input type="radio" id="goed-execution" name="emoji-execution" value="Goed" />
-		<label for="goed-execution">
+		<input type="radio" id="goed-rules" name="emoji-rules" value="Goed" />
+		<label for="goed-rules">
 			<img src="/icons/GameReview/happy.svg" alt="" />
 		</label>
 
-		<label for="explanation-execution" class="fieldset-title">Licht je antwoord toe</label>
+		<label for="explanation-rules" class="fieldset-title">Licht je antwoord toe</label>
 		<small>(optioneel)</small>
-		<textarea name="explanation-execution" cols="30" rows="10" />
+		<textarea name="explanation-rules" cols="30" rows="10" />
 	</fieldset>
 
 	<fieldset>
