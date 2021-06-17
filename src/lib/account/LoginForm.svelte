@@ -17,7 +17,7 @@
 		if (!navigator.onLine) {
 			offline = true;
 			dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
-		}
+		} else offline = false
 	});
 
 	async function login() {
@@ -31,13 +31,12 @@
 			};
 
 			const response = await fetch('/inloggen.json', init);
-			const body = await response.json();
 
 			if (response.ok) {
 				messageStore.set('Je bent nu ingelogd');
 				dispatch('success');
 			} else {
-				dispatch('failure', body);
+				dispatch('failure', response.body);
 			}
 		} catch (error) {
 			if (offline) dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
