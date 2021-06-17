@@ -5,6 +5,7 @@
 	import { userStore } from '$lib/stores/user';
 
 	function logout() {
+		if(!navigator.onLine) messageStore.set('Je kan niet uitloggen als je offline bent')
 		return fetch('/account/uitloggen.json', { method: 'POST' })
 			.then(() => SessionStore.set({ authenticated: false }))
 			.then(() => userStore.clearUser())
