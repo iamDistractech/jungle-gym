@@ -33,6 +33,8 @@
 			const response = await fetch('/inloggen.json', init);
 			const body = await response.json();
 
+			console.debug(response, body)
+
 			if (response.ok) {
 				messageStore.set('Je bent nu ingelogd');
 				dispatch('success');
