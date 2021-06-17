@@ -16,7 +16,6 @@
 			}, 5000);
 		}
 	});
-
 </script>
 
 {#if showSnackbar}
