@@ -69,7 +69,7 @@
 	{:else}
 		<NoFavoriteCard
 			title="Je hebt nog geen spellen opgeslagen"
-			message="In Mijn gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
+			message="In Mijn Gymles kun je spellen opslaan, zodat je ze makkelijk terug te vinden, zelfs als je geen internet hebt"
 		/>
 	{/if}
 	{#if !isAuthenticated}
