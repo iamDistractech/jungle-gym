@@ -116,7 +116,7 @@
 		{/if}
 		<h2>{game.name}</h2>
 		<BackButton returnLink="/spellen" title="Speloverzicht" />
-		{#if game.offline && isAuthenticated}
+		{#if game.offline && isAuthenticated && userIsOnline}
 			<OfflineLabel />
 		{/if}
 		<ul>
