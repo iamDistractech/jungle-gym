@@ -81,5 +81,6 @@ self.addEventListener('fetch', (event) => {
 				.catch(() => returnSSRpage('/spellen/offline').catch(console.error));
 
 		event.respondWith(findOfflineGame());
-	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
+	} else if(/(\/inloggen)/.test(requestURL.pathname)) event.respondWith(fetch(request).catch(() => returnSSRpage('/inloggen')))
+	else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
 });

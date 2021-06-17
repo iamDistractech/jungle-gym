@@ -39,7 +39,7 @@
 
 	$: games =
 		games && Array.isArray(games)
-			? games.filter((game) => user.savedGames.includes(game.slug))
+			? games.filter((game) => user?.savedGames.includes(game.slug))
 			: [];
 
 	onMount(() => {

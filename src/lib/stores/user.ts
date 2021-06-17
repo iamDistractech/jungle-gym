@@ -26,7 +26,7 @@ function createUserStore() {
 	};
 
 	const syncOffline = async () => {
-		user.savedGames.forEach(async (slug) => {
+		user?.savedGames.forEach(async (slug) => {
 			if (!(await checkOfflineStatus(slug))) saveInCache(slug);
 		});
 	};
