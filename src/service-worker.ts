@@ -2,7 +2,7 @@ import { build, timestamp, files } from '$service-worker';
 
 declare const self;
 
-const ssrPages = ['/', '/spellen/offline', '/gymles', '/spellen', '/inloggen']
+const ssrPages = ['/', '/spellen/offline', '/gymles', '/spellen', '/inloggen'];
 
 const applicationCache = `applicationCache-v${timestamp}`;
 const staticCache = `staticCache-v${timestamp}`;
@@ -74,13 +74,15 @@ self.addEventListener('fetch', (event) => {
 	} else if (
 		/(\/spellen\/)(\w+-?)*/.test(requestURL.pathname) &&
 		!/(.css)|(.js)$/.test(requestURL.pathname)
-	) {	const findOfflineGame = () =>
+	) {
+		const findOfflineGame = () =>
 			caches
 				.match(request)
 				.then((response) => (response ? response : fetch(request)))
 				.catch(() => returnSSRpage('/spellen/offline').catch(console.error));
 
 		event.respondWith(findOfflineGame());
-	} else if(/(\/inloggen)/.test(requestURL.pathname)) event.respondWith(fetch(request).catch(() => returnSSRpage('/inloggen')))
+	} else if (/(\/inloggen)/.test(requestURL.pathname))
+		event.respondWith(fetch(request).catch(() => returnSSRpage('/inloggen')));
 	else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
 });

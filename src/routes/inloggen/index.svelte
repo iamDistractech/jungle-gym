@@ -44,7 +44,7 @@
 	}
 
 	function handleError(event) {
-		if(event.detail) messageStore.set(event.detail)
+		if (event.detail) messageStore.set(event.detail);
 		else messageStore.set('Er ging iets mis met inloggen');
 	}
 </script>

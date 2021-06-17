@@ -7,14 +7,13 @@
 </script>
 
 <script>
-import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
-	let offline = false
+	let offline = false;
 	onMount(() => {
-		if(!navigator.onLine) true
-		else throw false
-	})
-
+		if (!navigator.onLine) true;
+		else throw false;
+	});
 </script>
 
 <header>

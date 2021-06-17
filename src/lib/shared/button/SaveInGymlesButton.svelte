@@ -1,5 +1,5 @@
 <script lang="ts">
-import { messageStore } from '$lib/stores/message';
+	import { messageStore } from '$lib/stores/message';
 
 	import { userStore } from '$lib/stores/user';
 	import { createEventDispatcher } from 'svelte';
@@ -10,13 +10,15 @@ import { messageStore } from '$lib/stores/message';
 	export let slug: string;
 
 	async function downloadGame() {
-		if(navigator.onLine) userStore.saveGame(slug).then((success) => dispatcher('saved', { success }));
-		else messageStore.set('Zonder internet kan je de game niet opslaan in Mijn Gymles')
+		if (navigator.onLine)
+			userStore.saveGame(slug).then((success) => dispatcher('saved', { success }));
+		else messageStore.set('Zonder internet kan je de game niet opslaan in Mijn Gymles');
 	}
 
 	async function deleteGame() {
-		if(navigator.onLine) userStore.removeGame(slug).then((success) => dispatcher('deleted', { success }));
-		else messageStore.set('Zonder internet kan je de game niet verwijderen uit Mijn Gymles')
+		if (navigator.onLine)
+			userStore.removeGame(slug).then((success) => dispatcher('deleted', { success }));
+		else messageStore.set('Zonder internet kan je de game niet verwijderen uit Mijn Gymles');
 	}
 </script>
 
