@@ -22,7 +22,7 @@
 		<a href="/gymles">
 			<article>
 				<h1>Mijn Gymles</h1>
-				<p>Vind makkelijk jouw opgeslagen spellen</p>
+				<p>Vind makkelijk jouw opgeslagen spellen, ook zonder internet</p>
 			</article>
 		</a>
 	</li>
