@@ -11,8 +11,8 @@
 
 	let offline = false;
 	onMount(() => {
-		if (!navigator.onLine) true;
-		else throw false;
+		if (!navigator.onLine) offline = true;
+		else offline = false;
 	});
 </script>
 
