@@ -12,13 +12,13 @@
 	async function downloadGame() {
 		if (navigator.onLine)
 			userStore.saveGame(slug).then((success) => dispatcher('saved', { success }));
-		else messageStore.set('Zonder internet kan je de game niet opslaan in Mijn Gymles');
+		else messageStore.set('Zonder internet kan je dit spel niet opslaan in Mijn Gymles');
 	}
 
 	async function deleteGame() {
 		if (navigator.onLine)
 			userStore.removeGame(slug).then((success) => dispatcher('deleted', { success }));
-		else messageStore.set('Zonder internet kan je de game niet verwijderen uit Mijn Gymles');
+		else messageStore.set('Zonder internet kan je dit spel niet verwijderen uit Mijn Gymles');
 	}
 </script>
 
