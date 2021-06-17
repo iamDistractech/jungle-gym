@@ -234,5 +234,7 @@
 		width: 90vw;
 		max-width: 600px;
 		max-height: 50vh;
+		border: 2px solid var(--color-black);
+		border-radius: 0.4em;
 	}
 </style>
