@@ -84,7 +84,7 @@
 	function deletedHandler(event) {
 		const { success } = event.detail;
 		if (success) {
-			message = 'Spel verwijdert uit Mijn Gymles';
+			message = 'Spel verwijderd uit Mijn Gymles';
 			game.offline = false;
 		} else message = 'Er ging iets mis met verwijderen';
 		messageStore.set(message);
