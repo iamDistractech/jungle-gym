@@ -31,7 +31,7 @@
 			};
 
 			const response = await fetch('/inloggen.json', init);
-			const { message = 'Er ging iets mis met inloggen' } = await response.json()
+			const { message = 'Er ging iets mis met inloggen' } = await response.json();
 
 			if (response.ok) {
 				messageStore.set('Je bent nu ingelogd');
