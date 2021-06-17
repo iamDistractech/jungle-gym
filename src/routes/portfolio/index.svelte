@@ -25,6 +25,7 @@
 			Ontwikkel een simpele, gebruiksvriendelijke app waar groepsleerkrachten in het binnenland van
 			Suriname spellen kunnen vinden om een betere gymles mee te geven.
 		</p>
+		<img src="/JungleGym_clay.png" alt="Logo Jungle Gym" />
 	</section>
 
 	<section>
@@ -53,8 +54,12 @@
 		padding-bottom: 1em;
 	}
 
-	img {
+	div img {
 		width: 8rem;
+	}
+
+	img {
+		width: 100%;
 	}
 
 	div {
