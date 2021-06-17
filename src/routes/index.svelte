@@ -33,15 +33,19 @@
 	import GameCardHighlighted from '$lib/cards/GameCardHighlighted.svelte';
 	import Carousel from '$lib/views/Carousel.svelte';
 	import MijnGymles from '$lib/views/MijnGymles.svelte';
+	import OfflineCard from '$lib/cards/InfoCard.svelte';
 
 	/* Utils */
 	import { sortGameArray } from '$lib/utils/sort';
 
 	/* Stores */
 	import { userStore } from '$lib/stores/user';
+	import { onMount } from 'svelte';
 
 	export let user = $userStore;
 	export let games: Game[];
+
+	let offline = false;
 
 	let savedGames = [];
 
@@ -63,19 +67,31 @@
 	const highlightedGame = sortedGamesArray.find((game) => game.highlighted === true);
 
 	const highlightedGameAvailable = highlightedGame !== undefined;
+
+	onMount(() => {
+		if (!navigator.onLine) offline = true;
+		else offline = false;
+	});
 </script>
 
 <main class="leaves-bg">
-	{#if highlightedGameAvailable}
+	{#if !offline}
+		{#if highlightedGameAvailable}
+			<section>
+				<h1>Uitgelichte spellen</h1>
+				<GameCardHighlighted game={highlightedGame} />
+			</section>
+		{/if}
 		<section>
-			<h1>Uitgelichte spellen</h1>
-			<GameCardHighlighted game={highlightedGame} />
+			<h1>Nieuwste spellen</h1>
+			<Carousel gamesData={newestGames} hideDownloadedState={true} />
 		</section>
+	{:else}
+		<OfflineCard
+			title="Je bent offline"
+			message="Als je geen internet hebt, kun je wel altijd bij de spellen die je opgeslagen hebt in mijn gymles"
+		/>
 	{/if}
-	<section>
-		<h1>Nieuwste spellen</h1>
-		<Carousel gamesData={newestGames} hideDownloadedState={true} />
-	</section>
 	<section>
 		<h1>Opgeslagen spellen</h1>
 		<MijnGymles {savedGames} hideDownloadedState={true} />
