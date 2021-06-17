@@ -17,7 +17,7 @@
 		if (!navigator.onLine) {
 			offline = true;
 			dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
-		} else offline = false
+		} else offline = false;
 	});
 
 	async function login() {
