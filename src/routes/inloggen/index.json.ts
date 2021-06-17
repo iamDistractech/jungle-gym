@@ -34,12 +34,12 @@ export const post: RequestHandler = async (request: Request) => {
 		if (!response.ok && response.status === 401) {
 			return {
 				status: 401,
-				body: 'Verkeerde gebruikersnaam of wachtwoord'
+				body: { message: 'Verkeerde gebruikersnaam of wachtwoord' }
 			};
 		} else if (!response.ok) {
 			return {
 				status: response.status || 500,
-				body: serverSession || 'Er ging iets fout op de server tijdens het inloggen'
+				body: serverSession || { message: 'Er ging iets fout op de server tijdens het inloggen'}
 			};
 		}
 
@@ -51,7 +51,7 @@ export const post: RequestHandler = async (request: Request) => {
 			console.error('[inloggen.json]', 'Failed to find access token');
 			return {
 				status: 500,
-				body: 'Er ging iets fout op de server tijdens het inloggen'
+				body: { message: 'Er ging iets fout op de server tijdens het inloggen'}
 			};
 		}
 
@@ -61,7 +61,7 @@ export const post: RequestHandler = async (request: Request) => {
 			console.error('[inloggen.json]', 'Failed to set a session');
 			return {
 				status: 500,
-				body: 'Er ging iets fout op de server tijdens het inloggen'
+				body: { message: 'Er ging iets fout op de server tijdens het inloggen'}
 			};
 		}
 
@@ -85,7 +85,7 @@ export const post: RequestHandler = async (request: Request) => {
 
 		return {
 			status: 500,
-			body: 'Er ging iets fout op de server tijdens het inloggen'
+			body: { message: 'Er ging iets fout op de server tijdens het inloggen'}
 		};
 	}
 };

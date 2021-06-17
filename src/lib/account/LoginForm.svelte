@@ -31,12 +31,13 @@
 			};
 
 			const response = await fetch('/inloggen.json', init);
+			const { message = 'Er ging iets mis met inloggen' } = await response.json()
 
 			if (response.ok) {
 				messageStore.set('Je bent nu ingelogd');
 				dispatch('success');
 			} else {
-				dispatch('failure', response.body);
+				dispatch('failure', message);
 			}
 		} catch (error) {
 			if (offline) dispatch('error', 'Je kan niet inloggen wanneer je offline bent');
