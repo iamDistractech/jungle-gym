@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { messageStore } from '$lib/stores/message';
+
 	import { userStore } from '$lib/stores/user';
 	import { createEventDispatcher } from 'svelte';
 
@@ -8,21 +10,25 @@
 	export let slug: string;
 
 	async function downloadGame() {
-		userStore.saveGame(slug).then((success) => dispatcher('saved', { success }));
+		if (navigator.onLine)
+			userStore.saveGame(slug).then((success) => dispatcher('saved', { success }));
+		else messageStore.set('Zonder internet kan je dit spel niet opslaan in Mijn Gymles');
 	}
 
 	async function deleteGame() {
-		userStore.removeGame(slug).then((success) => dispatcher('deleted', { success }));
+		if (navigator.onLine)
+			userStore.removeGame(slug).then((success) => dispatcher('deleted', { success }));
+		else messageStore.set('Zonder internet kan je dit spel niet verwijderen uit Mijn Gymles');
 	}
 </script>
 
 {#if savedGame}
 	<button class="remove" on:click={deleteGame}
-		><i class="material-icons">bookmark_remove</i>Verwijder uit mijn gymles</button
+		><i class="material-icons">bookmark_remove</i>Verwijder uit Mijn Gymles</button
 	>
 {:else}
 	<button on:click={downloadGame}
-		><i class="material-icons-outlined">bookmark_add</i>Opslaan in mijn gymles</button
+		><i class="material-icons-outlined">bookmark_add</i>Opslaan in Mijn Gymles</button
 	>
 {/if}
 

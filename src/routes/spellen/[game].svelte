@@ -75,7 +75,7 @@
 	function savedHandler(event) {
 		const { success } = event.detail;
 		if (success) {
-			message = 'Dit spel is nu gedownload';
+			message = 'Spel opgeslagen in Mijn Gymles';
 			game.offline = true;
 		} else message = 'Er ging iets mis met opslaan';
 		messageStore.set(message);
@@ -84,7 +84,7 @@
 	function deletedHandler(event) {
 		const { success } = event.detail;
 		if (success) {
-			message = 'De download van dit spel is verwijderd';
+			message = 'Spel opgeslagen in Mijn Gymles';
 			game.offline = false;
 		} else message = 'Er ging iets mis met verwijderen';
 		messageStore.set(message);

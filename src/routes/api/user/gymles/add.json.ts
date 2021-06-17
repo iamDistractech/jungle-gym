@@ -1,9 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { api } from './_api';
+import { api } from '../../_api';
 
-export const get: RequestHandler = async (request) => {
+export const post: RequestHandler = async (request) => {
 	try {
-		const response = await api(request, 'user');
+		const response = await api(request, 'user/gymles/add', request.body);
 
 		if (response.ok) {
 			return {
