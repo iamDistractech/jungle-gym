@@ -12,7 +12,7 @@
 			message = newMessage;
 			timeOut = setTimeout(() => {
 				showSnackbar = false;
-				message = undefined
+				message = undefined;
 			}, 5000);
 		}
 	});
