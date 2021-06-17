@@ -55,7 +55,7 @@ function createUserStore() {
 			const body = await sync.json();
 
 			if (sync.ok && Array.isArray(body) && body.includes(slug)) {
-				console.log('Game synced with DB', body, slug);
+				console.debug('Game synced with DB', body, slug);
 				update((user) => {
 					user.savedGames = [...body];
 					return user;
@@ -80,7 +80,7 @@ function createUserStore() {
 			const body = await sync.json();
 
 			if (sync.ok && Array.isArray(body)) {
-				console.log('Game synced with DB, removed', slug);
+				console.debug('Game synced with DB, removed', slug);
 				update((user) => {
 					user.savedGames = [...body];
 					return user;

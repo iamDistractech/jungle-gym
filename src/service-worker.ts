@@ -18,7 +18,7 @@ self.addEventListener('install', (event) => {
 			caches.open(staticCache).then((cache) => cache.addAll(files))
 		])
 			.then(self.skipWaiting())
-			.then(() => console.log('installed'))
+			.then(() => console.debug('installed'))
 	);
 });
 
@@ -42,7 +42,7 @@ self.addEventListener('activate', (event) => {
 				);
 			})
 			.then(self.skipWaiting())
-			.then(() => console.log('activated'))
+			.then(() => console.debug('activated'))
 	);
 });
 
