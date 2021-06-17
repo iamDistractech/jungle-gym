@@ -17,15 +17,19 @@ The app contains a list of all the different games that could be used during gym
 
 <table>
     <tr>
-         <td align="center"><a href="#link-links">🔗 Links <a></td>
-        <td align="center"><a href="#nerd_face-usage">🤓 Course <a></td>
+				<td align="center"><a href="#nerd_face-course">🤓 Course <a></td>
+				<td align="center"><a href="#link-links">🔗 Links <a></td>
         <td align="center"><a href="#gear-installation">⚙️ Installation<a></td>
     </tr>
 </table>
 
-## :link: Links
+## :nerd_face: Course
 
-**[Live link](https://jungle-gym.netlify.app/)**
+The **[Meesterproef](https://github.com/cmda-minor-web/meesterproef-2021)** is the final client-project of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.
+
+With the Meesterproef you show what you have learned during the minor. The final project is assessed on a Design rationale, a Product biography and a reflection on one's own level.
+
+## :link: Links
 
 ### CMS
 
@@ -42,10 +46,6 @@ The [Design Rationale](https://junglegym.gitbook.io/junglegym-documentation/) is
 ### Product Biography
 
 The individual Product Biographies can be found in the [Wiki](https://github.com/iSirThijs/jungle-gym/wiki). In the Product Biography everyone keeps track of what they have done per week. You write about the process, the iterations, the working method and the planning.
-
-## :nerd_face: Course
-
-The **Meesterproef** is the final client-project of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.
 
 ## :gear: Installation
 
