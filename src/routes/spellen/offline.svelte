@@ -3,10 +3,10 @@
 </script>
 
 <header>
-	<h1>Spel niet offline beschikbaar</h1>
+	<h1>Spel niet opgeslagen</h1>
 </header>
 <main>
-	<p>Dit spel is niet gedownload en dus niet offline beschikbaar</p>
+	<p>Dit spel is niet opgeslagen in MijnGymles en dus niet offline beschikbaar.</p>
 </main>
 
 <style>
