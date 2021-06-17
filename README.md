@@ -1,53 +1,51 @@
 # JungleGym - Meesterproef
 
+**[Live link](https://jungle-gym.netlify.app/)**
+
+![Mockup](https://user-images.githubusercontent.com/34123512/122357810-57130980-cf54-11eb-9413-24f03e0f6b7d.jpg)
+
+JungleGym is a simple, user-friendly app for group teachers who have little or no expertise in physical education and have little material at their disposal.
+
+The app contains a list of all the different games that could be used during gym class. The teachers in Suriname can filter on different parts: the materials they have at their disposal, the number of students, the form of the game and the age category (group).
+
 [![Production CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/production.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/production.yaml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a39c7939-ea9a-421b-8709-ef60d8e56621/deploy-status)](https://app.netlify.com/sites/jungle-gym/deploys)
 
 [![Development CI](https://github.com/iSirThijs/jungle-gym/actions/workflows/development.yaml/badge.svg)](https://github.com/iSirThijs/jungle-gym/actions/workflows/development.yaml)
 
-**[Live link](https://jungle-gym.netlify.app/)**
-
-API repo can be found **[here](https://github.com/iSirThijs/jungle-gym-api)**
-
-CMS repo can be found **[here](https://github.com/jochemvogel/jungle-gym-cms)**
-
-_[Insert JungleGym project description]_
-
 ## Table of Contents
 
 <table>
     <tr>
+         <td align="center"><a href="#link-links">🔗 Links <a></td>
         <td align="center"><a href="#nerd_face-usage">🤓 Course <a></td>
-        <td align="center"><a href="#eyeglasses-overview"> 👓 Overview <a></td>
         <td align="center"><a href="#gear-installation">⚙️ Installation<a></td>
-        <td align="center"><a href="#open_file_folder-folder-structure">🗂 Folder Structure<a></td>
-        <td align="center"><a href="#anger-others">💢 Others<a></td>
     </tr>
 </table>
+
+## :link: Links
+
+**[Live link](https://jungle-gym.netlify.app/)**
+
+### CMS
+
+The content (games) of the app are managed in a headless CMS (Strapi). The [CMS repo](https://github.com/jochemvogel/jungle-gym-cms) contains all the code of this Content Management System.
+
+### API
+
+The CMS API is patched by our own API. In this API are all the endpoints and is the authentication being managed. The [API repo](https://github.com/iSirThijs/jungle-gym-api) contains all the code of this API.
+
+### Design Rationale
+
+The [Design Rationale](https://junglegym.gitbook.io/junglegym-documentation/) is an explicit documentation of the reasons behind the decisions we made. Besides that, it also contains the overall documentation about the app, like the tech stack and the user manual.
+
+### Product Biography
+
+The individual Product Biographies can be found in the [Wiki](https://github.com/iSirThijs/jungle-gym/wiki). In the Product Biography everyone keeps track of what they have done per week. You write about the process, the iterations, the working method and the planning.
 
 ## :nerd_face: Course
 
 The **Meesterproef** is the final client-project of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.
-
-## :eyeglasses: Overview
-
-### Screenshot
-
-<details>
-
-<summary>Homepagina</summary>
-
-![Homepagina](https://i.ibb.co/pn4dK5d/Screenshot-2021-06-11-at-11-34-45.png)
-
-</details>
-
-<details>
-
-<summary>Overzichtspagina</summary>
-
-![Overzichtspagina](https://i.ibb.co/2sMJyKj/Screenshot-2021-06-11-at-11-34-30.png)
-
-</details>
 
 ## :gear: Installation
 
@@ -92,30 +90,3 @@ Copy the `.env.example` and rename it to `.env`.
 In order to use Husky you have to install it with `npm run prepare`. This will install Husky for your project.
 
 The next time you commit, Husky will automatically format it for you.
-
-## :open_file_folder: Folder Structure
-
-```
-# GitHub files
-|.github
-
-# Broncode van het project
-|-src
-
-	# Library met eigen components
-	|-lib
-
-	# Alle (file-based) routes
-	|-routes
-
-# Alle static files
-|-static
-```
-
-We zijn het er nog niet helemaal over eens of we het zo willen gaan doen. Wellicht dat we dit in de Design Rationale gooien. Heeft niet echt een toegevoegde waarde in de README.
-
-## :anger: Others
-
-_Design Rationale (will be added later)_
-
-Als we de documentatie een eind af hebben, komen hier ook andere links. Zo leggen wij uit waarom er een CMS is. Wat daar gedaan wordt. Hoe de API werkt etc. Dit hebben wij nog niet af, dus daarom is dat nog niet toegevoegd.
