@@ -45,7 +45,7 @@
 </form>
 
 {#if searchQuery}
-	<p>Er wordt gezocht op: {searchQuery}</p>
+	<p>Er is gezocht op: {searchQuery}</p>
 {/if}
 
 <style>

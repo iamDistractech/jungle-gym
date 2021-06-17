@@ -102,6 +102,7 @@ section > h1 {
 	background: url('$lib/assets/images/background/leavesBackground.svg');
 	background-position: 20% 0;
 	background-size: 250%;
+	height: 100%;
 }
 
 .link-button {
