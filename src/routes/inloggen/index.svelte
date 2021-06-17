@@ -23,7 +23,7 @@
 
 	export let redirectPage;
 
-	if (query.has('page')) {
+	if (query.has('page') && query.get('page') === '/gymles') {
 		redirectPage = query.get('page');
 		messageStore.set('Je moet eerst inloggen om deze pagina te zien');
 	}
@@ -34,7 +34,7 @@
 		try {
 			goto(redirectPage ? redirectPage : '/gymles');
 		} catch (error) {
-			handleError();
+			handleError(undefined);
 		}
 	}
 
@@ -43,8 +43,9 @@
 		messageStore.set(error);
 	}
 
-	function handleError() {
-		messageStore.set('Er ging iets mis met inloggen');
+	function handleError(event) {
+		if (event.detail) messageStore.set(event.detail);
+		else messageStore.set('Er ging iets mis met inloggen');
 	}
 </script>
 

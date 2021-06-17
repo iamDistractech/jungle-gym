@@ -31,11 +31,11 @@ if (typeof port === 'number' && !isNaN(port) && typeof host === 'string') {
 
 	sessionDB = new Tedis(options);
 
-	// sessionDB.on('connect', () => console.log('SessionDB connected'));
+	// sessionDB.on('connect', () => console.debug('SessionDB connected'));
 	sessionDB.on('error', (error) => {
-		console.log('[SessionDB]', error);
+		console.debug('[SessionDB]', error);
 	});
-	sessionDB.on('close', (had_error) => console.log('SessionDB closed', had_error));
+	sessionDB.on('close', (had_error) => console.debug('SessionDB closed', had_error));
 }
 
 export default sessionDB;

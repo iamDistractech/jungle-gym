@@ -2,6 +2,8 @@ import { build, timestamp, files } from '$service-worker';
 
 declare const self;
 
+const ssrPages = ['/', '/spellen/offline', '/gymles', '/spellen', '/inloggen'];
+
 const applicationCache = `applicationCache-v${timestamp}`;
 const staticCache = `staticCache-v${timestamp}`;
 
@@ -11,12 +13,12 @@ const returnSSRpage = (path: string) => caches.open('ssrCache').then((cache) => 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		Promise.all([
-			caches.open('ssrCache').then((cache) => cache.addAll(['/', '/spellen/offline'])),
+			caches.open('ssrCache').then((cache) => cache.addAll(ssrPages)),
 			caches.open(applicationCache).then((cache) => cache.addAll(build)),
 			caches.open(staticCache).then((cache) => cache.addAll(files))
 		])
 			.then(self.skipWaiting())
-			.then(() => console.log('installed'))
+			.then(() => console.debug('installed'))
 	);
 });
 
@@ -40,7 +42,7 @@ self.addEventListener('activate', (event) => {
 				);
 			})
 			.then(self.skipWaiting())
-			.then(() => console.log('activated'))
+			.then(() => console.debug('activated'))
 	);
 });
 
@@ -80,5 +82,7 @@ self.addEventListener('fetch', (event) => {
 				.catch(() => returnSSRpage('/spellen/offline'));
 
 		event.respondWith(findOfflineGame());
-	} else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
+	} else if (/(\/inloggen)/.test(requestURL.pathname))
+		event.respondWith(fetch(request).catch(() => returnSSRpage('/inloggen')));
+	else event.respondWith(caches.match(request).then((cacheRes) => cacheRes || fetch(request)));
 });

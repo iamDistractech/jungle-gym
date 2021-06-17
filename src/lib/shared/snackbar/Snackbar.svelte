@@ -4,7 +4,7 @@
 
 	let message;
 	let timeOut;
-	let showSnackbar = false;
+	$: showSnackbar = false;
 
 	messageStore.subscribe((newMessage) => {
 		if (newMessage) {
@@ -12,6 +12,7 @@
 			message = newMessage;
 			timeOut = setTimeout(() => {
 				showSnackbar = false;
+				messageStore.set(undefined);
 			}, 5000);
 		}
 	});

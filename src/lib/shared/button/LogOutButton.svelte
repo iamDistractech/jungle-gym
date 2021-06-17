@@ -1,11 +1,14 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { session as SessionStore } from '$app/stores';
 	import { messageStore } from '$lib/stores/message';
-	import { goto } from '$app/navigation';
+	import { userStore } from '$lib/stores/user';
 
 	function logout() {
+		if (!navigator.onLine) messageStore.set('Je kan niet uitloggen als je offline bent');
 		return fetch('/account/uitloggen.json', { method: 'POST' })
 			.then(() => SessionStore.set({ authenticated: false }))
+			.then(() => userStore.clearUser())
 			.then(() => goto('/'))
 			.then(() => messageStore.set('Je bent nu uitgelogd'));
 	}
