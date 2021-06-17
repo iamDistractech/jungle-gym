@@ -24,11 +24,11 @@
 
 {#if savedGame}
 	<button class="remove" on:click={deleteGame}
-		><i class="material-icons">bookmark_remove</i>Verwijder uit mijn gymles</button
+		><i class="material-icons">bookmark_remove</i>Verwijder uit Mijn Gymles</button
 	>
 {:else}
 	<button on:click={downloadGame}
-		><i class="material-icons-outlined">bookmark_add</i>Opslaan in mijn gymles</button
+		><i class="material-icons-outlined">bookmark_add</i>Opslaan in Mijn Gymles</button
 	>
 {/if}
 
