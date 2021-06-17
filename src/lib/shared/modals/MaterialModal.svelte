@@ -31,7 +31,7 @@
 <style>
 	section {
 		position: fixed;
-		bottom: 0;
+		bottom: -1rem;
 		left: 0;
 		right: 0;
 		background-color: var(--color-white);

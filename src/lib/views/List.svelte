@@ -31,6 +31,9 @@
 </section>
 
 <style>
+	section {
+		padding-bottom: 1em;
+	}
 	ul {
 		list-style: none;
 		margin: 0;
