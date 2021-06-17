@@ -48,7 +48,14 @@
 
 <form on:submit|preventDefault={login} action="/account/inloggen.json" method="POST">
 	<label for="username">Gebruikersnaam:</label>
-	<input bind:value={username} name="username" type="text" disabled={offline} />
+	<input
+		bind:value={username}
+		name="username"
+		type="text"
+		autocorrect="off"
+		autocapitalize="none"
+		disabled={offline}
+	/>
 	<label for="password">Wachtwoord:</label>
 	<input bind:value={password} name="password" type="password" disabled={offline} />
 	<SubmitButton>Inloggen</SubmitButton>
