@@ -84,6 +84,7 @@ button:active {
 
 button {
 	font-family: inherit;
+	color: inherit;
 }
 
 section {
